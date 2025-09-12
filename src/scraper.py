@@ -13,6 +13,7 @@ import pandas as pd
 import time
 import random
 import logging
+
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from config import FINVIZ_URL
 
@@ -32,7 +33,7 @@ def fetch_page(url: str) -> str:
             response = requests.get(url, headers=HEADERS, timeout=10)
             if response.status_code == 200:
                 return response.text
-            logging.warning(f"Nieudane pobranie ({response.status_code}) próba {i+1}")
+            logging.warning(f"Nieudane pobranie ({response.status_code}) próba {i + 1}")
         except Exception as e:
             logging.error(f"Błąd podczas pobierania: {e}")
         time.sleep(random.uniform(1, 3))
@@ -42,7 +43,8 @@ def fetch_page(url: str) -> str:
 def parse_table(html: str) -> pd.DataFrame:
     """Parsuje tabelę ze strony Finviz do DataFrame."""
     soup = BeautifulSoup(html, "html.parser")
-    table = soup.find("table", class_="table-light")
+    table = soup.find("tr", id="screener-table")
+
     if not table:
         raise ValueError("Nie znaleziono tabeli na stronie Finviz.")
 
