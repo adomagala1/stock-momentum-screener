@@ -1,3 +1,5 @@
 README.MD
 .idea
 .venv
+config.py
+.venv-linux

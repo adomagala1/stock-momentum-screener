@@ -1,0 +1,2 @@
+
+FINVIZ_URL = "https://finviz.com/screener.ashx?v=111&f=cap_smallover,sh_price_o5,sh_avgvol_o500,sh_relvol_o1.5,fa_epsyoy_pos,fa_eps5years_pos,ta_perf_1mup"
