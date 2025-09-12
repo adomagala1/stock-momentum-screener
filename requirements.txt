@@ -1,0 +1,13 @@
+pandas
+numpy
+yfinance
+pandas_ta
+matplotlib
+plotly
+streamlit
+sqlalchemy
+requests
+beautifulsoup4
+transformers
+scikit-learn
+python-telegram-bot
