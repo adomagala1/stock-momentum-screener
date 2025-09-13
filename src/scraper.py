@@ -73,8 +73,8 @@ def fetch_finviz_data() -> pd.DataFrame:
     """Główna funkcja: pobiera i zwraca dane z Finviz."""
     logging.info("Pobieranie danych z Finviz...")
     html = fetch_page(FINVIZ_URL)
-    df = parse_table(html)
-    df = clean_data(df)
+    df_start = parse_table(html)
+    df = clean_data(df_start)
     logging.info(f"Pobrano {len(df)} wierszy z Finviz")
     return df
 
