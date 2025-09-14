@@ -1,1 +1,9 @@
 2025-09-12 18:50:15,586 [ERROR] BÅ‚Ä…d gÅ‚Ã³wny scraper.py: Nie znaleziono tabeli na stronie
+2025-09-14 16:09:46,174 [INFO] Pobieranie danych z Finviz...
+2025-09-14 16:09:47,572 [INFO] Pobrano 0 wierszy z Finviz
+2025-09-14 16:09:47,580 [INFO] Dane zapisane do data/finviz_latest.csv
+2025-09-14 16:12:15,404 [INFO] Pobieranie danych z Finviz...
+2025-09-14 16:12:16,985 [ERROR] B³¹d g³ówny scraper.py: list index out of range
+2025-09-14 16:14:52,699 [INFO] Pobieranie danych z Finviz...
+2025-09-14 16:14:54,378 [INFO] Pobrano 0 wierszy z Finviz
+2025-09-14 16:14:54,384 [INFO] Dane zapisane do data/finviz_latest.csv

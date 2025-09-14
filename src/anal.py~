@@ -1,0 +1,69 @@
+import logging
+import os
+
+import requests
+import pandas as pd
+from bs4 import BeautifulSoup
+from datetime import datetime
+
+os.makedirs("data", exist_ok=True)
+logging.basicConfig(
+    filename="data/scraper.log",
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s"
+)
+
+URL = "https://finviz.com/screener.ashx?v=152&f=cap_mid,exch_nasd,sh_avgvol_o500,sh_price_o5,sh_relvol_o1.5&c=1,2,3,4,5,6,7,20,42,43,57,58,64,67,65,66"
+
+HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0 Safari/537.36"
+}
+
+def fetch_all_finviz(url):
+    all_data = []
+    start = 1
+
+    while True:
+        paged_url = url + f"&r={start}"
+        response = requests.get(paged_url, headers=HEADERS)
+        response.raise_for_status()
+        soup = BeautifulSoup(response.text, "html.parser")
+
+        rows = soup.find_all("tr", class_="styled-row")
+        if not rows:
+            logging.info(f"Nie znaleziono więcej wierszy przy r={start}. Kończymy.")
+            break
+
+        for row in rows:
+            cols = row.find_all("td")
+            row_data = []
+            for col in cols:
+                span = col.find("span")
+                if span:
+                    row_data.append(span.get_text(strip=True))
+                else:
+                    row_data.append(col.get_text(strip=True))
+            all_data.append(row_data)
+
+        logging.info(f"Pobrano {len(rows)} wierszy ze strony r={start}.")
+        start += 20  # kolejna strona
+
+    # Mapowanie kolumn
+    columns = [
+        "Ticker","Company","Sector","Industry","Country","Market Cap","Price",
+        "Change","Perf Week","Perf Month","Perf Quarter","Perf Year","EPS next 5Y",
+        "Volume","52W High","52W Low","P/E"
+    ]
+
+    df = pd.DataFrame(all_data, columns=columns[:len(all_data[0])])
+    return df
+
+def save_csv(df):
+    today = datetime.now().strftime("%Y%m%d")
+    filename = f"finviz_stocks_{today}.csv"
+    df.to_csv(filename, index=False)
+    print(f"[INFO] Zapisano dane do: {filename}")
+
+if __name__ == "__main__":
+    df = fetch_all_finviz(URL)
+    save_csv(df)

@@ -1,12 +1,4 @@
-"""
-scraper.py
-----------
-Moduł do pobierania danych giełdowych z Finviz.
-Wersja rozszerzona z logowaniem, retry i czyszczeniem danych.
-"""
 import os
-import sys
-
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
@@ -14,20 +6,20 @@ import time
 import random
 import logging
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from config import FINVIZ_URL
+# konfiguracja
+FINVIZ_URL = "https://finviz.com/screener.ashx?v=111"
+HEADERS = {"User-Agent": "Mozilla/5.0"}
 
+# logowanie
+os.makedirs("data", exist_ok=True)
 logging.basicConfig(
     filename="data/scraper.log",
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s"
 )
 
-HEADERS = {"User-Agent": "Mozilla/5.0"}
-
 
 def fetch_page(url: str) -> str:
-    """Pobiera stronę z retry."""
     for i in range(3):
         try:
             response = requests.get(url, headers=HEADERS, timeout=10)
@@ -41,36 +33,43 @@ def fetch_page(url: str) -> str:
 
 
 def parse_table(html: str) -> pd.DataFrame:
-    """Parsuje tabelę ze strony Finviz do DataFrame."""
     soup = BeautifulSoup(html, "html.parser")
-    table = soup.find("tr", id="screener-table")
 
-    if not table:
-        raise ValueError("Nie znaleziono tabeli na stronie Finviz.")
+    # Znajdujemy wszystkie tabele na stronie i wybieramy tę, która ma dane (często druga tabela)
+    tables = soup.find_all("table")
+    if len(tables) < 2:
+        raise ValueError("Nie znaleziono tabeli z danymi.")
 
-    rows = table.find_all("tr")[1:]
+    table = tables[1]  # tabela z tickerami zwykle jest druga
+    rows = table.find_all("tr")
+
+    headers = [td.get_text(strip=True) for td in rows[0].find_all("td")]
     data = []
-    for row in rows:
-        cols = [col.get_text(strip=True) for col in row.find_all("td")]
-        if cols:
+    for row in rows[1:]:
+        cols = [td.get_text(strip=True) for td in row.find_all("td")]
+        if cols and len(cols) == len(headers):
             data.append(cols)
 
-    df = pd.DataFrame(data)
-    return df
+    return pd.DataFrame(data, columns=headers)
 
 
 def clean_data(df: pd.DataFrame) -> pd.DataFrame:
-    """Czyści kolumny z %, Mld itp."""
     for col in df.columns:
+        # Konwertujemy wszystko na string, żeby .str.replace działało
+        df[col] = df[col].astype(str)
         df[col] = df[col].str.replace("%", "", regex=False)
         df[col] = df[col].str.replace("M", "e6", regex=False)
         df[col] = df[col].str.replace("B", "e9", regex=False)
         df[col] = df[col].str.replace("K", "e3", regex=False)
+        # próbujemy konwertować na liczbę tam, gdzie się da
+        df[col] = pd.to_numeric(df[col], errors="ignore")
     return df
 
 
+
+
+
 def fetch_finviz_data() -> pd.DataFrame:
-    """Główna funkcja: pobiera i zwraca dane z Finviz."""
     logging.info("Pobieranie danych z Finviz...")
     html = fetch_page(FINVIZ_URL)
     df = parse_table(html)
@@ -87,3 +86,4 @@ if __name__ == "__main__":
         logging.info("Dane zapisane do data/finviz_latest.csv")
     except Exception as e:
         logging.error(f"Błąd główny scraper.py: {e}")
+        print(f"Błąd: {e}")
