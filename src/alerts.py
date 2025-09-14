@@ -1,5 +1,6 @@
 import pandas as pd
 
+
 def breakout_alert(df: pd.DataFrame) -> pd.DataFrame:
     """Zwraca spółki blisko 52W high."""
     return df[df["price"] >= df["fifty_two_week_high"] * 0.98]
@@ -19,6 +20,7 @@ def combined_alerts(df: pd.DataFrame) -> pd.DataFrame:
 
 if __name__ == "__main__":
     import analyzer
+
     df = analyzer.analyze_stocks()
     alerts = combined_alerts(df)
     print("ALERTY:")

@@ -8,7 +8,7 @@ from datetime import datetime
 
 os.makedirs("data", exist_ok=True)
 logging.basicConfig(
-    filename="data/scraper.log",
+    filename="../raports/scraper.log",
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s"
 )

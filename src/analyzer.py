@@ -1,20 +1,38 @@
+import glob
+import logging
+import os.path
+
 import pandas as pd
 from database import read_from_db
 
-def analyze_stocks(table_name="stocks") -> pd.DataFrame:
-    """
-    Zwraca spółki, które spełniają podstawowe kryteria momentum.
-    """
-    df = read_from_db(table_name)
 
-    # filtr: cena > 10, wolumen > 500k, rel vol > 1.5
-    filtered = df[
-        (df["price"] > 10) &
-        (df["volume"] > 500_000) &
-        (df["rel_volume"] > 1.5)
-    ]
+def get_exact_file(end_width: str) -> str:
+    pattern = f"data/finviz_stocks_*{end_width}.csv"
+    logging.info(pattern)
+    files = glob.glob(pattern)
 
-    return filtered
+    if not files:
+        raise FileNotFoundError(f"Brak pliku z koncowka '{end_width}'")
+
+    file = files[0]
+
+    return file
+
+
+def csv_file_to_df(end_width: str, index_col="Ticker") -> pd.DataFrame:
+    file = get_exact_file(end_width)
+    df = pd.read_csv(file, index_col=index_col)
+    return df
+
+
+def analyze_from_csv(end_width: str, operation: int) -> pd.DataFrame:
+    file = get_exact_file(end_width)
+
+    #
+    if operation == 1:
+        pass
+
+
 
 
 def top_gainers(df: pd.DataFrame, n=10):

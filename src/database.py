@@ -14,7 +14,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 dotenv.load_dotenv()
 
 logging.basicConfig(
-    filename="data/database.log",
+    filename="../raports/database.log",
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s"
 )

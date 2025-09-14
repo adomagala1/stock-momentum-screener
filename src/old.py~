@@ -55,16 +55,20 @@ def parse_table(html: str) -> pd.DataFrame:
 
 def clean_data(df: pd.DataFrame) -> pd.DataFrame:
     for col in df.columns:
-        # Konwertujemy wszystko na string, żeby .str.replace działało
+        # upewniamy się, że kolumna jest stringiem
         df[col] = df[col].astype(str)
-        df[col] = df[col].str.replace("%", "", regex=False)
-        df[col] = df[col].str.replace("M", "e6", regex=False)
-        df[col] = df[col].str.replace("B", "e9", regex=False)
-        df[col] = df[col].str.replace("K", "e3", regex=False)
-        # próbujemy konwertować na liczbę tam, gdzie się da
-        df[col] = pd.to_numeric(df[col], errors="ignore")
-    return df
 
+        # operacje na stringach
+        try:
+            df[col] = df[col].str.replace("%", "", regex=False)
+            df[col] = df[col].str.replace("M", "e6", regex=False)
+            df[col] = df[col].str.replace("B", "e9", regex=False)
+            df[col] = df[col].str.replace("K", "e3", regex=False)
+            df[col] = pd.to_numeric(df[col], errors="ignore")
+        except AttributeError:
+            # jeśli kolumna nie obsługuje .str (np. już jest DataFrame), pomijamy
+            pass
+    return df
 
 
 
