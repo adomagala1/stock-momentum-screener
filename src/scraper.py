@@ -1,16 +1,11 @@
-import os
-import requests
-from bs4 import BeautifulSoup
-import pandas as pd
-import time
-import random
 import logging
+import os
 
-# konfiguracja
-FINVIZ_URL = "https://finviz.com/screener.ashx?v=111"
-HEADERS = {"User-Agent": "Mozilla/5.0"}
+import requests
+import pandas as pd
+from bs4 import BeautifulSoup
+from datetime import datetime
 
-# logowanie
 os.makedirs("data", exist_ok=True)
 logging.basicConfig(
     filename="data/scraper.log",
@@ -18,76 +13,57 @@ logging.basicConfig(
     format="%(asctime)s [%(levelname)s] %(message)s"
 )
 
+URL = "https://finviz.com/screener.ashx?v=152&f=cap_mid,exch_nasd,sh_avgvol_o500,sh_price_o5,sh_relvol_o1.5&c=1,2,3,4,5,6,7,20,42,43,57,58,64,67,65,66"
 
-def fetch_page(url: str) -> str:
-    for i in range(3):
-        try:
-            response = requests.get(url, headers=HEADERS, timeout=10)
-            if response.status_code == 200:
-                return response.text
-            logging.warning(f"Nieudane pobranie ({response.status_code}) próba {i + 1}")
-        except Exception as e:
-            logging.error(f"Błąd podczas pobierania: {e}")
-        time.sleep(random.uniform(1, 3))
-    raise ConnectionError("Nie udało się pobrać strony Finviz.")
+HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0 Safari/537.36"
+}
 
+def fetch_all_finviz(url):
+    all_data = []
+    start = 1
 
-def parse_table(html: str) -> pd.DataFrame:
-    soup = BeautifulSoup(html, "html.parser")
+    while True:
+        paged_url = url + f"&r={start}"
+        response = requests.get(paged_url, headers=HEADERS)
+        response.raise_for_status()
+        soup = BeautifulSoup(response.text, "html.parser")
 
-    # Znajdujemy wszystkie tabele na stronie i wybieramy tę, która ma dane (często druga tabela)
-    tables = soup.find_all("table")
-    if len(tables) < 2:
-        raise ValueError("Nie znaleziono tabeli z danymi.")
+        rows = soup.find_all("tr", class_="styled-row")
+        if not rows:
+            logging.info(f"Nie znaleziono więcej wierszy przy r={start}. Kończymy.")
+            break
 
-    table = tables[1]  # tabela z tickerami zwykle jest druga
-    rows = table.find_all("tr")
+        for row in rows:
+            cols = row.find_all("td")
+            row_data = []
+            for col in cols:
+                span = col.find("span")
+                if span:
+                    row_data.append(span.get_text(strip=True))
+                else:
+                    row_data.append(col.get_text(strip=True))
+            all_data.append(row_data)
 
-    headers = [td.get_text(strip=True) for td in rows[0].find_all("td")]
-    data = []
-    for row in rows[1:]:
-        cols = [td.get_text(strip=True) for td in row.find_all("td")]
-        if cols and len(cols) == len(headers):
-            data.append(cols)
+        logging.info(f"Pobrano {len(rows)} wierszy ze strony r={start}.")
+        start += 20  # kolejna strona
 
-    return pd.DataFrame(data, columns=headers)
+    # Mapowanie kolumn
+    columns = [
+        "Ticker","Company","Sector","Industry","Country","Market Cap","Price",
+        "Change","Perf Week","Perf Month","Perf Quarter","Perf Year","EPS next 5Y",
+        "Volume","52W High","52W Low","P/E"
+    ]
 
-
-def clean_data(df: pd.DataFrame) -> pd.DataFrame:
-    for col in df.columns:
-        # upewniamy się, że kolumna jest stringiem
-        df[col] = df[col].astype(str)
-
-        # operacje na stringach
-        try:
-            df[col] = df[col].str.replace("%", "", regex=False)
-            df[col] = df[col].str.replace("M", "e6", regex=False)
-            df[col] = df[col].str.replace("B", "e9", regex=False)
-            df[col] = df[col].str.replace("K", "e3", regex=False)
-            df[col] = pd.to_numeric(df[col], errors="ignore")
-        except AttributeError:
-            # jeśli kolumna nie obsługuje .str (np. już jest DataFrame), pomijamy
-            pass
+    df = pd.DataFrame(all_data, columns=columns[:len(all_data[0])])
     return df
 
-
-
-
-def fetch_finviz_data() -> pd.DataFrame:
-    logging.info("Pobieranie danych z Finviz...")
-    html = fetch_page(FINVIZ_URL)
-    df = parse_table(html)
-    df = clean_data(df)
-    logging.info(f"Pobrano {len(df)} wierszy z Finviz")
-    return df
-
+def save_csv(df):
+    today = datetime.now().strftime("%Y%m%d")
+    filename = f"finviz_stocks_{today}.csv"
+    df.to_csv(filename, index=False)
+    logging.info(f"Dane zapisane do {filename}")
 
 if __name__ == "__main__":
-    try:
-        df = fetch_finviz_data()
-        print(df.head())
-        df.to_csv("data/finviz_latest.csv", index=False)
-        logging.info("Dane zapisane do data/finviz_latest.csv")
-    except Exception as e:
-        logging.error(f"Błąd główny scraper.py: {e}")
-        print(f"Błąd: {e}")
+    df = fetch_all_finviz(URL)
+    save_csv(df)
