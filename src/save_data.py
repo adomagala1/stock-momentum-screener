@@ -57,10 +57,6 @@ def save_csv_to_db(end_width: str, table_name: str = "stocks_data"):
         df['volume'] = pd.to_numeric(df['volume'].astype(str).str.replace(',', '', regex=False), errors='coerce')
         df['change'] = df['change'].replace("-", pd.NA)
 
-        df['fifty_two_week_high'] = pd.to_numeric(df['fifty_two_week_high'], errors='coerce')
-        df['fifty_two_week_low'] = pd.to_numeric(df['fifty_two_week_low'].astype(str).str.replace(',', '', regex=False),
-                                                 errors='coerce')
-        df['eps_next_5y'] = pd.to_numeric(df['eps_next_5y'], errors='coerce')
         engine = get_engine()
         logging.info(f"DataFrame przed zapisem:\n{df.head()}")
         logging.info(f"Liczba wierszy: {len(df)}")

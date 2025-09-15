@@ -129,3 +129,29 @@ LINE 1: ..., company, sector, industry, country, market_cap, "p/e", eps...
 [5 rows x 16 columns]
 2025-09-15 19:39:16,327 [INFO] Liczba wierszy: 14
 2025-09-15 19:39:16,440 [INFO] Zapisano 14 rekordów do stocks_data
+2025-09-15 19:42:26,819 [INFO] Tabela stocks gotowa
+2025-09-15 19:42:26,826 [INFO] data/finviz_stocks_20250915.csv
+2025-09-15 19:42:26,862 [INFO] DataFrame przed zapisem:
+  ticker                     company  ...  price  change
+0   BILI            Bilibili Inc ADR  ...  27.14   6.64%
+1   BRKR                 Bruker Corp  ...  31.75   2.72%
+2   BTDR  Bitdeer Technologies Group  ...  16.07  -0.50%
+3   CVBF          CVB Financial Corp  ...  20.03  -0.35%
+4    DLO              DLocal Limited  ...  14.34   4.44%
+
+[5 rows x 16 columns]
+2025-09-15 19:42:26,862 [INFO] Liczba wierszy: 14
+2025-09-15 19:42:26,964 [INFO] Zapisano 14 rekordów do stocks_data
+2025-09-15 19:45:03,664 [INFO] Tabela stocks gotowa
+2025-09-15 19:45:03,669 [INFO] data/finviz_stocks_20250915.csv
+2025-09-15 19:45:03,701 [INFO] DataFrame przed zapisem:
+  ticker                     company  ...  price  change
+0   BILI            Bilibili Inc ADR  ...  27.14   6.64%
+1   BRKR                 Bruker Corp  ...  31.75   2.72%
+2   BTDR  Bitdeer Technologies Group  ...  16.07  -0.50%
+3   CVBF          CVB Financial Corp  ...  20.03  -0.35%
+4    DLO              DLocal Limited  ...  14.34   4.44%
+
+[5 rows x 16 columns]
+2025-09-15 19:45:03,701 [INFO] Liczba wierszy: 14
+2025-09-15 19:45:03,873 [INFO] Zapisano 14 rekordów do stocks_data

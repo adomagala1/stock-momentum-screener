@@ -46,14 +46,11 @@ def save_csv_to_db(end_width: str, table_name: str = "stocks_data"):
                                                                                                                     '',
                                                                                                        regex=True)
         df = df.rename(columns={
-            df = df.rename(columns={
-    '52w_high': 'fifty_two_week_high',
-    '52w_low': 'fifty_two_week_low',
-    'rel_vol': 'rel_volume',
-    'eps_next_5y': 'eps_next_5y',
-    'p/e': 'p_e'
-})
-
+            '52w_high': 'fifty_two_week_high',
+            '52w_low': 'fifty_two_week_low',
+            'rel_vol': 'rel_volume',
+            'eps_next_5y': 'eps_next_5y',
+            'p/e': 'p_e'
         })
         df['market_cap'] = df['market_cap'].apply(convert_market_cap)
         df['price'] = pd.to_numeric(df['price'].astype(str).str.replace(',', '', regex=False), errors='coerce')

@@ -36,11 +36,11 @@ def init_db_if_not_exists():
     country VARCHAR(100),
     market_cap NUMERIC,
     p_e NUMERIC,
-    eps_next_5y NUMERIC,
+    eps_next_5y VARCHAR(10),
     perf_week VARCHAR(10),
     perf_month VARCHAR(10),
-    fifty_two_week_high NUMERIC,
-    fifty_two_week_low NUMERIC,
+    fifty_two_week_high VARCHAR(10),
+    fifty_two_week_low VARCHAR(10),
     rel_volume NUMERIC,
     volume INTEGER,
     price NUMERIC,
@@ -50,7 +50,6 @@ def init_db_if_not_exists():
     with engine.begin() as conn:
         conn.execute(text(ddl))
     logging.info("Tabela stocks gotowa")
-
 
 
 def read_from_db(table_name: str = "stocks_data") -> pd.DataFrame:
