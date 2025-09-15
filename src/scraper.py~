@@ -53,8 +53,8 @@ def fetch_all_finviz(url):
     # Mapowanie kolumn
     columns = [
         "Ticker", "Company", "Sector", "Industry", "Country", "Market Cap", "P/E",
-        "EPS next 5Y", "Perf Week", "Perf Month", "52w High", "52w Low", "Rel Vol",
-        "Volume", "Price", "Change"
+        "EPS next 5Y", "Perf Week", "Perf Month", "52w High", "52w Low", "",
+        "Volume",
     ]
 
     df = pd.DataFrame(all_data, columns=columns[:len(all_data[0])])

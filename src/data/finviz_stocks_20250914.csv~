@@ -1,4 +1,4 @@
-ticker,company,sector,industry,country,market_cap,price,change,perf_week,perf_month,perf_quarter,perf_year,eps_next_5y,volume,fifty_two_week_high,fifty_two_week_low
+ticker,company,sector,industry,country,market_cap,price,change,perf_week,perf_month,perf_quarter,perf_year,eps_next_5y,volume,fifty_two_week_high,
 BILI,Bilibili Inc ADR,Communication Services,Internet Content & Information,China,8.24B,367.77,-,13.57%,4.43%,-19.89%,77.23%,1.68,"5,233,385",25.45,4.09%
 BTDR,Bitdeer Technologies Group,Technology,Software - Application,Singapore,3.18B,-,-,30.77%,15.52%,-40.16%,159.15%,2.15,"9,411,239",16.15,14.46%
 BTSG,BrightSpring Health Services Inc,Healthcare,Health Information Services,USA,4.69B,89.48,36.43%,9.61%,18.13%,-6.96%,97.39%,1.60,"4,264,136",26.45,-5.50%

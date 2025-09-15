@@ -6,3 +6,126 @@
 2025-09-14 22:29:19,149 [INFO] data/finviz_stocks_20250914.csv
 2025-09-14 22:29:47,759 [INFO] data/finviz_stocks_*20250914.csv
 2025-09-14 22:30:21,967 [INFO] data/finviz_stocks_*20250914.csv
+2025-09-15 17:32:54,831 [INFO] Tabela stocks gotowa
+2025-09-15 17:35:54,806 [INFO] Tabela stocks gotowa
+2025-09-15 17:38:26,462 [INFO] Tabela stocks gotowa
+2025-09-15 17:43:28,689 [INFO] Tabela stocks gotowa
+2025-09-15 17:43:28,690 [INFO] data/finviz_stocks_20250914.csv
+2025-09-15 17:44:39,748 [INFO] Tabela stocks gotowa
+2025-09-15 17:44:39,748 [INFO] data/finviz_stocks_20250914.csv
+2025-09-15 17:48:43,796 [INFO] Tabela stocks gotowa
+2025-09-15 17:48:43,796 [INFO] data/finviz_stocks_20250914.csv
+2025-09-15 17:48:55,895 [INFO] Tabela stocks gotowa
+2025-09-15 17:48:55,895 [INFO] data/finviz_stocks_20250914.csv
+2025-09-15 17:50:00,336 [INFO] Tabela stocks gotowa
+2025-09-15 17:50:00,336 [INFO] data/finviz_stocks_20250914.csv
+2025-09-15 17:55:20,743 [INFO] Tabela stocks gotowa
+2025-09-15 17:55:20,743 [INFO] data/finviz_stocks_20250914.csv
+2025-09-15 17:56:41,798 [INFO] Tabela stocks gotowa
+2025-09-15 17:56:41,799 [INFO] data/finviz_stocks_20250914.csv
+2025-09-15 18:06:31,295 [INFO] Tabela stocks gotowa
+2025-09-15 18:06:31,296 [INFO] data/finviz_stocks_20250915.csv
+2025-09-15 18:07:13,427 [INFO] Tabela stocks gotowa
+2025-09-15 18:07:13,427 [INFO] data/finviz_stocks_20250915.csv
+2025-09-15 18:10:25,693 [INFO] Tabela stocks gotowa
+2025-09-15 18:10:25,693 [INFO] data/finviz_stocks_20250915.csv
+2025-09-15 18:10:25,802 [INFO] Zapisano 23 rekordów do stocks_data
+2025-09-15 18:23:56,530 [INFO] Tabela stocks gotowa
+2025-09-15 18:23:56,533 [INFO] data/finviz_stocks_20250915.csv
+2025-09-15 18:25:11,703 [INFO] Tabela stocks gotowa
+2025-09-15 18:25:11,707 [INFO] data/finviz_stocks_20250915.csv
+2025-09-15 18:27:40,631 [INFO] Tabela stocks gotowa
+2025-09-15 18:27:40,635 [INFO] data/finviz_stocks_20250915.csv
+2025-09-15 18:27:40,643 [ERROR] B³a\u0328d podczas zapisywania do bazy danych: save_data.py Can only use .str accessor with string values!
+2025-09-15 18:27:56,833 [INFO] Tabela stocks gotowa
+2025-09-15 18:27:56,837 [INFO] data/finviz_stocks_20250915.csv
+2025-09-15 18:27:56,847 [ERROR] B³a\u0328d podczas zapisywania do bazy danych: save_data.py Can only use .str accessor with string values!
+2025-09-15 18:31:59,659 [INFO] Tabela stocks gotowa
+2025-09-15 18:31:59,663 [INFO] data/finviz_stocks_20250915.csv
+2025-09-15 18:31:59,694 [INFO] DataFrame przed zapisem:
+  ticker                     company  ... fifty_two_week_high fifty_two_week_low
+0   BILI            Bilibili Inc ADR  ...               27.35                NaN
+1   BRKR                 Bruker Corp  ...               31.54                NaN
+2   BTDR  Bitdeer Technologies Group  ...               16.14                NaN
+3   CVBF          CVB Financial Corp  ...               20.02                NaN
+4    DLO              DLocal Limited  ...               14.31                NaN
+
+[5 rows x 16 columns]
+2025-09-15 18:31:59,694 [INFO] Liczba wierszy: 21
+2025-09-15 18:31:59,782 [INFO] Zapisano 21 rekordów do stocks_data
+2025-09-15 18:38:40,464 [INFO] Tabela stocks gotowa
+2025-09-15 18:38:40,471 [INFO] data/finviz_stocks_20250915.csv
+2025-09-15 18:38:40,479 [ERROR] B³a\u0328d podczas zapisywania do bazy danych: save_data.py 'market_cap'
+2025-09-15 18:41:49,285 [INFO] Tabela stocks gotowa
+2025-09-15 18:41:49,290 [INFO] data/finviz_stocks_20250915.csv
+2025-09-15 18:41:49,296 [ERROR] B³a\u0328d podczas zapisywania do bazy danych: save_data.py 'market_cap'
+2025-09-15 18:43:00,520 [INFO] Tabela stocks gotowa
+2025-09-15 18:43:00,524 [INFO] data/finviz_stocks_20250915.csv
+2025-09-15 18:43:00,533 [ERROR] B³a\u0328d podczas zapisywania do bazy danych: save_data.py 'fifty_two_week_high'
+2025-09-15 18:44:29,453 [INFO] Tabela stocks gotowa
+2025-09-15 18:44:29,457 [INFO] data/finviz_stocks_20250915.csv
+2025-09-15 18:44:29,473 [ERROR] B³a\u0328d podczas zapisywania do bazy danych: save_data.py 'fifty_two_week_high'
+2025-09-15 18:46:09,047 [INFO] Tabela stocks gotowa
+2025-09-15 18:46:09,051 [INFO] data/finviz_stocks_20250915.csv
+2025-09-15 18:46:09,079 [INFO] DataFrame przed zapisem:
+  ticker                     company  ... fifty_two_week_high fifty_two_week_low
+0   BILI            Bilibili Inc ADR  ...               27.33                NaN
+1   BRKR                 Bruker Corp  ...               31.60                NaN
+2   BTDR  Bitdeer Technologies Group  ...               16.11                NaN
+3   CVBF          CVB Financial Corp  ...               20.02                NaN
+4    DLO              DLocal Limited  ...               14.16                NaN
+
+[5 rows x 16 columns]
+2025-09-15 18:46:09,079 [INFO] Liczba wierszy: 18
+2025-09-15 18:46:09,174 [INFO] Zapisano 18 rekordów do stocks_data
+2025-09-15 18:54:50,811 [INFO] Tabela stocks gotowa
+2025-09-15 18:54:50,816 [INFO] data/finviz_stocks_20250915.csv
+2025-09-15 18:54:50,844 [INFO] DataFrame przed zapisem:
+  ticker                     company  ...  price  change
+0   BILI            Bilibili Inc ADR  ...  27.22   6.94%
+1   BRKR                 Bruker Corp  ...  31.67   2.45%
+2   BTDR  Bitdeer Technologies Group  ...  16.02  -0.81%
+3   CVBF          CVB Financial Corp  ...  20.06  -0.20%
+4    DLO              DLocal Limited  ...  14.23   3.64%
+
+[5 rows x 16 columns]
+2025-09-15 18:54:50,844 [INFO] Liczba wierszy: 16
+2025-09-15 18:54:50,933 [ERROR] B³a\u0328d podczas zapisywania do bazy danych: save_data.py (psycopg2.errors.UndefinedColumn) column "p/e" of relation "stocks_data" does not exist
+LINE 1: ..., company, sector, industry, country, market_cap, "p/e", eps...
+                                                             ^
+
+[SQL: INSERT INTO stocks_data (ticker, company, sector, industry, country, market_cap, "p/e", eps_next_5y, perf_week, perf_month, fifty_two_week_high, fifty_two_week_low, rel_vol, volume, price, change) VALUES (%(ticker__0)s, %(company__0)s, %(sector__0)s, ... 4492 characters truncated ... h__15)s, %(fifty_two_week_low__15)s, %(rel_vol__15)s, %(volume__15)s, %(price__15)s, %(change__15)s)]
+[parameters: {'industry__0': 'Internet Content & Information', 'country__0': 'China', 'perf_month__0': '14.26%', 'rel_vol__0': 3.67, 'p/e__0': 393.29, 'fifty_two_week_low__0': None, 'fifty_two_week_high__0': None, 'volume__0': 5868433, 'market_cap__0': 8810000000.0, 'eps_next_5y__0': None, 'price__0': 27.22, 'company__0': 'Bilibili Inc ADR', 'perf_week__0': '20.64%', 'change__0': '6.94%', 'sector__0': 'Communication Services', 'ticker__0': 'BILI', 'industry__1': 'Medical Devices', 'country__1': 'USA', 'perf_month__1': '-5.86%', 'rel_vol__1': 2.25, 'p/e__1': 60.45, 'fifty_two_week_low__1': None, 'fifty_two_week_high__1': None, 'volume__1': 4166394, 'market_cap__1': 4800000000.0, 'eps_next_5y__1': None, 'price__1': 31.67, 'company__1': 'Bruker Corp', 'perf_week__1': '2.82%', 'change__1': '2.45%', 'sector__1': 'Healthcare', 'ticker__1': 'BRKR', 'industry__2': 'Software - Application', 'country__2': 'Singapore', 'perf_month__2': '16.25%', 'rel_vol__2': 1.74, 'p/e__2': None, 'fifty_two_week_low__2': None, 'fifty_two_week_high__2': None, 'volume__2': 3964954, 'market_cap__2': 3150000000.0, 'eps_next_5y__2': None, 'price__2': 16.02, 'company__2': 'Bitdeer Technologies Group', 'perf_week__2': '26.14%', 'change__2': '-0.81%', 'sector__2': 'Technology', 'ticker__2': 'BTDR', 'industry__3': 'Banks - Regional', 'country__3': 'USA' ... 156 parameters truncated ... 'sector__12': 'Communication Services', 'ticker__12': 'RUM', 'industry__13': 'Software - Application', 'country__13': 'USA', 'perf_month__13': '-12.00%', 'rel_vol__13': 1.52, 'p/e__13': None, 'fifty_two_week_low__13': None, 'fifty_two_week_high__13': None, 'volume__13': 40445151, 'market_cap__13': 5930000000.0, 'eps_next_5y__13': None, 'price__13': 14.56, 'company__13': 'SoundHound AI Inc', 'perf_week__13': '-4.81%', 'change__13': '3.08%', 'sector__13': 'Technology', 'ticker__13': 'SOUN', 'industry__14': 'Health Information Services', 'country__14': 'USA', 'perf_month__14': '6.86%', 'rel_vol__14': 1.85, 'p/e__14': 79.67, 'fifty_two_week_low__14': None, 'fifty_two_week_high__14': None, 'volume__14': 1751884, 'market_cap__14': 6610000000.0, 'eps_next_5y__14': None, 'price__14': 37.96, 'company__14': 'Waystar Holding Corp', 'perf_week__14': '-7.11%', 'change__14': '1.59%', 'sector__14': 'Healthcare', 'ticker__14': 'WAY', 'industry__15': 'Software - Application', 'country__15': 'China', 'perf_month__15': '4.85%', 'rel_vol__15': 2.64, 'p/e__15': None, 'fifty_two_week_low__15': None, 'fifty_two_week_high__15': None, 'volume__15': 8972739, 'market_cap__15': 2690000000.0, 'eps_next_5y__15': None, 'price__15': 10.12, 'company__15': 'WeRide Inc. ADR', 'perf_week__15': '10.22%', 'change__15': '2.83%', 'sector__15': 'Technology', 'ticker__15': 'WRD'}]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-09-15 19:02:36,816 [INFO] Tabela stocks gotowa
+2025-09-15 19:02:36,824 [INFO] data/finviz_stocks_20250915.csv
+2025-09-15 19:02:36,852 [INFO] DataFrame przed zapisem:
+  ticker                     company  ...  price  change
+0   BILI            Bilibili Inc ADR  ...  27.22   6.94%
+1   BRKR                 Bruker Corp  ...  31.67   2.45%
+2   BTDR  Bitdeer Technologies Group  ...  16.02  -0.81%
+3   CVBF          CVB Financial Corp  ...  20.06  -0.20%
+4    DLO              DLocal Limited  ...  14.23   3.64%
+
+[5 rows x 16 columns]
+2025-09-15 19:02:36,852 [INFO] Liczba wierszy: 16
+2025-09-15 19:02:37,019 [INFO] Zapisano 16 rekordów do stocks_data
+2025-09-15 19:06:48,311 [INFO] Tabela stocks gotowa
+2025-09-15 19:06:48,315 [INFO] data/finviz_stocks_20250915.csv
+2025-09-15 19:06:48,325 [ERROR] B³a\u0328d podczas zapisywania do bazy danych: save_data.py 'fifty_two_week_high'
+2025-09-15 19:07:10,816 [INFO] Tabela stocks gotowa
+2025-09-15 19:07:10,820 [INFO] data/finviz_stocks_20250915.csv
+2025-09-15 19:07:10,830 [ERROR] B³a\u0328d podczas zapisywania do bazy danych: save_data.py 'fifty_two_week_high'
+2025-09-15 19:39:16,285 [INFO] Tabela stocks gotowa
+2025-09-15 19:39:16,291 [INFO] data/finviz_stocks_20250915.csv
+2025-09-15 19:39:16,327 [INFO] DataFrame przed zapisem:
+  ticker                     company  ...  price  change
+0   BILI            Bilibili Inc ADR  ...  27.14   6.64%
+1   BRKR                 Bruker Corp  ...  31.75   2.72%
+2   BTDR  Bitdeer Technologies Group  ...  16.07  -0.50%
+3   CVBF          CVB Financial Corp  ...  20.03  -0.35%
+4    DLO              DLocal Limited  ...  14.34   4.44%
+
+[5 rows x 16 columns]
+2025-09-15 19:39:16,327 [INFO] Liczba wierszy: 14
+2025-09-15 19:39:16,440 [INFO] Zapisano 14 rekordów do stocks_data

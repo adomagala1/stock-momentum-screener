@@ -7,3 +7,41 @@
 2025-09-14 16:14:52,699 [INFO] Pobieranie danych z Finviz...
 2025-09-14 16:14:54,378 [INFO] Pobrano 0 wierszy z Finviz
 2025-09-14 16:14:54,384 [INFO] Dane zapisane do data/finviz_latest.csv
+2025-09-15 17:53:11,683 [INFO] Pobrano 20 wierszy ze strony r=1.
+2025-09-15 17:53:12,412 [INFO] Pobrano 4 wierszy ze strony r=21.
+2025-09-15 17:53:13,162 [INFO] Nie znaleziono wiêcej wierszy przy r=41. Koñczymy.
+2025-09-15 17:53:13,175 [INFO] Dane zapisane do finviz_stocks_20250915.csv
+2025-09-15 17:53:35,336 [INFO] Pobrano 20 wierszy ze strony r=1.
+2025-09-15 17:53:36,142 [INFO] Pobrano 4 wierszy ze strony r=21.
+2025-09-15 17:53:36,907 [INFO] Nie znaleziono wiêcej wierszy przy r=41. Koñczymy.
+2025-09-15 17:55:05,914 [INFO] Pobrano 20 wierszy ze strony r=1.
+2025-09-15 17:55:06,640 [INFO] Pobrano 5 wierszy ze strony r=21.
+2025-09-15 17:55:07,354 [INFO] Nie znaleziono wiêcej wierszy przy r=41. Koñczymy.
+2025-09-15 17:55:07,364 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\src\data\finviz_stocks_20250915.csv
+2025-09-15 18:05:27,632 [INFO] Pobrano 20 wierszy ze strony r=1.
+2025-09-15 18:05:28,348 [INFO] Pobrano 2 wierszy ze strony r=21.
+2025-09-15 18:05:29,110 [INFO] Nie znaleziono wiêcej wierszy przy r=41. Koñczymy.
+2025-09-15 18:05:29,121 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\src\data\finviz_stocks_20250915.csv
+2025-09-15 18:10:01,644 [INFO] Pobrano 20 wierszy ze strony r=1.
+2025-09-15 18:10:02,408 [INFO] Pobrano 3 wierszy ze strony r=21.
+2025-09-15 18:10:03,122 [INFO] Nie znaleziono wiêcej wierszy przy r=41. Koñczymy.
+2025-09-15 18:10:03,140 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\src\data\finviz_stocks_20250915.csv
+2025-09-15 18:22:34,237 [INFO] Pobrano 20 wierszy ze strony r=1.
+2025-09-15 18:22:34,931 [INFO] Pobrano 1 wierszy ze strony r=21.
+2025-09-15 18:22:35,656 [INFO] Nie znaleziono wiêcej wierszy przy r=41. Koñczymy.
+2025-09-15 18:23:34,023 [INFO] Pobrano 20 wierszy ze strony r=1.
+2025-09-15 18:23:34,728 [INFO] Pobrano 1 wierszy ze strony r=21.
+2025-09-15 18:23:35,444 [INFO] Nie znaleziono wiêcej wierszy przy r=41. Koñczymy.
+2025-09-15 18:23:35,458 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\src\data\finviz_stocks_20250915.csv
+2025-09-15 18:36:38,511 [INFO] Pobrano 18 wierszy ze strony r=1.
+2025-09-15 18:36:39,296 [INFO] Nie znaleziono wiêcej wierszy przy r=21. Koñczymy.
+2025-09-15 18:36:39,311 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\src\data\finviz_stocks_20250915.csv
+2025-09-15 18:38:04,313 [INFO] Pobrano 18 wierszy ze strony r=1.
+2025-09-15 18:38:05,264 [INFO] Nie znaleziono wiêcej wierszy przy r=21. Koñczymy.
+2025-09-15 18:38:05,278 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\src\data\finviz_stocks_20250915.csv
+2025-09-15 18:54:13,584 [INFO] Pobrano 16 wierszy ze strony r=1.
+2025-09-15 18:54:14,339 [INFO] Nie znaleziono wiêcej wierszy przy r=21. Koñczymy.
+2025-09-15 18:54:14,350 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\src\data\finviz_stocks_20250915.csv
+2025-09-15 19:04:27,220 [INFO] Pobrano 14 wierszy ze strony r=1.
+2025-09-15 19:04:27,918 [INFO] Nie znaleziono wiêcej wierszy przy r=21. Koñczymy.
+2025-09-15 19:04:27,929 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\src\data\finviz_stocks_20250915.csv

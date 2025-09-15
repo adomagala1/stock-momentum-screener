@@ -1,0 +1,16 @@
+import glob
+import logging
+import os
+
+
+def get_exact_file(end_width: str) -> str:
+    pattern = f"data/finviz_stocks_{end_width}.csv"
+    logging.info(pattern)
+    files = glob.glob(pattern)
+
+    if not files:
+        raise FileNotFoundError(f"Brak pliku z koncowka '{end_width}'")
+
+    file = files[0]
+
+    return file

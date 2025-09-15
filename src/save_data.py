@@ -1,0 +1,70 @@
+import os
+import pandas as pd
+import logging
+from datetime import datetime
+
+from src.helpers import get_exact_file
+def convert_market_cap(value):
+    if pd.isna(value):
+        return None
+    if 'B' in value:
+        return float(value.replace('B', '')) * 1e9
+    elif 'M' in value:
+        return float(value.replace('M', '')) * 1e6
+    elif 'K' in value:
+        return float(value.replace('K', '')) * 1e3
+    else:
+        try:
+            return float(value)
+        except:
+            return None
+
+
+def save_csv(df: pd.DataFrame) -> None:
+    os.makedirs("data", exist_ok=True)
+    df.replace("-", pd.NA, inplace=True)
+    numeric_cols = ["market_cap", "price", "change", "eps_next_5y",
+                    "volume", "fifty_two_week_high", "fifty_two_week_low"]
+    for col in numeric_cols:
+        if col in df.columns:
+            df[col] = df[col].astype(str).str.replace(",", "", regex=False)
+            df[col] = pd.to_numeric(df[col], errors="coerce")
+
+    today = datetime.now().strftime("%Y%m%d")
+    path = os.path.join("data", f"finviz_stocks_{today}.csv")
+    filename = os.path.abspath(path)
+    df.to_csv(filename, index=False)
+    logging.info(f"Dane zapisane do {filename}")
+
+def save_csv_to_db(end_width: str, table_name: str = "stocks_data"):
+    from src.database import get_engine
+    """Zapisuje dane do tabeli w PostgreSQL"""
+    try:
+        csv_file = get_exact_file(end_width)
+        df = pd.read_csv(csv_file)
+        df.columns = df.columns.str.strip().str.lower().str.replace(' ', '_').str.replace('%', '_perc').str.replace('^',
+                                                                                                                    '',
+                                                                                                       regex=True)
+        df = df.rename(columns={
+            '52w_high': 'fifty_two_week_high',
+            '52w_low': 'fifty_two_week_low',
+            'rel_vol': 'rel_volume',
+            'eps_next_5y': 'eps_next_5y',
+            'p/e': 'p_e'
+        })
+        df['market_cap'] = df['market_cap'].apply(convert_market_cap)
+        df['price'] = pd.to_numeric(df['price'].astype(str).str.replace(',', '', regex=False), errors='coerce')
+        df['volume'] = pd.to_numeric(df['volume'].astype(str).str.replace(',', '', regex=False), errors='coerce')
+        df['change'] = df['change'].replace("-", pd.NA)
+
+        df['fifty_two_week_high'] = pd.to_numeric(df['fifty_two_week_high'], errors='coerce')
+        df['fifty_two_week_low'] = pd.to_numeric(df['fifty_two_week_low'].astype(str).str.replace(',', '', regex=False),
+                                                 errors='coerce')
+        df['eps_next_5y'] = pd.to_numeric(df['eps_next_5y'], errors='coerce')
+        engine = get_engine()
+        logging.info(f"DataFrame przed zapisem:\n{df.head()}")
+        logging.info(f"Liczba wierszy: {len(df)}")
+        df.to_sql(table_name, engine, if_exists="append", index=False)
+        logging.info(f"Zapisano {len(df)} rekordów do {table_name}")
+    except Exception as e:
+        logging.error(f"Błąd podczas zapisywania do bazy danych: save_data.py {e}")
