@@ -1,0 +1,76 @@
+import pandas as pd
+import numpy as np
+import logging
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_absolute_error, r2_score
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.svm import SVR
+
+
+def prepare_data(df: pd.DataFrame):
+    """Przygotowanie danych do predykcji"""
+
+    # Zastąpienie brakujących danych (można także zastosować inne techniki imputacji)
+    df = df.dropna(subset=['price', 'market_cap', 'p_e', 'eps_next_5y', 'volume'])
+
+    # Zmienna docelowa: cena akcji
+    X = df[['market_cap', 'p_e', 'eps_next_5y', 'volume', 'perf_week', 'perf_month']]
+    y = df['price']
+
+    # Normalizacja danych
+    scaler = StandardScaler()
+    X_scaled = scaler.fit_transform(X)
+
+    return X_scaled, y
+
+
+def train_predict_model(df: pd.DataFrame):
+    """Trening modelu predykcyjnego"""
+
+    X, y = prepare_data(df)
+
+    # Podział na zbiór treningowy i testowy
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+    # Model regresji liniowej
+    model = LinearRegression()
+
+    # Trenowanie modelu
+    model.fit(X_train, y_train)
+
+    # Predykcja
+    y_pred = model.predict(X_test)
+
+    # Ocena modelu
+    mae = mean_absolute_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+
+    logging.info(f"MAE (średni błąd absolutny): {mae}")
+    logging.info(f"R2 (współczynnik determinacji): {r2}")
+
+    return model, y_test, y_pred
+
+
+def plot_predictions(y_test, y_pred):
+    """Wizualizacja predykcji"""
+    import matplotlib.pyplot as plt
+
+    plt.scatter(y_test, y_pred)
+    plt.plot([min(y_test), max(y_test)], [min(y_test), max(y_test)], color='red')  # Linia regresji
+    plt.xlabel('Rzeczywiste ceny')
+    plt.ylabel('Przewidywane ceny')
+    plt.title('Predykcja ceny akcji')
+    plt.show()
+
+
+if __name__ == "__main__":
+    # Załaduj dane z CSV
+    df = pd.read_csv('stocks_data.csv')
+
+    # Trening i predykcja
+    model, y_test, y_pred = train_predict_model(df)
+
+    # Wizualizacja wyników
+    plot_predictions(y_test, y_pred)

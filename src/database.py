@@ -44,7 +44,8 @@ def init_db_if_not_exists():
     rel_volume NUMERIC,
     volume INTEGER,
     price NUMERIC,
-    change VARCHAR(10)
+    change VARCHAR(10),
+    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
     """
     with engine.begin() as conn:
