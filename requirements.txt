@@ -12,3 +12,4 @@ transformers
 scikit-learn
 python-telegram-bot
 psycopg2-binary
+pymongo

@@ -155,3 +155,116 @@ LINE 1: ..., company, sector, industry, country, market_cap, "p/e", eps...
 [5 rows x 16 columns]
 2025-09-15 19:45:03,701 [INFO] Liczba wierszy: 14
 2025-09-15 19:45:03,873 [INFO] Zapisano 14 rekordów do stocks_data
+2025-09-16 19:06:47,983 [INFO] Tabela stocks gotowa
+2025-09-16 19:06:47,991 [INFO] data/finviz_stocks_20250916.csv
+2025-09-16 19:06:48,024 [INFO] DataFrame przed zapisem:
+  ticker                      company  ...  price  change
+0   AMKR         AMKOR Technology Inc  ...  26.65   3.79%
+1    DLO               DLocal Limited  ...  14.69   3.60%
+2   HSAI              Hesai Group ADR  ...  28.81  -3.32%
+3   MARA            MARA Holdings Inc  ...  17.19   5.88%
+4   MLTX  MoonLake Immunotherapeutics  ...  53.21  -0.11%
+
+[5 rows x 16 columns]
+2025-09-16 19:06:48,024 [INFO] Liczba wierszy: 12
+2025-09-16 19:06:48,150 [INFO] Zapisano 12 rekordów do stocks_data
+2025-09-16 19:17:56,443 [INFO] Tabela stocks gotowa
+2025-09-16 19:17:56,450 [INFO] data/finviz_stocks_20250916.csv
+2025-09-16 19:17:56,477 [INFO] DataFrame przed zapisem:
+  ticker                      company  ...  change import_date
+0   AMKR         AMKOR Technology Inc  ...   3.79%  2025-09-16
+1    DLO               DLocal Limited  ...   3.60%  2025-09-16
+2   HSAI              Hesai Group ADR  ...  -3.32%  2025-09-16
+3   MARA            MARA Holdings Inc  ...   5.88%  2025-09-16
+4   MLTX  MoonLake Immunotherapeutics  ...  -0.11%  2025-09-16
+
+[5 rows x 17 columns]
+2025-09-16 19:17:56,477 [INFO] Liczba wierszy: 12
+2025-09-16 19:17:56,582 [INFO] Zapisano 12 rekordów do stocks_data
+2025-09-16 19:18:59,156 [INFO] Tabela stocks gotowa
+2025-09-16 19:18:59,163 [INFO] data/finviz_stocks_20250915.csv
+2025-09-16 19:18:59,189 [INFO] DataFrame przed zapisem:
+  ticker                     company  ...  change import_date
+0   BILI            Bilibili Inc ADR  ...   6.64%  2025-09-15
+1   BRKR                 Bruker Corp  ...   2.72%  2025-09-15
+2   BTDR  Bitdeer Technologies Group  ...  -0.50%  2025-09-15
+3   CVBF          CVB Financial Corp  ...  -0.35%  2025-09-15
+4    DLO              DLocal Limited  ...   4.44%  2025-09-15
+
+[5 rows x 17 columns]
+2025-09-16 19:18:59,191 [INFO] Liczba wierszy: 14
+2025-09-16 19:18:59,285 [INFO] Zapisano 14 rekordów do stocks_data
+2025-09-16 19:25:44,352 [INFO] Tabela stocks gotowa
+2025-09-16 19:25:44,356 [INFO] data/finviz_stocks_20250915.csv
+2025-09-16 19:25:44,358 [ERROR] B³¹d podczas zapisywania do bazy danych: Error tokenizing data. C error: Expected 16 fields in line 16, saw 17
+
+2025-09-16 19:27:39,287 [INFO] Tabela stocks gotowa
+2025-09-16 19:27:39,291 [INFO] data/finviz_stocks_20250915.csv
+2025-09-16 19:27:39,293 [ERROR] B³¹d podczas zapisywania do bazy danych: Error tokenizing data. C error: Expected 16 fields in line 16, saw 17
+
+2025-09-16 19:30:11,038 [INFO] Tabela stocks gotowa
+2025-09-16 19:30:11,041 [INFO] data/finviz_stocks_20250915.csv
+2025-09-16 19:30:11,045 [ERROR] B³¹d podczas zapisywania do bazy danych: Error tokenizing data. C error: Expected 16 fields in line 16, saw 17
+
+2025-09-16 19:30:24,942 [INFO] Tabela stocks gotowa
+2025-09-16 19:30:24,948 [INFO] data/finviz_stocks_20250915.csv
+2025-09-16 19:30:24,988 [INFO] DataFrame przed zapisem:
+  ticker                     company  ...  change import_date
+0   BILI            Bilibili Inc ADR  ...   6.64%  2025-09-15
+1   BRKR                 Bruker Corp  ...   2.72%  2025-09-15
+2   BTDR  Bitdeer Technologies Group  ...  -0.50%  2025-09-15
+3   CVBF          CVB Financial Corp  ...  -0.35%  2025-09-15
+4    DLO              DLocal Limited  ...   4.44%  2025-09-15
+
+[5 rows x 17 columns]
+2025-09-16 19:30:24,989 [INFO] Liczba wierszy: 14
+2025-09-16 19:30:25,154 [ERROR] B³¹d podczas zapisywania do bazy danych: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "stocks_data_ticker_import_date_key"
+DETAIL:  Key (ticker, import_date)=(BILI, 2025-09-15) already exists.
+
+[SQL: INSERT INTO stocks_data (ticker, company, sector, industry, country, market_cap, p_e, eps_next_5y, perf_week, perf_month, fifty_two_week_high, fifty_two_week_low, rel_volume, volume, price, change, import_date) VALUES (%(ticker__0)s, %(company__0)s,  ... 4232 characters truncated ... k_low__13)s, %(rel_volume__13)s, %(volume__13)s, %(price__13)s, %(change__13)s, %(import_date__13)s)]
+[parameters: {'sector__0': 'Communication Services', 'company__0': 'Bilibili Inc ADR', 'ticker__0': 'BILI', 'industry__0': 'Internet Content & Information', 'perf_week__0': '20.30%', 'rel_volume__0': 3.53, 'p_e__0': 392.2, 'volume__0': 5934635, 'change__0': '6.64%', 'eps_next_5y__0': None, 'fifty_two_week_high__0': '-14.57%', 'price__0': 27.14, 'import_date__0': datetime.date(2025, 9, 15), 'market_cap__0': 8790000000.0, 'perf_month__0': '13.94%', 'country__0': 'China', 'fifty_two_week_low__0': '89.00%', 'sector__1': 'Healthcare', 'company__1': 'Bruker Corp', 'ticker__1': 'BRKR', 'industry__1': 'Medical Devices', 'perf_week__1': '3.08%', 'rel_volume__1': 2.16, 'p_e__1': 60.6, 'volume__1': 4219006, 'change__1': '2.72%', 'eps_next_5y__1': '3.95%', 'fifty_two_week_high__1': '-56.47%', 'price__1': 31.75, 'import_date__1': datetime.date(2025, 9, 15), 'market_cap__1': 4820000000.0, 'perf_month__1': '-5.62%', 'country__1': 'USA', 'fifty_two_week_low__1': '11.29%', 'sector__2': 'Technology', 'company__2': 'Bitdeer Technologies Group', 'ticker__2': 'BTDR', 'industry__2': 'Software - Application', 'perf_week__2': '26.54%', 'rel_volume__2': 1.69, 'p_e__2': None, 'volume__2': 4047871, 'change__2': '-0.50%', 'eps_next_5y__2': None, 'fifty_two_week_high__2': '-40.46%', 'price__2': 16.07, 'import_date__2': datetime.date(2025, 9, 15), 'market_cap__2': 3160000000.0, 'perf_month__2': '16.62%', 'country__2': 'Singapore' ... 138 parameters truncated ... 'company__11': 'Rumble Inc', 'ticker__11': 'RUM', 'industry__11': 'Internet Content & Information', 'perf_week__11': '3.76%', 'rel_volume__11': 2.3, 'p_e__11': None, 'volume__11': 3468528, 'change__11': '3.76%', 'eps_next_5y__11': '68.89%', 'fifty_two_week_high__11': '-56.41%', 'price__11': 7.59, 'import_date__11': datetime.date(2025, 9, 15), 'market_cap__11': 2570000000.0, 'perf_month__11': '-5.89%', 'country__11': 'USA', 'fifty_two_week_low__11': '50.80%', 'sector__12': 'Healthcare', 'company__12': 'Waystar Holding Corp', 'ticker__12': 'WAY', 'industry__12': 'Health Information Services', 'perf_week__12': '-7.53%', 'rel_volume__12': 1.82, 'p_e__12': 79.31, 'volume__12': 1814062, 'change__12': '1.14%', 'eps_next_5y__12': '17.93%', 'fifty_two_week_high__12': '-21.46%', 'price__12': 37.78, 'import_date__12': datetime.date(2025, 9, 15), 'market_cap__12': 6580000000.0, 'perf_month__12': '6.38%', 'country__12': 'USA', 'fifty_two_week_low__12': '43.89%', 'sector__13': 'Technology', 'company__13': 'WeRide Inc. ADR', 'ticker__13': 'WRD', 'industry__13': 'Software - Application', 'perf_week__13': '9.89%', 'rel_volume__13': 2.53, 'p_e__13': None, 'volume__13': 9067915, 'change__13': '2.52%', 'eps_next_5y__13': '48.77%', 'fifty_two_week_high__13': '-77.07%', 'price__13': 10.09, 'import_date__13': datetime.date(2025, 9, 15), 'market_cap__13': 2690000000.0, 'perf_month__13': '4.54%', 'country__13': 'China', 'fifty_two_week_low__13': '67.29%'}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-09-16 19:31:53,432 [INFO] Tabela stocks gotowa
+2025-09-16 19:31:53,439 [INFO] data/finviz_stocks_20250916.csv
+2025-09-16 19:31:53,466 [INFO] DataFrame przed zapisem:
+  ticker                      company  ...  change import_date
+0   AMKR         AMKOR Technology Inc  ...   3.79%  2025-09-16
+1    DLO               DLocal Limited  ...   3.60%  2025-09-16
+2   HSAI              Hesai Group ADR  ...  -3.32%  2025-09-16
+3   MARA            MARA Holdings Inc  ...   5.88%  2025-09-16
+4   MLTX  MoonLake Immunotherapeutics  ...  -0.11%  2025-09-16
+
+[5 rows x 17 columns]
+2025-09-16 19:31:53,466 [INFO] Liczba wierszy: 14
+2025-09-16 19:31:53,552 [ERROR] B³¹d podczas zapisywania do bazy danych: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "stocks_data_ticker_import_date_key"
+DETAIL:  Key (ticker, import_date)=(AMKR, 2025-09-16) already exists.
+
+[SQL: INSERT INTO stocks_data (ticker, company, sector, industry, country, market_cap, p_e, eps_next_5y, perf_week, perf_month, fifty_two_week_high, fifty_two_week_low, rel_volume, volume, price, change, import_date) VALUES (%(ticker__0)s, %(company__0)s,  ... 4232 characters truncated ... k_low__13)s, %(rel_volume__13)s, %(volume__13)s, %(price__13)s, %(change__13)s, %(import_date__13)s)]
+[parameters: {'perf_week__0': '7.17%', 'market_cap__0': 6590000000.0, 'fifty_two_week_high__0': '-16.65%', 'change__0': '3.79%', 'rel_volume__0': 1.79, 'company__0': 'AMKOR Technology Inc', 'industry__0': 'Semiconductor Equipment & Materials', 'perf_month__0': '12.18%', 'fifty_two_week_low__0': '89.98%', 'volume__0': 1974319.0, 'p_e__0': 21.75, 'import_date__0': datetime.date(2025, 9, 16), 'eps_next_5y__0': '12.08%', 'price__0': 26.65, 'sector__0': 'Technology', 'country__0': 'USA', 'ticker__0': 'AMKR', 'perf_week__1': '7.46%', 'market_cap__1': 4390000000.0, 'fifty_two_week_high__1': '-10.64%', 'change__1': '3.60%', 'rel_volume__1': 1.82, 'company__1': 'DLocal Limited', 'industry__1': 'Software - Infrastructure', 'perf_month__1': '-6.19%', 'fifty_two_week_low__1': '102.21%', 'volume__1': 2359438.0, 'p_e__1': 28.93, 'import_date__1': datetime.date(2025, 9, 16), 'eps_next_5y__1': '37.51%', 'price__1': 14.69, 'sector__1': 'Technology', 'country__1': 'USA', 'ticker__1': 'DLO', 'perf_week__2': '0.07%', 'market_cap__2': 3040000000.0, 'fifty_two_week_high__2': '-5.35%', 'change__2': '-3.32%', 'rel_volume__2': 2.09, 'company__2': 'Hesai Group ADR', 'industry__2': 'Auto Parts', 'perf_month__2': '12.58%', 'fifty_two_week_low__2': '646.37%', 'volume__2': 3618958.0, 'p_e__2': 261.43, 'import_date__2': datetime.date(2025, 9, 16), 'eps_next_5y__2': None, 'price__2': 28.81, 'sector__2': 'Consumer Cyclical', 'country__2': 'China' ... 138 parameters truncated ... 'market_cap__11': 2710000000.0, 'fifty_two_week_high__11': '12.35%', 'change__11': '38.56%', 'rel_volume__11': 16.37, 'company__11': 'Webtoon Entertainment Inc', 'industry__11': 'Internet Content & Information', 'perf_month__11': '38.46%', 'fifty_two_week_low__11': '207.08%', 'volume__11': 6257888.0, 'p_e__11': None, 'import_date__11': datetime.date(2025, 9, 16), 'eps_next_5y__11': None, 'price__11': 20.73, 'sector__11': 'Communication Services', 'country__11': 'USA', 'ticker__11': 'WBTN', 'perf_week__12': '9.89%', 'market_cap__12': 2690000000.0, 'fifty_two_week_high__12': '-77.07%', 'change__12': '2.52%', 'rel_volume__12': 2.53, 'company__12': 'WeRide Inc. ADR', 'industry__12': 'Software - Application', 'perf_month__12': '4.54%', 'fifty_two_week_low__12': '67.29%', 'volume__12': 9067915.0, 'p_e__12': None, 'import_date__12': datetime.date(2025, 9, 16), 'eps_next_5y__12': '48.77%', 'price__12': 10.09, 'sector__12': 'Technology', 'country__12': 'China', 'ticker__12': 'WRD', 'perf_week__13': ' 1000%', 'market_cap__13': 2000000000.0, 'fifty_two_week_high__13': ' 1000%', 'change__13': ' 100%', 'rel_volume__13': 10.2, 'company__13': ' xxxx', 'industry__13': ' xxxxxx', 'perf_month__13': ' 1000%', 'fifty_two_week_low__13': ' 1000%', 'volume__13': None, 'p_e__13': 3232.0, 'import_date__13': datetime.date(2025, 9, 16), 'eps_next_5y__13': ' 4444%', 'price__13': 10000.0, 'sector__13': ' xxx', 'country__13': ' xx', 'ticker__13': 'xxx'}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-09-16 19:33:14,839 [INFO] Tabela stocks gotowa
+2025-09-16 19:33:14,842 [INFO] data/finviz_stocks_20250916.csv
+2025-09-16 19:33:14,868 [INFO] DataFrame przed zapisem:
+  ticker                      company  ...  change import_date
+0   AMKR         AMKOR Technology Inc  ...   3.79%  2025-09-16
+1    DLO               DLocal Limited  ...   3.60%  2025-09-16
+2   HSAI              Hesai Group ADR  ...  -3.32%  2025-09-16
+3   MARA            MARA Holdings Inc  ...   5.88%  2025-09-16
+4   MLTX  MoonLake Immunotherapeutics  ...  -0.11%  2025-09-16
+
+[5 rows x 17 columns]
+2025-09-16 19:33:14,868 [INFO] Liczba wierszy: 14
+2025-09-16 19:33:14,953 [INFO] Zapisano 14 rekordów do stocks_data
+2025-09-16 19:34:19,743 [INFO] Tabela stocks gotowa
+2025-09-16 19:34:19,749 [INFO] data/finviz_stocks_20250915.csv
+2025-09-16 19:34:19,776 [INFO] DataFrame przed zapisem:
+  ticker                     company  ...  change import_date
+0   BILI            Bilibili Inc ADR  ...   6.64%  2025-09-15
+1   BRKR                 Bruker Corp  ...   2.72%  2025-09-15
+2   BTDR  Bitdeer Technologies Group  ...  -0.50%  2025-09-15
+3   CVBF          CVB Financial Corp  ...  -0.35%  2025-09-15
+4    DLO              DLocal Limited  ...   4.44%  2025-09-15
+
+[5 rows x 17 columns]
+2025-09-16 19:34:19,776 [INFO] Liczba wierszy: 14
+2025-09-16 19:34:19,858 [INFO] Zapisano 14 rekordów do stocks_data

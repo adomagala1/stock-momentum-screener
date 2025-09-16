@@ -45,7 +45,9 @@ def init_db_if_not_exists():
     volume INTEGER,
     price NUMERIC,
     change VARCHAR(10),
-    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    import_date DATE NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE (ticker, import_date)
 );
     """
     with engine.begin() as conn:

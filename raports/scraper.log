@@ -45,3 +45,6 @@
 2025-09-15 19:04:27,220 [INFO] Pobrano 14 wierszy ze strony r=1.
 2025-09-15 19:04:27,918 [INFO] Nie znaleziono wiêcej wierszy przy r=21. Koñczymy.
 2025-09-15 19:04:27,929 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\src\data\finviz_stocks_20250915.csv
+2025-09-16 19:06:05,245 [INFO] Pobrano 12 wierszy ze strony r=1.
+2025-09-16 19:06:06,420 [INFO] Nie znaleziono wiêcej wierszy przy r=21. Koñczymy.
+2025-09-16 19:06:06,439 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\src\data\finviz_stocks_20250916.csv

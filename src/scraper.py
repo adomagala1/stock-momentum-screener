@@ -7,7 +7,6 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 from save_data import save_csv
 
-os.makedirs("raports", exist_ok=True)
 logging.basicConfig(
     filename="../raports/scraper.log",
     level=logging.INFO,
@@ -59,8 +58,6 @@ def fetch_all_finviz(url):
 
     df = pd.DataFrame(all_data, columns=columns[:len(all_data[0])])
     return df
-
-
 
 
 if __name__ == "__main__":

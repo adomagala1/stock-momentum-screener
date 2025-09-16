@@ -3,3 +3,4 @@ README.MD
 .venv
 config.py
 .venv-linux
+.env
