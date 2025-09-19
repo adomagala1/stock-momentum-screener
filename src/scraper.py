@@ -13,18 +13,26 @@ logging.basicConfig(
     format="%(asctime)s [%(levelname)s] %(message)s"
 )
 
-URL = "https://finviz.com/screener.ashx?v=152&f=cap_mid,exch_nasd,sh_avgvol_o500,sh_price_o5,sh_relvol_o1.5&c=1,2,3,4,5,6,7,20,42,43,57,58,64,67,65,66"
+URL = "https://finviz.com/screener.ashx?v=111&f=exch_nasd"
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0 Safari/537.36"
 }
 
 
-def fetch_all_finviz(url):
+def fetch_all_finviz(url, max_companies=10, is_get_only_tickers=False):
+    start_time = datetime.now()
     all_data = []
     start = 1
+    companies_fetched = 0
+
+    unlimited = max_companies is None or max_companies <= 0
 
     while True:
+        if not unlimited and companies_fetched >= max_companies:
+            logging.info(f"Skonczono pobieranie danych. Pobrano {companies_fetched} spolek.")
+            break
+
         paged_url = url + f"&r={start}"
         response = requests.get(paged_url, headers=HEADERS)
         response.raise_for_status()
@@ -44,22 +52,36 @@ def fetch_all_finviz(url):
                     row_data.append(span.get_text(strip=True))
                 else:
                     row_data.append(col.get_text(strip=True))
-            all_data.append(row_data)
+
+            if is_get_only_tickers:
+                all_data.append([row_data[1]])
+            else:
+                all_data.append(row_data)
+
+            companies_fetched += 1
+            if not unlimited and companies_fetched >= max_companies:
+                logging.info(f"Skonczono pobieranie danych. Pobrano {companies_fetched} spolek.")
+                break
 
         logging.info(f"Pobrano {len(rows)} wierszy ze strony r={start}.")
-        start += 20  # kolejna strona
-
-    # Mapowanie kolumn
-    columns = [
-        "Ticker", "Company", "Sector", "Industry", "Country", "Market Cap", "P/E",
-        "EPS next 5Y", "Perf Week", "Perf Month", "52w High", "52w Low", "Rel Vol",
-        "Volume", "Price", "Change"
-    ]
+        start += 20
+    finish = datetime.now()
+    time_elapsed = finish - start_time
+    logging.info(f"Skonczono pobieranie danych. Czas trwania: {time_elapsed}")
+    if is_get_only_tickers:
+        columns = ["Ticker"]
+    else:
+        columns = [
+            "No", "Ticker", "Company", "Sector", "Industry", "Country", "Market Cap", "P/E",
+            "EPS next 5Y", "Perf Week", "Perf Month", "52w High", "52w Low", "Rel Vol",
+            "Volume", "Price", "Change"
+        ]
 
     df = pd.DataFrame(all_data, columns=columns[:len(all_data[0])])
+    df.fillna("NaN", inplace=True)
     return df
 
 
 if __name__ == "__main__":
-    df = fetch_all_finviz(URL)
+    df = fetch_all_finviz(URL, max_companies=0)
     save_csv(df)

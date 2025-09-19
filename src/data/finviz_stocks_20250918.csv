@@ -1,0 +1,46 @@
+Ticker,Company,Sector,Industry,Country,Market Cap,P/E,EPS next 5Y,Perf Week,Perf Month,52w High,52w Low,Rel Vol,Volume,Price,Change
+AAL,American Airlines Group Inc,Industrials,Airlines,USA,8.30B,16.17,6.75%,-2.86%,-4.84%,-34.14%,48.00%,1.62,"112,476,034",12.58,0.80%
+ACMR,ACM Research Inc,Technology,Semiconductor Equipment & Materials,USA,2.32B,21.90,8.07%,19.90%,43.96%,6.52%,160.20%,2.69,"3,381,468",36.09,6.90%
+AKRO,Akero Therapeutics Inc,Healthcare,Biotechnology,USA,3.70B,,-7.84%,2.83%,-2.94%,-20.89%,116.49%,2.69,"3,091,358",46.20,9.53%
+ALHC,Alignment Healthcare Inc,Healthcare,Healthcare Plans,USA,3.26B,,,0.80%,10.60%,-21.75%,80.11%,2.14,"7,884,239",16.48,-1.20%
+AMBA,Ambarella Inc,Technology,Semiconductor Equipment & Materials,USA,3.53B,,,-0.60%,24.76%,-11.56%,112.66%,1.95,"1,780,797",82.64,3.71%
+AMKR,AMKOR Technology Inc,Technology,Semiconductor Equipment & Materials,USA,7.21B,23.81,12.08%,14.97%,22.91%,-8.76%,107.98%,2.00,"4,212,706",29.18,9.62%
+AMSC,American Superconductor Corp,Industrials,Specialty Industrial Machinery,USA,2.91B,163.31,20.15%,17.85%,32.10%,5.53%,361.30%,2.11,"2,378,208",64.49,6.61%
+BTDR,Bitdeer Technologies Group,Technology,Software - Application,Singapore,3.58B,,,19.91%,30.81%,-37.31%,155.98%,1.51,"7,086,464",16.92,-0.12%
+CGNX,Cognex Corp,Technology,Scientific & Technical Instruments,USA,7.76B,64.65,32.00%,2.76%,6.43%,2.13%,103.75%,1.85,"3,672,351",46.19,4.79%
+CLSK,Cleanspark Inc,Financial,Capital Markets,USA,3.78B,15.33,,31.96%,43.80%,-25.10%,108.62%,2.75,"63,901,098",13.46,17.66%
+COCO,Vita Coco Company Inc,Consumer Defensive,Beverages - Non-Alcoholic,USA,2.23B,36.36,19.58%,0.69%,15.67%,-8.30%,52.23%,5.08,"4,039,342",39.26,-7.19%
+COKE,Coca-Cola Consolidated Inc,Consumer Defensive,Beverages - Non-Alcoholic,USA,9.72B,18.64,,-9.86%,-6.01%,-23.40%,6.37%,2.07,"1,179,979",111.91,-5.59%
+CYTK,Cytokinetics Inc,Healthcare,Biotechnology,USA,5.90B,,11.67%,-7.56%,30.26%,-17.01%,68.17%,1.56,"3,051,767",49.29,3.64%
+DBX,Dropbox Inc,Technology,Software - Infrastructure,USA,8.05B,18.83,7.81%,-0.45%,8.77%,-7.68%,26.91%,1.86,"6,438,618",30.77,-2.87%
+DRVN,Driven Brands Holdings Inc,Consumer Cyclical,Auto & Truck Dealerships,USA,2.77B,,13.39%,-9.05%,-1.75%,-14.44%,25.39%,1.79,"1,483,708",16.89,-1.05%
+EEFT,Euronet Worldwide Inc,Technology,Software - Infrastructure,USA,3.66B,12.20,13.49%,-2.32%,-6.23%,-21.91%,4.67%,1.62,"1,040,115",89.22,0.45%
+EOSE,Eos Energy Enterprises Inc,Industrials,Electrical Equipment & Parts,USA,2.51B,,,24.65%,48.76%,2.97%,336.89%,1.57,"21,715,396",9.00,5.88%
+ETNB,89bio Inc,Healthcare,Biotechnology,USA,2.22B,,14.45%,72.95%,66.22%,26.35%,259.62%,55.89,"84,657,344",14.96,85.15%
+EYE,National Vision Holdings Inc,Consumer Cyclical,Specialty Retail,USA,2.09B,,23.37%,13.63%,11.94%,2.98%,176.46%,1.96,"4,266,987",26.43,6.36%
+FIBK,First Interstate BancSystem Inc,Financial,Banks - Regional,USA,3.55B,15.24,9.22%,4.19%,12.20%,-7.97%,47.45%,1.99,"1,779,937",33.84,4.32%
+FOLD,Amicus Therapeutics Inc,Healthcare,Biotechnology,USA,2.61B,,,5.74%,15.53%,-32.96%,53.90%,2.11,"9,446,929",8.48,6.40%
+FORM,FormFactor Inc,Technology,Semiconductor Equipment & Materials,USA,2.78B,64.05,10.46%,17.89%,26.23%,-29.04%,59.61%,2.18,"1,597,928",36.04,13.44%
+GGAL,Grupo Financiero Galicia ADR,Financial,Banks - Regional,Argentina,3.62B,3.85,0.46%,-12.70%,-41.57%,-63.11%,-5.86%,2.95,"5,363,385",27.30,-7.65%
+GTX,Garrett Motion Inc,Consumer Cyclical,Auto Parts,Switzerland,2.73B,9.48,11.60%,1.50%,3.99%,0.33%,93.30%,5.12,"15,385,335",13.56,3.20%
+HUT,Hut 8 Corp,Financial,Capital Markets,USA,3.94B,26.49,,16.96%,70.06%,-2.55%,272.31%,1.55,"8,874,725",37.38,-1.08%
+LSCC,Lattice Semiconductor Corp,Technology,Semiconductors,USA,9.81B,312.84,27.45%,8.51%,16.37%,1.54%,106.54%,1.91,"4,642,184",71.64,7.05%
+MARA,MARA Holdings Inc,Financial,Capital Markets,USA,6.85B,16.56,,17.66%,21.85%,-38.95%,88.43%,1.62,"82,014,313",18.49,6.60%
+MKSI,MKS Inc,Technology,Scientific & Technical Instruments,USA,8.71B,32.97,11.73%,11.84%,28.86%,3.52%,136.58%,2.29,"2,366,072",129.74,8.62%
+MTSI,MACOM Technology Solutions Holdings Inc,Technology,Semiconductors,USA,9.66B,,22.93%,-1.02%,7.21%,-14.93%,54.44%,1.81,"1,303,773",129.73,-1.62%
+MTSR,Metsera Inc,Healthcare,Biotechnology,USA,3.77B,,32.96%,-3.62%,13.72%,-24.26%,191.87%,1.61,"2,038,505",35.90,9.32%
+OLED,Universal Display Corp,Technology,Electronic Components,USA,6.66B,27.36,16.01%,1.45%,-0.38%,-35.06%,35.21%,1.61,"859,460",140.21,2.76%
+OUST,Ouster Inc,Technology,Electronic Components,USA,2.01B,,24.09%,12.89%,16.02%,-4.30%,487.47%,2.06,"6,398,695",34.69,13.33%
+PCVX,Vaxcyte Inc,Healthcare,Biotechnology,USA,4.23B,,-16.47%,-1.42%,2.71%,-73.08%,17.82%,1.51,"2,244,708",32.59,5.52%
+PTGX,Protagonist Therapeutics Inc,Healthcare,Biotechnology,USA,3.87B,87.20,,4.12%,10.47%,0.40%,86.55%,1.66,"1,357,968",62.14,4.93%
+QUBT,Quantum Computing Inc,Technology,Computer Hardware,USA,2.93B,,,15.48%,23.49%,-32.41%,2771.23%,2.19,"42,667,596",18.35,3.61%
+RDNT,Radnet Inc,Healthcare,Diagnostics & Research,USA,5.89B,,,3.87%,12.73%,-18.23%,70.18%,1.55,"1,203,302",76.58,1.84%
+RGTI,Rigetti Computing Inc,Technology,Computer Hardware,USA,8.02B,,25.25%,48.17%,63.13%,11.75%,3383.10%,2.65,"112,984,848",24.73,12.46%
+SFD,"Smithfield Foods, Inc",Consumer Defensive,Packaged Foods,USA,9.42B,,9.15%,-2.28%,-4.73%,-8.08%,30.01%,1.68,"1,880,101",23.96,-1.52%
+SLNO,Soleno Therapeutics Inc,Healthcare,Biotechnology,USA,3.01B,,,-0.26%,-15.33%,-37.37%,36.31%,3.02,"4,980,326",56.57,10.97%
+SOUN,SoundHound AI Inc,Technology,Software - Application,USA,6.37B,,37.82%,7.20%,17.52%,-37.43%,251.24%,1.54,"84,126,621",15.63,3.37%
+STEP,StepStone Group Inc,Financial,Asset Management,USA,7.72B,,13.72%,3.03%,12.07%,-6.43%,64.36%,2.17,"1,229,599",65.39,8.75%
+STNE,StoneCo Ltd,Technology,Software - Infrastructure,Cayman Islands,5.21B,,18.79%,5.85%,28.47%,-1.06%,148.37%,1.67,"8,269,989",19.18,0.84%
+UPWK,Upwork Inc,Communication Services,Internet Content & Information,USA,2.60B,11.26,11.29%,19.73%,41.41%,7.60%,97.48%,2.08,"6,308,296",19.60,8.05%
+WAY,Waystar Holding Corp,Healthcare,Health Information Services,USA,6.72B,80.98,17.76%,0.60%,8.28%,-19.81%,46.92%,2.07,"4,106,453",38.58,-0.03%
+WSBC,"Wesbanco, Inc",Financial,Banks - Regional,USA,3.10B,19.43,,1.38%,3.86%,-13.49%,22.33%,1.54,"821,225",32.32,3.76%
