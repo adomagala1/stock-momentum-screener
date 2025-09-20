@@ -161,7 +161,7 @@ def fetch_news_for_ticker(ticker, finnhub_key=None, use_selenium=False):
 # ---------- Example usage ----------
 if __name__ == "__main__":
     TICKERS = ["AAPL", "MSFT", "TSLA", "DLO"]
-    FINNHUB_KEY = None
+    FINNHUB_KEY = None  # wklej tu swój klucz jeśli masz (np. "c0ffee...")
     ALL = []
     for t in TICKERS:
         df = fetch_news_for_ticker(t, finnhub_key=FINNHUB_KEY, use_selenium=False)
