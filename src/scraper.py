@@ -20,7 +20,7 @@ HEADERS = {
 }
 
 
-def fetch_all_finviz(url, max_companies=10, is_get_only_tickers=False):
+def fetch_all_finviz(url: str, max_companies: int = 10, is_get_only_tickers: bool = False):
     start_time = datetime.now()
     all_data = []
     start = 1
