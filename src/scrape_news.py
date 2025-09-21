@@ -118,7 +118,6 @@ def fetch_seekingalpha_selenium(ticker, wait=3, headless=True):
     return df
 
 
-# ---------- Sentiment helper ----------
 def add_sentiment(df, text_col='headline'):
     if df.empty:
         return df
@@ -128,14 +127,13 @@ def add_sentiment(df, text_col='headline'):
     return df
 
 
-# ---------- Unified fetch function ----------
 def fetch_news_for_ticker(ticker, finnhub_key=None, use_selenium=False):
     # 1) Try Google RSS
     df = fetch_google_news_rss(ticker)
     if not df.empty:
         return add_sentiment(df)
 
-    # 2) Try Finnhub (if key provided)
+    # 2) Finnhub (jesli key provided)
     if finnhub_key:
         try:
             df = fetch_finnhub_news(ticker, finnhub_key)
@@ -158,8 +156,7 @@ def fetch_news_for_ticker(ticker, finnhub_key=None, use_selenium=False):
     return pd.DataFrame()
 
 
-
-#tylko jesli algorytm wykryje ze jest potencjal w spolce to zapisuje
+# tylko jesli algorytm wykryje ze jest potencjal w spolce to zapisuje
 if __name__ == "__main__":
     TICKERS = ["AAPL", "MSFT", "TSLA", "DLO"]
     FINNHUB_KEY = None

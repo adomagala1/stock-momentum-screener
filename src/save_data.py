@@ -87,3 +87,22 @@ def save_csv_to_db(end_width: str, table_name: str = "stocks_data"):
         logging.info(f"Zapisano {len(df)} rekordów do {table_name}")
     except Exception as e:
         logging.error(f"Błąd podczas zapisywania do bazy danych: {e}")
+
+
+def save_news_csv(df: pd.DataFrame, filename_prefix: str = "news_data") -> None:
+    """zapisuje newsy do csvkaa"""
+    if df.empty:
+        logging.info("Brak danych ogolnie do zapisania (df puste)")
+        return
+    folder = os.path.join("data", "news")
+    os.makedirs(folder, exist_ok=True)
+
+    columns_order = ["ticker", "headline", "link", "source", "published", "sentiment"]
+    df = df[[col for col in columns_order if col in df.columns]]
+
+    today = datetime.now().strftime("%Y%m%d")
+    path = os.path.join(folder, f"{filename_prefix}_{today}.csv")
+    filename = os.path.abspath(path)
+
+    df.to_csv(filename, index=False)
+    logging.info(f"Dane zapisane do {filename}")
