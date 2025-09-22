@@ -3,7 +3,7 @@ import pandas as pd
 import logging
 from datetime import datetime
 
-from src.helpers import get_exact_file
+from app.helpers import get_exact_file
 
 
 def convert_market_cap(value):
@@ -56,7 +56,7 @@ def save_csv(df: pd.DataFrame, is_get_only_tickers=False) -> None:
 
 
 def save_csv_to_db(end_width: str, table_name: str = "stocks_data"):
-    from src.database import get_engine
+    from app.database.database import get_engine
     try:
         csv_file = get_exact_file(end_width)
         df = pd.read_csv(csv_file)
@@ -106,3 +106,4 @@ def save_news_csv(df: pd.DataFrame, filename_prefix: str = "news_data") -> None:
 
     df.to_csv(filename, index=False)
     logging.info(f"Dane zapisane do {filename}")
+

@@ -838,3 +838,58 @@
 2025-09-19 23:19:06,736 [INFO] Nie znaleziono wiêcej wierszy przy r=4381. Koñczymy.
 2025-09-19 23:19:06,736 [INFO] Skonczono pobieranie danych. Czas trwania: 0:02:35.550892
 2025-09-19 23:19:06,809 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\src\data\finviz_stocks_20250919.csv
+2025-09-22 17:00:59,113 [INFO] Skonczono pobieranie danych. Pobrano 10 spolek.
+2025-09-22 17:00:59,114 [INFO] Pobrano 20 wierszy ze strony r=1.
+2025-09-22 17:00:59,114 [INFO] Skonczono pobieranie danych. Pobrano 10 spolek.
+2025-09-22 17:00:59,114 [INFO] Skonczono pobieranie danych. Czas trwania: 0:00:00.727390
+2025-09-22 17:00:59,131 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\src\data\finviz_stocks_20250922.csv
+2025-09-22 17:00:59,131 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAPL+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 17:00:59,992 [INFO] RSS: znaleziono 100 pozycji dla AAPL
+2025-09-22 17:01:00,044 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=MSFT+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 17:01:01,004 [INFO] RSS: znaleziono 100 pozycji dla MSFT
+2025-09-22 17:01:01,021 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=TSLA+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 17:01:01,952 [INFO] RSS: znaleziono 100 pozycji dla TSLA
+2025-09-22 17:01:01,971 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=DLO+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 17:01:02,982 [INFO] RSS: znaleziono 100 pozycji dla DLO
+2025-09-22 17:06:46,303 [INFO] Skonczono pobieranie danych. Pobrano 10 spolek.
+2025-09-22 17:06:46,303 [INFO] Pobrano 20 wierszy ze strony r=1.
+2025-09-22 17:06:46,304 [INFO] Skonczono pobieranie danych. Pobrano 10 spolek.
+2025-09-22 17:06:46,304 [INFO] Skonczono pobieranie danych. Czas trwania: 0:00:00.683063
+2025-09-22 17:06:46,315 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\src\data\finviz_stocks_20250922.csv
+2025-09-22 17:06:46,315 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAPL+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 17:06:46,621 [INFO] RSS: znaleziono 100 pozycji dla AAPL
+2025-09-22 17:08:25,343 [INFO] Skonczono pobieranie danych. Pobrano 10 spolek.
+2025-09-22 17:08:25,343 [INFO] Pobrano 20 wierszy ze strony r=1.
+2025-09-22 17:08:25,344 [INFO] Skonczono pobieranie danych. Pobrano 10 spolek.
+2025-09-22 17:08:25,344 [INFO] Skonczono pobieranie danych. Czas trwania: 0:00:00.665832
+2025-09-22 17:08:25,355 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\src\data\finviz_stocks_20250922.csv
+2025-09-22 17:08:25,355 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAPL+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 17:08:26,065 [INFO] RSS: znaleziono 100 pozycji dla AAPL
+2025-09-22 17:09:08,679 [INFO] Skonczono pobieranie danych. Pobrano 10 spolek.
+2025-09-22 17:09:08,679 [INFO] Pobrano 20 wierszy ze strony r=1.
+2025-09-22 17:09:08,679 [INFO] Skonczono pobieranie danych. Pobrano 10 spolek.
+2025-09-22 17:09:08,680 [INFO] Skonczono pobieranie danych. Czas trwania: 0:00:00.667035
+2025-09-22 17:09:08,691 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\src\data\finviz_stocks_20250922.csv
+2025-09-22 17:09:08,691 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAPL+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 17:09:08,966 [INFO] RSS: znaleziono 100 pozycji dla AAPL
+2025-09-22 17:11:06,545 [INFO] Skonczono pobieranie danych. Pobrano 10 spolek.
+2025-09-22 17:11:06,545 [INFO] Pobrano 20 wierszy ze strony r=1.
+2025-09-22 17:11:06,545 [INFO] Skonczono pobieranie danych. Pobrano 10 spolek.
+2025-09-22 17:11:06,545 [INFO] Skonczono pobieranie danych. Czas trwania: 0:00:00.644873
+2025-09-22 17:11:06,557 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\src\data\finviz_stocks_20250922.csv
+2025-09-22 17:11:06,558 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAPL+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 17:11:07,400 [INFO] RSS: znaleziono 100 pozycji dla AAPL
+2025-09-22 17:11:16,540 [INFO] Skonczono pobieranie danych. Pobrano 10 spolek.
+2025-09-22 17:11:16,540 [INFO] Pobrano 20 wierszy ze strony r=1.
+2025-09-22 17:11:16,540 [INFO] Skonczono pobieranie danych. Pobrano 10 spolek.
+2025-09-22 17:11:16,540 [INFO] Skonczono pobieranie danych. Czas trwania: 0:00:00.651195
+2025-09-22 17:11:16,552 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\src\data\finviz_stocks_20250922.csv
+2025-09-22 17:11:16,553 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAPL+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 17:11:16,941 [INFO] RSS: znaleziono 100 pozycji dla AAPL
+2025-09-22 17:12:42,491 [INFO] Skonczono pobieranie danych. Pobrano 10 spolek.
+2025-09-22 17:12:42,492 [INFO] Pobrano 20 wierszy ze strony r=1.
+2025-09-22 17:12:42,492 [INFO] Skonczono pobieranie danych. Pobrano 10 spolek.
+2025-09-22 17:12:42,492 [INFO] Skonczono pobieranie danych. Czas trwania: 0:00:00.638937
+2025-09-22 17:12:42,504 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\src\data\finviz_stocks_20250922.csv
+2025-09-22 17:12:42,504 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAPL+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 17:12:42,861 [INFO] RSS: znaleziono 100 pozycji dla AAPL

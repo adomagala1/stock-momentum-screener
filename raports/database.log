@@ -268,3 +268,9 @@ DETAIL:  Key (ticker, import_date)=(AMKR, 2025-09-16) already exists.
 [5 rows x 17 columns]
 2025-09-16 19:34:19,776 [INFO] Liczba wierszy: 14
 2025-09-16 19:34:19,858 [INFO] Zapisano 14 rekordów do stocks_data
+2025-09-22 17:26:45,436 [INFO] Tabela stocks gotowa
+2025-09-22 17:26:45,441 [INFO] data/finviz_stocks_20250922.csv
+2025-09-22 17:26:45,441 [ERROR] B³¹d podczas zapisywania do bazy danych: Brak pliku z koncowka '20250922'
+2025-09-22 17:28:05,955 [INFO] Tabela stocks gotowa
+2025-09-22 17:28:05,961 [INFO] data/finviz_stocks_20250916.csv
+2025-09-22 17:28:05,961 [ERROR] B³¹d podczas zapisywania do bazy danych: Brak pliku z koncowka '20250916'
