@@ -1,12 +1,15 @@
 import logging
+import os
+
 import requests
 import pandas as pd
 from bs4 import BeautifulSoup
 from datetime import datetime
 from save_data import save_stocks_csv
 
+os.makedirs("logs", exist_ok=True)
 logging.basicConfig(
-    filename="../raports/scraper.log",
+    filename="logs/stock_scraper.log",
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s"
 )

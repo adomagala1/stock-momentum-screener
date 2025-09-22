@@ -15,7 +15,7 @@ HEADERS = {
 
 os.makedirs("logs", exist_ok=True)
 logging.basicConfig(
-    filename="logs/main.log",
+    filename="/logs/main.log",
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s"
 )
