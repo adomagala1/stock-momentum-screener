@@ -3,18 +3,18 @@ import streamlit as st
 import pandas as pd
 from datetime import datetime
 from stock_scraper import fetch_finviz
-from save_data import save_stocks_csv
+from save_data import save_stocks_csv, save_news_csv
+from scrape_news import fetch_google_news_rss
 
 st.set_page_config(page_title="Finviz Screener", layout="wide")
 
 st.title("Finviz Stock Screener")
 
-# Opcje użytkownika
 max_companies = st.number_input("Ilość spółek do pobrania: (0 - wszystkie)", min_value=0, value=0, step=10)
 with_filters = st.checkbox("Zastosuj filtry (Mid Cap, NASDAQ, Rel Volume > 1.5 itd.)", value=True)
 get_only_tickers = st.checkbox("Tylko tickery?", value=False)
 
-if st.button("Pobierz dane"):
+if st.button("Pobierz dane o spolkach  statystyki"):
     with st.spinner("Pobieranie danych..."):
         df = fetch_finviz(max_companies=max_companies, with_filters=with_filters, get_only_tickers=get_only_tickers)
 
@@ -35,6 +35,33 @@ if st.button("Pobierz dane"):
     else:
         filename = f"finviz_filtered_stocks_{today}.csv"
 
+    with open(f"data/{filename}", "rb") as f:
+        st.download_button(
+            label="Pobierz CSV",
+            data=f,
+            file_name=filename,
+            mime="text/csv"
+        )
+
+
+if st.button("Pobierz dane o spolkach newsy"):
+    with st.spinner(" (1) Pobieram se dane o spolkach ..."):
+        tickers_df = fetch_finviz(max_companies=max_companies, with_filters=with_filters, get_only_tickers=True)
+        tickers_list = tickers_df["Ticker"].tolist()
+    with st.spinner(" (2) Pobieram newsy ..."):
+        news = fetch_google_news_rss(tickers_list)
+
+    st.success(f"Pobrano {len(news)} newsów")
+
+    st.dataframe(news)
+
+    # Zapis CSV
+    save_news_csv(news)
+    st.info("Dane zapisane do folderu 'data' jako CSV")
+
+    # Opcja pobrania pliku w Streamlit
+    today = datetime.now().strftime("%Y%m%d")
+    filename = f"finviz_news_{today}.csv"
     with open(f"data/{filename}", "rb") as f:
         st.download_button(
             label="Pobierz CSV",
