@@ -48,6 +48,7 @@ if st.button("Pobierz dane o spolkach newsy"):
     with st.spinner(" (1) Pobieram se dane o spolkach ..."):
         tickers_df = fetch_finviz(max_companies=max_companies, with_filters=with_filters, get_only_tickers=True)
         tickers_list = tickers_df["Ticker"].tolist()
+
     with st.spinner(" (2) Pobieram newsy ..."):
         news = fetch_google_news_rss(tickers_list)
 

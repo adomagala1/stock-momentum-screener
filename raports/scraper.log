@@ -1167,3 +1167,15 @@
 2025-09-22 20:01:02,324 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\app\data\finviz_stocks_20250922.csv
 2025-09-22 20:27:49,877 [INFO] Pobrano 11 spó³ek. Czas: 0:00:03.197581
 2025-09-22 20:27:50,929 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\app\data\finviz_stocks_20250922.csv
+2025-09-22 20:32:29,002 [INFO] Pobrano 11 spó³ek. Czas: 0:00:00.733318
+2025-09-22 20:32:29,006 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=%5B%271%27%2C+%272%27%2C+%273%27%2C+%274%27%2C+%275%27%2C+%276%27%2C+%277%27%2C+%278%27%2C+%279%27%2C+%2710%27%2C+%2711%27%5D+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 20:32:30,016 [INFO] RSS: znaleziono 51 pozycji dla ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11']
+2025-09-22 20:32:30,040 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\app\data\news\news_data_20250922.csv
+2025-09-22 20:32:46,035 [INFO] Pobrano 11 spó³ek. Czas: 0:00:00.719152
+2025-09-22 20:32:46,037 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=%5B%271%27%2C+%272%27%2C+%273%27%2C+%274%27%2C+%275%27%2C+%276%27%2C+%277%27%2C+%278%27%2C+%279%27%2C+%2710%27%2C+%2711%27%5D+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 20:32:46,307 [INFO] RSS: znaleziono 51 pozycji dla ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11']
+2025-09-22 20:32:46,393 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\app\data\news\news_data_20250922.csv
+2025-09-22 20:32:55,631 [INFO] Pobrano 11 spó³ek. Czas: 0:00:00.752013
+2025-09-22 20:32:55,635 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=%5B%271%27%2C+%272%27%2C+%273%27%2C+%274%27%2C+%275%27%2C+%276%27%2C+%277%27%2C+%278%27%2C+%279%27%2C+%2710%27%2C+%2711%27%5D+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 20:32:55,930 [INFO] RSS: znaleziono 51 pozycji dla ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11']
+2025-09-22 20:32:55,937 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\app\data\news\news_data_20250922.csv
