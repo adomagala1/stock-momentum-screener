@@ -38,7 +38,7 @@ max_companies = st.sidebar.number_input(
     "Ilość spółek do pobrania (0 = wszystkie)",
     min_value=0, value=0, step=10
 )
-with_filters = st.sidebar.checkbox("Filtry (Mid Cap, NASDAQ, Rel Volume > 1.5)", value=True)
+with_filters = st.sidebar.checkbox("Filtry (Mid Cap, NASDAQ, Rel Volume > 1.5)", value=False)
 get_only_tickers = st.sidebar.checkbox("Tylko tickery?", value=False)
 
 # Zakładki
