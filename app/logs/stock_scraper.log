@@ -73,3 +73,157 @@
 2025-09-22 22:37:13,641 [INFO] RSS: znaleziono 100 pozycji dla TGTX
 2025-09-22 22:37:13,642 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=WRD+stock&hl=en-US&gl=US&ceid=US:en
 2025-09-22 22:37:14,389 [INFO] RSS: znaleziono 100 pozycji dla WRD
+2025-09-22 22:41:27,738 [INFO] Pobrano 38 spó³ek. Czas: 0:00:02.621616
+2025-09-22 22:41:27,744 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ACHC+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:41:28,541 [INFO] RSS: znaleziono 100 pozycji dla ACHC
+2025-09-22 22:41:28,541 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ACIW+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:41:29,176 [INFO] RSS: znaleziono 86 pozycji dla ACIW
+2025-09-22 22:41:29,177 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ACMR+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:41:29,897 [INFO] RSS: znaleziono 100 pozycji dla ACMR
+2025-09-22 22:41:29,898 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=APLD+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:41:30,761 [INFO] RSS: znaleziono 100 pozycji dla APLD
+2025-09-22 22:41:30,761 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ASO+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:41:31,492 [INFO] RSS: znaleziono 100 pozycji dla ASO
+2025-09-22 22:41:31,492 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=BHF+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:41:32,346 [INFO] RSS: znaleziono 100 pozycji dla BHF
+2025-09-22 22:41:32,346 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=BTDR+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:41:33,047 [INFO] RSS: znaleziono 100 pozycji dla BTDR
+2025-09-22 22:41:33,047 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=CARG+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:41:33,844 [INFO] RSS: znaleziono 100 pozycji dla CARG
+2025-09-22 22:41:33,844 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=CHYM+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:41:34,605 [INFO] RSS: znaleziono 100 pozycji dla CHYM
+2025-09-22 22:41:34,606 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=COCO+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:41:35,547 [INFO] RSS: znaleziono 100 pozycji dla COCO
+2025-09-22 22:41:35,547 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=CRUS+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:41:36,255 [INFO] RSS: znaleziono 74 pozycji dla CRUS
+2025-09-22 22:41:36,256 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=CWST+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:41:36,984 [INFO] RSS: znaleziono 99 pozycji dla CWST
+2025-09-22 22:41:36,985 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=EEFT+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:41:37,752 [INFO] RSS: znaleziono 95 pozycji dla EEFT
+2025-09-22 22:41:37,753 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=EOSE+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:41:38,435 [INFO] RSS: znaleziono 100 pozycji dla EOSE
+2025-09-22 22:41:38,435 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ETNB+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:41:39,201 [INFO] RSS: znaleziono 100 pozycji dla ETNB
+2025-09-22 22:41:39,201 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=FORM+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:41:40,069 [INFO] RSS: znaleziono 100 pozycji dla FORM
+2025-09-22 22:41:40,069 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=GGAL+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:41:40,837 [INFO] RSS: znaleziono 100 pozycji dla GGAL
+2025-09-22 22:41:40,838 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=IAC+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:41:41,498 [INFO] RSS: znaleziono 100 pozycji dla IAC
+2025-09-22 22:41:41,498 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ITRI+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:41:42,267 [INFO] RSS: znaleziono 100 pozycji dla ITRI
+2025-09-22 22:41:42,267 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=MARA+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:41:43,027 [INFO] RSS: znaleziono 100 pozycji dla MARA
+2025-09-22 22:41:43,027 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=MEOH+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:41:43,735 [INFO] RSS: znaleziono 100 pozycji dla MEOH
+2025-09-22 22:41:43,735 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=MIRM+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:41:44,487 [INFO] RSS: znaleziono 81 pozycji dla MIRM
+2025-09-22 22:41:44,487 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=MTCH+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:41:45,246 [INFO] RSS: znaleziono 100 pozycji dla MTCH
+2025-09-22 22:41:45,246 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=MTSI+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:41:45,891 [INFO] RSS: znaleziono 83 pozycji dla MTSI
+2025-09-22 22:41:45,892 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=MTSR+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:41:46,676 [INFO] RSS: znaleziono 100 pozycji dla MTSR
+2025-09-22 22:41:46,676 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=OLED+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:41:47,449 [INFO] RSS: znaleziono 100 pozycji dla OLED
+2025-09-22 22:41:47,449 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=PINC+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:41:48,233 [INFO] RSS: znaleziono 100 pozycji dla PINC
+2025-09-22 22:41:48,233 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=PONY+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:41:49,000 [INFO] RSS: znaleziono 100 pozycji dla PONY
+2025-09-22 22:41:49,000 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=QRVO+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:41:49,823 [INFO] RSS: znaleziono 100 pozycji dla QRVO
+2025-09-22 22:41:49,824 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=QUBT+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:41:50,684 [INFO] RSS: znaleziono 92 pozycji dla QUBT
+2025-09-22 22:41:50,684 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=REYN+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:41:51,434 [INFO] RSS: znaleziono 93 pozycji dla REYN
+2025-09-22 22:41:51,434 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=RGTI+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:41:52,315 [INFO] RSS: znaleziono 100 pozycji dla RGTI
+2025-09-22 22:41:52,315 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=SHOO+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:41:52,960 [INFO] RSS: znaleziono 100 pozycji dla SHOO
+2025-09-22 22:41:52,961 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=SOUN+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:41:53,933 [INFO] RSS: znaleziono 100 pozycji dla SOUN
+2025-09-22 22:41:53,933 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=SRRK+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:41:54,599 [INFO] RSS: znaleziono 100 pozycji dla SRRK
+2025-09-22 22:41:54,600 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=STEP+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:41:55,363 [INFO] RSS: znaleziono 100 pozycji dla STEP
+2025-09-22 22:41:55,363 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=TGTX+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:41:56,173 [INFO] RSS: znaleziono 100 pozycji dla TGTX
+2025-09-22 22:41:56,174 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=WRD+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:41:56,874 [INFO] RSS: znaleziono 100 pozycji dla WRD
+2025-09-22 22:43:06,598 [INFO] Pobrano 38 spó³ek. Czas: 0:00:02.220267
+2025-09-22 22:43:06,603 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ACHC+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:43:06,884 [INFO] RSS: znaleziono 100 pozycji dla ACHC
+2025-09-22 22:43:06,884 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ACIW+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:43:07,140 [INFO] RSS: znaleziono 86 pozycji dla ACIW
+2025-09-22 22:43:07,140 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ACMR+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:43:07,420 [INFO] RSS: znaleziono 100 pozycji dla ACMR
+2025-09-22 22:43:07,421 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=APLD+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:43:07,689 [INFO] RSS: znaleziono 100 pozycji dla APLD
+2025-09-22 22:43:07,689 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ASO+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:43:07,958 [INFO] RSS: znaleziono 100 pozycji dla ASO
+2025-09-22 22:43:07,958 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=BHF+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:43:08,240 [INFO] RSS: znaleziono 100 pozycji dla BHF
+2025-09-22 22:43:08,241 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=BTDR+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:43:08,526 [INFO] RSS: znaleziono 100 pozycji dla BTDR
+2025-09-22 22:43:08,526 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=CARG+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:43:08,808 [INFO] RSS: znaleziono 100 pozycji dla CARG
+2025-09-22 22:43:08,809 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=CHYM+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:43:09,078 [INFO] RSS: znaleziono 100 pozycji dla CHYM
+2025-09-22 22:43:09,078 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=COCO+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:43:09,360 [INFO] RSS: znaleziono 100 pozycji dla COCO
+2025-09-22 22:43:09,361 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=CRUS+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:43:09,600 [INFO] RSS: znaleziono 74 pozycji dla CRUS
+2025-09-22 22:43:09,600 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=CWST+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:43:09,884 [INFO] RSS: znaleziono 99 pozycji dla CWST
+2025-09-22 22:43:09,885 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=EEFT+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:43:10,161 [INFO] RSS: znaleziono 95 pozycji dla EEFT
+2025-09-22 22:43:10,162 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=EOSE+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:43:10,447 [INFO] RSS: znaleziono 100 pozycji dla EOSE
+2025-09-22 22:43:10,447 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ETNB+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:43:10,726 [INFO] RSS: znaleziono 100 pozycji dla ETNB
+2025-09-22 22:43:10,727 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=FORM+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:43:11,005 [INFO] RSS: znaleziono 100 pozycji dla FORM
+2025-09-22 22:43:11,005 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=GGAL+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:43:11,283 [INFO] RSS: znaleziono 100 pozycji dla GGAL
+2025-09-22 22:43:11,283 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=IAC+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:43:11,559 [INFO] RSS: znaleziono 100 pozycji dla IAC
+2025-09-22 22:43:11,559 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ITRI+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:43:11,828 [INFO] RSS: znaleziono 100 pozycji dla ITRI
+2025-09-22 22:43:11,829 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=MARA+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:43:12,122 [INFO] RSS: znaleziono 100 pozycji dla MARA
+2025-09-22 22:43:12,122 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=MEOH+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:43:12,424 [INFO] RSS: znaleziono 100 pozycji dla MEOH
+2025-09-22 22:43:12,424 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=MIRM+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:43:12,691 [INFO] RSS: znaleziono 81 pozycji dla MIRM
+2025-09-22 22:43:12,691 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=MTCH+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:43:12,976 [INFO] RSS: znaleziono 100 pozycji dla MTCH
+2025-09-22 22:43:12,976 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=MTSI+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:43:13,245 [INFO] RSS: znaleziono 83 pozycji dla MTSI
+2025-09-22 22:43:13,245 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=MTSR+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:43:13,517 [INFO] RSS: znaleziono 100 pozycji dla MTSR
+2025-09-22 22:43:13,517 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=OLED+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:43:13,795 [INFO] RSS: znaleziono 100 pozycji dla OLED
+2025-09-22 22:43:13,795 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=PINC+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:43:14,058 [INFO] RSS: znaleziono 100 pozycji dla PINC
+2025-09-22 22:43:14,058 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=PONY+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:43:14,334 [INFO] RSS: znaleziono 100 pozycji dla PONY
+2025-09-22 22:43:14,334 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=QRVO+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:43:14,600 [INFO] RSS: znaleziono 100 pozycji dla QRVO
+2025-09-22 22:43:14,601 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=QUBT+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:43:14,857 [INFO] RSS: znaleziono 92 pozycji dla QUBT
+2025-09-22 22:43:14,857 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=REYN+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:43:15,139 [INFO] RSS: znaleziono 93 pozycji dla REYN
+2025-09-22 22:43:15,139 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=RGTI+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:43:15,413 [INFO] RSS: znaleziono 100 pozycji dla RGTI
+2025-09-22 22:43:15,413 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=SHOO+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:43:15,698 [INFO] RSS: znaleziono 100 pozycji dla SHOO
+2025-09-22 22:43:15,699 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=SOUN+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:43:15,991 [INFO] RSS: znaleziono 100 pozycji dla SOUN
+2025-09-22 22:43:15,991 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=SRRK+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:43:16,297 [INFO] RSS: znaleziono 100 pozycji dla SRRK
+2025-09-22 22:43:16,297 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=STEP+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:43:16,642 [INFO] RSS: znaleziono 100 pozycji dla STEP
+2025-09-22 22:43:16,642 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=TGTX+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:43:16,934 [INFO] RSS: znaleziono 100 pozycji dla TGTX
+2025-09-22 22:43:16,935 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=WRD+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-22 22:43:17,219 [INFO] RSS: znaleziono 100 pozycji dla WRD
