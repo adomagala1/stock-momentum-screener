@@ -107,3 +107,4 @@ def fetch_finviz(max_companies: int = 10, get_only_tickers: bool = False,
 if __name__ == "__main__":
     df = fetch_finviz(max_companies=50, with_filters=True, get_only_tickers=True)
     save_stocks_csv(df, with_filters=True, get_only_tickers=True)
+3

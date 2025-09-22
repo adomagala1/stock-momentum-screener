@@ -72,11 +72,11 @@ def save_stocks_csv(df: pd.DataFrame, get_only_tickers=False, with_filters=False
     logging.info(f"Dane zapisane do {filename}")
 
 
-def save_csv_to_db(end_width: str, table_name: str = "stocks_data"):
+def save_csv_to_db(get_only_tickers: bool, with_filters: bool, end_width: str, table_name: str = "stocks_data"):
     from app.database import get_engine
     from app.helpers import get_exact_file
     try:
-        csv_file = get_exact_file(end_width)
+        csv_file = get_exact_file(end_width, get_only_tickers, with_filters)
         df = pd.read_csv(csv_file)
         df.columns = (
             df.columns.str.strip()

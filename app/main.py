@@ -22,7 +22,7 @@ logging.basicConfig(
 
 
 if __name__ == "__main__":
-    df = fetch_finviz(URL)
+    df = fetch_finviz(get_only_tickers=True, with_filters=True)
     save_stocks_csv(df)
     tickers_to_scrape_news = ["AAPL"]
     ALL = []

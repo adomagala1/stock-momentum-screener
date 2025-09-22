@@ -19,7 +19,7 @@ logging.basicConfig(
 
 def get_engine():
     """Tworzy obiekt engine do bazy."""
-    from database.postgresql import engine
+    from db.postgresql import engine
     url = engine.url
     print(url)
     return create_engine(url)
