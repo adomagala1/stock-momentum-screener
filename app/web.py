@@ -1,0 +1,44 @@
+# web.py
+import streamlit as st
+import pandas as pd
+from datetime import datetime
+from stock_scraper import fetch_finviz
+from save_data import save_stocks_csv
+
+st.set_page_config(page_title="Finviz Screener", layout="wide")
+
+st.title("Finviz Stock Screener")
+
+# Opcje użytkownika
+max_companies = st.number_input("Ilość spółek do pobrania: (0 - wszystkie)", min_value=0, value=0, step=10)
+with_filters = st.checkbox("Zastosuj filtry (Mid Cap, NASDAQ, Rel Volume > 1.5 itd.)", value=True)
+get_only_tickers = st.checkbox("Tylko tickery?", value=False)
+
+if st.button("Pobierz dane"):
+    with st.spinner("Pobieranie danych..."):
+        df = fetch_finviz(max_companies=max_companies, with_filters=with_filters, get_only_tickers=get_only_tickers)
+
+    st.success(f"Pobrano {len(df)} spółek")
+
+    st.dataframe(df)
+
+    # Zapis CSV
+    save_stocks_csv(df, get_only_tickers=get_only_tickers, with_filters=with_filters)
+    st.info("Dane zapisane do folderu 'data' jako CSV")
+
+    # Opcja pobrania pliku w Streamlit
+    today = datetime.now().strftime("%Y%m%d")
+    if get_only_tickers and not with_filters:
+        filename = f"finviz_tickers_{today}.csv"
+    elif not get_only_tickers and not with_filters:
+        filename = f"finviz_stocks_{today}.csv"
+    else:
+        filename = f"finviz_filtered_stocks_{today}.csv"
+
+    with open(f"data/{filename}", "rb") as f:
+        st.download_button(
+            label="Pobierz CSV",
+            data=f,
+            file_name=filename,
+            mime="text/csv"
+        )

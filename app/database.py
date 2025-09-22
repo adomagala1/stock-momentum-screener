@@ -11,7 +11,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 dotenv.load_dotenv()
 
 logging.basicConfig(
-    filename="../../raports/database.log",
+    filename="../raports/database.log",
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s"
 )
@@ -19,7 +19,7 @@ logging.basicConfig(
 
 def get_engine():
     """Tworzy obiekt engine do bazy."""
-    from app.database.postgresql import engine
+    from db.postgresql import engine
     url = engine.url
     print(url)
     return create_engine(url)
@@ -65,4 +65,4 @@ def read_from_db(table_name: str = "stocks_data") -> pd.DataFrame:
 
 if __name__ == "__main__":
     init_db_if_not_exists()
-    save_csv_to_db("20250922")
+    save_csv_to_db("20250922", table_name="stocks_data")

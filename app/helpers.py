@@ -9,7 +9,7 @@ def get_exact_file(end_width: str) -> str:
     files = glob.glob(pattern)
 
     if not files:
-        raise FileNotFoundError(f"Brak pliku z koncowka '{end_width}'")
+        raise FileNotFoundError(f"Brak pliku z koncowka '{end_width}' oraz sciezka abs {os.path.abspath(pattern)}")
 
     file = files[0]
 

@@ -1,7 +1,7 @@
 import pandas as pd
 
-from app.save_data import save_csv
-from app.stock_scraper import fetch_all_finviz
+from app.save_data import save_stocks_csv
+from app.stock_scraper import fetch_finviz
 from app.scrape_news import fetch_news_for_ticker
 import logging
 
@@ -13,15 +13,15 @@ HEADERS = {
 
 
 logging.basicConfig(
-    filename="../raports/main.log",
+    filename="/raports/main.log",
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s"
 )
 
 
 if __name__ == "__main__":
-    df = fetch_all_finviz(URL)
-    save_csv(df)
+    df = fetch_finviz(URL)
+    save_stocks_csv(df)
     tickers_to_scrape_news = ["AAPL"]
     ALL = []
     for ticker in tickers_to_scrape_news:

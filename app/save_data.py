@@ -3,8 +3,6 @@ import pandas as pd
 import logging
 from datetime import datetime
 
-from app.helpers import get_exact_file
-
 
 def convert_market_cap(value):
     if pd.isna(value):
@@ -22,41 +20,61 @@ def convert_market_cap(value):
             return None
 
 
-def save_csv(df: pd.DataFrame, is_get_only_tickers=False) -> None:
+def save_stocks_csv(df: pd.DataFrame, get_only_tickers=False, with_filters=False) -> None:
     os.makedirs("data", exist_ok=True)
-    df.replace("-", pd.NA, inplace=True)
 
-    if is_get_only_tickers:
-        numeric_cols = []
-        columns_order = ["Ticker"]
+    if get_only_tickers:
+        columns = ["Ticker"]
+    elif with_filters:
+        columns = [
+            "Ticker", "Company", "Sector", "Industry", "Country", "Market Cap", "P/E",
+            "EPS next 5Y", "Perf Week", "Perf Month", "52w High", "52w Low",
+            "Rel Vol", "Volume", "Price", "Change"
+        ]
     else:
-        numeric_cols = ["Market Cap", "Price", "Change", "EPS next 5Y",
-                        "Volume", "52w High", "52w Low"]
-        columns_order = [
+        columns = [
             "No", "Ticker", "Company", "Sector", "Industry", "Country",
-            "Market Cap", "P/E", "EPS next 5Y", "Perf Week", "Perf Month",
-            "52w High", "52w Low", "Rel Vol", "Volume", "Price", "Change"
+            "Market Cap", "P/E", "Price", "Change", "Volume"
         ]
 
+    # Uzupełnienie brakujących kolumn
+    for col in columns:
+        if col not in df.columns:
+            df[col] = pd.NA
+
+    # konwersja liczb i procentów
+    numeric_cols = ["Market Cap", "Price", "Volume", "52w High", "52w Low"]
+    percent_cols = ["EPS next 5Y", "Perf Week", "Perf Month", "Change"]
     for col in numeric_cols:
         if col in df.columns:
-            df[col] = df[col].astype(str).str.replace(",", "", regex=False)
-            df[col] = pd.to_numeric(df[col], errors="coerce")
+            df[col] = pd.to_numeric(df[col].astype(str).str.replace(",", "", regex=False), errors="coerce")
+    for col in percent_cols:
+        if col in df.columns:
+            df[col] = pd.to_numeric(df[col].astype(str).str.replace("%", "", regex=False), errors="coerce")
 
-    df = df[[col for col in columns_order if col in df.columns]]
-
+    df = df[columns]
     today = datetime.now().strftime("%Y%m%d")
-    if is_get_only_tickers:
-        path = os.path.join("data", f"finviz_tickers_{today}.csv")
-    else:
-        path = os.path.join("data", f"finviz_stocks_{today}.csv")
-    filename = os.path.abspath(path)
+
+    filename_suffix = {
+        # tylko tickery wszystkich (na dole)
+        (True, False): f"finviz_tickers_{today}.csv",
+        # wszystkie spolki (na dole)
+        (False, False): f"finviz_stocks_{today}.csv",
+        # filtry (na dle)
+        (False, True): f"finviz_filtered_stocks_{today}.csv",
+        # tickery + filtry (na dole)
+        (True, True): f"finviz_filtered_tickers_{today}.csv"
+
+    }.get((get_only_tickers, with_filters))
+    filename = os.path.abspath(os.path.join("data", filename_suffix))
+
     df.to_csv(filename, index=False)
     logging.info(f"Dane zapisane do {filename}")
 
 
 def save_csv_to_db(end_width: str, table_name: str = "stocks_data"):
-    from app.database.database import get_engine
+    from app.database import get_engine
+    from app.helpers import get_exact_file
     try:
         csv_file = get_exact_file(end_width)
         df = pd.read_csv(csv_file)

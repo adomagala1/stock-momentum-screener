@@ -65,4 +65,4 @@ def read_from_db(table_name: str = "stocks_data") -> pd.DataFrame:
 
 if __name__ == "__main__":
     init_db_if_not_exists()
-    save_csv_to_db("20250916")
+    save_csv_to_db("20230410", table_name="stocks_data")

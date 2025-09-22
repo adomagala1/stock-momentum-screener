@@ -4,7 +4,7 @@ import dotenv
 from sqlalchemy import create_engine, text
 import pandas as pd
 import logging
-from src.save_data import save_csv_to_db
+from app.save_data import save_csv_to_db
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -19,7 +19,8 @@ logging.basicConfig(
 
 def get_engine():
     """Tworzy obiekt engine do bazy."""
-    url = "postgresql://postgres:adomagala@127.0.0.1:5432/trading_analyzer"
+    from database.postgresql import engine
+    url = engine.url
     print(url)
     return create_engine(url)
 
@@ -64,4 +65,4 @@ def read_from_db(table_name: str = "stocks_data") -> pd.DataFrame:
 
 if __name__ == "__main__":
     init_db_if_not_exists()
-    save_csv_to_db("20250915")
+    save_csv_to_db("20250922", table_name="stocks_data")
