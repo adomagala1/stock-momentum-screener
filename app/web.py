@@ -11,25 +11,84 @@ import plotly.express as px
 # 🔧 Konfiguracja strony
 st.set_page_config(page_title="Finviz Screener", layout="wide", page_icon="📊")
 
-# 🏷️ Custom CSS
+# 🌈 Custom CSS (gradient, sidebar, przyciski, newsy)
 st.markdown(
     """
     <style>
+    /* Background gradient animation */
     .main {
-        background-color: #f7f9fc;
+        background: linear-gradient(120deg, #f7faff, #eef3ff, #ffffff);
+        background-size: 300% 300%;
+        animation: gradientMove 12s ease infinite;
     }
-    .stMetric {
-        background: white;
+    @keyframes gradientMove {
+        0% {background-position: 0% 50%;}
+        50% {background-position: 100% 50%;}
+        100% {background-position: 0% 50%;}
+    }
+
+    /* Sidebar – automatyczne dostosowanie do light/dark */
+    section[data-testid="stSidebar"] {
+        background: var(--background-color-secondary);
+        padding: 1rem;
         border-radius: 12px;
-        padding: 12px;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        color: var(--text-color);
     }
+    section[data-testid="stSidebar"] h2, 
+    section[data-testid="stSidebar"] label,
+    section[data-testid="stSidebar"] div {
+        color: var(--text-color);
+    }
+
+    /* Custom button */
+    div.stButton > button {
+        background: linear-gradient(90deg, #4facfe, #00f2fe);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        padding: 0.6em 1.2em;
+        font-weight: 600;
+        box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+        transition: all 0.3s ease;
+    }
+    div.stButton > button:hover {
+        background: linear-gradient(90deg, #43e97b, #38f9d7);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    }
+
+    /* News cards */
     .news-card {
-        background: white;
-        border-radius: 12px;
-        padding: 16px;
-        margin-bottom: 10px;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        background: var(--background-color-secondary);
+        border-radius: 14px;
+        padding: 14px;
+        margin-bottom: 12px;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+        animation: slideUp 0.5s ease;
+        color: var(--text-color);
+    }
+    @keyframes slideUp {
+        from {opacity: 0; transform: translateY(10px);}
+        to {opacity: 1; transform: translateY(0);}
+    }
+    .positive { border-left: 6px solid #4caf50; }
+    .neutral { border-left: 6px solid #9e9e9e; }
+    .negative { border-left: 6px solid #f44336; }
+
+    /* Loader pulse */
+    .pulse {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: #4facfe;
+        animation: pulseAnim 1.2s infinite;
+        margin: auto;
+    }
+    @keyframes pulseAnim {
+        0% { transform: scale(0.9); opacity: 0.7; }
+        50% { transform: scale(1.1); opacity: 1; }
+        100% { transform: scale(0.9); opacity: 0.7; }
     }
     </style>
     """,
@@ -38,33 +97,29 @@ st.markdown(
 
 # 🏷️ Tytuł
 st.title("📊 Finviz Stock Screener")
-st.caption("⚡ Interaktywny dashboard do pobierania danych giełdowych i newsów")
+st.caption("Interaktywny dashboard do pobierania danych giełdowych i newsów")
 
-# 📌 Panel boczny
+# 📌 Sidebar
 st.sidebar.header("⚙️ Ustawienia")
 max_companies = st.sidebar.number_input("Ilość spółek (0 = wszystkie)", min_value=0, value=0, step=10)
 with_filters = st.sidebar.checkbox("Filtry (Mid Cap, NASDAQ, Rel Volume > 1.5)", value=False)
 get_only_tickers = st.sidebar.checkbox("Tylko tickery?", value=False)
 
-tab1, tab2 = st.tabs(["📈 Statystyki spółek", "📰 Newsy giełdowe"])
+tab1, tab2 = st.tabs(["📈 Statystyki spółek", "📰 Newsy"])
 
 # 📈 Statystyki
 with tab1:
-    st.header("📊 Statystyki spółek")
-    if st.button("🚀 Pobierz dane statystyczne"):
-        progress = st.progress(0)
+    st.subheader("Dane statystyczne")
+    if st.button("Pobierz dane statystyczne"):
         with st.spinner("⏳ Pobieram dane ze screenera..."):
-            for i in range(100):
-                time.sleep(0.01)
-                progress.progress(i + 1)
             df = fetch_finviz(max_companies=max_companies, with_filters=with_filters, get_only_tickers=get_only_tickers)
 
         if not df.empty:
-            st.success(f"✅ Pobrano {len(df)} spółek")
+            st.success(f"Pobrano {len(df)} spółek")
             st.dataframe(df, use_container_width=True)
 
             save_stocks_csv(df, get_only_tickers=get_only_tickers, with_filters=with_filters)
-            st.info("💾 Dane zapisane do folderu `data` jako CSV")
+            st.info("Dane zapisane w `data/` jako CSV")
 
             today = datetime.now().strftime("%Y%m%d")
             if get_only_tickers and not with_filters:
@@ -75,72 +130,82 @@ with tab1:
                 filename = f"finviz_filtered_stocks_{today}.csv"
 
             with open(f"data/{filename}", "rb") as f:
-                st.download_button("⬇️ Pobierz CSV", f, file_name=filename, mime="text/csv")
+                st.download_button("Pobierz CSV", f, file_name=filename, mime="text/csv")
         else:
-            st.warning("⚠️ Nie udało się pobrać danych.")
+            st.warning("Nie udało się pobrać danych.")
 
 # 📰 Newsy
 with tab2:
-    st.header("📰 Najnowsze newsy")
-    if st.button("📡 Pobierz newsy"):
-        with st.spinner(" (1/2) Pobieram listę tickerów..."):
+    st.subheader("Najnowsze newsy")
+    if st.button("Pobierz newsy"):
+        with st.spinner(" (1/2) Pobieram tickery..."):
             df_tickers = fetch_finviz(max_companies=max_companies, with_filters=with_filters, get_only_tickers=True)
         tickers = df_tickers["Ticker"].dropna().unique().tolist()
 
         all_news = []
-        progress_text = st.empty()
+        loader_placeholder = st.empty()
+        status = st.empty()
         progress = st.progress(0)
 
         for i, t in enumerate(tickers, start=1):
-            progress_text.text(f"📡 Pobieram newsy dla {t} ({i}/{len(tickers)})")
+            loader_placeholder.markdown('<div class="pulse"></div>', unsafe_allow_html=True)
+            status.markdown(f"Pobieram newsy dla **{t}** ({i}/{len(tickers)})")
             df_news = fetch_google_news_rss(t)
             if not df_news.empty:
                 all_news.append(df_news)
-            progress.progress(int(i / len(tickers) * 100))
-            time.sleep(0.1)
+            progress.progress(i / len(tickers))
+            time.sleep(0.15)
+
+        loader_placeholder.empty()
+        status.empty()
+        progress.empty()
 
         if all_news:
             news = pd.concat(all_news, ignore_index=True)
             news = add_sentiment(news)
-            st.success(f"✅ Pobrano {len(news)} newsów dla {len(tickers)} spółek")
+            st.success(f"Pobrano {len(news)} newsów dla {len(tickers)} spółek")
 
-            # 🎨 Wizualizacje
+            # 🎨 Metryki
             avg_sent = news['sentiment'].mean()
             col1, col2, col3 = st.columns(3)
-            with col1:
-                st.metric("🙂 Średni sentyment", f"{avg_sent:.2f}")
-            with col2:
-                st.metric("📰 Liczba newsów", len(news))
-            with col3:
-                st.metric("🏢 Liczba spółek", len(tickers))
+            col1.metric("Średni sentyment", f"{avg_sent:.2f}")
+            col2.metric("Liczba newsów", len(news))
+            col3.metric("Liczba spółek", len(tickers))
 
-            # Wykres kołowy sentymentu
-            st.subheader("📊 Rozkład sentymentu")
+            # 📊 Pie chart
             bins = pd.cut(news['sentiment'], [-1, -0.05, 0.05, 1], labels=["Negatywny", "Neutralny", "Pozytywny"])
             pie_df = bins.value_counts().reset_index()
             pie_df.columns = ["Sentyment", "Liczba"]
-            fig_pie = px.pie(pie_df, values="Liczba", names="Sentyment", color="Sentyment",
-                             color_discrete_map={"Pozytywny": "green", "Neutralny": "gray", "Negatywny": "red"})
+            fig_pie = px.pie(
+                pie_df, values="Liczba", names="Sentyment", hole=0.4,
+                color="Sentyment",
+                color_discrete_map={"Pozytywny": "#4caf50", "Neutralny": "#9e9e9e", "Negatywny": "#f44336"}
+            )
             st.plotly_chart(fig_pie, use_container_width=True)
 
-            # Histogram sentymentu
+            # 📈 Histogram sentymentu
             st.subheader("📈 Rozkład wartości sentymentu")
             fig_hist = px.histogram(news, x="sentiment", nbins=30, title="Histogram sentymentu")
             st.plotly_chart(fig_hist, use_container_width=True)
 
-            # 📌 Top 10 newsów w formie kart
-            st.subheader("📰 Top 10 newsów")
+            # 📰 Newsy jako karty
+            st.markdown("### Top 10 newsów")
             for _, row in news.head(10).iterrows():
+                sentiment_class = "neutral"
+                if row["sentiment"] > 0.05:
+                    sentiment_class = "positive"
+                elif row["sentiment"] < -0.05:
+                    sentiment_class = "negative"
+
                 st.markdown(
                     f"""
-                    <div class="news-card">
+                    <div class="news-card {sentiment_class}">
                         <b>[{row['ticker']}]</b> {row['headline']}<br>
-                        <small>Źródło: {row.get('source','?')} | {row.get('published','?')}</small><br>
-                        <a href="{row['link']}" target="_blank">🔗 Czytaj więcej</a>
+                        <small>{row.get('published','?')} | {row.get('source','?')}</small><br>
+                        <a href="{row['link']}" target="_blank">Czytaj więcej</a>
                     </div>
                     """,
                     unsafe_allow_html=True
                 )
-
         else:
-            st.warning("⚠️ Brak newsów.")
+            st.warning("Brak newsów.")

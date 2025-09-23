@@ -384,3 +384,6 @@
 2025-09-23 18:40:19,464 [INFO] RSS: znaleziono 100 pozycji dla 4
 2025-09-23 18:40:19,565 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=5+stock&hl=en-US&gl=US&ceid=US:en
 2025-09-23 18:40:19,881 [INFO] RSS: znaleziono 100 pozycji dla 5
+2025-09-23 18:46:47,464 [INFO] Pobrano 10439 spó³ek. Czas: 0:07:21.523786
+2025-09-23 19:10:41,937 [INFO] Pobrano 5 spó³ek. Czas: 0:00:00.688695
+2025-09-23 19:10:41,950 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\data\finviz_stocks_20250923.csv
