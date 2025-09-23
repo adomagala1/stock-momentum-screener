@@ -68,3 +68,4 @@ def fetch_news_for_ticker(ticker):
     return pd.DataFrame()
 
 
+print(fetch_news_for_ticker("AAPL"))

@@ -4,7 +4,7 @@ import dotenv
 from sqlalchemy import create_engine, text
 import pandas as pd
 import logging
-from app.save_data import save_csv_to_db
+from app.db.postgresql import save_csv_to_db
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 

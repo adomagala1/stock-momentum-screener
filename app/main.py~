@@ -29,7 +29,6 @@ if __name__ == "__main__":
     for ticker in tickers_to_scrape_news:
         news_df = fetch_news_for_ticker(ticker)
         if not news_df.empty:
-            news_df["ticker"] = ticker
             ALL.append(news_df)
         else:
             logging.info(f"Brak wyników dla {ticker}")

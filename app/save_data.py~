@@ -68,5 +68,5 @@ def save_stocks_csv(df: pd.DataFrame, get_only_tickers=False, with_filters=False
     }.get((get_only_tickers, with_filters))
     filename = os.path.abspath(os.path.join("data", filename_suffix))
 
-    df.to_csv(filename, index=False)
+    df.to_csv(filename, index=True)
     logging.info(f"Dane zapisane do {filename}")
