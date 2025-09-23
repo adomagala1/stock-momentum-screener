@@ -387,3 +387,73 @@
 2025-09-23 18:46:47,464 [INFO] Pobrano 10439 spó³ek. Czas: 0:07:21.523786
 2025-09-23 19:10:41,937 [INFO] Pobrano 5 spó³ek. Czas: 0:00:00.688695
 2025-09-23 19:10:41,950 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\data\finviz_stocks_20250923.csv
+2025-09-23 19:16:35,989 [INFO] Pobrano 10 spó³ek. Czas: 0:00:00.951091
+2025-09-23 19:16:35,993 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=1+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-23 19:16:36,966 [INFO] RSS: znaleziono 100 pozycji dla 1
+2025-09-23 19:16:37,067 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=2+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-23 19:16:38,089 [INFO] RSS: znaleziono 100 pozycji dla 2
+2025-09-23 19:16:38,191 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=3+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-23 19:16:39,057 [INFO] RSS: znaleziono 100 pozycji dla 3
+2025-09-23 19:16:39,159 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=4+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-23 19:16:40,162 [INFO] RSS: znaleziono 100 pozycji dla 4
+2025-09-23 19:16:40,264 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=5+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-23 19:16:41,305 [INFO] RSS: znaleziono 100 pozycji dla 5
+2025-09-23 19:16:41,407 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=6+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-23 19:16:42,442 [INFO] RSS: znaleziono 100 pozycji dla 6
+2025-09-23 19:16:42,542 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=7+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-23 19:16:43,656 [INFO] RSS: znaleziono 100 pozycji dla 7
+2025-09-23 19:16:43,758 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=8+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-23 19:16:44,623 [INFO] RSS: znaleziono 100 pozycji dla 8
+2025-09-23 19:16:44,724 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=9+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-23 19:16:45,691 [INFO] RSS: znaleziono 100 pozycji dla 9
+2025-09-23 19:16:45,792 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=10+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-23 19:16:46,956 [INFO] RSS: znaleziono 100 pozycji dla 10
+2025-09-23 19:17:07,231 [INFO] Pobrano 10 spó³ek. Czas: 0:00:00.970289
+2025-09-23 19:17:07,242 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\data\finviz_stocks_20250923.csv
+2025-09-23 19:22:46,776 [INFO] Pobrano 10439 spó³ek. Czas: 0:06:42.514124
+2025-09-23 19:51:49,159 [INFO] Pobrano 10 spó³ek. Czas: 0:00:00.781972
+2025-09-23 19:51:49,162 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=1+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-23 19:51:49,900 [INFO] RSS: znaleziono 100 pozycji dla 1
+2025-09-23 19:51:50,053 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=2+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-23 19:51:50,927 [INFO] RSS: znaleziono 100 pozycji dla 2
+2025-09-23 19:51:51,079 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=3+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-23 19:51:51,937 [INFO] RSS: znaleziono 100 pozycji dla 3
+2025-09-23 19:51:52,089 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=4+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-23 19:51:53,027 [INFO] RSS: znaleziono 100 pozycji dla 4
+2025-09-23 19:51:53,179 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=5+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-23 19:51:53,961 [INFO] RSS: znaleziono 100 pozycji dla 5
+2025-09-23 19:51:54,112 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=6+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-23 19:51:54,909 [INFO] RSS: znaleziono 100 pozycji dla 6
+2025-09-23 19:51:55,061 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=7+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-23 19:51:55,969 [INFO] RSS: znaleziono 100 pozycji dla 7
+2025-09-23 19:51:56,120 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=8+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-23 19:51:56,970 [INFO] RSS: znaleziono 100 pozycji dla 8
+2025-09-23 19:51:57,122 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=9+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-23 19:51:57,935 [INFO] RSS: znaleziono 100 pozycji dla 9
+2025-09-23 19:51:58,087 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=10+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-23 19:51:58,950 [INFO] RSS: znaleziono 100 pozycji dla 10
+2025-09-23 19:58:35,206 [INFO] Pobrano 10 spó³ek. Czas: 0:00:00.996033
+2025-09-23 19:58:35,215 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=1+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-23 19:58:35,964 [INFO] RSS: znaleziono 100 pozycji dla 1
+2025-09-23 19:58:36,116 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=2+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-23 19:58:36,841 [INFO] RSS: znaleziono 100 pozycji dla 2
+2025-09-23 19:58:36,992 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=3+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-23 19:58:37,860 [INFO] RSS: znaleziono 100 pozycji dla 3
+2025-09-23 19:58:38,012 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=4+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-23 19:58:38,953 [INFO] RSS: znaleziono 100 pozycji dla 4
+2025-09-23 19:58:39,105 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=5+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-23 19:58:39,860 [INFO] RSS: znaleziono 100 pozycji dla 5
+2025-09-23 19:58:40,025 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=6+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-23 19:58:40,830 [INFO] RSS: znaleziono 100 pozycji dla 6
+2025-09-23 19:58:40,982 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=7+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-23 19:58:41,782 [INFO] RSS: znaleziono 100 pozycji dla 7
+2025-09-23 19:58:41,933 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=8+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-23 19:58:42,698 [INFO] RSS: znaleziono 100 pozycji dla 8
+2025-09-23 19:58:42,849 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=9+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-23 19:58:43,723 [INFO] RSS: znaleziono 100 pozycji dla 9
+2025-09-23 19:58:43,875 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=10+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-23 19:58:44,637 [INFO] RSS: znaleziono 100 pozycji dla 10
+2025-09-23 19:58:54,741 [INFO] Pobrano 10 spó³ek. Czas: 0:00:00.822047
+2025-09-23 19:58:54,813 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\data\finviz_stocks_20250923.csv
+2025-09-23 19:58:58,573 [INFO] Pobrano 10 spó³ek. Czas: 0:00:00.851828
+2025-09-23 19:58:58,585 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\data\finviz_filtered_stocks_20250923.csv
