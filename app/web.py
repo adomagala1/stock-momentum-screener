@@ -6,11 +6,12 @@ from stock_scraper import fetch_finviz
 from save_data import save_stocks_csv
 from scrape_news import fetch_google_news_rss, add_sentiment
 import time
+import plotly.express as px
 
 # 🔧 Konfiguracja strony
 st.set_page_config(page_title="Finviz Screener", layout="wide", page_icon="📊")
 
-# 🏷️ Custom CSS dla lepszego wyglądu
+# 🏷️ Custom CSS
 st.markdown(
     """
     <style>
@@ -23,6 +24,13 @@ st.markdown(
         padding: 12px;
         box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
+    .news-card {
+        background: white;
+        border-radius: 12px;
+        padding: 16px;
+        margin-bottom: 10px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
     </style>
     """,
     unsafe_allow_html=True
@@ -32,19 +40,15 @@ st.markdown(
 st.title("📊 Finviz Stock Screener")
 st.caption("⚡ Interaktywny dashboard do pobierania danych giełdowych i newsów")
 
-# 📌 Panel boczny (ustawienia)
+# 📌 Panel boczny
 st.sidebar.header("⚙️ Ustawienia")
-max_companies = st.sidebar.number_input(
-    "Ilość spółek do pobrania (0 = wszystkie)",
-    min_value=0, value=0, step=10
-)
+max_companies = st.sidebar.number_input("Ilość spółek (0 = wszystkie)", min_value=0, value=0, step=10)
 with_filters = st.sidebar.checkbox("Filtry (Mid Cap, NASDAQ, Rel Volume > 1.5)", value=False)
 get_only_tickers = st.sidebar.checkbox("Tylko tickery?", value=False)
 
-# Zakładki
 tab1, tab2 = st.tabs(["📈 Statystyki spółek", "📰 Newsy giełdowe"])
 
-# 📈 Zakładka 1 – Statystyki spółek
+# 📈 Statystyki
 with tab1:
     st.header("📊 Statystyki spółek")
     if st.button("🚀 Pobierz dane statystyczne"):
@@ -59,7 +63,6 @@ with tab1:
             st.success(f"✅ Pobrano {len(df)} spółek")
             st.dataframe(df, use_container_width=True)
 
-            # Zapis
             save_stocks_csv(df, get_only_tickers=get_only_tickers, with_filters=with_filters)
             st.info("💾 Dane zapisane do folderu `data` jako CSV")
 
@@ -74,45 +77,70 @@ with tab1:
             with open(f"data/{filename}", "rb") as f:
                 st.download_button("⬇️ Pobierz CSV", f, file_name=filename, mime="text/csv")
         else:
-            st.warning("⚠️ Nie udało się pobrać danych o spółkach.")
+            st.warning("⚠️ Nie udało się pobrać danych.")
 
-# 📰 Zakładka 2 – Newsy giełdowe
+# 📰 Newsy
 with tab2:
-    st.header("📰 Najnowsze newsy ze spółek")
+    st.header("📰 Najnowsze newsy")
     if st.button("📡 Pobierz newsy"):
         with st.spinner(" (1/2) Pobieram listę tickerów..."):
-            df_tickers = fetch_finviz(
-                max_companies=max_companies,
-                with_filters=with_filters,
-                get_only_tickers=True
-            )
+            df_tickers = fetch_finviz(max_companies=max_companies, with_filters=with_filters, get_only_tickers=True)
         tickers = df_tickers["Ticker"].dropna().unique().tolist()
 
-        with st.spinner(" (2/2) Pobieram newsy z Google News..."):
-            all_news = []
-            for t in tickers:
-                df_news = fetch_google_news_rss(t)
-                if not df_news.empty:
-                    all_news.append(df_news)
+        all_news = []
+        progress_text = st.empty()
+        progress = st.progress(0)
 
-            if all_news:
-                news = pd.concat(all_news, ignore_index=True)
-            else:
-                news = pd.DataFrame()
+        for i, t in enumerate(tickers, start=1):
+            progress_text.text(f"📡 Pobieram newsy dla {t} ({i}/{len(tickers)})")
+            df_news = fetch_google_news_rss(t)
+            if not df_news.empty:
+                all_news.append(df_news)
+            progress.progress(int(i / len(tickers) * 100))
+            time.sleep(0.1)
 
-        if not news.empty:
+        if all_news:
+            news = pd.concat(all_news, ignore_index=True)
             news = add_sentiment(news)
             st.success(f"✅ Pobrano {len(news)} newsów dla {len(tickers)} spółek")
 
-            # Wyświetl dane
-            st.dataframe(news, use_container_width=True)
-
-            # 🔥 Animowane metryki
+            # 🎨 Wizualizacje
             avg_sent = news['sentiment'].mean()
-            col1, col2 = st.columns(2)
+            col1, col2, col3 = st.columns(3)
             with col1:
-                st.metric("🙂 Średni sentyment newsów", f"{avg_sent:.2f}")
+                st.metric("🙂 Średni sentyment", f"{avg_sent:.2f}")
             with col2:
-                st.metric("📰 Liczba spółek", len(tickers))
+                st.metric("📰 Liczba newsów", len(news))
+            with col3:
+                st.metric("🏢 Liczba spółek", len(tickers))
+
+            # Wykres kołowy sentymentu
+            st.subheader("📊 Rozkład sentymentu")
+            bins = pd.cut(news['sentiment'], [-1, -0.05, 0.05, 1], labels=["Negatywny", "Neutralny", "Pozytywny"])
+            pie_df = bins.value_counts().reset_index()
+            pie_df.columns = ["Sentyment", "Liczba"]
+            fig_pie = px.pie(pie_df, values="Liczba", names="Sentyment", color="Sentyment",
+                             color_discrete_map={"Pozytywny": "green", "Neutralny": "gray", "Negatywny": "red"})
+            st.plotly_chart(fig_pie, use_container_width=True)
+
+            # Histogram sentymentu
+            st.subheader("📈 Rozkład wartości sentymentu")
+            fig_hist = px.histogram(news, x="sentiment", nbins=30, title="Histogram sentymentu")
+            st.plotly_chart(fig_hist, use_container_width=True)
+
+            # 📌 Top 10 newsów w formie kart
+            st.subheader("📰 Top 10 newsów")
+            for _, row in news.head(10).iterrows():
+                st.markdown(
+                    f"""
+                    <div class="news-card">
+                        <b>[{row['ticker']}]</b> {row['headline']}<br>
+                        <small>Źródło: {row.get('source','?')} | {row.get('published','?')}</small><br>
+                        <a href="{row['link']}" target="_blank">🔗 Czytaj więcej</a>
+                    </div>
+                    """,
+                    unsafe_allow_html=True
+                )
+
         else:
-            st.warning("⚠️ Brak newsów do wyświetlenia.")
+            st.warning("⚠️ Brak newsów.")
