@@ -101,7 +101,7 @@ st.caption("Interaktywny dashboard do pobierania danych giełdowych i newsów")
 
 # 📌 Sidebar
 st.sidebar.header("⚙️ Ustawienia")
-max_companies = st.sidebar.number_input("Ilość spółek (0 = wszystkie)", min_value=0, value=0, step=10)
+max_companies = st.sidebar.number_input("Ilość spółek (0 = wszystkie)", min_value=0, value=0, step=10, max_value=100000)
 with_filters = st.sidebar.checkbox("Filtry (Mid Cap, NASDAQ, Rel Volume > 1.5)", value=False)
 get_only_tickers = st.sidebar.checkbox("Tylko tickery?", value=False)
 
