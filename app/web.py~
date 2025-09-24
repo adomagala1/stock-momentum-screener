@@ -118,7 +118,7 @@ with tab1:
             st.success(f"Pobrano {len(df)} spółek")
             st.dataframe(df, use_container_width=True)
 
-            save_stocks_to_csv(df, get_only_tickers=get_only_tickers, with_filters=with_filters)
+            save_stocks_csv(df, get_only_tickers=get_only_tickers, with_filters=with_filters)
             st.info("Dane zapisane w `data/` jako CSV")
 
             today = datetime.now().strftime("%Y%m%d")
