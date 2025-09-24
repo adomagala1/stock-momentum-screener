@@ -1,6 +1,5 @@
 import logging
 import os
-
 import requests
 import pandas as pd
 from bs4 import BeautifulSoup
@@ -15,7 +14,8 @@ logging.basicConfig(
 )
 
 HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0 Safari/537.36"
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                  "(KHTML, like Gecko) Chrome/115.0 Safari/537.36"
 }
 
 URL_DEFAULT = "https://finviz.com/screener.ashx?v=111"
@@ -53,49 +53,27 @@ def fetch_finviz(max_companies: int = 10, get_only_tickers: bool = False, with_f
         response = requests.get(paged_url, headers=HEADERS)
         response.raise_for_status()
         soup = BeautifulSoup(response.text, "html.parser")
-
         rows = soup.find_all("tr", class_="styled-row")
         if not rows:
             break
 
         for row in rows:
             cols = row.find_all("td")
-            row_data = [col.get_text(strip=True) if not col.find("span") else col.find("span").get_text(strip=True) for
-                        col in cols]
-
-            if not get_only_tickers and not with_filters:
-                row_data = row_data[:len(columns)]
-
+            row_data = [col.get_text(strip=True) for col in cols]
             if get_only_tickers:
                 all_data.append([row_data[0], row_data[1]])  # numer + ticker
-                columns = ["No", "Ticker"]
             else:
-                all_data.append(row_data)
-
+                all_data.append(row_data[:len(columns)])
             companies_fetched += 1
             if not unlimited and companies_fetched >= max_companies:
                 break
-
         start += 20
 
     df = pd.DataFrame(all_data, columns=columns)
-    logging.info(df.iloc[0])
     df.fillna(pd.NA, inplace=True)
-
-    # Konwersja liczb i procentów
-    numeric_cols = ["Market Cap", "Price", "Volume", "52w High", "52w Low"]
-    percent_cols = ["EPS next 5Y", "Perf Week", "Perf Month", "Change"]
-    for col in numeric_cols:
-        if col in df.columns:
-            df[col] = pd.to_numeric(df[col].astype(str).str.replace(",", "", regex=False), errors="coerce")
-    for col in percent_cols:
-        if col in df.columns:
-            df[col] = pd.to_numeric(df[col].astype(str).str.replace("%", "", regex=False), errors="coerce")
-
     finish = datetime.now()
     logging.info(f"Pobrano {len(df)} spółek. Czas: {finish - start_time}")
     return df
-
 
 if __name__ == "__main__":
     df = fetch_finviz(max_companies=10, with_filters=False, get_only_tickers=False)

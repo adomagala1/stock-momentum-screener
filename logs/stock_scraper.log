@@ -587,3 +587,11 @@
 2025-09-24 11:12:06,294 [INFO] RSS: znaleziono 28 pozycji dla AAPD
 2025-09-24 11:12:14,693 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=NOVOB+stock&hl=en-US&gl=US&ceid=US:en
 2025-09-24 11:12:15,622 [INFO] RSS: znaleziono 100 pozycji dla NOVOB
+2025-09-24 21:55:23,876 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=TESLA+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 21:55:24,833 [INFO] RSS: znaleziono 100 pozycji dla TESLA
+2025-09-24 21:55:34,551 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=TSLA+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 21:55:35,404 [INFO] RSS: znaleziono 92 pozycji dla TSLA
+2025-09-24 21:55:45,894 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=APPLE+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 21:55:46,841 [INFO] RSS: znaleziono 100 pozycji dla APPLE
+2025-09-24 21:56:13,826 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=APPLE+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 21:56:14,166 [INFO] RSS: znaleziono 100 pozycji dla APPLE
