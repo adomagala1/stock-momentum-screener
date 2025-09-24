@@ -9,6 +9,8 @@ from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import logging
 import time
 
+from save_data import save_news_to_csv
+from stocks import fetch_finviz
 
 os.makedirs("logs", exist_ok=True)
 logging.basicConfig(level=logging.INFO, filename="logs/news_scraper.log", format="%(asctime)s [%(levelname)s] %(message)s")
@@ -57,9 +59,11 @@ def add_sentiment(df, text_col='headline'):
 
 def fetch_news_for_ticker(ticker):
     try:
-        df = fetch_google_news_rss(ticker)
-        if not df.empty:
-            return add_sentiment(df)
+        news_df = fetch_google_news_rss(ticker)
+        if not news_df.empty:
+            add_sentiment(news_df)
+            news_df["ticker"] = ticker
+            return news_df
     except Exception as e:
         logging.error(f"Google RSS error: {e}")
 
@@ -68,4 +72,19 @@ def fetch_news_for_ticker(ticker):
     return pd.DataFrame()
 
 
-print(fetch_news_for_ticker("AAPL"))
+
+if __name__ == "__main__":
+    only_tickers_df = fetch_finviz(get_only_tickers=True, with_filters=False, max_companies=5)
+    print(only_tickers_df.iloc[0])
+    tickers = only_tickers_df["Ticker"].tolist()
+    print(tickers[0:5])
+    ALL = []
+    for t in tickers:
+        news_df = fetch_news_for_ticker(t)
+        news_df["ticker"] = t
+        if not news_df.empty:
+            ALL.append(news_df)
+
+    if ALL:
+        final = pd.concat(ALL, ignore_index=True)
+        save_news_to_csv(final)

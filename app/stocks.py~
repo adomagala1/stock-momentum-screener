@@ -5,7 +5,7 @@ import requests
 import pandas as pd
 from bs4 import BeautifulSoup
 from datetime import datetime
-from save_data import save_stocks_csv
+from save_data import save_stocks_to_csv
 
 os.makedirs("logs", exist_ok=True)
 logging.basicConfig(
@@ -25,7 +25,7 @@ URL_FILTERED = (
 )
 
 COLUMNS_NORMAL = [
-    "Ticker", "Company", "Sector", "Industry", "Country",
+    "No", "Ticker", "Company", "Sector", "Industry", "Country",
     "Market Cap", "P/E", "Price", "Change", "Volume"
 ]
 
@@ -36,15 +36,14 @@ COLUMNS_FILTERED = [
 ]
 
 
-def fetch_finviz(max_companies: int = 10, get_only_tickers: bool = False,
-                 with_filters: bool = False) -> pd.DataFrame:
+def fetch_finviz(max_companies: int = 10, get_only_tickers: bool = False, with_filters: bool = False) -> pd.DataFrame:
     url = URL_FILTERED if with_filters else URL_DEFAULT
     start_time = datetime.now()
     all_data = []
     start = 1
     companies_fetched = 0
     unlimited = max_companies is None or max_companies <= 0
-    columns = ["Ticker"] if get_only_tickers else (COLUMNS_FILTERED if with_filters else COLUMNS_NORMAL)
+    columns = ["No", "Ticker"] if get_only_tickers else (COLUMNS_FILTERED if with_filters else COLUMNS_NORMAL)
 
     while True:
         if not unlimited and companies_fetched >= max_companies:
@@ -64,12 +63,11 @@ def fetch_finviz(max_companies: int = 10, get_only_tickers: bool = False,
             row_data = [col.get_text(strip=True) if not col.find("span") else col.find("span").get_text(strip=True) for
                         col in cols]
 
-            # Usuń kolumnę "No" dla normalnego screenera
             if not get_only_tickers and not with_filters:
-                row_data = row_data[1:]
+                row_data = row_data[:len(columns)]
 
             if get_only_tickers:
-                all_data.append([row_data[0]])
+                all_data.append(row_data[1])
             else:
                 all_data.append(row_data)
 
@@ -79,15 +77,10 @@ def fetch_finviz(max_companies: int = 10, get_only_tickers: bool = False,
 
         start += 20
 
-    # Wyrównanie długości wierszy
-    for i, row in enumerate(all_data):
-        if len(row) < len(columns):
-            row.extend([None] * (len(columns) - len(row)))
-        elif len(row) > len(columns):
-            all_data[i] = row[:len(columns)]
 
     df = pd.DataFrame(all_data, columns=columns)
     df.fillna(pd.NA, inplace=True)
+
 
     # Konwersja liczb i procentów
     numeric_cols = ["Market Cap", "Price", "Volume", "52w High", "52w Low"]
@@ -99,11 +92,13 @@ def fetch_finviz(max_companies: int = 10, get_only_tickers: bool = False,
         if col in df.columns:
             df[col] = pd.to_numeric(df[col].astype(str).str.replace("%", "", regex=False), errors="coerce")
 
+
     finish = datetime.now()
     logging.info(f"Pobrano {len(df)} spółek. Czas: {finish - start_time}")
+    df.to_csv("dadada.csv", index=False)
     return df
 
 
 if __name__ == "__main__":
-    df = fetch_finviz(max_companies=50, with_filters=False, get_only_tickers=False)
-    save_stocks_csv(df, with_filters=False, get_only_tickers=False)
+    df = fetch_finviz(max_companies=10, with_filters=False, get_only_tickers=False)
+    save_stocks_to_csv(df, with_filters=False, get_only_tickers=False)

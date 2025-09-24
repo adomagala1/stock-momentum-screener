@@ -5,6 +5,9 @@ import pandas as pd
 from pymongo import MongoClient
 from app.config import settings
 from dateutil import parser as date_parser
+
+
+
 # --- MongoDB setup ---
 client = MongoClient(settings.mongo_uri)
 mongo_db = client[settings.mongo_db]
@@ -34,39 +37,3 @@ def insert_news(items: list):
     except Exception as e:
         print("Błąd wstawiania newsów:", e)
 
-
-# --- CSV save ---
-def save_news_csv(df: pd.DataFrame, filename_prefix: str = "news_data") -> None:
-    """Zapisuje newsy do pliku CSV"""
-    if df.empty:
-        logging.info("Brak danych do zapisania (df puste)")
-        return
-
-    folder = os.path.join("data", "news")
-    os.makedirs(folder, exist_ok=True)
-
-    columns_order = ["ticker", "headline", "link", "source", "published", "sentiment"]
-    df = df[[col for col in columns_order if col in df.columns]]
-
-    today = datetime.now().strftime("%Y%m%d")
-    path = os.path.join(folder, f"{filename_prefix}_{today}.csv")
-    filename = os.path.abspath(path)
-
-    df.to_csv(filename, index=False)
-    logging.info(f"Dane zapisane do {filename}")
-
-
-# --- Przykład użycia ---
-if __name__ == "__main__":
-    items = [{
-        "ticker": "AADDPL",
-        "headline": "Apple launches new product",
-        "link": "https://example.com/article1",
-        "source": "Reuters",
-        "published": datetime.now(),
-        "sentiment": "positive"
-    }]
-    insert_news(items)
-
-    df = pd.DataFrame(items)
-    save_news_csv(df)

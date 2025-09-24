@@ -20,11 +20,11 @@ def convert_market_cap(value):
             return None
 
 
-def save_stocks_csv(df: pd.DataFrame, get_only_tickers=False, with_filters=False) -> None:
+def save_stocks_to_csv(df: pd.DataFrame, get_only_tickers=False, with_filters=False) -> None:
     os.makedirs("data", exist_ok=True)
 
     if get_only_tickers:
-        columns = ["Ticker"]
+        columns = ["Ticker", "Price", "Change"]
     elif with_filters:
         columns = [
             "Ticker", "Company", "Sector", "Industry", "Country", "Market Cap", "P/E",
@@ -33,7 +33,7 @@ def save_stocks_csv(df: pd.DataFrame, get_only_tickers=False, with_filters=False
         ]
     else:
         columns = [
-            "No", "Ticker", "Company", "Sector", "Industry", "Country",
+            "Ticker", "Company", "Sector", "Industry", "Country",
             "Market Cap", "P/E", "Price", "Change", "Volume"
         ]
 
@@ -43,7 +43,7 @@ def save_stocks_csv(df: pd.DataFrame, get_only_tickers=False, with_filters=False
             df[col] = pd.NA
 
     # konwersja liczb i procentów
-    numeric_cols = ["Market Cap", "Price", "Volume", "52w High", "52w Low"]
+    numeric_cols = ["Price", "Volume", "52w High", "52w Low"]
     percent_cols = ["EPS next 5Y", "Perf Week", "Perf Month", "Change"]
     for col in numeric_cols:
         if col in df.columns:
@@ -68,5 +68,26 @@ def save_stocks_csv(df: pd.DataFrame, get_only_tickers=False, with_filters=False
     }.get((get_only_tickers, with_filters))
     filename = os.path.abspath(os.path.join("data", filename_suffix))
 
-    df.to_csv(filename, index=True)
+    df.to_csv(filename, index=False)
     logging.info(f"Dane zapisane do {filename}")
+
+
+def save_news_to_csv(df: pd.DataFrame, filename_prefix: str = "news_data") -> None:
+    """Zapisuje newsy do pliku CSV"""
+    if df.empty:
+        logging.info("Brak danych do zapisania (df puste)")
+        return
+
+    folder = os.path.join("data", "news")
+    os.makedirs(folder, exist_ok=True)
+
+    columns_order = ["ticker", "headline", "link", "source", "published", "sentiment"]
+    df = df[[col for col in columns_order if col in df.columns]]
+
+    today = datetime.now().strftime("%Y%m%d")
+    path = os.path.join(folder, f"{filename_prefix}_{today}.csv")
+    filename = os.path.abspath(path)
+
+    df.to_csv(filename, index=False)
+    logging.info(f"Dane zapisane do {filename}")
+    return
