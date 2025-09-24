@@ -14,14 +14,6 @@ st.set_page_config(page_title="Finviz Screener", layout="wide", page_icon="📊"
 # 🌈 Custom CSS
 st.markdown("""
 <style>
-/* Gradient background */
-.main { background: linear-gradient(120deg, #f7faff, #eef3ff, #ffffff); background-size: 300% 300%; animation: gradientMove 12s ease infinite; }
-@keyframes gradientMove {0% {background-position: 0% 50%;} 50% {background-position: 100% 50%;} 100% {background-position: 0% 50%;}}
-
-/* Buttons */
-div.stButton > button {background: linear-gradient(90deg, #4facfe, #00f2fe); color:white; border:none; border-radius:12px; padding:0.6em 1.2em; font-weight:600; box-shadow:0 4px 14px rgba(0,0,0,0.2); transition:all 0.3s ease;}
-div.stButton > button:hover {background: linear-gradient(90deg, #43e97b, #38f9d7); transform:translateY(-2px); box-shadow:0 6px 18px rgba(0,0,0,0.25);}
-
 /* News cards */
 .news-card {background: var(--background-color-secondary); border-radius:14px; padding:14px; margin-bottom:12px; box-shadow:0 6px 18px rgba(0,0,0,0.1); animation: slideUp 0.5s ease; color: var(--text-color);}
 @keyframes slideUp {from {opacity:0; transform:translateY(10px);} to {opacity:1; transform:translateY(0);}}

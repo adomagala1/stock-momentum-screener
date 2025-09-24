@@ -457,3 +457,133 @@
 2025-09-23 19:58:54,813 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\data\finviz_stocks_20250923.csv
 2025-09-23 19:58:58,573 [INFO] Pobrano 10 spó³ek. Czas: 0:00:00.851828
 2025-09-23 19:58:58,585 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\data\finviz_filtered_stocks_20250923.csv
+2025-09-24 11:05:12,639 [INFO] Pobrano 10 spó³ek. Czas: 0:00:00.863641
+2025-09-24 11:05:12,692 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=A+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:05:13,728 [INFO] RSS: znaleziono 100 pozycji dla A
+2025-09-24 11:05:13,910 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AA+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:05:14,761 [INFO] RSS: znaleziono 100 pozycji dla AA
+2025-09-24 11:05:14,931 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAA+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:05:15,623 [INFO] RSS: znaleziono 67 pozycji dla AAA
+2025-09-24 11:05:15,797 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAAA+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:05:16,252 [INFO] RSS: znaleziono 25 pozycji dla AAAA
+2025-09-24 11:05:16,416 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAAU+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:05:16,990 [INFO] RSS: znaleziono 41 pozycji dla AAAU
+2025-09-24 11:05:17,157 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AACB+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:05:17,712 [INFO] RSS: znaleziono 43 pozycji dla AACB
+2025-09-24 11:05:17,885 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AACG+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:05:18,548 [INFO] RSS: znaleziono 34 pozycji dla AACG
+2025-09-24 11:05:18,714 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AACI+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:05:19,181 [INFO] RSS: znaleziono 14 pozycji dla AACI
+2025-09-24 11:05:19,347 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AACT+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:05:19,976 [INFO] RSS: znaleziono 74 pozycji dla AACT
+2025-09-24 11:05:20,148 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AADR+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:05:20,723 [INFO] RSS: znaleziono 10 pozycji dla AADR
+2025-09-24 11:08:34,325 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAPL+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:08:35,249 [INFO] RSS: znaleziono 100 pozycji dla AAPL
+2025-09-24 11:09:01,232 [INFO] Pobrano 10 spó³ek. Czas: 0:00:00.772958
+2025-09-24 11:09:01,237 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=A+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:09:01,970 [INFO] RSS: znaleziono 100 pozycji dla A
+2025-09-24 11:09:02,143 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AA+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:09:02,953 [INFO] RSS: znaleziono 100 pozycji dla AA
+2025-09-24 11:09:03,125 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAA+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:09:03,713 [INFO] RSS: znaleziono 67 pozycji dla AAA
+2025-09-24 11:09:03,881 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAAA+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:09:04,390 [INFO] RSS: znaleziono 25 pozycji dla AAAA
+2025-09-24 11:09:04,555 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAAU+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:09:04,947 [INFO] RSS: znaleziono 41 pozycji dla AAAU
+2025-09-24 11:09:05,115 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AACB+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:09:05,520 [INFO] RSS: znaleziono 43 pozycji dla AACB
+2025-09-24 11:09:05,687 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AACG+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:09:06,211 [INFO] RSS: znaleziono 34 pozycji dla AACG
+2025-09-24 11:09:06,376 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AACI+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:09:06,846 [INFO] RSS: znaleziono 14 pozycji dla AACI
+2025-09-24 11:09:07,009 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AACT+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:09:07,691 [INFO] RSS: znaleziono 74 pozycji dla AACT
+2025-09-24 11:09:07,998 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AADR+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:09:08,356 [INFO] RSS: znaleziono 10 pozycji dla AADR
+2025-09-24 11:10:48,842 [INFO] Pobrano 20 spó³ek. Czas: 0:00:00.798161
+2025-09-24 11:10:48,880 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\data\finviz_tickers_20250924.csv
+2025-09-24 11:11:03,538 [INFO] Pobrano 20 spó³ek. Czas: 0:00:00.926543
+2025-09-24 11:11:03,544 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=A+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:11:04,533 [INFO] RSS: znaleziono 100 pozycji dla A
+2025-09-24 11:11:04,701 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AA+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:11:05,413 [INFO] RSS: znaleziono 100 pozycji dla AA
+2025-09-24 11:11:05,590 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAA+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:11:06,249 [INFO] RSS: znaleziono 67 pozycji dla AAA
+2025-09-24 11:11:06,416 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAAA+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:11:06,930 [INFO] RSS: znaleziono 25 pozycji dla AAAA
+2025-09-24 11:11:07,179 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAAU+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:11:07,788 [INFO] RSS: znaleziono 34 pozycji dla AAAU
+2025-09-24 11:11:07,968 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AACB+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:11:08,429 [INFO] RSS: znaleziono 43 pozycji dla AACB
+2025-09-24 11:11:08,595 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AACG+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:11:09,064 [INFO] RSS: znaleziono 34 pozycji dla AACG
+2025-09-24 11:11:09,230 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AACI+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:11:09,741 [INFO] RSS: znaleziono 14 pozycji dla AACI
+2025-09-24 11:11:09,905 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AACT+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:11:10,528 [INFO] RSS: znaleziono 74 pozycji dla AACT
+2025-09-24 11:11:10,695 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AADR+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:11:11,112 [INFO] RSS: znaleziono 10 pozycji dla AADR
+2025-09-24 11:11:11,276 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAL+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:11:12,220 [INFO] RSS: znaleziono 100 pozycji dla AAL
+2025-09-24 11:11:12,509 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AALG+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:11:13,004 [INFO] RSS: znaleziono 3 pozycji dla AALG
+2025-09-24 11:11:13,170 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAM+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:11:13,887 [INFO] RSS: znaleziono 77 pozycji dla AAM
+2025-09-24 11:11:14,055 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAME+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:11:14,706 [INFO] RSS: znaleziono 52 pozycji dla AAME
+2025-09-24 11:11:14,873 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAMI+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:11:15,390 [INFO] RSS: znaleziono 53 pozycji dla AAMI
+2025-09-24 11:11:15,557 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAOI+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:11:16,341 [INFO] RSS: znaleziono 100 pozycji dla AAOI
+2025-09-24 11:11:16,510 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAON+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:11:17,522 [INFO] RSS: znaleziono 100 pozycji dla AAON
+2025-09-24 11:11:17,691 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAP+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:11:18,601 [INFO] RSS: znaleziono 100 pozycji dla AAP
+2025-09-24 11:11:18,813 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAPB+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:11:19,206 [INFO] RSS: znaleziono 8 pozycji dla AAPB
+2025-09-24 11:11:19,372 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAPD+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:11:20,115 [INFO] RSS: znaleziono 29 pozycji dla AAPD
+2025-09-24 11:11:52,587 [INFO] Pobrano 20 spó³ek. Czas: 0:00:00.820614
+2025-09-24 11:11:52,593 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=A+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:11:53,291 [INFO] RSS: znaleziono 100 pozycji dla A
+2025-09-24 11:11:53,462 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AA+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:11:54,113 [INFO] RSS: znaleziono 100 pozycji dla AA
+2025-09-24 11:11:54,284 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAA+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:11:54,807 [INFO] RSS: znaleziono 69 pozycji dla AAA
+2025-09-24 11:11:54,977 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAAA+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:11:55,375 [INFO] RSS: znaleziono 25 pozycji dla AAAA
+2025-09-24 11:11:55,541 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAAU+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:11:55,946 [INFO] RSS: znaleziono 41 pozycji dla AAAU
+2025-09-24 11:11:56,115 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AACB+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:11:56,575 [INFO] RSS: znaleziono 43 pozycji dla AACB
+2025-09-24 11:11:56,744 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AACG+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:11:57,177 [INFO] RSS: znaleziono 34 pozycji dla AACG
+2025-09-24 11:11:57,348 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AACI+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:11:57,737 [INFO] RSS: znaleziono 14 pozycji dla AACI
+2025-09-24 11:11:57,935 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AACT+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:11:58,519 [INFO] RSS: znaleziono 74 pozycji dla AACT
+2025-09-24 11:11:58,692 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AADR+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:11:59,069 [INFO] RSS: znaleziono 10 pozycji dla AADR
+2025-09-24 11:11:59,237 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAL+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:11:59,982 [INFO] RSS: znaleziono 100 pozycji dla AAL
+2025-09-24 11:12:00,154 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AALG+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:12:00,509 [INFO] RSS: znaleziono 3 pozycji dla AALG
+2025-09-24 11:12:00,677 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAM+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:12:01,281 [INFO] RSS: znaleziono 77 pozycji dla AAM
+2025-09-24 11:12:01,453 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAME+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:12:01,965 [INFO] RSS: znaleziono 51 pozycji dla AAME
+2025-09-24 11:12:02,132 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAMI+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:12:02,586 [INFO] RSS: znaleziono 53 pozycji dla AAMI
+2025-09-24 11:12:02,758 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAOI+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:12:03,386 [INFO] RSS: znaleziono 100 pozycji dla AAOI
+2025-09-24 11:12:03,559 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAON+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:12:04,303 [INFO] RSS: znaleziono 100 pozycji dla AAON
+2025-09-24 11:12:04,476 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAP+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:12:05,205 [INFO] RSS: znaleziono 100 pozycji dla AAP
+2025-09-24 11:12:05,377 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAPB+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:12:05,688 [INFO] RSS: znaleziono 8 pozycji dla AAPB
+2025-09-24 11:12:05,856 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAPD+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:12:06,294 [INFO] RSS: znaleziono 28 pozycji dla AAPD
+2025-09-24 11:12:14,693 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=NOVOB+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 11:12:15,622 [INFO] RSS: znaleziono 100 pozycji dla NOVOB

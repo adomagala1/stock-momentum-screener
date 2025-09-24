@@ -13,7 +13,8 @@ from save_data import save_news_to_csv
 from stocks import fetch_finviz
 
 os.makedirs("logs", exist_ok=True)
-logging.basicConfig(level=logging.INFO, filename="logs/news_scraper.log", format="%(asctime)s [%(levelname)s] %(message)s")
+logging.basicConfig(level=logging.INFO, filename="logs/news_scraper.log",
+                    format="%(asctime)s [%(levelname)s] %(message)s")
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0 Safari/537.36",
@@ -44,6 +45,7 @@ def fetch_google_news_rss(ticker, country='US', lang='en'):
             "published": published
         })
     df = pd.DataFrame(items)
+
     logging.info(f"RSS: znaleziono {len(df)} pozycji dla {ticker}")
     return df
 
@@ -72,12 +74,9 @@ def fetch_news_for_ticker(ticker):
     return pd.DataFrame()
 
 
-
 if __name__ == "__main__":
-    only_tickers_df = fetch_finviz(get_only_tickers=True, with_filters=False, max_companies=5)
-    print(only_tickers_df.iloc[0])
+    only_tickers_df = fetch_finviz(get_only_tickers=True, with_filters=False, max_companies=50)
     tickers = only_tickers_df["Ticker"].tolist()
-    print(tickers[0:5])
     ALL = []
     for t in tickers:
         news_df = fetch_news_for_ticker(t)
@@ -88,3 +87,8 @@ if __name__ == "__main__":
     if ALL:
         final = pd.concat(ALL, ignore_index=True)
         save_news_to_csv(final)
+        logging.info(f"Pobrano {len(final)} newsów dla {len(tickers)} spółek")
+
+        #dodanie do MongoDB
+        from db.mongodb import insert_news_df
+        insert_news_df(final)

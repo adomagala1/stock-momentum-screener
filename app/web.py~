@@ -136,20 +136,27 @@ if st.button("Pobierz newsy dla listy tickers", key="all_tickers_btn"):
     else:
         tickers = df_tickers["Ticker"].dropna().unique().tolist()
         all_news = []
-        loader = st.empty()
-        progress = st.progress(0)
+
+        # Placeholder do dynamicznego statusu i loadera
+        status_placeholder = st.empty()
+        loader_placeholder = st.empty()
+        progress_bar = st.progress(0)
 
         for i, t in enumerate(tickers, start=1):
-            loader.markdown('<div class="pulse"></div>', unsafe_allow_html=True)
+            loader_placeholder.markdown('<div class="pulse"></div>', unsafe_allow_html=True)
+            status_placeholder.markdown(f"⏳ Pobieram newsy dla **{t}** ({i}/{len(tickers)})")
+
             df_news = fetch_google_news_rss(t)
             if not df_news.empty:
                 df_news = add_sentiment(df_news)
                 all_news.append(df_news)
-            progress.progress(i / len(tickers))
+            progress_bar.progress(i / len(tickers))
             time.sleep(0.15)
 
-        loader.empty()
-        progress.empty()
+        # Usuń loader i status po zakończeniu
+        loader_placeholder.empty()
+        status_placeholder.empty()
+        progress_bar.empty()
 
         if all_news:
             news = pd.concat(all_news, ignore_index=True)
@@ -165,7 +172,8 @@ if st.button("Pobierz newsy dla listy tickers", key="all_tickers_btn"):
             pie_df = bins.value_counts().reset_index()
             pie_df.columns = ["Sentyment", "Liczba"]
             fig_pie = px.pie(pie_df, values="Liczba", names="Sentyment", hole=0.4,
-                             color="Sentyment", color_discrete_map={"Pozytywny": "#4caf50", "Neutralny": "#9e9e9e", "Negatywny": "#f44336"})
+                             color="Sentyment", color_discrete_map={"Pozytywny": "#4caf50", "Neutralny": "#9e9e9e",
+                                                                    "Negatywny": "#f44336"})
             st.plotly_chart(fig_pie, use_container_width=True)
 
             st.subheader("Top 10 newsów")
@@ -178,7 +186,7 @@ if st.button("Pobierz newsy dla listy tickers", key="all_tickers_btn"):
                 st.markdown(f"""
                     <div class="news-card {sentiment_class}">
                         <b>[{row['ticker']}]</b> {row['headline']}<br>
-                        <small>{row.get('published','?')} | {row.get('source','?')}</small><br>
+                        <small>{row.get('published', '?')} | {row.get('source', '?')}</small><br>
                         <a href="{row['link']}" target="_blank">Czytaj więcej</a>
                     </div>
                     """, unsafe_allow_html=True)

@@ -2,7 +2,7 @@ import logging
 from datetime import datetime
 
 import pandas as pd
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
 from app.config import settings
 from save_data import convert_market_cap
@@ -22,6 +22,10 @@ def get_db():
     finally:
         db.close()
 
+def get_latest_stock_date(ticker: str):
+    with engine.connect() as conn:
+        res = conn.execute(text("SELECT MAX(import_date) FROM stocks_data WHERE ticker = :t"), {"t": ticker}).scalar()
+        return res
 
 def save_csv_to_db(get_only_tickers: bool, with_filters: bool, end_width: str, table_name: str = "stocks_data"):
     from app.database import get_engine

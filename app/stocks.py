@@ -78,10 +78,9 @@ def fetch_finviz(max_companies: int = 10, get_only_tickers: bool = False, with_f
 
         start += 20
 
-
     df = pd.DataFrame(all_data, columns=columns)
+    logging.info(df.iloc[0])
     df.fillna(pd.NA, inplace=True)
-
 
     # Konwersja liczb i procentów
     numeric_cols = ["Market Cap", "Price", "Volume", "52w High", "52w Low"]
@@ -93,10 +92,8 @@ def fetch_finviz(max_companies: int = 10, get_only_tickers: bool = False, with_f
         if col in df.columns:
             df[col] = pd.to_numeric(df[col].astype(str).str.replace("%", "", regex=False), errors="coerce")
 
-
     finish = datetime.now()
     logging.info(f"Pobrano {len(df)} spółek. Czas: {finish - start_time}")
-    df.to_csv("dadada.csv", index=False)
     return df
 
 

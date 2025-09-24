@@ -45,6 +45,7 @@ def fetch_google_news_rss(ticker, country='US', lang='en'):
             "published": published
         })
     df = pd.DataFrame(items)
+
     logging.info(f"RSS: znaleziono {len(df)} pozycji dla {ticker}")
     return df
 
@@ -62,7 +63,7 @@ def fetch_news_for_ticker(ticker):
     try:
         news_df = fetch_google_news_rss(ticker)
         if not news_df.empty:
-            add_sentiment(news_df)
+            news_df = add_sentiment(news_df)
             news_df["ticker"] = ticker
             return news_df
     except Exception as e:
@@ -74,10 +75,8 @@ def fetch_news_for_ticker(ticker):
 
 
 if __name__ == "__main__":
-    only_tickers_df = fetch_finviz(get_only_tickers=True, with_filters=False, max_companies=5)
-    print(only_tickers_df.iloc[0])
+    only_tickers_df = fetch_finviz(get_only_tickers=True, with_filters=False, max_companies=50)
     tickers = only_tickers_df["Ticker"].tolist()
-    print(tickers[0:5])
     ALL = []
     for t in tickers:
         news_df = fetch_news_for_ticker(t)
@@ -88,3 +87,8 @@ if __name__ == "__main__":
     if ALL:
         final = pd.concat(ALL, ignore_index=True)
         save_news_to_csv(final)
+        logging.info(f"Pobrano {len(final)} newsów dla {len(tickers)} spółek")
+
+        #dodanie do MongoDB
+        from db.mongodb import insert_news_df
+        insert_news_df(final)

@@ -3,31 +3,38 @@ import pandas as pd
 import logging
 from datetime import datetime
 
-
+logging.basicConfig(
+    level=logging.INFO,
+    filename="logs/save_data.log",
+    format="%(asctime)s [%(levelname)s] %(message)s"
+)
 def convert_market_cap(value):
     if pd.isna(value):
         return None
-    if 'B' in value:
-        return float(value.replace('B', '')) * 1e9
-    elif 'M' in value:
-        return float(value.replace('M', '')) * 1e6
-    elif 'K' in value:
-        return float(value.replace('K', '')) * 1e3
-    else:
-        try:
+    value = str(value).replace(",", "").strip()
+    try:
+        if value.endswith('B'):
+            return float(value[:-1]) * 1e9
+        elif value.endswith('M'):
+            return float(value[:-1]) * 1e6
+        elif value.endswith('K'):
+            return float(value[:-1]) * 1e3
+        else:
             return float(value)
-        except:
-            return None
+    except:
+        return None
 
 
 def save_stocks_to_csv(df: pd.DataFrame, get_only_tickers=False, with_filters=False) -> None:
-    os.makedirs("data", exist_ok=True)
-
+    os.makedirs("data/stocks", exist_ok=True)
+    os.makedirs("data/tickers", exist_ok=True)
+    path = os.path.join("data/tickers") if get_only_tickers else os.path.join("data/stocks")
+    logging.info(f"{df.iloc[0]}")
     if get_only_tickers:
         columns = ["No", "Ticker"]
     elif with_filters:
         columns = [
-            "Ticker", "Company", "Sector", "Industry", "Country", "Market Cap", "P/E",
+            "Ticker", "Company", "Sector", "Industry", "Country", "Market Cap ", "P/E",
             "EPS next 5Y", "Perf Week", "Perf Month", "52w High", "52w Low",
             "Rel Vol", "Volume", "Price", "Change"
         ]
@@ -42,7 +49,9 @@ def save_stocks_to_csv(df: pd.DataFrame, get_only_tickers=False, with_filters=Fa
         if col not in df.columns:
             df[col] = pd.NA
 
-    # konwersja liczb i procentów
+    df["market_cap"] = df["Market Cap"].apply(convert_market_cap)
+
+    # Konwersja liczb
     numeric_cols = ["Price", "Volume", "52w High", "52w Low"]
     percent_cols = ["EPS next 5Y", "Perf Week", "Perf Month", "Change"]
     for col in numeric_cols:
@@ -52,22 +61,19 @@ def save_stocks_to_csv(df: pd.DataFrame, get_only_tickers=False, with_filters=Fa
         if col in df.columns:
             df[col] = pd.to_numeric(df[col].astype(str).str.replace("%", "", regex=False), errors="coerce")
 
+    # Wybór kolumn w odpowiedniej kolejności
     df = df[columns]
+
+    # Zapis CSV
     today = datetime.now().strftime("%Y%m%d")
-
     filename_suffix = {
-        # tylko tickery wszystkich (na dole)
         (True, False): f"finviz_tickers_{today}.csv",
-        # wszystkie spolki (na dole)
         (False, False): f"finviz_stocks_{today}.csv",
-        # filtry (na dle)
         (False, True): f"finviz_filtered_stocks_{today}.csv",
-        # tickery + filtry (na dole)
         (True, True): f"finviz_filtered_tickers_{today}.csv"
+    }[(get_only_tickers, with_filters)]
 
-    }.get((get_only_tickers, with_filters))
-    filename = os.path.abspath(os.path.join("data", filename_suffix))
-
+    filename = os.path.abspath(os.path.join(path, filename_suffix))
     df.to_csv(filename, index=False)
     logging.info(f"Dane zapisane do {filename}")
 
