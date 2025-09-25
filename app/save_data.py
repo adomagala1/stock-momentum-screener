@@ -26,9 +26,11 @@ def convert_market_cap(value):
 
 
 def save_stocks_to_csv(df: pd.DataFrame, get_only_tickers=False, with_filters=False) -> None:
-    os.makedirs("data/stocks", exist_ok=True)
-    os.makedirs("data/tickers", exist_ok=True)
-    path = os.path.join("data/tickers") if get_only_tickers else os.path.join("data/stocks")
+    date_folder = datetime.now().strftime("%Y%m%d")
+    os.makedirs(f"data/stocks/{date_folder}", exist_ok=True)
+    os.makedirs(f"data/tickers/{date_folder}", exist_ok=True)
+    path = os.path.join("data/tickers", date_folder) if get_only_tickers else os.path.join("data/stocks", date_folder)
+
     logging.info(f"{df.iloc[0]}")
     logging.info(f"Kolumny w df: {df.columns.tolist()}")
     logging.info(f"Pierwsze 5 wartości Market Cap: {df['Market Cap'].head()}")
@@ -79,7 +81,7 @@ def save_stocks_to_csv(df: pd.DataFrame, get_only_tickers=False, with_filters=Fa
     }[(get_only_tickers, with_filters)]
 
     filename = os.path.abspath(os.path.join(path, filename_suffix))
-    df.to_csv(filename, index=False)
+    df.to_csv(filename, index=False, chunksize=2000)
     logging.info(f"Dane zapisane do {filename}")
 
 
@@ -99,6 +101,6 @@ def save_news_to_csv(df: pd.DataFrame, filename_prefix: str = "news_data") -> No
     path = os.path.join(folder, f"{filename_prefix}_{today}.csv")
     filename = os.path.abspath(path)
 
-    df.to_csv(filename, index=False)
+    df.to_csv(filename, index=False, chunksize=2000)
     logging.info(f"Dane zapisane do {filename}")
     return

@@ -76,5 +76,5 @@ def fetch_finviz(max_companies: int = 10, get_only_tickers: bool = False, with_f
     return df
 
 if __name__ == "__main__":
-    df = fetch_finviz(max_companies=10, with_filters=False, get_only_tickers=False)
+    df = fetch_finviz(max_companies=100, with_filters=False, get_only_tickers=False)
     save_stocks_to_csv(df, with_filters=False, get_only_tickers=False)

@@ -595,3 +595,45 @@
 2025-09-24 21:55:46,841 [INFO] RSS: znaleziono 100 pozycji dla APPLE
 2025-09-24 21:56:13,826 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=APPLE+stock&hl=en-US&gl=US&ceid=US:en
 2025-09-24 21:56:14,166 [INFO] RSS: znaleziono 100 pozycji dla APPLE
+2025-09-24 23:34:50,284 [INFO] Pobrano 10 spó³ek. Czas: 0:00:00.894861
+2025-09-24 23:34:50,343 [INFO] No                                   1
+Ticker                               A
+Company       Agilent Technologies Inc
+Sector                      Healthcare
+Industry        Diagnostics & Research
+Country                            USA
+Market Cap                      35.26B
+P/E                              29.17
+Price                           124.38
+Change                          -1.24%
+Volume                       1,239,904
+Name: 0, dtype: object
+2025-09-24 23:34:50,343 [INFO] Kolumny w df: ['No', 'Ticker', 'Company', 'Sector', 'Industry', 'Country', 'Market Cap', 'P/E', 'Price', 'Change', 'Volume']
+2025-09-24 23:34:50,343 [INFO] Pierwsze 5 wartoœci Market Cap: 0    35.26B
+1     8.09B
+2         -
+3         -
+4         -
+Name: Market Cap, dtype: object
+2025-09-24 23:34:50,352 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\data\stocks\finviz_stocks_20250924.csv
+2025-09-24 23:34:56,291 [INFO] Pobrano 10 spó³ek. Czas: 0:00:00.765664
+2025-09-24 23:34:56,295 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=A+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 23:34:57,121 [INFO] RSS: znaleziono 100 pozycji dla A
+2025-09-24 23:34:57,294 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AA+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 23:34:58,073 [INFO] RSS: znaleziono 100 pozycji dla AA
+2025-09-24 23:34:58,242 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAA+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 23:34:59,013 [INFO] RSS: znaleziono 70 pozycji dla AAA
+2025-09-24 23:34:59,181 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAAA+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 23:34:59,773 [INFO] RSS: znaleziono 23 pozycji dla AAAA
+2025-09-24 23:34:59,937 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAAU+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 23:35:00,498 [INFO] RSS: znaleziono 42 pozycji dla AAAU
+2025-09-24 23:35:00,665 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AACB+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 23:35:01,242 [INFO] RSS: znaleziono 44 pozycji dla AACB
+2025-09-24 23:35:01,406 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AACG+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 23:35:01,972 [INFO] RSS: znaleziono 33 pozycji dla AACG
+2025-09-24 23:35:02,136 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AACI+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 23:35:02,730 [INFO] RSS: znaleziono 13 pozycji dla AACI
+2025-09-24 23:35:02,894 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AACT+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 23:35:03,544 [INFO] RSS: znaleziono 68 pozycji dla AACT
+2025-09-24 23:35:03,710 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AADR+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 23:35:04,088 [INFO] RSS: znaleziono 11 pozycji dla AADR

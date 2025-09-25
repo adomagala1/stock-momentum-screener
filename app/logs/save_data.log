@@ -193,3 +193,45 @@ Name: 0, dtype: object
 4         -
 Name: Market Cap, dtype: object
 2025-09-24 23:32:17,343 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\app\data\stocks\finviz_stocks_20250924.csv
+2025-09-25 22:39:21,906 [INFO] Pobrano 10 spó³ek. Czas: 0:00:00.755112
+2025-09-25 22:39:21,910 [INFO] No                                   1
+Ticker                               A
+Company       Agilent Technologies Inc
+Sector                      Healthcare
+Industry        Diagnostics & Research
+Country                            USA
+Market Cap                      34.56B
+P/E                              28.58
+Price                           121.89
+Change                          -2.00%
+Volume                       1,411,781
+Name: 0, dtype: object
+2025-09-25 22:39:21,910 [INFO] Kolumny w df: ['No', 'Ticker', 'Company', 'Sector', 'Industry', 'Country', 'Market Cap', 'P/E', 'Price', 'Change', 'Volume']
+2025-09-25 22:39:21,911 [INFO] Pierwsze 5 wartoœci Market Cap: 0    34.56B
+1     8.14B
+2         -
+3         -
+4         -
+Name: Market Cap, dtype: object
+2025-09-25 22:39:21,921 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\app\data\stocks\20250925\finviz_stocks_20250925.csv
+2025-09-25 22:40:05,048 [INFO] Pobrano 100 spó³ek. Czas: 0:00:03.342431
+2025-09-25 22:40:05,052 [INFO] No                                   1
+Ticker                               A
+Company       Agilent Technologies Inc
+Sector                      Healthcare
+Industry        Diagnostics & Research
+Country                            USA
+Market Cap                      34.56B
+P/E                              28.58
+Price                           121.89
+Change                          -2.00%
+Volume                       1,411,781
+Name: 0, dtype: object
+2025-09-25 22:40:05,052 [INFO] Kolumny w df: ['No', 'Ticker', 'Company', 'Sector', 'Industry', 'Country', 'Market Cap', 'P/E', 'Price', 'Change', 'Volume']
+2025-09-25 22:40:05,053 [INFO] Pierwsze 5 wartoœci Market Cap: 0    34.56B
+1     8.14B
+2         -
+3         -
+4         -
+Name: Market Cap, dtype: object
+2025-09-25 22:40:05,062 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\app\data\stocks\20250925\finviz_stocks_20250925.csv

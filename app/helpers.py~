@@ -44,6 +44,7 @@ def get_exact_file(
         (True, True): f"finviz_filtered_tickers_{file_day}.csv"
     }[(get_only_tickers, with_filters)]
 
+    # Wybór folderu
     if stocks_data:
         folder = "data/stocks"
     elif news_file:
@@ -51,6 +52,7 @@ def get_exact_file(
     else:
         folder = "data"
 
+    # Ścieżka pliku
     pattern = os.path.join(folder, filename_suffix)
     abs_pattern = os.path.abspath(pattern)
 

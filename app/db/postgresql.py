@@ -5,6 +5,7 @@ import pandas as pd
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
 from app.config import settings
+from app.helpers import get_exact_file
 from save_data import convert_market_cap
 
 DATABASE_URL = (
@@ -47,7 +48,7 @@ def save_csv_to_db(get_only_tickers: bool, with_filters: bool, end_width: str, t
             "eps_next_5y": "eps_next_5y",
             "p/e": "p_e"
         })
-        df["market_cap"] = df["market_cap"].apply(convert_market_cap)
+        df["market_cap"] = df["market_cap"].astype(str).str.replace(",", "", regex=False).apply(convert_market_cap)
         df["price"] = pd.to_numeric(df["price"].astype(str).str.replace(",", "", regex=False), errors="coerce")
         df["volume"] = pd.to_numeric(df["volume"].astype(str).str.replace(",", "", regex=False), errors="coerce")
         df["change"] = df["change"].replace("-", pd.NA)
@@ -60,3 +61,8 @@ def save_csv_to_db(get_only_tickers: bool, with_filters: bool, end_width: str, t
         logging.info(f"Zapisano {len(df)} rekordów do {table_name}")
     except Exception as e:
         logging.error(f"Błąd podczas zapisywania do bazy danych: {e}")
+
+
+
+print(get_exact_file("../stocks/20250925", False, False))
+save_csv_to_db(False, False, )
