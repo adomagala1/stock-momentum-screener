@@ -8,6 +8,12 @@ from app.config import settings
 from app.helpers import get_exact_file
 from save_data import convert_market_cap
 
+logging.basicConfig(
+    level=logging.INFO,
+    filename="logs/postgresql.log",
+    format="%(asctime)s [%(levelname)s] %(message)s"
+)
+
 DATABASE_URL = (
     f"postgresql://{settings.pg_user}:{settings.pg_password}@127.0.0.1:{settings.pg_port}/{settings.pg_db}"
 )
@@ -23,16 +29,20 @@ def get_db():
     finally:
         db.close()
 
+
 def get_latest_stock_date(ticker: str):
     with engine.connect() as conn:
         res = conn.execute(text("SELECT MAX(import_date) FROM stocks_data WHERE ticker = :t"), {"t": ticker}).scalar()
         return res
 
+
 def save_csv_to_db(get_only_tickers: bool, with_filters: bool, end_width: str, table_name: str = "stocks_data"):
     from app.database import get_engine
     from app.helpers import get_exact_file
     try:
-        csv_file = get_exact_file(end_width, get_only_tickers, with_filters)
+        logging.info(f"Zapisywanie do {table_name}, end_width: {end_width}, get_only_tickers: {get_only_tickers}, with_filters: {with_filters}")
+        csv_file = get_exact_file(end_width, get_only_tickers, with_filters, file_type="stocks")
+        logging.info(f"Odczytano plik: {csv_file}")
         df = pd.read_csv(csv_file)
         df.columns = (
             df.columns.str.strip()
@@ -63,10 +73,4 @@ def save_csv_to_db(get_only_tickers: bool, with_filters: bool, end_width: str, t
         logging.error(f"Błąd podczas zapisywania do bazy danych: {e}")
 
 
-
-file_path = get_exact_file(end_width="20250925",
-                           get_only_tickers=False,
-                           with_filters=False,
-                           file_type="stocks",)
-df_stocks = pd.read_csv(file_path)
-print(df_stocks.head())
+save_csv_to_db(get_only_tickers=False, with_filters=False, end_width="20250925")

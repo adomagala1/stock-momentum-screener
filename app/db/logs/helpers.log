@@ -7,3 +7,39 @@
 2025-09-25 23:14:31,839 [INFO] Szukam pliku: data\stocks\20250925\finviz_stocks_20250925.csv
 2025-09-25 23:16:30,568 [INFO] Szukam pliku: C:\Users\admin\PycharmProjects\stock-momentum-screener\data\stocks\20250925\finviz_stocks_20250925.csv
 2025-09-25 23:17:16,531 [INFO] Szukam pliku: C:\Users\admin\PycharmProjects\stock-momentum-screener\app\data\stocks\20250925\finviz_stocks_20250925.csv
+2025-09-25 23:20:01,529 [INFO] Szukam pliku: C:\Users\admin\PycharmProjects\stock-momentum-screener\app\data\stocks\20250925\finviz_stocks_20250925.csv
+2025-09-25 23:20:01,539 [ERROR] B³¹d podczas zapisywania do bazy danych: 'DataFrame' object has no attribute 'str'
+2025-09-25 23:20:21,231 [INFO] Szukam pliku: C:\Users\admin\PycharmProjects\stock-momentum-screener\app\data\stocks\20250925\finviz_stocks_20250925.csv
+2025-09-25 23:20:21,241 [ERROR] B³¹d podczas zapisywania do bazy danych: 'DataFrame' object has no attribute 'str'
+2025-09-25 23:20:54,304 [INFO] Zapisywanie do stocks_data, end_width: 20250925, get_only_tickers: False, with_filters: False
+2025-09-25 23:20:54,305 [INFO] Szukam pliku: C:\Users\admin\PycharmProjects\stock-momentum-screener\app\data\stocks\20250925\finviz_stocks_20250925.csv
+2025-09-25 23:20:54,305 [INFO] Odczytano plik: C:\Users\admin\PycharmProjects\stock-momentum-screener\app\data\stocks\20250925\finviz_stocks_20250925.csv
+2025-09-25 23:20:54,312 [ERROR] B³¹d podczas zapisywania do bazy danych: 'DataFrame' object has no attribute 'str'
+2025-09-25 23:22:00,346 [INFO] Zapisywanie do stocks_data, end_width: 20250925, get_only_tickers: False, with_filters: False
+2025-09-25 23:22:00,346 [INFO] Szukam pliku: C:\Users\admin\PycharmProjects\stock-momentum-screener\app\data\stocks\20250925\finviz_stocks_20250925.csv
+2025-09-25 23:22:00,346 [INFO] Odczytano plik: C:\Users\admin\PycharmProjects\stock-momentum-screener\app\data\stocks\20250925\finviz_stocks_20250925.csv
+2025-09-25 23:22:00,367 [INFO] Zapisywanie do stocks_data, end_width: 20250925, get_only_tickers: False, with_filters: False
+2025-09-25 23:22:00,367 [INFO] Szukam pliku: C:\Users\admin\PycharmProjects\stock-momentum-screener\app\data\stocks\20250925\finviz_stocks_20250925.csv
+2025-09-25 23:22:00,367 [INFO] Odczytano plik: C:\Users\admin\PycharmProjects\stock-momentum-screener\app\data\stocks\20250925\finviz_stocks_20250925.csv
+2025-09-25 23:22:00,390 [INFO] DataFrame przed zapisem:
+  ticker                                         company  ...   volume import_date
+0      A                        Agilent Technologies Inc  ...  1411781  2025-09-25
+1     AA                                      Alcoa Corp  ...  5317870  2025-09-25
+2    AAA  Alternative Access First Priority CLO Bond ETF  ...     6904  2025-09-25
+3   AAAA         Amplius Aggressive Asset Allocation ETF  ...      552  2025-09-25
+4   AAAU                 Goldman Sachs Physical Gold ETF  ...  1699430  2025-09-25
+
+[5 rows x 12 columns]
+2025-09-25 23:22:00,390 [INFO] Liczba wierszy: 100
+2025-09-25 23:22:00,473 [ERROR] B³¹d podczas zapisywania do bazy danych: A column with name 'market_cap' is already present in table 'stocks_data'.
+2025-09-25 23:22:00,488 [INFO] DataFrame przed zapisem:
+  ticker                                         company  ...   volume import_date
+0      A                        Agilent Technologies Inc  ...  1411781  2025-09-25
+1     AA                                      Alcoa Corp  ...  5317870  2025-09-25
+2    AAA  Alternative Access First Priority CLO Bond ETF  ...     6904  2025-09-25
+3   AAAA         Amplius Aggressive Asset Allocation ETF  ...      552  2025-09-25
+4   AAAU                 Goldman Sachs Physical Gold ETF  ...  1699430  2025-09-25
+
+[5 rows x 12 columns]
+2025-09-25 23:22:00,488 [INFO] Liczba wierszy: 100
+2025-09-25 23:22:00,583 [ERROR] B³¹d podczas zapisywania do bazy danych: A column with name 'market_cap' is already present in table 'stocks_data'.

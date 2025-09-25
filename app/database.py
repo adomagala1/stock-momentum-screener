@@ -4,7 +4,6 @@ import dotenv
 from sqlalchemy import create_engine, text
 import pandas as pd
 import logging
-from app.db.postgresql import save_csv_to_db
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -61,8 +60,3 @@ def read_from_db(table_name: str = "stocks_data") -> pd.DataFrame:
     engine = get_engine()
     df = pd.read_sql(f"SELECT * FROM {table_name}", engine)
     return df
-
-
-if __name__ == "__main__":
-    init_db_if_not_exists()
-    save_csv_to_db("20250922", table_name="stocks_data")
