@@ -28,7 +28,7 @@ def get_latest_stock_date(ticker: str):
         res = conn.execute(text("SELECT MAX(import_date) FROM stocks_data WHERE ticker = :t"), {"t": ticker}).scalar()
         return res
 
-def save_csv_to_db(get_only_tickers: bool, with_filters: bool, end_width: str, table_name: str = "stocks_data"):
+def save_csv_to_db(get_only_tickers: bool, with_filters: bool, table_name: str = "stocks_data"):
     from app.database import get_engine
     from app.helpers import get_exact_file
     try:
@@ -64,5 +64,7 @@ def save_csv_to_db(get_only_tickers: bool, with_filters: bool, end_width: str, t
 
 
 
-print(get_exact_file("../stocks/20250925", False, False))
-save_csv_to_db(False, False, )
+file_path = get_exact_file(end_width="20250925",
+                           get_only_tickers=False,
+                           with_filters=False,
+                           file_type="stocks",)

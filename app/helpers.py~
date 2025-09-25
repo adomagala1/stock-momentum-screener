@@ -8,59 +8,37 @@ logging.basicConfig(
     format="%(asctime)s [%(levelname)s] %(message)s"
 )
 
-
-def get_exact_file(
-        end_width: str,
-        get_only_tickers: bool,
-        with_filters: bool,
-        stocks_data_day: str = None,
-        stocks_data: bool = False,
-        news_file: bool = False
-) -> str:
+def get_exact_file(end_width: str,
+                   get_only_tickers: bool,
+                   with_filters: bool,
+                   file_type: str = "stocks") -> str:
     """
     Zwraca pełną ścieżkę do pliku CSV.
-
-    Parametry:
-    - end_width: końcówka pliku (np. "20250925")
-    - get_only_tickers: czy pobrać tylko tickery
-    - with_filters: czy używać filtrów
-    - stocks_data_day: data w przypadku danych giełdowych
-    - stocks_data: czy to dane giełdowe
-    - news_file: czy to plik z newsami
+    file_type: 'stocks' lub 'news'
+    end_width: data w formacie YYYYMMDD
     """
-    # Wybór dnia
-    if stocks_data:
-        if not stocks_data_day:
-            raise ValueError("Musisz podać 'stocks_data_day', gdy stocks_data=True")
-        file_day = stocks_data_day
-    else:
-        file_day = end_width
+    if file_type not in ("stocks", "news"):
+        raise ValueError("file_type musi być 'stocks' lub 'news'")
 
-    # Wybór sufiksu pliku
+    base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data"))
+
+    if file_type == "stocks":
+        folder = os.path.join(base_dir, "stocks", end_width)
+    else:  # news
+        folder = os.path.join(base_dir, "news")
+
     filename_suffix = {
-        (True, False): f"finviz_tickers_{file_day}.csv",
-        (False, False): f"finviz_stocks_{file_day}.csv",
-        (False, True): f"finviz_filtered_stocks_{file_day}.csv",
-        (True, True): f"finviz_filtered_tickers_{file_day}.csv"
-    }[(get_only_tickers, with_filters)]
+        (True, False): f"finviz_tickers_{end_width}.csv",
+        (False, False): f"finviz_stocks_{end_width}.csv",
+        (False, True): f"finviz_filtered_stocks_{end_width}.csv",
+        (True, True): f"finviz_filtered_tickers_{end_width}.csv"
+    }
 
-    # Wybór folderu
-    if stocks_data:
-        folder = "data/stocks"
-    elif news_file:
-        folder = "data/news"
-    else:
-        folder = "data"
+    file_pattern = os.path.join(folder, filename_suffix.get((get_only_tickers, with_filters)))
+    logging.info(f"Szukam pliku: {file_pattern}")
 
-    # Ścieżka pliku
-    pattern = os.path.join(folder, filename_suffix)
-    abs_pattern = os.path.abspath(pattern)
-
-    logging.info(f"Wzorzec ścieżki: {pattern}")
-    logging.info(f"Pełna ścieżka: {abs_pattern}")
-
-    files = glob.glob(pattern)
+    files = glob.glob(file_pattern)
     if not files:
-        raise FileNotFoundError(f"Brak pliku z końcówką '{file_day}' w ścieżce {abs_pattern}")
+        raise FileNotFoundError(f"Brak pliku '{filename_suffix.get((get_only_tickers, with_filters))}' w folderze {folder}")
 
     return files[0]

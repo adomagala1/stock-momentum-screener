@@ -1,5 +1,4 @@
 import logging
-import os
 from datetime import datetime
 
 import pandas as pd
@@ -64,28 +63,10 @@ def save_csv_to_db(get_only_tickers: bool, with_filters: bool, end_width: str, t
         logging.error(f"Błąd podczas zapisywania do bazy danych: {e}")
 
 
-def get_exact_file_for_db(end_width: str, get_only_tickers, with_filters) -> str:
-    filename_suffix = {
-        # tylko tickery wszystkich (na dole)
-        (True, False): f"finviz_tickers_{end_width}.csv",
-        # wszystkie spolki (na dole)
-        (False, False): f"finviz_stocks_{end_width}.csv",
-        # filtry (na dle)
-        (False, True): f"finviz_filtered_stocks_{end_width}.csv",
-        # tickery + filtry (na dole)
-        (True, True): f"finviz_filtered_tickers_{end_width}.csv"
-    }
-    pattern = os.path.abspath(os.path.join("data", filename_suffix.get((get_only_tickers, with_filters))))
-    logging.info(pattern)
-    logging.info(os.path.abspath(pattern))
-    files = glob.glob(pattern)
 
-    if not files:
-        raise FileNotFoundError(f"Brak pliku z koncowka '{end_width}' oraz sciezka abs {os.path.abspath(pattern)}")
-
-    file = files[0]
-
-    return file
-
-print(get_exact_file("../stocks/20250925", False, False))
-save_csv_to_db(False, False, )
+file_path = get_exact_file(end_width="20250925",
+                           get_only_tickers=False,
+                           with_filters=False,
+                           file_type="stocks",)
+df_stocks = pd.read_csv(file_path)
+print(df_stocks.head())
