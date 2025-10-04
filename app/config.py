@@ -9,7 +9,7 @@ mongo_db = st.secrets["mongo_db"]
 mongo_client = MongoClient(mongo_uri)
 db = mongo_client[mongo_db]
 
-# --- PostgreSQL ---
+# --- PostgreSQL (Supabase) ---
 pg_user = st.secrets["pg_user"]
 pg_password = st.secrets["pg_password"]
 pg_host = st.secrets["pg_host"]

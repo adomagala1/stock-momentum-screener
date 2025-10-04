@@ -1,33 +1,30 @@
-import os
-from pydantic_settings import BaseSettings, SettingsConfigDict
+import streamlit as st
+from pymongo import MongoClient
+import psycopg2
+from supabase import create_client
 
-class Settings(BaseSettings):
-    # Mongo
-    mongo_uri: str
-    mongo_db: str
+# --- MongoDB ---
+mongo_uri = st.secrets["mongo_uri"]
+mongo_db = st.secrets["mongo_db"]
+mongo_client = MongoClient(mongo_uri)
+db = mongo_client[mongo_db]
 
-    # Postgres
-    pg_user: str
-    pg_password: str
-    pg_host: str
-    pg_port: int
-    pg_db: str
+# --- PostgreSQL ---
+pg_user = st.secrets["pg_user"]
+pg_password = st.secrets["pg_password"]
+pg_host = st.secrets["pg_host"]
+pg_port = st.secrets["pg_port"]
+pg_db = st.secrets["pg_db"]
 
-    # Supabase
-    sb_url: str
-    sb_api: str
-    sb_password: str
+pg_conn = psycopg2.connect(
+    user=pg_user,
+    password=pg_password,
+    host=pg_host,
+    port=pg_port,
+    database=pg_db
+)
 
-    model_config = SettingsConfigDict(
-        env_file=os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '.env'),
-        env_file_encoding='utf-8',
-        env_prefix="",
-        extra="ignore",
-        fields={
-            'sb_url': {'env': 'SUPABASE_URL'},
-            'sb_api': {'env': 'SUPABASE_KEY'},
-            'sb_password': {'env': 'SB_PASSWORD'}
-        }
-    )
-
-settings = Settings()
+# --- Supabase ---
+sb_url = st.secrets["sb_url"]
+sb_api = st.secrets["sb_api"]
+supabase = create_client(sb_url, sb_api)
