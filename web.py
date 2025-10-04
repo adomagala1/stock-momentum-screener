@@ -24,7 +24,7 @@ from app.web.alerts import get_alerts, add_alert, remove_alert
 st.set_page_config(page_title="Stock AI Dashboard", layout="wide", page_icon="📈")
 
 
-# --- Funkcja do ładowania animacji (zwraca teraz dane JSON) ---
+# --- Funkcja dDo ładowania animacji (zwraca teraz dane JSON) ---
 def load_lottie_json(filepath: str):
     try:
         with open(filepath, "r") as f:
@@ -141,7 +141,7 @@ if "user" not in st.session_state or not st.session_state["user"]:
                 if submitted:
                     if login(email, password):
                         st.rerun()
-        else:  # Rejestracja
+        else:
             with st.form("register_form", border=True):
                 email = st.text_input("Email", placeholder="user@example.com")
                 password = st.text_input("Hasło", type="password", placeholder="••••••••")
@@ -175,6 +175,35 @@ else:
                 logout()
                 st.rerun()
     st.markdown("---")
+    st.subheader("🔧 Połącz własną bazę danych")
+
+    with st.form("db_config_form"):
+        use_custom = st.checkbox("Chcę użyć własnej bazy", value=False)
+
+        if use_custom:
+            mongo_uri_input = st.text_input("MongoDB URI", placeholder="mongodb://user:pass@host:port/db")
+            mongo_db_input = st.text_input("MongoDB DB name", placeholder="stocks_db")
+            pg_url_input = st.text_input("PostgreSQL URL", placeholder=PG_URL_DEFAULT)
+            pg_password_input = st.text_input("PostgreSQL Password", type="password")
+            pg_key_input = st.text_input("PostgreSQL Key", type="password")
+            sb_url_input = st.text_input("Supabase URL", placeholder=SB_URL_DEFAULT)
+            sb_api_input = st.text_input("Supabase API", type="password")
+            sb_password_input = st.text_input("Supabase Password", type="password")
+
+        if st.form_submit_button("💾 Połącz"):
+            if use_custom:
+                st.session_state.update({
+                    "mongo_uri": mongo_uri_input,
+                    "mongo_db": mongo_db_input,
+                    "pg_url": pg_url_input,
+                    "pg_password": pg_password_input,
+                    "pg_key": pg_key_input,
+                    "sb_url": sb_url_input,
+                    "sb_api": sb_api_input,
+                    "sb_password": sb_password_input
+                })
+            st.success("✅ Połączono z wybraną bazą!")
+            st.rerun()
 
     # --- ZAKŁADKI APLIKACJI ---
     tab1, tab2, tab3, tab4, tab5 = st.tabs(

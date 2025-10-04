@@ -3,4 +3,4 @@ README.MD
 .venv
 .venv-linux
 .env
-secrets.toml
+.streamlit/secrets.toml
