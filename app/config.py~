@@ -23,4 +23,5 @@ class Settings(BaseSettings):
         env_file_encoding = 'utf-8'
         extra = "ignore"
 
+# Teraz Pydantic sam wczyta z env
 settings = Settings()
