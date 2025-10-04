@@ -13,7 +13,6 @@ class Settings(BaseSettings):
     pg_port: int
     pg_db: str
 
-    # Supabase (aliasy dla zmiennych środowiskowych)
     sb_url: str
     sb_api: str
     sb_password: str
@@ -23,7 +22,6 @@ class Settings(BaseSettings):
         env_file_encoding='utf-8'
     )
 
-    # Mapowanie nazw env na pola
     def __init__(self, **kwargs):
         kwargs.setdefault('sb_url', os.getenv('SUPABASE_URL'))
         kwargs.setdefault('sb_api', os.getenv('SUPABASE_KEY'))

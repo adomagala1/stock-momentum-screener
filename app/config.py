@@ -13,6 +13,7 @@ class Settings(BaseSettings):
     pg_port: int
     pg_db: str
 
+    # Supabase
     sb_url: str
     sb_api: str
     sb_password: str
@@ -22,10 +23,11 @@ class Settings(BaseSettings):
         env_file_encoding='utf-8'
     )
 
-    def __init__(self, **kwargs):
-        kwargs.setdefault('sb_url', os.getenv('SUPABASE_URL'))
-        kwargs.setdefault('sb_api', os.getenv('SUPABASE_KEY'))
-        kwargs.setdefault('sb_password', os.getenv('SB_PASSWORD'))
-        super().__init__(**kwargs)
+    class Config:
+        fields = {
+            'sb_url': {'env': 'SUPABASE_URL'},
+            'sb_api': {'env': 'SUPABASE_KEY'},
+            'sb_password': {'env': 'SB_PASSWORD'}
+        }
 
 settings = Settings()
