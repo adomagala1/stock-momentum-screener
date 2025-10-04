@@ -6,14 +6,16 @@ from sqlalchemy import text, create_engine
 from sqlalchemy.orm import sessionmaker
 from app.helpers import get_exact_file
 
-
+# --- LOGOWANIE ---
 logging.basicConfig(
     level=logging.INFO,
     filename="logs/postgresql.log",
     format="%(asctime)s [%(levelname)s] %(message)s"
 )
 
+# --- KONFIGURACJA ---
 try:
+    # Jeśli jesteśmy w Streamlit Cloud
     import streamlit as st
     pg_user = st.secrets["pg_user"]
     pg_password = st.secrets["pg_password"]
@@ -21,6 +23,7 @@ try:
     pg_port = st.secrets["pg_port"]
     pg_db = st.secrets["pg_db"]
 except (ModuleNotFoundError, KeyError):
+    # Lokalnie, pobieramy z .env
     from dotenv import load_dotenv
     load_dotenv()
     pg_user = os.environ.get("PG_USER")
@@ -29,7 +32,7 @@ except (ModuleNotFoundError, KeyError):
     pg_port = int(os.environ.get("PG_PORT", 5432))
     pg_db = os.environ.get("PG_DB")
 
-
+# --- ENGINE SQLALCHEMY ---
 DATABASE_URL = f"postgresql://{pg_user}:{pg_password}@{pg_host}:{pg_port}/{pg_db}"
 engine = create_engine(DATABASE_URL, echo=False, future=True)
 SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False)
