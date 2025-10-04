@@ -20,14 +20,14 @@ class Settings(BaseSettings):
 
     model_config = SettingsConfigDict(
         env_file=os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '.env'),
-        env_file_encoding='utf-8'
-    )
-
-    class Config:
-        fields = {
+        env_file_encoding='utf-8',
+        env_prefix="",
+        extra="ignore",
+        fields={
             'sb_url': {'env': 'SUPABASE_URL'},
             'sb_api': {'env': 'SUPABASE_KEY'},
             'sb_password': {'env': 'SB_PASSWORD'}
         }
+    )
 
 settings = Settings()
