@@ -1,0 +1,72 @@
+import logging
+import pandas as pd
+from pymongo import MongoClient, DESCENDING
+from dateutil import parser as date_parser
+
+from app.fetch_news import fetch_google_news_rss, add_sentiment  # <-- twoje funkcje
+
+logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
+
+# --- Konfiguracja Mongo ---
+MONGO_URL = "mongodb://localhost:27017"
+DB_NAME = "market"
+COLLECTION_NAME = "news"
+
+client = MongoClient(MONGO_URL)
+db = client[DB_NAME]
+news_col = db[COLLECTION_NAME]
+
+
+# --- Helper: sprawdzamy najnowszego newsa ---
+def get_latest_published(ticker: str):
+    doc = news_col.find_one({"ticker": ticker}, sort=[("published", DESCENDING)])
+    return doc["published"] if doc else None
+
+
+# --- Wstawianie do Mongo ---
+def insert_news_df(df: pd.DataFrame):
+    if df.empty:
+        logging.info("Brak nowych newsów do zapisania")
+        return
+    records = df.to_dict("records")
+    news_col.insert_many(records)
+    logging.info(f"Wstawiono {len(df)} newsów do MongoDB")
+
+
+# --- Główna logika: update newsów dla tickera ---
+def update_news_for_ticker(ticker: str):
+    logging.info(f"Sprawdzam newsy dla {ticker}...")
+
+    # najnowszy news w bazie
+    latest = get_latest_published(ticker)
+
+    # pobieramy RSS
+    df = fetch_google_news_rss(ticker)
+    if df.empty:
+        logging.info(f"Brak newsów w RSS dla {ticker}")
+        return
+
+    # konwersja dat
+    df["published"] = pd.to_datetime(df["published"].apply(lambda x: date_parser.parse(x) if pd.notnull(x) else None))
+
+    # tylko nowe
+    if latest:
+        df = df[df["published"] > latest]
+
+    # dodajemy sentyment
+    df = add_sentiment(df)
+    df["ticker"] = ticker
+
+    if df.empty:
+        logging.info(f"Brak nowych newsów dla {ticker}")
+    else:
+        insert_news_df(df)
+
+
+# --- MAIN ---
+if __name__ == "__main__":
+    # przykładowa lista tickerów (możesz pobierać z Postgresa albo CSV)
+    tickers = ["AAPL", "MSFT", "TSLA", "NVDA"]
+
+    for t in tickers:
+        update_news_for_ticker(t)

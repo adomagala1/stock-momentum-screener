@@ -1,0 +1,47 @@
+import requests
+import pandas as pd
+from bs4 import BeautifulSoup
+from datetime import datetime
+
+URL = "https://finviz.com/screener.ashx?v=152&f=cap_mid,exch_nasd,sh_avgvol_o500,sh_price_o5,sh_relvol_o1.5&c=1,2,3,4,5,6,7,20,42,43,57,58,64,67,65,66"
+
+HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0 Safari/537.36"
+}
+
+
+def fetch_finviz_table(url):
+    response = requests.get(url, headers=HEADERS)
+    response.raise_for_status()
+    soup = BeautifulSoup(response.text, "html.parser")
+
+    # Znajdź wszystkie wiersze tabeli screenera
+    rows = soup.find_all("tr", class_=["table-dark-row-cp", "table-light-row-cp"])
+    if not rows:
+        raise ValueError("Nie znaleziono żadnych wierszy. Sprawdź URL lub User-Agent.")
+
+    # Nagłówki (pierwszy wiersz table-top)
+    header_row = soup.find("tr", class_="table-top")
+    headers = [th.get_text() for th in header_row.find_all("td")]
+
+    # Dane
+    data = []
+    for row in rows:
+        cols = row.find_all("td")
+        cols_text = [col.get_text() for col in cols]
+        data.append(cols_text)
+
+    df = pd.DataFrame(data, columns=headers)
+    return df
+
+
+def save_csv(df):
+    today = datetime.now().strftime("%Y%m%d")
+    filename = f"finviz_stocks_{today}.csv"
+    df.to_csv(filename, index=False)
+    print(f"[INFO] Zapisano dane do: {filename}")
+
+
+if __name__ == "__main__":
+    df = fetch_finviz_table(URL)
+    save_csv(df)

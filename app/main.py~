@@ -1,0 +1,42 @@
+import os
+
+import pandas as pd
+
+from app.save_data import save_stocks_csv
+from app.stock_scraper import fetch_finviz
+from app.scrape_news import fetch_news_for_ticker
+import logging
+
+URL = "https://finviz.com/screener.ashx?v=111&f=exch_nasd"
+
+HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0 Safari/537.36"
+}
+
+os.makedirs("logs", exist_ok=True)
+logging.basicConfig(
+    filename="logs/main.log",
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s"
+)
+
+
+if __name__ == "__main__":
+    df = fetch_finviz(get_only_tickers=True, with_filters=False, max_companies=11)
+    save_stocks_csv(df)
+    tickers_to_scrape_news = df["Ticker"].dropna().unique().tolist()
+    ALL = []
+    for ticker in tickers_to_scrape_news:
+        news_df = fetch_news_for_ticker(ticker)
+        if not news_df.empty:
+            ALL.append(news_df)
+        else:
+            logging.info(f"Brak wyników dla {ticker}")
+
+    if ALL:
+        final = pd.concat(ALL, ignore_index=True)
+        from app.db.mongodb import save_news_csv, insert_news
+        save_news_csv(final)
+        insert_news(final.to_dict(orient="records"))
+    else:
+        print("Brak artykułów dla podanych tickerów.")

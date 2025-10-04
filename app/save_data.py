@@ -1,0 +1,106 @@
+import os
+import pandas as pd
+import logging
+from datetime import datetime
+
+logging.basicConfig(
+    level=logging.INFO,
+    filename="logs/save_data.log",
+    format="%(asctime)s [%(levelname)s] %(message)s"
+)
+def convert_market_cap(value):
+    if pd.isna(value):
+        return None
+    value = str(value).replace(",", "").strip()
+    try:
+        if value.endswith('B'):
+            return float(value[:-1]) * 1e9
+        elif value.endswith('M'):
+            return float(value[:-1]) * 1e6
+        elif value.endswith('K'):
+            return float(value[:-1]) * 1e3
+        else:
+            return float(value)
+    except:
+        return None
+
+
+def save_stocks_to_csv(df: pd.DataFrame, get_only_tickers=False, with_filters=False) -> None:
+    date_folder = datetime.now().strftime("%Y%m%d")
+    os.makedirs(f"data/stocks/{date_folder}", exist_ok=True)
+    os.makedirs(f"data/tickers/{date_folder}", exist_ok=True)
+    path = os.path.join("data/tickers", date_folder) if get_only_tickers else os.path.join("data/stocks", date_folder)
+
+    logging.info(f"{df.iloc[0]}")
+    logging.info(f"Kolumny w df: {df.columns.tolist()}")
+    logging.info(f"Pierwsze 5 wartości Market Cap: {df['Market Cap'].head()}")
+    if "Market Cap" in df.columns:
+        df["market_cap"] = df["Market Cap"].astype(str).str.replace(",", "").apply(convert_market_cap)
+
+    if get_only_tickers:
+        columns = ["No", "Ticker"]
+    elif with_filters:
+        columns = [
+            "Ticker", "Company", "Sector", "Industry", "Country", "Market Cap","market_cap", "P/E",
+            "EPS next 5Y", "Perf Week", "Perf Month", "52w High", "52w Low",
+            "Rel Vol", "Volume", "Price", "Change"
+        ]
+    else:
+        columns = [
+            "Ticker", "Company", "Sector", "Industry", "Country","market_cap",
+            "Market Cap", "P/E", "Price", "Change", "Volume"
+        ]
+
+    # Uzupełnienie brakujących kolumn
+    for col in columns:
+        if col not in df.columns:
+            df[col] = pd.NA
+
+    df["market_cap"] = df["Market Cap"].apply(convert_market_cap)
+
+    # Konwersja liczb
+    numeric_cols = ["Price", "Volume", "52w High", "52w Low"]
+    percent_cols = ["EPS next 5Y", "Perf Week", "Perf Month", "Change"]
+    for col in numeric_cols:
+        if col in df.columns:
+            df[col] = pd.to_numeric(df[col].astype(str).str.replace(",", "", regex=False), errors="coerce")
+    for col in percent_cols:
+        if col in df.columns:
+            df[col] = pd.to_numeric(df[col].astype(str).str.replace("%", "", regex=False), errors="coerce")
+
+    # Wybór kolumn w odpowiedniej kolejności
+    df = df[columns]
+
+    # Zapis CSV
+    today = datetime.now().strftime("%Y%m%d")
+    filename_suffix = {
+        (True, False): f"finviz_tickers_{today}.csv",
+        (False, False): f"finviz_stocks_{today}.csv",
+        (False, True): f"finviz_filtered_stocks_{today}.csv",
+        (True, True): f"finviz_filtered_tickers_{today}.csv"
+    }[(get_only_tickers, with_filters)]
+
+    filename = os.path.abspath(os.path.join(path, filename_suffix))
+    df.to_csv(filename, index=False, chunksize=2000)
+    logging.info(f"Dane zapisane do {filename}")
+
+
+def save_news_to_csv(df: pd.DataFrame, filename_prefix: str = "news_data") -> None:
+    """Zapisuje newsy do pliku CSV"""
+    if df.empty:
+        logging.info("Brak danych do zapisania (df puste)")
+        return
+
+    folder = os.path.join("data", "news")
+    os.makedirs(folder, exist_ok=True)
+
+    columns_order = ["ticker", "headline", "link", "source", "published", "sentiment"]
+    df = df[[col for col in columns_order if col in df.columns]]
+
+    today = datetime.now().strftime("%Y%m%d")
+    path = os.path.join(folder, f"{filename_prefix}_{today}.csv")
+    filename = os.path.abspath(path)
+
+    df.to_csv(filename, index=False, chunksize=2000)
+    logging.info(f"Dane zapisane do {filename}")
+    return

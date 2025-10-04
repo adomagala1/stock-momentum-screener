@@ -1,0 +1,690 @@
+2025-10-01 22:58:07,167 [INFO] Wczytujê stocks_data z Postgresa...
+2025-10-01 22:58:07,303 [INFO] Pobrano 100 rekordów (1 dni)
+2025-10-01 22:58:07,303 [DEBUG] Kolumny: ['ticker', 'company', 'sector', 'industry', 'country', 'market_cap', 'p_e', 'eps_next_5y', 'perf_week', 'perf_month', 'fifty_two_week_high', 'fifty_two_week_low', 'rel_volume', 'volume', 'price', 'change', 'import_date', 'created_at']
+2025-10-01 23:11:04,177 [INFO] Wczytujê stocks_data z Postgresa...
+2025-10-01 23:11:04,295 [INFO] Pobrano 100 rekordów (1 dni)
+2025-10-01 23:11:04,296 [DEBUG] Kolumny: ['ticker', 'company', 'sector', 'industry', 'country', 'market_cap', 'p_e', 'eps_next_5y', 'perf_week', 'perf_month', 'fifty_two_week_high', 'fifty_two_week_low', 'rel_volume', 'volume', 'price', 'change', 'import_date', 'created_at']
+2025-10-01 23:11:56,975 [INFO] Wczytujê stocks_data z Postgresa...
+2025-10-01 23:11:57,108 [INFO] Pobrano 100 rekordów (1 dni)
+2025-10-01 23:11:57,110 [DEBUG] Kolumny: ['ticker', 'company', 'sector', 'industry', 'country', 'market_cap', 'p_e', 'eps_next_5y', 'perf_week', 'perf_month', 'fifty_two_week_high', 'fifty_two_week_low', 'rel_volume', 'volume', 'price', 'change', 'import_date', 'created_at']
+2025-10-01 23:18:13,113 [INFO] Wczytujê stocks_data z Postgresa...
+2025-10-01 23:18:13,229 [INFO] Pobrano 100 rekordów (1 dni)
+2025-10-01 23:18:13,231 [DEBUG] Kolumny: ['ticker', 'company', 'sector', 'industry', 'country', 'market_cap', 'p_e', 'eps_next_5y', 'perf_week', 'perf_month', 'fifty_two_week_high', 'fifty_two_week_low', 'rel_volume', 'volume', 'price', 'change', 'import_date', 'created_at']
+2025-10-01 23:18:13,235 [WARNING] B³¹d agregacji sentiment: Invalid document {'aggregate': 'news', 'pipeline': [{'$match': {'ticker': {'$in': array(['A', 'AA', 'AAA', 'AAAA', 'AAAU', 'AACB', 'AACG', 'AACI', 'AACT',
+       'AADR', 'AAL', 'AALG', 'AAM', 'AAME', 'AAMI', 'AAOI', 'AAON',
+       'AAP', 'AAPB', 'AAPD', 'AAPG', 'AAPL', 'AAPR', 'AAPU', 'AAPW',
+       'AAPX', 'AAPY', 'AARD', 'AAT', 'AAUC', 'AAUS', 'AAVM', 'AAXJ',
+       'AB', 'ABAT', 'ABBV', 'ABCB', 'ABCL', 'ABCS', 'ABEO', 'ABEQ',
+       'ABEV', 'ABFL', 'ABG', 'ABI', 'ABIG', 'ABL', 'ABLD', 'ABLG',
+       'ABLS', 'ABLV', 'ABM', 'ABNB', 'ABNY', 'ABOS', 'ABOT', 'ABP',
+       'ABR', 'ABSI', 'ABT', 'ABTC', 'ABTS', 'ABUS', 'ABVC', 'ABVE',
+       'ABVX', 'ABXB', 'ACA', 'ACAD', 'ACB', 'ACCO', 'ACCS', 'ACDC',
+       'ACEL', 'ACES', 'ACET', 'ACFN', 'ACGL', 'ACGR', 'ACHC', 'ACHR',
+       'ACHV', 'ACI', 'ACIC', 'ACII', 'ACIO', 'ACIU', 'ACIW', 'ACKY',
+       'ACLC', 'ACLO', 'ACLS', 'ACLX', 'ACM', 'ACMR', 'ACN', 'ACNB',
+       'ACNT', 'ACOG', 'ACON'], dtype=object)}, 'published': {'$gte': datetime.datetime(2025, 9, 24, 0, 0), '$lte': datetime.datetime(2025, 10, 1, 23, 59, 59, 999999)}}}, {'$group': {'_id': '$ticker', 'avg_sentiment': {'$avg': '$sentiment'}}}], 'cursor': {}, 'lsid': {'id': Binary(b'L\tv&=3NA\xbd\x1e\xa0\xcdr H\x18', 4)}, '$db': 'stocks_db'} | cannot encode object: array(['A', 'AA', 'AAA', 'AAAA', 'AAAU', 'AACB', 'AACG', 'AACI', 'AACT',
+       'AADR', 'AAL', 'AALG', 'AAM', 'AAME', 'AAMI', 'AAOI', 'AAON',
+       'AAP', 'AAPB', 'AAPD', 'AAPG', 'AAPL', 'AAPR', 'AAPU', 'AAPW',
+       'AAPX', 'AAPY', 'AARD', 'AAT', 'AAUC', 'AAUS', 'AAVM', 'AAXJ',
+       'AB', 'ABAT', 'ABBV', 'ABCB', 'ABCL', 'ABCS', 'ABEO', 'ABEQ',
+       'ABEV', 'ABFL', 'ABG', 'ABI', 'ABIG', 'ABL', 'ABLD', 'ABLG',
+       'ABLS', 'ABLV', 'ABM', 'ABNB', 'ABNY', 'ABOS', 'ABOT', 'ABP',
+       'ABR', 'ABSI', 'ABT', 'ABTC', 'ABTS', 'ABUS', 'ABVC', 'ABVE',
+       'ABVX', 'ABXB', 'ACA', 'ACAD', 'ACB', 'ACCO', 'ACCS', 'ACDC',
+       'ACEL', 'ACES', 'ACET', 'ACFN', 'ACGL', 'ACGR', 'ACHC', 'ACHR',
+       'ACHV', 'ACI', 'ACIC', 'ACII', 'ACIO', 'ACIU', 'ACIW', 'ACKY',
+       'ACLC', 'ACLO', 'ACLS', 'ACLX', 'ACM', 'ACMR', 'ACN', 'ACNB',
+       'ACNT', 'ACOG', 'ACON'], dtype=object), of type: <class 'numpy.ndarray'>
+2025-10-02 17:17:29,492 [INFO] Wczytujê stocks_data z Postgresa...
+2025-10-02 17:17:29,762 [INFO] Pobrano 100 rekordów (1 dni)
+2025-10-02 17:17:29,762 [DEBUG] Kolumny: ['ticker', 'company', 'sector', 'industry', 'country', 'market_cap', 'p_e', 'eps_next_5y', 'perf_week', 'perf_month', 'fifty_two_week_high', 'fifty_two_week_low', 'rel_volume', 'volume', 'price', 'change', 'import_date', 'created_at']
+2025-10-02 17:17:29,766 [WARNING] B³¹d agregacji sentiment: Invalid document {'aggregate': 'news', 'pipeline': [{'$match': {'ticker': {'$in': array(['A', 'AA', 'AAA', 'AAAA', 'AAAU', 'AACB', 'AACG', 'AACI', 'AACT',
+       'AADR', 'AAL', 'AALG', 'AAM', 'AAME', 'AAMI', 'AAOI', 'AAON',
+       'AAP', 'AAPB', 'AAPD', 'AAPG', 'AAPL', 'AAPR', 'AAPU', 'AAPW',
+       'AAPX', 'AAPY', 'AARD', 'AAT', 'AAUC', 'AAUS', 'AAVM', 'AAXJ',
+       'AB', 'ABAT', 'ABBV', 'ABCB', 'ABCL', 'ABCS', 'ABEO', 'ABEQ',
+       'ABEV', 'ABFL', 'ABG', 'ABI', 'ABIG', 'ABL', 'ABLD', 'ABLG',
+       'ABLS', 'ABLV', 'ABM', 'ABNB', 'ABNY', 'ABOS', 'ABOT', 'ABP',
+       'ABR', 'ABSI', 'ABT', 'ABTC', 'ABTS', 'ABUS', 'ABVC', 'ABVE',
+       'ABVX', 'ABXB', 'ACA', 'ACAD', 'ACB', 'ACCO', 'ACCS', 'ACDC',
+       'ACEL', 'ACES', 'ACET', 'ACFN', 'ACGL', 'ACGR', 'ACHC', 'ACHR',
+       'ACHV', 'ACI', 'ACIC', 'ACII', 'ACIO', 'ACIU', 'ACIW', 'ACKY',
+       'ACLC', 'ACLO', 'ACLS', 'ACLX', 'ACM', 'ACMR', 'ACN', 'ACNB',
+       'ACNT', 'ACOG', 'ACON'], dtype=object)}, 'published': {'$gte': datetime.datetime(2025, 9, 24, 0, 0), '$lte': datetime.datetime(2025, 10, 1, 23, 59, 59, 999999)}}}, {'$group': {'_id': '$ticker', 'avg_sentiment': {'$avg': '$sentiment'}}}], 'cursor': {}, 'lsid': {'id': Binary(b'k\x1b(O\xcf\x05D\x88\xaa5\x1e\xa8\x91\xd6\x87\xb3', 4)}, '$db': 'stocks_db'} | cannot encode object: array(['A', 'AA', 'AAA', 'AAAA', 'AAAU', 'AACB', 'AACG', 'AACI', 'AACT',
+       'AADR', 'AAL', 'AALG', 'AAM', 'AAME', 'AAMI', 'AAOI', 'AAON',
+       'AAP', 'AAPB', 'AAPD', 'AAPG', 'AAPL', 'AAPR', 'AAPU', 'AAPW',
+       'AAPX', 'AAPY', 'AARD', 'AAT', 'AAUC', 'AAUS', 'AAVM', 'AAXJ',
+       'AB', 'ABAT', 'ABBV', 'ABCB', 'ABCL', 'ABCS', 'ABEO', 'ABEQ',
+       'ABEV', 'ABFL', 'ABG', 'ABI', 'ABIG', 'ABL', 'ABLD', 'ABLG',
+       'ABLS', 'ABLV', 'ABM', 'ABNB', 'ABNY', 'ABOS', 'ABOT', 'ABP',
+       'ABR', 'ABSI', 'ABT', 'ABTC', 'ABTS', 'ABUS', 'ABVC', 'ABVE',
+       'ABVX', 'ABXB', 'ACA', 'ACAD', 'ACB', 'ACCO', 'ACCS', 'ACDC',
+       'ACEL', 'ACES', 'ACET', 'ACFN', 'ACGL', 'ACGR', 'ACHC', 'ACHR',
+       'ACHV', 'ACI', 'ACIC', 'ACII', 'ACIO', 'ACIU', 'ACIW', 'ACKY',
+       'ACLC', 'ACLO', 'ACLS', 'ACLX', 'ACM', 'ACMR', 'ACN', 'ACNB',
+       'ACNT', 'ACOG', 'ACON'], dtype=object), of type: <class 'numpy.ndarray'>
+2025-10-02 17:18:15,521 [INFO] Wczytujê stocks_data z Postgresa...
+2025-10-02 17:18:15,536 [INFO] Pobrano 100 rekordów (1 dni)
+2025-10-02 17:18:15,536 [DEBUG] Kolumny: ['ticker', 'company', 'sector', 'industry', 'country', 'market_cap', 'p_e', 'eps_next_5y', 'perf_week', 'perf_month', 'fifty_two_week_high', 'fifty_two_week_low', 'rel_volume', 'volume', 'price', 'change', 'import_date', 'created_at']
+2025-10-02 17:18:15,544 [WARNING] B³¹d agregacji sentiment: Invalid document {'aggregate': 'news', 'pipeline': [{'$match': {'ticker': {'$in': array(['A', 'AA', 'AAA', 'AAAA', 'AAAU', 'AACB', 'AACG', 'AACI', 'AACT',
+       'AADR', 'AAL', 'AALG', 'AAM', 'AAME', 'AAMI', 'AAOI', 'AAON',
+       'AAP', 'AAPB', 'AAPD', 'AAPG', 'AAPL', 'AAPR', 'AAPU', 'AAPW',
+       'AAPX', 'AAPY', 'AARD', 'AAT', 'AAUC', 'AAUS', 'AAVM', 'AAXJ',
+       'AB', 'ABAT', 'ABBV', 'ABCB', 'ABCL', 'ABCS', 'ABEO', 'ABEQ',
+       'ABEV', 'ABFL', 'ABG', 'ABI', 'ABIG', 'ABL', 'ABLD', 'ABLG',
+       'ABLS', 'ABLV', 'ABM', 'ABNB', 'ABNY', 'ABOS', 'ABOT', 'ABP',
+       'ABR', 'ABSI', 'ABT', 'ABTC', 'ABTS', 'ABUS', 'ABVC', 'ABVE',
+       'ABVX', 'ABXB', 'ACA', 'ACAD', 'ACB', 'ACCO', 'ACCS', 'ACDC',
+       'ACEL', 'ACES', 'ACET', 'ACFN', 'ACGL', 'ACGR', 'ACHC', 'ACHR',
+       'ACHV', 'ACI', 'ACIC', 'ACII', 'ACIO', 'ACIU', 'ACIW', 'ACKY',
+       'ACLC', 'ACLO', 'ACLS', 'ACLX', 'ACM', 'ACMR', 'ACN', 'ACNB',
+       'ACNT', 'ACOG', 'ACON'], dtype=object)}, 'published': {'$gte': datetime.datetime(2025, 9, 24, 0, 0), '$lte': datetime.datetime(2025, 10, 1, 23, 59, 59, 999999)}}}, {'$group': {'_id': '$ticker', 'avg_sentiment': {'$avg': '$sentiment'}}}], 'cursor': {}, 'lsid': {'id': Binary(b'k\x1b(O\xcf\x05D\x88\xaa5\x1e\xa8\x91\xd6\x87\xb3', 4)}, '$db': 'stocks_db'} | cannot encode object: array(['A', 'AA', 'AAA', 'AAAA', 'AAAU', 'AACB', 'AACG', 'AACI', 'AACT',
+       'AADR', 'AAL', 'AALG', 'AAM', 'AAME', 'AAMI', 'AAOI', 'AAON',
+       'AAP', 'AAPB', 'AAPD', 'AAPG', 'AAPL', 'AAPR', 'AAPU', 'AAPW',
+       'AAPX', 'AAPY', 'AARD', 'AAT', 'AAUC', 'AAUS', 'AAVM', 'AAXJ',
+       'AB', 'ABAT', 'ABBV', 'ABCB', 'ABCL', 'ABCS', 'ABEO', 'ABEQ',
+       'ABEV', 'ABFL', 'ABG', 'ABI', 'ABIG', 'ABL', 'ABLD', 'ABLG',
+       'ABLS', 'ABLV', 'ABM', 'ABNB', 'ABNY', 'ABOS', 'ABOT', 'ABP',
+       'ABR', 'ABSI', 'ABT', 'ABTC', 'ABTS', 'ABUS', 'ABVC', 'ABVE',
+       'ABVX', 'ABXB', 'ACA', 'ACAD', 'ACB', 'ACCO', 'ACCS', 'ACDC',
+       'ACEL', 'ACES', 'ACET', 'ACFN', 'ACGL', 'ACGR', 'ACHC', 'ACHR',
+       'ACHV', 'ACI', 'ACIC', 'ACII', 'ACIO', 'ACIU', 'ACIW', 'ACKY',
+       'ACLC', 'ACLO', 'ACLS', 'ACLX', 'ACM', 'ACMR', 'ACN', 'ACNB',
+       'ACNT', 'ACOG', 'ACON'], dtype=object), of type: <class 'numpy.ndarray'>
+2025-10-02 17:20:34,702 [INFO] Wczytujê stocks_data z Postgresa...
+2025-10-02 17:20:34,824 [INFO] Pobrano 100 rekordów (1 dni)
+2025-10-02 17:20:34,824 [DEBUG] Kolumny: ['ticker', 'company', 'sector', 'industry', 'country', 'market_cap', 'p_e', 'eps_next_5y', 'perf_week', 'perf_month', 'fifty_two_week_high', 'fifty_two_week_low', 'rel_volume', 'volume', 'price', 'change', 'import_date', 'created_at']
+2025-10-02 17:20:34,829 [WARNING] B³¹d agregacji sentiment: Invalid document {'aggregate': 'news', 'pipeline': [{'$match': {'ticker': {'$in': array(['A', 'AA', 'AAA', 'AAAA', 'AAAU', 'AACB', 'AACG', 'AACI', 'AACT',
+       'AADR', 'AAL', 'AALG', 'AAM', 'AAME', 'AAMI', 'AAOI', 'AAON',
+       'AAP', 'AAPB', 'AAPD', 'AAPG', 'AAPL', 'AAPR', 'AAPU', 'AAPW',
+       'AAPX', 'AAPY', 'AARD', 'AAT', 'AAUC', 'AAUS', 'AAVM', 'AAXJ',
+       'AB', 'ABAT', 'ABBV', 'ABCB', 'ABCL', 'ABCS', 'ABEO', 'ABEQ',
+       'ABEV', 'ABFL', 'ABG', 'ABI', 'ABIG', 'ABL', 'ABLD', 'ABLG',
+       'ABLS', 'ABLV', 'ABM', 'ABNB', 'ABNY', 'ABOS', 'ABOT', 'ABP',
+       'ABR', 'ABSI', 'ABT', 'ABTC', 'ABTS', 'ABUS', 'ABVC', 'ABVE',
+       'ABVX', 'ABXB', 'ACA', 'ACAD', 'ACB', 'ACCO', 'ACCS', 'ACDC',
+       'ACEL', 'ACES', 'ACET', 'ACFN', 'ACGL', 'ACGR', 'ACHC', 'ACHR',
+       'ACHV', 'ACI', 'ACIC', 'ACII', 'ACIO', 'ACIU', 'ACIW', 'ACKY',
+       'ACLC', 'ACLO', 'ACLS', 'ACLX', 'ACM', 'ACMR', 'ACN', 'ACNB',
+       'ACNT', 'ACOG', 'ACON'], dtype=object)}, 'published': {'$gte': datetime.datetime(2025, 9, 24, 0, 0), '$lte': datetime.datetime(2025, 10, 1, 23, 59, 59, 999999)}}}, {'$group': {'_id': '$ticker', 'avg_sentiment': {'$avg': '$sentiment'}}}], 'cursor': {}, 'lsid': {'id': Binary(b'Sy\x8f\xf8\xc9\x19G\x12\xac\x84\xd5C\x96\xf8\xed\xc4', 4)}, '$db': 'stocks_db'} | cannot encode object: array(['A', 'AA', 'AAA', 'AAAA', 'AAAU', 'AACB', 'AACG', 'AACI', 'AACT',
+       'AADR', 'AAL', 'AALG', 'AAM', 'AAME', 'AAMI', 'AAOI', 'AAON',
+       'AAP', 'AAPB', 'AAPD', 'AAPG', 'AAPL', 'AAPR', 'AAPU', 'AAPW',
+       'AAPX', 'AAPY', 'AARD', 'AAT', 'AAUC', 'AAUS', 'AAVM', 'AAXJ',
+       'AB', 'ABAT', 'ABBV', 'ABCB', 'ABCL', 'ABCS', 'ABEO', 'ABEQ',
+       'ABEV', 'ABFL', 'ABG', 'ABI', 'ABIG', 'ABL', 'ABLD', 'ABLG',
+       'ABLS', 'ABLV', 'ABM', 'ABNB', 'ABNY', 'ABOS', 'ABOT', 'ABP',
+       'ABR', 'ABSI', 'ABT', 'ABTC', 'ABTS', 'ABUS', 'ABVC', 'ABVE',
+       'ABVX', 'ABXB', 'ACA', 'ACAD', 'ACB', 'ACCO', 'ACCS', 'ACDC',
+       'ACEL', 'ACES', 'ACET', 'ACFN', 'ACGL', 'ACGR', 'ACHC', 'ACHR',
+       'ACHV', 'ACI', 'ACIC', 'ACII', 'ACIO', 'ACIU', 'ACIW', 'ACKY',
+       'ACLC', 'ACLO', 'ACLS', 'ACLX', 'ACM', 'ACMR', 'ACN', 'ACNB',
+       'ACNT', 'ACOG', 'ACON'], dtype=object), of type: <class 'numpy.ndarray'>
+2025-10-02 17:23:54,297 [INFO] Wczytujê stocks_data z Postgresa...
+2025-10-02 17:23:54,311 [INFO] Pobrano 200 rekordów (2 dni)
+2025-10-02 17:23:54,313 [DEBUG] Kolumny: ['ticker', 'company', 'sector', 'industry', 'country', 'market_cap', 'p_e', 'eps_next_5y', 'perf_week', 'perf_month', 'fifty_two_week_high', 'fifty_two_week_low', 'rel_volume', 'volume', 'price', 'change', 'import_date', 'created_at']
+2025-10-02 17:23:54,319 [WARNING] B³¹d agregacji sentiment: Invalid document {'aggregate': 'news', 'pipeline': [{'$match': {'ticker': {'$in': array(['A', 'AA', 'AAA', 'AAAA', 'AAAU', 'AACB', 'AACG', 'AACI', 'AACT',
+       'AADR', 'AAL', 'AALG', 'AAM', 'AAME', 'AAMI', 'AAOI', 'AAON',
+       'AAP', 'AAPB', 'AAPD', 'AAPG', 'AAPL', 'AAPR', 'AAPU', 'AAPW',
+       'AAPX', 'AAPY', 'AARD', 'AAT', 'AAUC', 'AAUS', 'AAVM', 'AAXJ',
+       'AB', 'ABAT', 'ABBV', 'ABCB', 'ABCL', 'ABCS', 'ABEO', 'ABEQ',
+       'ABEV', 'ABFL', 'ABG', 'ABI', 'ABIG', 'ABL', 'ABLD', 'ABLG',
+       'ABLS', 'ABLV', 'ABM', 'ABNB', 'ABNY', 'ABOS', 'ABOT', 'ABP',
+       'ABR', 'ABSI', 'ABT', 'ABTC', 'ABTS', 'ABUS', 'ABVC', 'ABVE',
+       'ABVX', 'ABXB', 'ACA', 'ACAD', 'ACB', 'ACCO', 'ACCS', 'ACDC',
+       'ACEL', 'ACES', 'ACET', 'ACFN', 'ACGL', 'ACGR', 'ACHC', 'ACHR',
+       'ACHV', 'ACI', 'ACIC', 'ACII', 'ACIO', 'ACIU', 'ACIW', 'ACKY',
+       'ACLC', 'ACLO', 'ACLS', 'ACLX', 'ACM', 'ACMR', 'ACN', 'ACNB',
+       'ACNT', 'ACOG', 'ACON', 'AAUM'], dtype=object)}, 'published': {'$gte': datetime.datetime(2025, 9, 24, 0, 0), '$lte': datetime.datetime(2025, 10, 1, 23, 59, 59, 999999)}}}, {'$group': {'_id': '$ticker', 'avg_sentiment': {'$avg': '$sentiment'}}}], 'cursor': {}, 'lsid': {'id': Binary(b'Sy\x8f\xf8\xc9\x19G\x12\xac\x84\xd5C\x96\xf8\xed\xc4', 4)}, '$db': 'stocks_db'} | cannot encode object: array(['A', 'AA', 'AAA', 'AAAA', 'AAAU', 'AACB', 'AACG', 'AACI', 'AACT',
+       'AADR', 'AAL', 'AALG', 'AAM', 'AAME', 'AAMI', 'AAOI', 'AAON',
+       'AAP', 'AAPB', 'AAPD', 'AAPG', 'AAPL', 'AAPR', 'AAPU', 'AAPW',
+       'AAPX', 'AAPY', 'AARD', 'AAT', 'AAUC', 'AAUS', 'AAVM', 'AAXJ',
+       'AB', 'ABAT', 'ABBV', 'ABCB', 'ABCL', 'ABCS', 'ABEO', 'ABEQ',
+       'ABEV', 'ABFL', 'ABG', 'ABI', 'ABIG', 'ABL', 'ABLD', 'ABLG',
+       'ABLS', 'ABLV', 'ABM', 'ABNB', 'ABNY', 'ABOS', 'ABOT', 'ABP',
+       'ABR', 'ABSI', 'ABT', 'ABTC', 'ABTS', 'ABUS', 'ABVC', 'ABVE',
+       'ABVX', 'ABXB', 'ACA', 'ACAD', 'ACB', 'ACCO', 'ACCS', 'ACDC',
+       'ACEL', 'ACES', 'ACET', 'ACFN', 'ACGL', 'ACGR', 'ACHC', 'ACHR',
+       'ACHV', 'ACI', 'ACIC', 'ACII', 'ACIO', 'ACIU', 'ACIW', 'ACKY',
+       'ACLC', 'ACLO', 'ACLS', 'ACLX', 'ACM', 'ACMR', 'ACN', 'ACNB',
+       'ACNT', 'ACOG', 'ACON', 'AAUM'], dtype=object), of type: <class 'numpy.ndarray'>
+2025-10-02 17:23:54,326 [WARNING] B³¹d agregacji sentiment: Invalid document {'aggregate': 'news', 'pipeline': [{'$match': {'ticker': {'$in': array(['A', 'AA', 'AAA', 'AAAA', 'AAAU', 'AACB', 'AACG', 'AACI', 'AACT',
+       'AADR', 'AAL', 'AALG', 'AAM', 'AAME', 'AAMI', 'AAOI', 'AAON',
+       'AAP', 'AAPB', 'AAPD', 'AAPG', 'AAPL', 'AAPR', 'AAPU', 'AAPW',
+       'AAPX', 'AAPY', 'AARD', 'AAT', 'AAUC', 'AAUS', 'AAVM', 'AAXJ',
+       'AB', 'ABAT', 'ABBV', 'ABCB', 'ABCL', 'ABCS', 'ABEO', 'ABEQ',
+       'ABEV', 'ABFL', 'ABG', 'ABI', 'ABIG', 'ABL', 'ABLD', 'ABLG',
+       'ABLS', 'ABLV', 'ABM', 'ABNB', 'ABNY', 'ABOS', 'ABOT', 'ABP',
+       'ABR', 'ABSI', 'ABT', 'ABTC', 'ABTS', 'ABUS', 'ABVC', 'ABVE',
+       'ABVX', 'ABXB', 'ACA', 'ACAD', 'ACB', 'ACCO', 'ACCS', 'ACDC',
+       'ACEL', 'ACES', 'ACET', 'ACFN', 'ACGL', 'ACGR', 'ACHC', 'ACHR',
+       'ACHV', 'ACI', 'ACIC', 'ACII', 'ACIO', 'ACIU', 'ACIW', 'ACKY',
+       'ACLC', 'ACLO', 'ACLS', 'ACLX', 'ACM', 'ACMR', 'ACN', 'ACNB',
+       'ACNT', 'ACOG', 'ACON', 'AAUM'], dtype=object)}, 'published': {'$gte': datetime.datetime(2025, 9, 25, 0, 0), '$lte': datetime.datetime(2025, 10, 2, 23, 59, 59, 999999)}}}, {'$group': {'_id': '$ticker', 'avg_sentiment': {'$avg': '$sentiment'}}}], 'cursor': {}, 'lsid': {'id': Binary(b'Sy\x8f\xf8\xc9\x19G\x12\xac\x84\xd5C\x96\xf8\xed\xc4', 4)}, '$db': 'stocks_db'} | cannot encode object: array(['A', 'AA', 'AAA', 'AAAA', 'AAAU', 'AACB', 'AACG', 'AACI', 'AACT',
+       'AADR', 'AAL', 'AALG', 'AAM', 'AAME', 'AAMI', 'AAOI', 'AAON',
+       'AAP', 'AAPB', 'AAPD', 'AAPG', 'AAPL', 'AAPR', 'AAPU', 'AAPW',
+       'AAPX', 'AAPY', 'AARD', 'AAT', 'AAUC', 'AAUS', 'AAVM', 'AAXJ',
+       'AB', 'ABAT', 'ABBV', 'ABCB', 'ABCL', 'ABCS', 'ABEO', 'ABEQ',
+       'ABEV', 'ABFL', 'ABG', 'ABI', 'ABIG', 'ABL', 'ABLD', 'ABLG',
+       'ABLS', 'ABLV', 'ABM', 'ABNB', 'ABNY', 'ABOS', 'ABOT', 'ABP',
+       'ABR', 'ABSI', 'ABT', 'ABTC', 'ABTS', 'ABUS', 'ABVC', 'ABVE',
+       'ABVX', 'ABXB', 'ACA', 'ACAD', 'ACB', 'ACCO', 'ACCS', 'ACDC',
+       'ACEL', 'ACES', 'ACET', 'ACFN', 'ACGL', 'ACGR', 'ACHC', 'ACHR',
+       'ACHV', 'ACI', 'ACIC', 'ACII', 'ACIO', 'ACIU', 'ACIW', 'ACKY',
+       'ACLC', 'ACLO', 'ACLS', 'ACLX', 'ACM', 'ACMR', 'ACN', 'ACNB',
+       'ACNT', 'ACOG', 'ACON', 'AAUM'], dtype=object), of type: <class 'numpy.ndarray'>
+2025-10-02 17:24:05,846 [INFO] Wczytujê stocks_data z Postgresa...
+2025-10-02 17:24:05,860 [INFO] Pobrano 200 rekordów (2 dni)
+2025-10-02 17:24:05,861 [DEBUG] Kolumny: ['ticker', 'company', 'sector', 'industry', 'country', 'market_cap', 'p_e', 'eps_next_5y', 'perf_week', 'perf_month', 'fifty_two_week_high', 'fifty_two_week_low', 'rel_volume', 'volume', 'price', 'change', 'import_date', 'created_at']
+2025-10-02 17:24:05,866 [WARNING] B³¹d agregacji sentiment: Invalid document {'aggregate': 'news', 'pipeline': [{'$match': {'ticker': {'$in': array(['A', 'AA', 'AAA', 'AAAA', 'AAAU', 'AACB', 'AACG', 'AACI', 'AACT',
+       'AADR', 'AAL', 'AALG', 'AAM', 'AAME', 'AAMI', 'AAOI', 'AAON',
+       'AAP', 'AAPB', 'AAPD', 'AAPG', 'AAPL', 'AAPR', 'AAPU', 'AAPW',
+       'AAPX', 'AAPY', 'AARD', 'AAT', 'AAUC', 'AAUS', 'AAVM', 'AAXJ',
+       'AB', 'ABAT', 'ABBV', 'ABCB', 'ABCL', 'ABCS', 'ABEO', 'ABEQ',
+       'ABEV', 'ABFL', 'ABG', 'ABI', 'ABIG', 'ABL', 'ABLD', 'ABLG',
+       'ABLS', 'ABLV', 'ABM', 'ABNB', 'ABNY', 'ABOS', 'ABOT', 'ABP',
+       'ABR', 'ABSI', 'ABT', 'ABTC', 'ABTS', 'ABUS', 'ABVC', 'ABVE',
+       'ABVX', 'ABXB', 'ACA', 'ACAD', 'ACB', 'ACCO', 'ACCS', 'ACDC',
+       'ACEL', 'ACES', 'ACET', 'ACFN', 'ACGL', 'ACGR', 'ACHC', 'ACHR',
+       'ACHV', 'ACI', 'ACIC', 'ACII', 'ACIO', 'ACIU', 'ACIW', 'ACKY',
+       'ACLC', 'ACLO', 'ACLS', 'ACLX', 'ACM', 'ACMR', 'ACN', 'ACNB',
+       'ACNT', 'ACOG', 'ACON', 'AAUM'], dtype=object)}, 'published': {'$gte': datetime.datetime(2025, 9, 24, 0, 0), '$lte': datetime.datetime(2025, 10, 1, 23, 59, 59, 999999)}}}, {'$group': {'_id': '$ticker', 'avg_sentiment': {'$avg': '$sentiment'}}}], 'cursor': {}, 'lsid': {'id': Binary(b'Sy\x8f\xf8\xc9\x19G\x12\xac\x84\xd5C\x96\xf8\xed\xc4', 4)}, '$db': 'stocks_db'} | cannot encode object: array(['A', 'AA', 'AAA', 'AAAA', 'AAAU', 'AACB', 'AACG', 'AACI', 'AACT',
+       'AADR', 'AAL', 'AALG', 'AAM', 'AAME', 'AAMI', 'AAOI', 'AAON',
+       'AAP', 'AAPB', 'AAPD', 'AAPG', 'AAPL', 'AAPR', 'AAPU', 'AAPW',
+       'AAPX', 'AAPY', 'AARD', 'AAT', 'AAUC', 'AAUS', 'AAVM', 'AAXJ',
+       'AB', 'ABAT', 'ABBV', 'ABCB', 'ABCL', 'ABCS', 'ABEO', 'ABEQ',
+       'ABEV', 'ABFL', 'ABG', 'ABI', 'ABIG', 'ABL', 'ABLD', 'ABLG',
+       'ABLS', 'ABLV', 'ABM', 'ABNB', 'ABNY', 'ABOS', 'ABOT', 'ABP',
+       'ABR', 'ABSI', 'ABT', 'ABTC', 'ABTS', 'ABUS', 'ABVC', 'ABVE',
+       'ABVX', 'ABXB', 'ACA', 'ACAD', 'ACB', 'ACCO', 'ACCS', 'ACDC',
+       'ACEL', 'ACES', 'ACET', 'ACFN', 'ACGL', 'ACGR', 'ACHC', 'ACHR',
+       'ACHV', 'ACI', 'ACIC', 'ACII', 'ACIO', 'ACIU', 'ACIW', 'ACKY',
+       'ACLC', 'ACLO', 'ACLS', 'ACLX', 'ACM', 'ACMR', 'ACN', 'ACNB',
+       'ACNT', 'ACOG', 'ACON', 'AAUM'], dtype=object), of type: <class 'numpy.ndarray'>
+2025-10-02 17:24:05,874 [WARNING] B³¹d agregacji sentiment: Invalid document {'aggregate': 'news', 'pipeline': [{'$match': {'ticker': {'$in': array(['A', 'AA', 'AAA', 'AAAA', 'AAAU', 'AACB', 'AACG', 'AACI', 'AACT',
+       'AADR', 'AAL', 'AALG', 'AAM', 'AAME', 'AAMI', 'AAOI', 'AAON',
+       'AAP', 'AAPB', 'AAPD', 'AAPG', 'AAPL', 'AAPR', 'AAPU', 'AAPW',
+       'AAPX', 'AAPY', 'AARD', 'AAT', 'AAUC', 'AAUS', 'AAVM', 'AAXJ',
+       'AB', 'ABAT', 'ABBV', 'ABCB', 'ABCL', 'ABCS', 'ABEO', 'ABEQ',
+       'ABEV', 'ABFL', 'ABG', 'ABI', 'ABIG', 'ABL', 'ABLD', 'ABLG',
+       'ABLS', 'ABLV', 'ABM', 'ABNB', 'ABNY', 'ABOS', 'ABOT', 'ABP',
+       'ABR', 'ABSI', 'ABT', 'ABTC', 'ABTS', 'ABUS', 'ABVC', 'ABVE',
+       'ABVX', 'ABXB', 'ACA', 'ACAD', 'ACB', 'ACCO', 'ACCS', 'ACDC',
+       'ACEL', 'ACES', 'ACET', 'ACFN', 'ACGL', 'ACGR', 'ACHC', 'ACHR',
+       'ACHV', 'ACI', 'ACIC', 'ACII', 'ACIO', 'ACIU', 'ACIW', 'ACKY',
+       'ACLC', 'ACLO', 'ACLS', 'ACLX', 'ACM', 'ACMR', 'ACN', 'ACNB',
+       'ACNT', 'ACOG', 'ACON', 'AAUM'], dtype=object)}, 'published': {'$gte': datetime.datetime(2025, 9, 25, 0, 0), '$lte': datetime.datetime(2025, 10, 2, 23, 59, 59, 999999)}}}, {'$group': {'_id': '$ticker', 'avg_sentiment': {'$avg': '$sentiment'}}}], 'cursor': {}, 'lsid': {'id': Binary(b'Sy\x8f\xf8\xc9\x19G\x12\xac\x84\xd5C\x96\xf8\xed\xc4', 4)}, '$db': 'stocks_db'} | cannot encode object: array(['A', 'AA', 'AAA', 'AAAA', 'AAAU', 'AACB', 'AACG', 'AACI', 'AACT',
+       'AADR', 'AAL', 'AALG', 'AAM', 'AAME', 'AAMI', 'AAOI', 'AAON',
+       'AAP', 'AAPB', 'AAPD', 'AAPG', 'AAPL', 'AAPR', 'AAPU', 'AAPW',
+       'AAPX', 'AAPY', 'AARD', 'AAT', 'AAUC', 'AAUS', 'AAVM', 'AAXJ',
+       'AB', 'ABAT', 'ABBV', 'ABCB', 'ABCL', 'ABCS', 'ABEO', 'ABEQ',
+       'ABEV', 'ABFL', 'ABG', 'ABI', 'ABIG', 'ABL', 'ABLD', 'ABLG',
+       'ABLS', 'ABLV', 'ABM', 'ABNB', 'ABNY', 'ABOS', 'ABOT', 'ABP',
+       'ABR', 'ABSI', 'ABT', 'ABTC', 'ABTS', 'ABUS', 'ABVC', 'ABVE',
+       'ABVX', 'ABXB', 'ACA', 'ACAD', 'ACB', 'ACCO', 'ACCS', 'ACDC',
+       'ACEL', 'ACES', 'ACET', 'ACFN', 'ACGL', 'ACGR', 'ACHC', 'ACHR',
+       'ACHV', 'ACI', 'ACIC', 'ACII', 'ACIO', 'ACIU', 'ACIW', 'ACKY',
+       'ACLC', 'ACLO', 'ACLS', 'ACLX', 'ACM', 'ACMR', 'ACN', 'ACNB',
+       'ACNT', 'ACOG', 'ACON', 'AAUM'], dtype=object), of type: <class 'numpy.ndarray'>
+2025-10-02 17:24:12,823 [INFO] Wczytujê stocks_data z Postgresa...
+2025-10-02 17:24:12,836 [INFO] Pobrano 200 rekordów (2 dni)
+2025-10-02 17:24:12,837 [DEBUG] Kolumny: ['ticker', 'company', 'sector', 'industry', 'country', 'market_cap', 'p_e', 'eps_next_5y', 'perf_week', 'perf_month', 'fifty_two_week_high', 'fifty_two_week_low', 'rel_volume', 'volume', 'price', 'change', 'import_date', 'created_at']
+2025-10-02 17:24:12,868 [WARNING] B³¹d agregacji sentiment: Invalid document {'aggregate': 'news', 'pipeline': [{'$match': {'ticker': {'$in': array(['A', 'AA', 'AAA', 'AAAA', 'AAAU', 'AACB', 'AACG', 'AACI', 'AACT',
+       'AADR', 'AAL', 'AALG', 'AAM', 'AAME', 'AAMI', 'AAOI', 'AAON',
+       'AAP', 'AAPB', 'AAPD', 'AAPG', 'AAPL', 'AAPR', 'AAPU', 'AAPW',
+       'AAPX', 'AAPY', 'AARD', 'AAT', 'AAUC', 'AAUS', 'AAVM', 'AAXJ',
+       'AB', 'ABAT', 'ABBV', 'ABCB', 'ABCL', 'ABCS', 'ABEO', 'ABEQ',
+       'ABEV', 'ABFL', 'ABG', 'ABI', 'ABIG', 'ABL', 'ABLD', 'ABLG',
+       'ABLS', 'ABLV', 'ABM', 'ABNB', 'ABNY', 'ABOS', 'ABOT', 'ABP',
+       'ABR', 'ABSI', 'ABT', 'ABTC', 'ABTS', 'ABUS', 'ABVC', 'ABVE',
+       'ABVX', 'ABXB', 'ACA', 'ACAD', 'ACB', 'ACCO', 'ACCS', 'ACDC',
+       'ACEL', 'ACES', 'ACET', 'ACFN', 'ACGL', 'ACGR', 'ACHC', 'ACHR',
+       'ACHV', 'ACI', 'ACIC', 'ACII', 'ACIO', 'ACIU', 'ACIW', 'ACKY',
+       'ACLC', 'ACLO', 'ACLS', 'ACLX', 'ACM', 'ACMR', 'ACN', 'ACNB',
+       'ACNT', 'ACOG', 'ACON', 'AAUM'], dtype=object)}, 'published': {'$gte': datetime.datetime(2025, 9, 24, 0, 0), '$lte': datetime.datetime(2025, 10, 1, 23, 59, 59, 999999)}}}, {'$group': {'_id': '$ticker', 'avg_sentiment': {'$avg': '$sentiment'}}}], 'cursor': {}, 'lsid': {'id': Binary(b'Sy\x8f\xf8\xc9\x19G\x12\xac\x84\xd5C\x96\xf8\xed\xc4', 4)}, '$db': 'stocks_db'} | cannot encode object: array(['A', 'AA', 'AAA', 'AAAA', 'AAAU', 'AACB', 'AACG', 'AACI', 'AACT',
+       'AADR', 'AAL', 'AALG', 'AAM', 'AAME', 'AAMI', 'AAOI', 'AAON',
+       'AAP', 'AAPB', 'AAPD', 'AAPG', 'AAPL', 'AAPR', 'AAPU', 'AAPW',
+       'AAPX', 'AAPY', 'AARD', 'AAT', 'AAUC', 'AAUS', 'AAVM', 'AAXJ',
+       'AB', 'ABAT', 'ABBV', 'ABCB', 'ABCL', 'ABCS', 'ABEO', 'ABEQ',
+       'ABEV', 'ABFL', 'ABG', 'ABI', 'ABIG', 'ABL', 'ABLD', 'ABLG',
+       'ABLS', 'ABLV', 'ABM', 'ABNB', 'ABNY', 'ABOS', 'ABOT', 'ABP',
+       'ABR', 'ABSI', 'ABT', 'ABTC', 'ABTS', 'ABUS', 'ABVC', 'ABVE',
+       'ABVX', 'ABXB', 'ACA', 'ACAD', 'ACB', 'ACCO', 'ACCS', 'ACDC',
+       'ACEL', 'ACES', 'ACET', 'ACFN', 'ACGL', 'ACGR', 'ACHC', 'ACHR',
+       'ACHV', 'ACI', 'ACIC', 'ACII', 'ACIO', 'ACIU', 'ACIW', 'ACKY',
+       'ACLC', 'ACLO', 'ACLS', 'ACLX', 'ACM', 'ACMR', 'ACN', 'ACNB',
+       'ACNT', 'ACOG', 'ACON', 'AAUM'], dtype=object), of type: <class 'numpy.ndarray'>
+2025-10-02 17:24:12,875 [WARNING] B³¹d agregacji sentiment: Invalid document {'aggregate': 'news', 'pipeline': [{'$match': {'ticker': {'$in': array(['A', 'AA', 'AAA', 'AAAA', 'AAAU', 'AACB', 'AACG', 'AACI', 'AACT',
+       'AADR', 'AAL', 'AALG', 'AAM', 'AAME', 'AAMI', 'AAOI', 'AAON',
+       'AAP', 'AAPB', 'AAPD', 'AAPG', 'AAPL', 'AAPR', 'AAPU', 'AAPW',
+       'AAPX', 'AAPY', 'AARD', 'AAT', 'AAUC', 'AAUS', 'AAVM', 'AAXJ',
+       'AB', 'ABAT', 'ABBV', 'ABCB', 'ABCL', 'ABCS', 'ABEO', 'ABEQ',
+       'ABEV', 'ABFL', 'ABG', 'ABI', 'ABIG', 'ABL', 'ABLD', 'ABLG',
+       'ABLS', 'ABLV', 'ABM', 'ABNB', 'ABNY', 'ABOS', 'ABOT', 'ABP',
+       'ABR', 'ABSI', 'ABT', 'ABTC', 'ABTS', 'ABUS', 'ABVC', 'ABVE',
+       'ABVX', 'ABXB', 'ACA', 'ACAD', 'ACB', 'ACCO', 'ACCS', 'ACDC',
+       'ACEL', 'ACES', 'ACET', 'ACFN', 'ACGL', 'ACGR', 'ACHC', 'ACHR',
+       'ACHV', 'ACI', 'ACIC', 'ACII', 'ACIO', 'ACIU', 'ACIW', 'ACKY',
+       'ACLC', 'ACLO', 'ACLS', 'ACLX', 'ACM', 'ACMR', 'ACN', 'ACNB',
+       'ACNT', 'ACOG', 'ACON', 'AAUM'], dtype=object)}, 'published': {'$gte': datetime.datetime(2025, 9, 25, 0, 0), '$lte': datetime.datetime(2025, 10, 2, 23, 59, 59, 999999)}}}, {'$group': {'_id': '$ticker', 'avg_sentiment': {'$avg': '$sentiment'}}}], 'cursor': {}, 'lsid': {'id': Binary(b'Sy\x8f\xf8\xc9\x19G\x12\xac\x84\xd5C\x96\xf8\xed\xc4', 4)}, '$db': 'stocks_db'} | cannot encode object: array(['A', 'AA', 'AAA', 'AAAA', 'AAAU', 'AACB', 'AACG', 'AACI', 'AACT',
+       'AADR', 'AAL', 'AALG', 'AAM', 'AAME', 'AAMI', 'AAOI', 'AAON',
+       'AAP', 'AAPB', 'AAPD', 'AAPG', 'AAPL', 'AAPR', 'AAPU', 'AAPW',
+       'AAPX', 'AAPY', 'AARD', 'AAT', 'AAUC', 'AAUS', 'AAVM', 'AAXJ',
+       'AB', 'ABAT', 'ABBV', 'ABCB', 'ABCL', 'ABCS', 'ABEO', 'ABEQ',
+       'ABEV', 'ABFL', 'ABG', 'ABI', 'ABIG', 'ABL', 'ABLD', 'ABLG',
+       'ABLS', 'ABLV', 'ABM', 'ABNB', 'ABNY', 'ABOS', 'ABOT', 'ABP',
+       'ABR', 'ABSI', 'ABT', 'ABTC', 'ABTS', 'ABUS', 'ABVC', 'ABVE',
+       'ABVX', 'ABXB', 'ACA', 'ACAD', 'ACB', 'ACCO', 'ACCS', 'ACDC',
+       'ACEL', 'ACES', 'ACET', 'ACFN', 'ACGL', 'ACGR', 'ACHC', 'ACHR',
+       'ACHV', 'ACI', 'ACIC', 'ACII', 'ACIO', 'ACIU', 'ACIW', 'ACKY',
+       'ACLC', 'ACLO', 'ACLS', 'ACLX', 'ACM', 'ACMR', 'ACN', 'ACNB',
+       'ACNT', 'ACOG', 'ACON', 'AAUM'], dtype=object), of type: <class 'numpy.ndarray'>
+2025-10-02 18:30:55,884 [INFO] Wczytujê stocks_data z Postgresa...
+2025-10-02 18:30:55,957 [INFO] Pobrano 200 rekordów (2 dni)
+2025-10-02 18:30:55,958 [DEBUG] Kolumny: ['ticker', 'company', 'sector', 'industry', 'country', 'market_cap', 'p_e', 'eps_next_5y', 'perf_week', 'perf_month', 'fifty_two_week_high', 'fifty_two_week_low', 'rel_volume', 'volume', 'price', 'change', 'import_date', 'created_at']
+2025-10-02 18:30:55,973 [WARNING] B³¹d agregacji sentiment: Invalid document {'aggregate': 'news', 'pipeline': [{'$match': {'ticker': {'$in': array(['A', 'AA', 'AAA', 'AAAA', 'AAAU', 'AACB', 'AACG', 'AACI', 'AACT',
+       'AADR', 'AAL', 'AALG', 'AAM', 'AAME', 'AAMI', 'AAOI', 'AAON',
+       'AAP', 'AAPB', 'AAPD', 'AAPG', 'AAPL', 'AAPR', 'AAPU', 'AAPW',
+       'AAPX', 'AAPY', 'AARD', 'AAT', 'AAUC', 'AAUS', 'AAVM', 'AAXJ',
+       'AB', 'ABAT', 'ABBV', 'ABCB', 'ABCL', 'ABCS', 'ABEO', 'ABEQ',
+       'ABEV', 'ABFL', 'ABG', 'ABI', 'ABIG', 'ABL', 'ABLD', 'ABLG',
+       'ABLS', 'ABLV', 'ABM', 'ABNB', 'ABNY', 'ABOS', 'ABOT', 'ABP',
+       'ABR', 'ABSI', 'ABT', 'ABTC', 'ABTS', 'ABUS', 'ABVC', 'ABVE',
+       'ABVX', 'ABXB', 'ACA', 'ACAD', 'ACB', 'ACCO', 'ACCS', 'ACDC',
+       'ACEL', 'ACES', 'ACET', 'ACFN', 'ACGL', 'ACGR', 'ACHC', 'ACHR',
+       'ACHV', 'ACI', 'ACIC', 'ACII', 'ACIO', 'ACIU', 'ACIW', 'ACKY',
+       'ACLC', 'ACLO', 'ACLS', 'ACLX', 'ACM', 'ACMR', 'ACN', 'ACNB',
+       'ACNT', 'ACOG', 'ACON', 'AAUM'], dtype=object)}, 'published': {'$gte': datetime.datetime(2025, 9, 24, 0, 0), '$lte': datetime.datetime(2025, 10, 1, 23, 59, 59, 999999)}}}, {'$group': {'_id': '$ticker', 'avg_sentiment': {'$avg': '$sentiment'}}}], 'cursor': {}, 'lsid': {'id': Binary(b'.\x1637\xa1!E\xfc\xa2E\x93\xb1\xb5$\x88\xb9', 4)}, '$db': 'stocks_db'} | cannot encode object: array(['A', 'AA', 'AAA', 'AAAA', 'AAAU', 'AACB', 'AACG', 'AACI', 'AACT',
+       'AADR', 'AAL', 'AALG', 'AAM', 'AAME', 'AAMI', 'AAOI', 'AAON',
+       'AAP', 'AAPB', 'AAPD', 'AAPG', 'AAPL', 'AAPR', 'AAPU', 'AAPW',
+       'AAPX', 'AAPY', 'AARD', 'AAT', 'AAUC', 'AAUS', 'AAVM', 'AAXJ',
+       'AB', 'ABAT', 'ABBV', 'ABCB', 'ABCL', 'ABCS', 'ABEO', 'ABEQ',
+       'ABEV', 'ABFL', 'ABG', 'ABI', 'ABIG', 'ABL', 'ABLD', 'ABLG',
+       'ABLS', 'ABLV', 'ABM', 'ABNB', 'ABNY', 'ABOS', 'ABOT', 'ABP',
+       'ABR', 'ABSI', 'ABT', 'ABTC', 'ABTS', 'ABUS', 'ABVC', 'ABVE',
+       'ABVX', 'ABXB', 'ACA', 'ACAD', 'ACB', 'ACCO', 'ACCS', 'ACDC',
+       'ACEL', 'ACES', 'ACET', 'ACFN', 'ACGL', 'ACGR', 'ACHC', 'ACHR',
+       'ACHV', 'ACI', 'ACIC', 'ACII', 'ACIO', 'ACIU', 'ACIW', 'ACKY',
+       'ACLC', 'ACLO', 'ACLS', 'ACLX', 'ACM', 'ACMR', 'ACN', 'ACNB',
+       'ACNT', 'ACOG', 'ACON', 'AAUM'], dtype=object), of type: <class 'numpy.ndarray'>
+2025-10-02 18:30:55,982 [WARNING] B³¹d agregacji sentiment: Invalid document {'aggregate': 'news', 'pipeline': [{'$match': {'ticker': {'$in': array(['A', 'AA', 'AAA', 'AAAA', 'AAAU', 'AACB', 'AACG', 'AACI', 'AACT',
+       'AADR', 'AAL', 'AALG', 'AAM', 'AAME', 'AAMI', 'AAOI', 'AAON',
+       'AAP', 'AAPB', 'AAPD', 'AAPG', 'AAPL', 'AAPR', 'AAPU', 'AAPW',
+       'AAPX', 'AAPY', 'AARD', 'AAT', 'AAUC', 'AAUS', 'AAVM', 'AAXJ',
+       'AB', 'ABAT', 'ABBV', 'ABCB', 'ABCL', 'ABCS', 'ABEO', 'ABEQ',
+       'ABEV', 'ABFL', 'ABG', 'ABI', 'ABIG', 'ABL', 'ABLD', 'ABLG',
+       'ABLS', 'ABLV', 'ABM', 'ABNB', 'ABNY', 'ABOS', 'ABOT', 'ABP',
+       'ABR', 'ABSI', 'ABT', 'ABTC', 'ABTS', 'ABUS', 'ABVC', 'ABVE',
+       'ABVX', 'ABXB', 'ACA', 'ACAD', 'ACB', 'ACCO', 'ACCS', 'ACDC',
+       'ACEL', 'ACES', 'ACET', 'ACFN', 'ACGL', 'ACGR', 'ACHC', 'ACHR',
+       'ACHV', 'ACI', 'ACIC', 'ACII', 'ACIO', 'ACIU', 'ACIW', 'ACKY',
+       'ACLC', 'ACLO', 'ACLS', 'ACLX', 'ACM', 'ACMR', 'ACN', 'ACNB',
+       'ACNT', 'ACOG', 'ACON', 'AAUM'], dtype=object)}, 'published': {'$gte': datetime.datetime(2025, 9, 25, 0, 0), '$lte': datetime.datetime(2025, 10, 2, 23, 59, 59, 999999)}}}, {'$group': {'_id': '$ticker', 'avg_sentiment': {'$avg': '$sentiment'}}}], 'cursor': {}, 'lsid': {'id': Binary(b'.\x1637\xa1!E\xfc\xa2E\x93\xb1\xb5$\x88\xb9', 4)}, '$db': 'stocks_db'} | cannot encode object: array(['A', 'AA', 'AAA', 'AAAA', 'AAAU', 'AACB', 'AACG', 'AACI', 'AACT',
+       'AADR', 'AAL', 'AALG', 'AAM', 'AAME', 'AAMI', 'AAOI', 'AAON',
+       'AAP', 'AAPB', 'AAPD', 'AAPG', 'AAPL', 'AAPR', 'AAPU', 'AAPW',
+       'AAPX', 'AAPY', 'AARD', 'AAT', 'AAUC', 'AAUS', 'AAVM', 'AAXJ',
+       'AB', 'ABAT', 'ABBV', 'ABCB', 'ABCL', 'ABCS', 'ABEO', 'ABEQ',
+       'ABEV', 'ABFL', 'ABG', 'ABI', 'ABIG', 'ABL', 'ABLD', 'ABLG',
+       'ABLS', 'ABLV', 'ABM', 'ABNB', 'ABNY', 'ABOS', 'ABOT', 'ABP',
+       'ABR', 'ABSI', 'ABT', 'ABTC', 'ABTS', 'ABUS', 'ABVC', 'ABVE',
+       'ABVX', 'ABXB', 'ACA', 'ACAD', 'ACB', 'ACCO', 'ACCS', 'ACDC',
+       'ACEL', 'ACES', 'ACET', 'ACFN', 'ACGL', 'ACGR', 'ACHC', 'ACHR',
+       'ACHV', 'ACI', 'ACIC', 'ACII', 'ACIO', 'ACIU', 'ACIW', 'ACKY',
+       'ACLC', 'ACLO', 'ACLS', 'ACLX', 'ACM', 'ACMR', 'ACN', 'ACNB',
+       'ACNT', 'ACOG', 'ACON', 'AAUM'], dtype=object), of type: <class 'numpy.ndarray'>
+2025-10-02 18:31:53,660 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAPL+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-02 18:31:54,609 [INFO] RSS: znaleziono 100 pozycji dla AAPL
+2025-10-02 18:37:51,613 [INFO] Wczytujê stocks_data z Postgresa...
+2025-10-02 18:37:51,628 [INFO] Pobrano 200 rekordów (2 dni)
+2025-10-02 18:37:51,629 [DEBUG] Kolumny: ['ticker', 'company', 'sector', 'industry', 'country', 'market_cap', 'p_e', 'eps_next_5y', 'perf_week', 'perf_month', 'fifty_two_week_high', 'fifty_two_week_low', 'rel_volume', 'volume', 'price', 'change', 'import_date', 'created_at']
+2025-10-02 18:37:51,636 [WARNING] B³¹d agregacji sentiment: Invalid document {'aggregate': 'news', 'pipeline': [{'$match': {'ticker': {'$in': array(['A', 'AA', 'AAA', 'AAAA', 'AAAU', 'AACB', 'AACG', 'AACI', 'AACT',
+       'AADR', 'AAL', 'AALG', 'AAM', 'AAME', 'AAMI', 'AAOI', 'AAON',
+       'AAP', 'AAPB', 'AAPD', 'AAPG', 'AAPL', 'AAPR', 'AAPU', 'AAPW',
+       'AAPX', 'AAPY', 'AARD', 'AAT', 'AAUC', 'AAUS', 'AAVM', 'AAXJ',
+       'AB', 'ABAT', 'ABBV', 'ABCB', 'ABCL', 'ABCS', 'ABEO', 'ABEQ',
+       'ABEV', 'ABFL', 'ABG', 'ABI', 'ABIG', 'ABL', 'ABLD', 'ABLG',
+       'ABLS', 'ABLV', 'ABM', 'ABNB', 'ABNY', 'ABOS', 'ABOT', 'ABP',
+       'ABR', 'ABSI', 'ABT', 'ABTC', 'ABTS', 'ABUS', 'ABVC', 'ABVE',
+       'ABVX', 'ABXB', 'ACA', 'ACAD', 'ACB', 'ACCO', 'ACCS', 'ACDC',
+       'ACEL', 'ACES', 'ACET', 'ACFN', 'ACGL', 'ACGR', 'ACHC', 'ACHR',
+       'ACHV', 'ACI', 'ACIC', 'ACII', 'ACIO', 'ACIU', 'ACIW', 'ACKY',
+       'ACLC', 'ACLO', 'ACLS', 'ACLX', 'ACM', 'ACMR', 'ACN', 'ACNB',
+       'ACNT', 'ACOG', 'ACON', 'AAUM'], dtype=object)}, 'published': {'$gte': datetime.datetime(2025, 9, 24, 0, 0), '$lte': datetime.datetime(2025, 10, 1, 23, 59, 59, 999999)}}}, {'$group': {'_id': '$ticker', 'avg_sentiment': {'$avg': '$sentiment'}}}], 'cursor': {}, 'lsid': {'id': Binary(b'.\x1637\xa1!E\xfc\xa2E\x93\xb1\xb5$\x88\xb9', 4)}, '$db': 'stocks_db'} | cannot encode object: array(['A', 'AA', 'AAA', 'AAAA', 'AAAU', 'AACB', 'AACG', 'AACI', 'AACT',
+       'AADR', 'AAL', 'AALG', 'AAM', 'AAME', 'AAMI', 'AAOI', 'AAON',
+       'AAP', 'AAPB', 'AAPD', 'AAPG', 'AAPL', 'AAPR', 'AAPU', 'AAPW',
+       'AAPX', 'AAPY', 'AARD', 'AAT', 'AAUC', 'AAUS', 'AAVM', 'AAXJ',
+       'AB', 'ABAT', 'ABBV', 'ABCB', 'ABCL', 'ABCS', 'ABEO', 'ABEQ',
+       'ABEV', 'ABFL', 'ABG', 'ABI', 'ABIG', 'ABL', 'ABLD', 'ABLG',
+       'ABLS', 'ABLV', 'ABM', 'ABNB', 'ABNY', 'ABOS', 'ABOT', 'ABP',
+       'ABR', 'ABSI', 'ABT', 'ABTC', 'ABTS', 'ABUS', 'ABVC', 'ABVE',
+       'ABVX', 'ABXB', 'ACA', 'ACAD', 'ACB', 'ACCO', 'ACCS', 'ACDC',
+       'ACEL', 'ACES', 'ACET', 'ACFN', 'ACGL', 'ACGR', 'ACHC', 'ACHR',
+       'ACHV', 'ACI', 'ACIC', 'ACII', 'ACIO', 'ACIU', 'ACIW', 'ACKY',
+       'ACLC', 'ACLO', 'ACLS', 'ACLX', 'ACM', 'ACMR', 'ACN', 'ACNB',
+       'ACNT', 'ACOG', 'ACON', 'AAUM'], dtype=object), of type: <class 'numpy.ndarray'>
+2025-10-02 18:37:51,642 [WARNING] B³¹d agregacji sentiment: Invalid document {'aggregate': 'news', 'pipeline': [{'$match': {'ticker': {'$in': array(['A', 'AA', 'AAA', 'AAAA', 'AAAU', 'AACB', 'AACG', 'AACI', 'AACT',
+       'AADR', 'AAL', 'AALG', 'AAM', 'AAME', 'AAMI', 'AAOI', 'AAON',
+       'AAP', 'AAPB', 'AAPD', 'AAPG', 'AAPL', 'AAPR', 'AAPU', 'AAPW',
+       'AAPX', 'AAPY', 'AARD', 'AAT', 'AAUC', 'AAUS', 'AAVM', 'AAXJ',
+       'AB', 'ABAT', 'ABBV', 'ABCB', 'ABCL', 'ABCS', 'ABEO', 'ABEQ',
+       'ABEV', 'ABFL', 'ABG', 'ABI', 'ABIG', 'ABL', 'ABLD', 'ABLG',
+       'ABLS', 'ABLV', 'ABM', 'ABNB', 'ABNY', 'ABOS', 'ABOT', 'ABP',
+       'ABR', 'ABSI', 'ABT', 'ABTC', 'ABTS', 'ABUS', 'ABVC', 'ABVE',
+       'ABVX', 'ABXB', 'ACA', 'ACAD', 'ACB', 'ACCO', 'ACCS', 'ACDC',
+       'ACEL', 'ACES', 'ACET', 'ACFN', 'ACGL', 'ACGR', 'ACHC', 'ACHR',
+       'ACHV', 'ACI', 'ACIC', 'ACII', 'ACIO', 'ACIU', 'ACIW', 'ACKY',
+       'ACLC', 'ACLO', 'ACLS', 'ACLX', 'ACM', 'ACMR', 'ACN', 'ACNB',
+       'ACNT', 'ACOG', 'ACON', 'AAUM'], dtype=object)}, 'published': {'$gte': datetime.datetime(2025, 9, 25, 0, 0), '$lte': datetime.datetime(2025, 10, 2, 23, 59, 59, 999999)}}}, {'$group': {'_id': '$ticker', 'avg_sentiment': {'$avg': '$sentiment'}}}], 'cursor': {}, 'lsid': {'id': Binary(b'.\x1637\xa1!E\xfc\xa2E\x93\xb1\xb5$\x88\xb9', 4)}, '$db': 'stocks_db'} | cannot encode object: array(['A', 'AA', 'AAA', 'AAAA', 'AAAU', 'AACB', 'AACG', 'AACI', 'AACT',
+       'AADR', 'AAL', 'AALG', 'AAM', 'AAME', 'AAMI', 'AAOI', 'AAON',
+       'AAP', 'AAPB', 'AAPD', 'AAPG', 'AAPL', 'AAPR', 'AAPU', 'AAPW',
+       'AAPX', 'AAPY', 'AARD', 'AAT', 'AAUC', 'AAUS', 'AAVM', 'AAXJ',
+       'AB', 'ABAT', 'ABBV', 'ABCB', 'ABCL', 'ABCS', 'ABEO', 'ABEQ',
+       'ABEV', 'ABFL', 'ABG', 'ABI', 'ABIG', 'ABL', 'ABLD', 'ABLG',
+       'ABLS', 'ABLV', 'ABM', 'ABNB', 'ABNY', 'ABOS', 'ABOT', 'ABP',
+       'ABR', 'ABSI', 'ABT', 'ABTC', 'ABTS', 'ABUS', 'ABVC', 'ABVE',
+       'ABVX', 'ABXB', 'ACA', 'ACAD', 'ACB', 'ACCO', 'ACCS', 'ACDC',
+       'ACEL', 'ACES', 'ACET', 'ACFN', 'ACGL', 'ACGR', 'ACHC', 'ACHR',
+       'ACHV', 'ACI', 'ACIC', 'ACII', 'ACIO', 'ACIU', 'ACIW', 'ACKY',
+       'ACLC', 'ACLO', 'ACLS', 'ACLX', 'ACM', 'ACMR', 'ACN', 'ACNB',
+       'ACNT', 'ACOG', 'ACON', 'AAUM'], dtype=object), of type: <class 'numpy.ndarray'>
+2025-10-02 19:39:00,227 [INFO] Wczytujê stocks_data z Postgresa...
+2025-10-02 19:39:00,376 [INFO] Pobrano 200 rekordów (2 dni)
+2025-10-02 19:39:00,377 [DEBUG] Kolumny: ['ticker', 'company', 'sector', 'industry', 'country', 'market_cap', 'p_e', 'eps_next_5y', 'perf_week', 'perf_month', 'fifty_two_week_high', 'fifty_two_week_low', 'rel_volume', 'volume', 'price', 'change', 'import_date', 'created_at']
+2025-10-02 19:39:00,382 [WARNING] B³¹d agregacji sentiment: Invalid document {'aggregate': 'news', 'pipeline': [{'$match': {'ticker': {'$in': array(['A', 'AA', 'AAA', 'AAAA', 'AAAU', 'AACB', 'AACG', 'AACI', 'AACT',
+       'AADR', 'AAL', 'AALG', 'AAM', 'AAME', 'AAMI', 'AAOI', 'AAON',
+       'AAP', 'AAPB', 'AAPD', 'AAPG', 'AAPL', 'AAPR', 'AAPU', 'AAPW',
+       'AAPX', 'AAPY', 'AARD', 'AAT', 'AAUC', 'AAUS', 'AAVM', 'AAXJ',
+       'AB', 'ABAT', 'ABBV', 'ABCB', 'ABCL', 'ABCS', 'ABEO', 'ABEQ',
+       'ABEV', 'ABFL', 'ABG', 'ABI', 'ABIG', 'ABL', 'ABLD', 'ABLG',
+       'ABLS', 'ABLV', 'ABM', 'ABNB', 'ABNY', 'ABOS', 'ABOT', 'ABP',
+       'ABR', 'ABSI', 'ABT', 'ABTC', 'ABTS', 'ABUS', 'ABVC', 'ABVE',
+       'ABVX', 'ABXB', 'ACA', 'ACAD', 'ACB', 'ACCO', 'ACCS', 'ACDC',
+       'ACEL', 'ACES', 'ACET', 'ACFN', 'ACGL', 'ACGR', 'ACHC', 'ACHR',
+       'ACHV', 'ACI', 'ACIC', 'ACII', 'ACIO', 'ACIU', 'ACIW', 'ACKY',
+       'ACLC', 'ACLO', 'ACLS', 'ACLX', 'ACM', 'ACMR', 'ACN', 'ACNB',
+       'ACNT', 'ACOG', 'ACON', 'AAUM'], dtype=object)}, 'published': {'$gte': datetime.datetime(2025, 9, 24, 0, 0), '$lte': datetime.datetime(2025, 10, 1, 23, 59, 59, 999999)}}}, {'$group': {'_id': '$ticker', 'avg_sentiment': {'$avg': '$sentiment'}}}], 'cursor': {}, 'lsid': {'id': Binary(b't\x92\xa8\x88u5L{\x93\xa2\x13\x18\x13\xdc\x1d\xca', 4)}, '$db': 'stocks_db'} | cannot encode object: array(['A', 'AA', 'AAA', 'AAAA', 'AAAU', 'AACB', 'AACG', 'AACI', 'AACT',
+       'AADR', 'AAL', 'AALG', 'AAM', 'AAME', 'AAMI', 'AAOI', 'AAON',
+       'AAP', 'AAPB', 'AAPD', 'AAPG', 'AAPL', 'AAPR', 'AAPU', 'AAPW',
+       'AAPX', 'AAPY', 'AARD', 'AAT', 'AAUC', 'AAUS', 'AAVM', 'AAXJ',
+       'AB', 'ABAT', 'ABBV', 'ABCB', 'ABCL', 'ABCS', 'ABEO', 'ABEQ',
+       'ABEV', 'ABFL', 'ABG', 'ABI', 'ABIG', 'ABL', 'ABLD', 'ABLG',
+       'ABLS', 'ABLV', 'ABM', 'ABNB', 'ABNY', 'ABOS', 'ABOT', 'ABP',
+       'ABR', 'ABSI', 'ABT', 'ABTC', 'ABTS', 'ABUS', 'ABVC', 'ABVE',
+       'ABVX', 'ABXB', 'ACA', 'ACAD', 'ACB', 'ACCO', 'ACCS', 'ACDC',
+       'ACEL', 'ACES', 'ACET', 'ACFN', 'ACGL', 'ACGR', 'ACHC', 'ACHR',
+       'ACHV', 'ACI', 'ACIC', 'ACII', 'ACIO', 'ACIU', 'ACIW', 'ACKY',
+       'ACLC', 'ACLO', 'ACLS', 'ACLX', 'ACM', 'ACMR', 'ACN', 'ACNB',
+       'ACNT', 'ACOG', 'ACON', 'AAUM'], dtype=object), of type: <class 'numpy.ndarray'>
+2025-10-02 19:39:00,388 [WARNING] B³¹d agregacji sentiment: Invalid document {'aggregate': 'news', 'pipeline': [{'$match': {'ticker': {'$in': array(['A', 'AA', 'AAA', 'AAAA', 'AAAU', 'AACB', 'AACG', 'AACI', 'AACT',
+       'AADR', 'AAL', 'AALG', 'AAM', 'AAME', 'AAMI', 'AAOI', 'AAON',
+       'AAP', 'AAPB', 'AAPD', 'AAPG', 'AAPL', 'AAPR', 'AAPU', 'AAPW',
+       'AAPX', 'AAPY', 'AARD', 'AAT', 'AAUC', 'AAUS', 'AAVM', 'AAXJ',
+       'AB', 'ABAT', 'ABBV', 'ABCB', 'ABCL', 'ABCS', 'ABEO', 'ABEQ',
+       'ABEV', 'ABFL', 'ABG', 'ABI', 'ABIG', 'ABL', 'ABLD', 'ABLG',
+       'ABLS', 'ABLV', 'ABM', 'ABNB', 'ABNY', 'ABOS', 'ABOT', 'ABP',
+       'ABR', 'ABSI', 'ABT', 'ABTC', 'ABTS', 'ABUS', 'ABVC', 'ABVE',
+       'ABVX', 'ABXB', 'ACA', 'ACAD', 'ACB', 'ACCO', 'ACCS', 'ACDC',
+       'ACEL', 'ACES', 'ACET', 'ACFN', 'ACGL', 'ACGR', 'ACHC', 'ACHR',
+       'ACHV', 'ACI', 'ACIC', 'ACII', 'ACIO', 'ACIU', 'ACIW', 'ACKY',
+       'ACLC', 'ACLO', 'ACLS', 'ACLX', 'ACM', 'ACMR', 'ACN', 'ACNB',
+       'ACNT', 'ACOG', 'ACON', 'AAUM'], dtype=object)}, 'published': {'$gte': datetime.datetime(2025, 9, 25, 0, 0), '$lte': datetime.datetime(2025, 10, 2, 23, 59, 59, 999999)}}}, {'$group': {'_id': '$ticker', 'avg_sentiment': {'$avg': '$sentiment'}}}], 'cursor': {}, 'lsid': {'id': Binary(b't\x92\xa8\x88u5L{\x93\xa2\x13\x18\x13\xdc\x1d\xca', 4)}, '$db': 'stocks_db'} | cannot encode object: array(['A', 'AA', 'AAA', 'AAAA', 'AAAU', 'AACB', 'AACG', 'AACI', 'AACT',
+       'AADR', 'AAL', 'AALG', 'AAM', 'AAME', 'AAMI', 'AAOI', 'AAON',
+       'AAP', 'AAPB', 'AAPD', 'AAPG', 'AAPL', 'AAPR', 'AAPU', 'AAPW',
+       'AAPX', 'AAPY', 'AARD', 'AAT', 'AAUC', 'AAUS', 'AAVM', 'AAXJ',
+       'AB', 'ABAT', 'ABBV', 'ABCB', 'ABCL', 'ABCS', 'ABEO', 'ABEQ',
+       'ABEV', 'ABFL', 'ABG', 'ABI', 'ABIG', 'ABL', 'ABLD', 'ABLG',
+       'ABLS', 'ABLV', 'ABM', 'ABNB', 'ABNY', 'ABOS', 'ABOT', 'ABP',
+       'ABR', 'ABSI', 'ABT', 'ABTC', 'ABTS', 'ABUS', 'ABVC', 'ABVE',
+       'ABVX', 'ABXB', 'ACA', 'ACAD', 'ACB', 'ACCO', 'ACCS', 'ACDC',
+       'ACEL', 'ACES', 'ACET', 'ACFN', 'ACGL', 'ACGR', 'ACHC', 'ACHR',
+       'ACHV', 'ACI', 'ACIC', 'ACII', 'ACIO', 'ACIU', 'ACIW', 'ACKY',
+       'ACLC', 'ACLO', 'ACLS', 'ACLX', 'ACM', 'ACMR', 'ACN', 'ACNB',
+       'ACNT', 'ACOG', 'ACON', 'AAUM'], dtype=object), of type: <class 'numpy.ndarray'>
+2025-10-02 19:39:26,270 [INFO] Wczytujê stocks_data z Postgresa...
+2025-10-02 19:39:26,285 [INFO] Pobrano 200 rekordów (2 dni)
+2025-10-02 19:39:26,286 [DEBUG] Kolumny: ['ticker', 'company', 'sector', 'industry', 'country', 'market_cap', 'p_e', 'eps_next_5y', 'perf_week', 'perf_month', 'fifty_two_week_high', 'fifty_two_week_low', 'rel_volume', 'volume', 'price', 'change', 'import_date', 'created_at']
+2025-10-02 19:39:26,292 [WARNING] B³¹d agregacji sentiment: Invalid document {'aggregate': 'news', 'pipeline': [{'$match': {'ticker': {'$in': array(['A', 'AA', 'AAA', 'AAAA', 'AAAU', 'AACB', 'AACG', 'AACI', 'AACT',
+       'AADR', 'AAL', 'AALG', 'AAM', 'AAME', 'AAMI', 'AAOI', 'AAON',
+       'AAP', 'AAPB', 'AAPD', 'AAPG', 'AAPL', 'AAPR', 'AAPU', 'AAPW',
+       'AAPX', 'AAPY', 'AARD', 'AAT', 'AAUC', 'AAUS', 'AAVM', 'AAXJ',
+       'AB', 'ABAT', 'ABBV', 'ABCB', 'ABCL', 'ABCS', 'ABEO', 'ABEQ',
+       'ABEV', 'ABFL', 'ABG', 'ABI', 'ABIG', 'ABL', 'ABLD', 'ABLG',
+       'ABLS', 'ABLV', 'ABM', 'ABNB', 'ABNY', 'ABOS', 'ABOT', 'ABP',
+       'ABR', 'ABSI', 'ABT', 'ABTC', 'ABTS', 'ABUS', 'ABVC', 'ABVE',
+       'ABVX', 'ABXB', 'ACA', 'ACAD', 'ACB', 'ACCO', 'ACCS', 'ACDC',
+       'ACEL', 'ACES', 'ACET', 'ACFN', 'ACGL', 'ACGR', 'ACHC', 'ACHR',
+       'ACHV', 'ACI', 'ACIC', 'ACII', 'ACIO', 'ACIU', 'ACIW', 'ACKY',
+       'ACLC', 'ACLO', 'ACLS', 'ACLX', 'ACM', 'ACMR', 'ACN', 'ACNB',
+       'ACNT', 'ACOG', 'ACON', 'AAUM'], dtype=object)}, 'published': {'$gte': datetime.datetime(2025, 9, 24, 0, 0), '$lte': datetime.datetime(2025, 10, 1, 23, 59, 59, 999999)}}}, {'$group': {'_id': '$ticker', 'avg_sentiment': {'$avg': '$sentiment'}}}], 'cursor': {}, 'lsid': {'id': Binary(b't\x92\xa8\x88u5L{\x93\xa2\x13\x18\x13\xdc\x1d\xca', 4)}, '$db': 'stocks_db'} | cannot encode object: array(['A', 'AA', 'AAA', 'AAAA', 'AAAU', 'AACB', 'AACG', 'AACI', 'AACT',
+       'AADR', 'AAL', 'AALG', 'AAM', 'AAME', 'AAMI', 'AAOI', 'AAON',
+       'AAP', 'AAPB', 'AAPD', 'AAPG', 'AAPL', 'AAPR', 'AAPU', 'AAPW',
+       'AAPX', 'AAPY', 'AARD', 'AAT', 'AAUC', 'AAUS', 'AAVM', 'AAXJ',
+       'AB', 'ABAT', 'ABBV', 'ABCB', 'ABCL', 'ABCS', 'ABEO', 'ABEQ',
+       'ABEV', 'ABFL', 'ABG', 'ABI', 'ABIG', 'ABL', 'ABLD', 'ABLG',
+       'ABLS', 'ABLV', 'ABM', 'ABNB', 'ABNY', 'ABOS', 'ABOT', 'ABP',
+       'ABR', 'ABSI', 'ABT', 'ABTC', 'ABTS', 'ABUS', 'ABVC', 'ABVE',
+       'ABVX', 'ABXB', 'ACA', 'ACAD', 'ACB', 'ACCO', 'ACCS', 'ACDC',
+       'ACEL', 'ACES', 'ACET', 'ACFN', 'ACGL', 'ACGR', 'ACHC', 'ACHR',
+       'ACHV', 'ACI', 'ACIC', 'ACII', 'ACIO', 'ACIU', 'ACIW', 'ACKY',
+       'ACLC', 'ACLO', 'ACLS', 'ACLX', 'ACM', 'ACMR', 'ACN', 'ACNB',
+       'ACNT', 'ACOG', 'ACON', 'AAUM'], dtype=object), of type: <class 'numpy.ndarray'>
+2025-10-02 19:39:26,300 [WARNING] B³¹d agregacji sentiment: Invalid document {'aggregate': 'news', 'pipeline': [{'$match': {'ticker': {'$in': array(['A', 'AA', 'AAA', 'AAAA', 'AAAU', 'AACB', 'AACG', 'AACI', 'AACT',
+       'AADR', 'AAL', 'AALG', 'AAM', 'AAME', 'AAMI', 'AAOI', 'AAON',
+       'AAP', 'AAPB', 'AAPD', 'AAPG', 'AAPL', 'AAPR', 'AAPU', 'AAPW',
+       'AAPX', 'AAPY', 'AARD', 'AAT', 'AAUC', 'AAUS', 'AAVM', 'AAXJ',
+       'AB', 'ABAT', 'ABBV', 'ABCB', 'ABCL', 'ABCS', 'ABEO', 'ABEQ',
+       'ABEV', 'ABFL', 'ABG', 'ABI', 'ABIG', 'ABL', 'ABLD', 'ABLG',
+       'ABLS', 'ABLV', 'ABM', 'ABNB', 'ABNY', 'ABOS', 'ABOT', 'ABP',
+       'ABR', 'ABSI', 'ABT', 'ABTC', 'ABTS', 'ABUS', 'ABVC', 'ABVE',
+       'ABVX', 'ABXB', 'ACA', 'ACAD', 'ACB', 'ACCO', 'ACCS', 'ACDC',
+       'ACEL', 'ACES', 'ACET', 'ACFN', 'ACGL', 'ACGR', 'ACHC', 'ACHR',
+       'ACHV', 'ACI', 'ACIC', 'ACII', 'ACIO', 'ACIU', 'ACIW', 'ACKY',
+       'ACLC', 'ACLO', 'ACLS', 'ACLX', 'ACM', 'ACMR', 'ACN', 'ACNB',
+       'ACNT', 'ACOG', 'ACON', 'AAUM'], dtype=object)}, 'published': {'$gte': datetime.datetime(2025, 9, 25, 0, 0), '$lte': datetime.datetime(2025, 10, 2, 23, 59, 59, 999999)}}}, {'$group': {'_id': '$ticker', 'avg_sentiment': {'$avg': '$sentiment'}}}], 'cursor': {}, 'lsid': {'id': Binary(b't\x92\xa8\x88u5L{\x93\xa2\x13\x18\x13\xdc\x1d\xca', 4)}, '$db': 'stocks_db'} | cannot encode object: array(['A', 'AA', 'AAA', 'AAAA', 'AAAU', 'AACB', 'AACG', 'AACI', 'AACT',
+       'AADR', 'AAL', 'AALG', 'AAM', 'AAME', 'AAMI', 'AAOI', 'AAON',
+       'AAP', 'AAPB', 'AAPD', 'AAPG', 'AAPL', 'AAPR', 'AAPU', 'AAPW',
+       'AAPX', 'AAPY', 'AARD', 'AAT', 'AAUC', 'AAUS', 'AAVM', 'AAXJ',
+       'AB', 'ABAT', 'ABBV', 'ABCB', 'ABCL', 'ABCS', 'ABEO', 'ABEQ',
+       'ABEV', 'ABFL', 'ABG', 'ABI', 'ABIG', 'ABL', 'ABLD', 'ABLG',
+       'ABLS', 'ABLV', 'ABM', 'ABNB', 'ABNY', 'ABOS', 'ABOT', 'ABP',
+       'ABR', 'ABSI', 'ABT', 'ABTC', 'ABTS', 'ABUS', 'ABVC', 'ABVE',
+       'ABVX', 'ABXB', 'ACA', 'ACAD', 'ACB', 'ACCO', 'ACCS', 'ACDC',
+       'ACEL', 'ACES', 'ACET', 'ACFN', 'ACGL', 'ACGR', 'ACHC', 'ACHR',
+       'ACHV', 'ACI', 'ACIC', 'ACII', 'ACIO', 'ACIU', 'ACIW', 'ACKY',
+       'ACLC', 'ACLO', 'ACLS', 'ACLX', 'ACM', 'ACMR', 'ACN', 'ACNB',
+       'ACNT', 'ACOG', 'ACON', 'AAUM'], dtype=object), of type: <class 'numpy.ndarray'>
+2025-10-02 22:07:13,081 [INFO] Wczytujê stocks_data z Postgresa...
+2025-10-02 22:07:13,287 [INFO] Pobrano 200 rekordów (2 dni)
+2025-10-02 22:07:13,287 [DEBUG] Kolumny: ['ticker', 'company', 'sector', 'industry', 'country', 'market_cap', 'p_e', 'eps_next_5y', 'perf_week', 'perf_month', 'fifty_two_week_high', 'fifty_two_week_low', 'rel_volume', 'volume', 'price', 'change', 'import_date', 'created_at']
+2025-10-02 22:10:53,212 [INFO] Wczytujê stocks_data z Postgresa...
+2025-10-02 22:10:53,380 [INFO] Pobrano 200 rekordów (2 dni)
+2025-10-02 22:10:53,381 [DEBUG] Kolumny: ['ticker', 'company', 'sector', 'industry', 'country', 'market_cap', 'p_e', 'eps_next_5y', 'perf_week', 'perf_month', 'fifty_two_week_high', 'fifty_two_week_low', 'rel_volume', 'volume', 'price', 'change', 'import_date', 'created_at']
+2025-10-02 22:12:28,156 [INFO] Wczytujê stocks_data z Postgresa...
+2025-10-02 22:12:28,282 [INFO] Pobrano 200 rekordów (2 dni)
+2025-10-02 22:12:28,284 [DEBUG] Kolumny: ['ticker', 'company', 'sector', 'industry', 'country', 'market_cap', 'p_e', 'eps_next_5y', 'perf_week', 'perf_month', 'fifty_two_week_high', 'fifty_two_week_low', 'rel_volume', 'volume', 'price', 'change', 'import_date', 'created_at']
+2025-10-02 22:12:28,304 [INFO] 2025-10-01: 24 tickerów z sentymentem (z okna 7 dni)
+2025-10-02 22:12:28,320 [INFO] 2025-10-02: brak newsów (okno 7 dni)
+2025-10-02 22:12:39,832 [INFO] Wczytujê stocks_data z Postgresa...
+2025-10-02 22:12:39,848 [INFO] Pobrano 200 rekordów (2 dni)
+2025-10-02 22:12:39,850 [DEBUG] Kolumny: ['ticker', 'company', 'sector', 'industry', 'country', 'market_cap', 'p_e', 'eps_next_5y', 'perf_week', 'perf_month', 'fifty_two_week_high', 'fifty_two_week_low', 'rel_volume', 'volume', 'price', 'change', 'import_date', 'created_at']
+2025-10-02 22:12:39,865 [INFO] 2025-10-01: 24 tickerów z sentymentem (z okna 7 dni)
+2025-10-02 22:12:39,881 [INFO] 2025-10-02: brak newsów (okno 7 dni)
+2025-10-02 22:16:12,597 [INFO] Wczytujê stocks_data z Postgresa...
+2025-10-02 22:16:12,612 [INFO] Pobrano 200 rekordów (2 dni)
+2025-10-02 22:16:12,612 [DEBUG] Kolumny: ['ticker', 'company', 'sector', 'industry', 'country', 'market_cap', 'p_e', 'eps_next_5y', 'perf_week', 'perf_month', 'fifty_two_week_high', 'fifty_two_week_low', 'rel_volume', 'volume', 'price', 'change', 'import_date', 'created_at']
+2025-10-02 22:16:12,640 [INFO] 2025-10-01: 44 tickerów z sentymentem (z okna 7 dni)
+2025-10-02 22:16:12,672 [INFO] 2025-10-02: 44 tickerów z sentymentem (z okna 7 dni)
+2025-10-02 22:20:37,784 [INFO] Wczytujê stocks_data z Postgresa...
+2025-10-02 22:20:37,943 [INFO] Pobrano 200 rekordów (2 dni)
+2025-10-02 22:20:37,946 [DEBUG] Kolumny: ['ticker', 'company', 'sector', 'industry', 'country', 'market_cap', 'p_e', 'eps_next_5y', 'perf_week', 'perf_month', 'fifty_two_week_high', 'fifty_two_week_low', 'rel_volume', 'volume', 'price', 'change', 'import_date', 'created_at']
+2025-10-02 22:20:37,980 [INFO] 2025-10-01: 44 tickerów z sentymentem (z okna 7 dni)
+2025-10-02 22:20:38,018 [INFO] 2025-10-02: 44 tickerów z sentymentem (z okna 7 dni)
+2025-10-02 22:23:05,734 [INFO] Wczytujê stocks_data z Postgresa...
+2025-10-02 22:23:05,749 [INFO] Pobrano 200 rekordów (2 dni)
+2025-10-02 22:23:05,750 [DEBUG] Kolumny: ['ticker', 'company', 'sector', 'industry', 'country', 'market_cap', 'p_e', 'eps_next_5y', 'perf_week', 'perf_month', 'fifty_two_week_high', 'fifty_two_week_low', 'rel_volume', 'volume', 'price', 'change', 'import_date', 'created_at']
+2025-10-02 22:23:05,779 [INFO] 2025-10-01: 44 tickerów z sentymentem (z okna 7 dni)
+2025-10-02 22:23:05,809 [INFO] 2025-10-02: 44 tickerów z sentymentem (z okna 7 dni)
+2025-10-02 22:25:35,656 [INFO] Wczytujê stocks_data z Postgresa...
+2025-10-02 22:25:36,125 [INFO] Pobrano 200 rekordów (2 dni)
+2025-10-02 22:25:36,191 [DEBUG] Kolumny: ['ticker', 'company', 'sector', 'industry', 'country', 'market_cap', 'p_e', 'eps_next_5y', 'perf_week', 'perf_month', 'fifty_two_week_high', 'fifty_two_week_low', 'rel_volume', 'volume', 'price', 'change', 'import_date', 'created_at']
+2025-10-02 22:25:36,261 [INFO] 2025-10-01: 44 tickerów z sentymentem (z okna 7 dni)
+2025-10-02 22:25:36,359 [INFO] 2025-10-02: 44 tickerów z sentymentem (z okna 7 dni)
+2025-10-02 22:25:50,243 [INFO] Wczytujê stocks_data z Postgresa...
+2025-10-02 22:25:50,259 [INFO] Pobrano 200 rekordów (2 dni)
+2025-10-02 22:25:50,262 [DEBUG] Kolumny: ['ticker', 'company', 'sector', 'industry', 'country', 'market_cap', 'p_e', 'eps_next_5y', 'perf_week', 'perf_month', 'fifty_two_week_high', 'fifty_two_week_low', 'rel_volume', 'volume', 'price', 'change', 'import_date', 'created_at']
+2025-10-02 22:25:50,286 [INFO] 2025-10-01: 44 tickerów z sentymentem (z okna 7 dni)
+2025-10-02 22:25:50,313 [INFO] 2025-10-02: 44 tickerów z sentymentem (z okna 7 dni)
+2025-10-02 22:25:59,376 [INFO] Wczytujê stocks_data z Postgresa...
+2025-10-02 22:25:59,391 [INFO] Pobrano 200 rekordów (2 dni)
+2025-10-02 22:25:59,393 [DEBUG] Kolumny: ['ticker', 'company', 'sector', 'industry', 'country', 'market_cap', 'p_e', 'eps_next_5y', 'perf_week', 'perf_month', 'fifty_two_week_high', 'fifty_two_week_low', 'rel_volume', 'volume', 'price', 'change', 'import_date', 'created_at']
+2025-10-02 22:25:59,421 [INFO] 2025-10-01: 44 tickerów z sentymentem (z okna 7 dni)
+2025-10-02 22:25:59,472 [INFO] 2025-10-02: 44 tickerów z sentymentem (z okna 7 dni)
+2025-10-02 22:27:07,465 [INFO] Wczytujê stocks_data z Postgresa...
+2025-10-02 22:27:07,634 [INFO] Pobrano 200 rekordów (2 dni)
+2025-10-02 22:27:07,677 [DEBUG] Kolumny: ['ticker', 'company', 'sector', 'industry', 'country', 'market_cap', 'p_e', 'eps_next_5y', 'perf_week', 'perf_month', 'fifty_two_week_high', 'fifty_two_week_low', 'rel_volume', 'volume', 'price', 'change', 'import_date', 'created_at']
+2025-10-02 22:27:07,709 [INFO] 2025-10-01: 1 tickerów z sentymentem (z okna 7 dni)
+2025-10-02 22:27:07,739 [INFO] 2025-10-02: 1 tickerów z sentymentem (z okna 7 dni)
+2025-10-02 22:27:14,641 [INFO] Wczytujê stocks_data z Postgresa...
+2025-10-02 22:27:14,656 [INFO] Pobrano 200 rekordów (2 dni)
+2025-10-02 22:27:14,658 [DEBUG] Kolumny: ['ticker', 'company', 'sector', 'industry', 'country', 'market_cap', 'p_e', 'eps_next_5y', 'perf_week', 'perf_month', 'fifty_two_week_high', 'fifty_two_week_low', 'rel_volume', 'volume', 'price', 'change', 'import_date', 'created_at']
+2025-10-02 22:27:14,670 [INFO] 2025-10-01: 1 tickerów z sentymentem (z okna 7 dni)
+2025-10-02 22:27:14,680 [INFO] 2025-10-02: 1 tickerów z sentymentem (z okna 7 dni)
+2025-10-02 22:27:16,979 [INFO] Wczytujê stocks_data z Postgresa...
+2025-10-02 22:27:16,996 [INFO] Pobrano 200 rekordów (2 dni)
+2025-10-02 22:27:16,998 [DEBUG] Kolumny: ['ticker', 'company', 'sector', 'industry', 'country', 'market_cap', 'p_e', 'eps_next_5y', 'perf_week', 'perf_month', 'fifty_two_week_high', 'fifty_two_week_low', 'rel_volume', 'volume', 'price', 'change', 'import_date', 'created_at']
+2025-10-02 22:27:17,010 [INFO] 2025-10-01: brak newsów (okno 7 dni)
+2025-10-02 22:27:17,021 [INFO] 2025-10-02: brak newsów (okno 7 dni)
+2025-10-02 22:28:47,520 [INFO] Wczytujê stocks_data z Postgresa...
+2025-10-02 22:28:47,824 [INFO] Pobrano 200 rekordów (2 dni)
+2025-10-02 22:28:47,825 [DEBUG] Kolumny: ['ticker', 'company', 'sector', 'industry', 'country', 'market_cap', 'p_e', 'eps_next_5y', 'perf_week', 'perf_month', 'fifty_two_week_high', 'fifty_two_week_low', 'rel_volume', 'volume', 'price', 'change', 'import_date', 'created_at']
+2025-10-02 22:28:47,843 [INFO] 2025-10-01: 1 tickerów z sentymentem (z okna 7 dni)
+2025-10-02 22:28:47,854 [INFO] 2025-10-02: 1 tickerów z sentymentem (z okna 7 dni)
+2025-10-02 22:31:31,559 [INFO] Wczytujê stocks_data z Postgresa...
+2025-10-02 22:31:31,698 [INFO] Pobrano 200 rekordów (2 dni)
+2025-10-02 22:31:31,700 [DEBUG] Kolumny: ['ticker', 'company', 'sector', 'industry', 'country', 'market_cap', 'p_e', 'eps_next_5y', 'perf_week', 'perf_month', 'fifty_two_week_high', 'fifty_two_week_low', 'rel_volume', 'volume', 'price', 'change', 'import_date', 'created_at']
+2025-10-02 22:31:31,727 [INFO] 2025-10-01: 44 tickerów z sentymentem (z okna 7 dni)
+2025-10-02 22:31:31,749 [INFO] 2025-10-02: 44 tickerów z sentymentem (z okna 7 dni)
+2025-10-02 22:31:32,031 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAPL+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-02 22:31:32,791 [INFO] RSS: znaleziono 100 pozycji dla AAPL
+2025-10-02 22:31:42,055 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ACN+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-02 22:31:43,048 [INFO] RSS: znaleziono 100 pozycji dla ACN
+2025-10-02 22:45:48,180 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAPL+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-02 22:45:49,005 [INFO] RSS: znaleziono 100 pozycji dla AAPL
+2025-10-02 22:45:51,780 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AB+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-02 22:45:52,704 [INFO] RSS: znaleziono 100 pozycji dla AB
+2025-10-02 22:45:57,219 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAMI+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-02 22:45:57,976 [INFO] RSS: znaleziono 70 pozycji dla AAMI
+2025-10-02 22:45:59,482 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAMI+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-02 22:45:59,819 [INFO] RSS: znaleziono 70 pozycji dla AAMI
+2025-10-02 22:46:02,956 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAMI+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-02 22:46:03,309 [INFO] RSS: znaleziono 70 pozycji dla AAMI
+2025-10-02 22:46:04,533 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ACLX+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-02 22:46:05,218 [INFO] RSS: znaleziono 72 pozycji dla ACLX
+2025-10-02 22:46:07,350 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAPL+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-02 22:46:07,733 [INFO] RSS: znaleziono 100 pozycji dla AAPL
+2025-10-02 22:46:21,053 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ABG+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-02 22:46:22,087 [INFO] RSS: znaleziono 100 pozycji dla ABG
+2025-10-02 22:46:23,335 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ABBV+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-02 22:46:24,271 [INFO] RSS: znaleziono 100 pozycji dla ABBV
+2025-10-02 22:46:25,370 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ABT+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-02 22:46:26,292 [INFO] RSS: znaleziono 100 pozycji dla ABT
+2025-10-02 22:46:28,719 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ACN+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-02 22:46:29,618 [INFO] RSS: znaleziono 100 pozycji dla ACN
+2025-10-02 23:10:58,266 [INFO] Pobrano 20 spó³ek. Czas: 0:00:00.866749
+2025-10-02 23:10:58,277 [INFO] No                                   1
+Ticker                               A
+Company       Agilent Technologies Inc
+Sector                      Healthcare
+Industry        Diagnostics & Research
+Country                            USA
+Market Cap                      39.32B
+P/E                              32.53
+Price                           138.70
+Change                           0.09%
+Volume                       2,207,996
+Name: 0, dtype: object
+2025-10-02 23:10:58,277 [INFO] Kolumny w df: ['No', 'Ticker', 'Company', 'Sector', 'Industry', 'Country', 'Market Cap', 'P/E', 'Price', 'Change', 'Volume']
+2025-10-02 23:10:58,277 [INFO] Pierwsze 5 wartoœci Market Cap: 0    39.32B
+1     9.02B
+2         -
+3         -
+4         -
+Name: Market Cap, dtype: object
+2025-10-02 23:10:58,288 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\data\stocks\20251002\finviz_stocks_20251002.csv
+2025-10-02 23:11:06,878 [INFO] Pobrano 20 spó³ek. Czas: 0:00:01.102184
+2025-10-02 23:11:06,881 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=A+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-02 23:11:07,917 [INFO] RSS: znaleziono 100 pozycji dla A
+2025-10-02 23:11:07,942 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AA+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-02 23:11:08,922 [INFO] RSS: znaleziono 100 pozycji dla AA
+2025-10-02 23:11:08,943 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAA+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-02 23:11:10,069 [INFO] RSS: znaleziono 100 pozycji dla AAA
+2025-10-02 23:11:10,092 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAAA+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-02 23:11:10,888 [INFO] RSS: znaleziono 31 pozycji dla AAAA
+2025-10-02 23:11:10,909 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAAU+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-02 23:11:11,472 [INFO] RSS: znaleziono 46 pozycji dla AAAU
+2025-10-02 23:11:11,488 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AACB+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-02 23:11:12,205 [INFO] RSS: znaleziono 45 pozycji dla AACB
+2025-10-02 23:11:12,222 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AACG+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-02 23:11:12,719 [INFO] RSS: znaleziono 45 pozycji dla AACG
+2025-10-02 23:11:12,742 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AACI+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-02 23:11:13,185 [INFO] RSS: znaleziono 11 pozycji dla AACI
+2025-10-02 23:11:13,200 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AACT+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-02 23:11:13,969 [INFO] RSS: znaleziono 62 pozycji dla AACT
+2025-10-02 23:11:13,988 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AADR+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-02 23:11:14,451 [INFO] RSS: znaleziono 10 pozycji dla AADR
+2025-10-02 23:11:14,468 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAL+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-02 23:11:15,352 [INFO] RSS: znaleziono 100 pozycji dla AAL
+2025-10-02 23:11:15,371 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AALG+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-02 23:11:15,789 [INFO] RSS: znaleziono 3 pozycji dla AALG
+2025-10-02 23:11:15,803 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAM+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-02 23:11:16,744 [INFO] RSS: znaleziono 100 pozycji dla AAM
+2025-10-02 23:11:16,764 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAME+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-02 23:11:17,317 [INFO] RSS: znaleziono 46 pozycji dla AAME
+2025-10-02 23:11:17,333 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAMI+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-02 23:11:17,974 [INFO] RSS: znaleziono 70 pozycji dla AAMI
+2025-10-02 23:11:17,994 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAOI+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-02 23:11:18,901 [INFO] RSS: znaleziono 100 pozycji dla AAOI
+2025-10-02 23:11:18,922 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAON+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-02 23:11:19,872 [INFO] RSS: znaleziono 100 pozycji dla AAON
+2025-10-02 23:11:19,895 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAP+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-02 23:11:20,861 [INFO] RSS: znaleziono 100 pozycji dla AAP
+2025-10-02 23:11:20,882 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAPB+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-02 23:11:21,418 [INFO] RSS: znaleziono 11 pozycji dla AAPB
+2025-10-02 23:11:21,432 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAPD+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-02 23:11:22,060 [INFO] RSS: znaleziono 40 pozycji dla AAPD
+2025-10-02 23:11:43,894 [INFO] Wczytujê stocks_data z Postgresa...
+2025-10-02 23:11:44,063 [INFO] Pobrano 200 rekordów (2 dni)
+2025-10-02 23:11:44,066 [DEBUG] Kolumny: ['ticker', 'company', 'sector', 'industry', 'country', 'market_cap', 'p_e', 'eps_next_5y', 'perf_week', 'perf_month', 'fifty_two_week_high', 'fifty_two_week_low', 'rel_volume', 'volume', 'price', 'change', 'import_date', 'created_at']
+2025-10-02 23:11:44,105 [INFO] 2025-10-01: 44 tickerów z sentymentem (z okna 7 dni)
+2025-10-02 23:11:44,135 [INFO] 2025-10-02: 44 tickerów z sentymentem (z okna 7 dni)
+2025-10-02 23:11:44,427 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAPL+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-02 23:11:45,396 [INFO] RSS: znaleziono 100 pozycji dla AAPL
+2025-10-02 23:13:49,427 [INFO] Wczytujê stocks_data z Postgresa...
+2025-10-02 23:13:49,583 [INFO] Pobrano 200 rekordów (2 dni)
+2025-10-02 23:13:49,587 [DEBUG] Kolumny: ['ticker', 'company', 'sector', 'industry', 'country', 'market_cap', 'p_e', 'eps_next_5y', 'perf_week', 'perf_month', 'fifty_two_week_high', 'fifty_two_week_low', 'rel_volume', 'volume', 'price', 'change', 'import_date', 'created_at']
+2025-10-02 23:13:49,614 [INFO] 2025-10-01: 44 tickerów z sentymentem (z okna 7 dni)
+2025-10-02 23:13:49,641 [INFO] 2025-10-02: 44 tickerów z sentymentem (z okna 7 dni)
+2025-10-02 23:13:49,919 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAPL+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-02 23:13:51,094 [INFO] RSS: znaleziono 100 pozycji dla AAPL
+2025-10-02 23:15:47,710 [INFO] Wczytujê stocks_data z Postgresa...
+2025-10-02 23:15:47,850 [INFO] Pobrano 200 rekordów (2 dni)
+2025-10-02 23:15:47,853 [DEBUG] Kolumny: ['ticker', 'company', 'sector', 'industry', 'country', 'market_cap', 'p_e', 'eps_next_5y', 'perf_week', 'perf_month', 'fifty_two_week_high', 'fifty_two_week_low', 'rel_volume', 'volume', 'price', 'change', 'import_date', 'created_at']
+2025-10-02 23:15:47,880 [INFO] 2025-10-01: 44 tickerów z sentymentem (z okna 7 dni)
+2025-10-02 23:15:47,909 [INFO] 2025-10-02: 44 tickerów z sentymentem (z okna 7 dni)
+2025-10-02 23:15:48,172 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAPL+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-02 23:15:48,886 [INFO] RSS: znaleziono 100 pozycji dla AAPL
+2025-10-02 23:16:09,558 [INFO] Wczytujê stocks_data z Postgresa...
+2025-10-02 23:16:09,687 [INFO] Pobrano 200 rekordów (2 dni)
+2025-10-02 23:16:09,691 [DEBUG] Kolumny: ['ticker', 'company', 'sector', 'industry', 'country', 'market_cap', 'p_e', 'eps_next_5y', 'perf_week', 'perf_month', 'fifty_two_week_high', 'fifty_two_week_low', 'rel_volume', 'volume', 'price', 'change', 'import_date', 'created_at']
+2025-10-02 23:16:09,715 [INFO] 2025-10-01: 44 tickerów z sentymentem (z okna 7 dni)
+2025-10-02 23:16:09,741 [INFO] 2025-10-02: 44 tickerów z sentymentem (z okna 7 dni)
+2025-10-02 23:16:10,007 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAPL+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-02 23:16:10,338 [INFO] RSS: znaleziono 100 pozycji dla AAPL
+2025-10-04 20:17:05,619 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-04 20:17:10,337 [INFO] Wczytujê stocks_data z Postgresa...
+2025-10-04 20:17:10,650 [INFO] Pobrano 200 rekordów (2 dni)
+2025-10-04 20:17:10,651 [DEBUG] Kolumny: ['ticker', 'company', 'sector', 'industry', 'country', 'market_cap', 'p_e', 'eps_next_5y', 'perf_week', 'perf_month', 'fifty_two_week_high', 'fifty_two_week_low', 'rel_volume', 'volume', 'price', 'change', 'import_date', 'created_at']
+2025-10-04 20:17:10,732 [INFO] 2025-10-01: 44 tickerów z sentymentem (z okna 7 dni)
+2025-10-04 20:17:10,751 [INFO] 2025-10-02: 44 tickerów z sentymentem (z okna 7 dni)
+2025-10-04 20:17:11,302 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAPL+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-04 20:17:12,128 [INFO] RSS: znaleziono 100 pozycji dla AAPL
+2025-10-04 20:17:15,587 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/logout?scope=global "HTTP/2 204 No Content"

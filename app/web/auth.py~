@@ -1,0 +1,52 @@
+import streamlit as st
+from supabase import create_client, Client
+from dotenv import load_dotenv
+import os
+
+load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '..', '..', '.env'))
+SUPABASE_URL = os.getenv("SB_URL")
+SUPABASE_KEY = os.getenv("SB_API")
+supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
+
+
+
+def login(email: str, password: str):
+    """Logowanie użytkownika"""
+    try:
+        res = supabase.auth.sign_in_with_password({"email": email, "password": password})
+        user = res.user
+        if user:
+            st.session_state['user'] = {
+                "id": user.id,
+                "email": user.email
+            }
+            st.success(f"✅ Zalogowano: {email}")
+            return True
+        else:
+            st.error("❌ Niepoprawne dane logowania")
+    except Exception as e:
+        st.error(f"⚠️ Błąd logowania: {e}")
+    return False
+
+
+def logout():
+    """Wylogowanie użytkownika"""
+    try:
+        supabase.auth.sign_out()
+    except Exception:
+        pass
+    st.session_state['user'] = None
+    st.success("👋 Wylogowano")
+
+
+def register(email: str, password: str):
+    """Rejestracja nowego użytkownika"""
+    try:
+        res = supabase.auth.sign_up({"email": email, "password": password})
+        user = res.user
+        if user:
+            st.success(f"🎉 Utworzono konto: {email}")
+        else:
+            st.error("❌ Rejestracja nie powiodła się")
+    except Exception as e:
+        st.error(f"⚠️ Błąd rejestracji: {e}")

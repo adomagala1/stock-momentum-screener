@@ -1,0 +1,23 @@
+import glob
+import logging
+import os.path
+from helpers import get_exact_file
+from convert_data import csv_file_to_df
+import pandas as pd
+
+
+
+def analyze_from_csv(end_width: str, operation: int) -> pd.DataFrame:
+    file = get_exact_file(end_width)
+    if operation == 1:
+        pass
+
+
+def top_gainers(df: pd.DataFrame, n=10):
+    """Zwraca top n spółek z największym wzrostem do 52W high."""
+    df["gap_to_high"] = (df["fifty_two_week_high"] - df["price"]) / df["fifty_two_week_high"] * 100
+    return df.sort_values("gap_to_high").head(n)
+
+
+if __name__ == "__main__":
+    pass

@@ -1,0 +1,37 @@
+2025-09-23 22:45:34,860 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAPL+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-23 22:45:35,718 [INFO] RSS: znaleziono 100 pozycji dla AAPL
+2025-09-23 22:45:44,624 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAPL+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-23 22:45:45,034 [INFO] RSS: znaleziono 100 pozycji dla AAPL
+2025-09-24 09:56:10,754 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAPL+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 09:56:11,581 [INFO] RSS: znaleziono 100 pozycji dla AAPL
+2025-09-24 10:14:44,522 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAPL+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 10:14:45,325 [INFO] RSS: znaleziono 100 pozycji dla AAPL
+2025-09-24 10:16:57,685 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAPL+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 10:16:58,715 [INFO] RSS: znaleziono 100 pozycji dla AAPL
+2025-09-24 10:16:58,744 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\app\data\news\news_data_20250924.csv
+2025-09-24 10:16:58,744 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=MSFT+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 10:16:59,556 [INFO] RSS: znaleziono 100 pozycji dla MSFT
+2025-09-24 10:16:59,580 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\app\data\news\news_data_20250924.csv
+2025-09-24 10:16:59,580 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=TSLA+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 10:17:00,459 [INFO] RSS: znaleziono 101 pozycji dla TSLA
+2025-09-24 10:17:00,479 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\app\data\news\news_data_20250924.csv
+2025-09-24 10:17:00,479 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=DLO+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 10:17:01,300 [INFO] RSS: znaleziono 100 pozycji dla DLO
+2025-09-24 10:17:01,319 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\app\data\news\news_data_20250924.csv
+2025-09-24 10:18:16,154 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAPL+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 10:18:16,591 [INFO] RSS: znaleziono 100 pozycji dla AAPL
+2025-09-24 10:18:16,617 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=MSFT+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 10:18:17,010 [INFO] RSS: znaleziono 100 pozycji dla MSFT
+2025-09-24 10:18:17,029 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=TSLA+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 10:18:17,424 [INFO] RSS: znaleziono 101 pozycji dla TSLA
+2025-09-24 10:18:17,448 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=DLO+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 10:18:17,855 [INFO] RSS: znaleziono 100 pozycji dla DLO
+2025-09-24 10:18:59,734 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAPL+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 10:19:00,647 [INFO] RSS: znaleziono 100 pozycji dla AAPL
+2025-09-24 10:19:00,668 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=MSFT+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 10:19:01,465 [INFO] RSS: znaleziono 100 pozycji dla MSFT
+2025-09-24 10:19:01,482 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=TSLA+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 10:19:02,348 [INFO] RSS: znaleziono 102 pozycji dla TSLA
+2025-09-24 10:19:02,365 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=DLO+stock&hl=en-US&gl=US&ceid=US:en
+2025-09-24 10:19:03,081 [INFO] RSS: znaleziono 100 pozycji dla DLO
+2025-09-24 10:19:03,108 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\app\data\news\news_data_20250924.csv

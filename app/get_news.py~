@@ -1,0 +1,178 @@
+import requests
+import feedparser
+import pandas as pd
+from urllib.parse import urljoin, quote_plus
+from datetime import datetime, timedelta
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+import logging
+import time
+
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+from bs4 import BeautifulSoup
+
+logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
+
+HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Language": "en-US,en;q=0.9",
+    "Referer": "https://www.google.com/",
+    "Connection": "keep-alive",
+    "DNT": "1"
+}
+
+
+def fetch_google_news_rss(ticker, country='US', lang='en'):
+    q = quote_plus(f"{ticker} stock")
+    rss = f"https://news.google.com/rss/search?q={q}&hl={lang}-{country}&gl={country}&ceid={country}:{lang}"
+    logging.info(f"Pobieram RSS: {rss}")
+    feed = feedparser.parse(rss)
+    items = []
+    for e in feed.entries:
+        source = None
+        if 'source' in e:
+            source = e.source.get('title') if isinstance(e.source, dict) else e.get('source')
+        published = e.get('published') or e.get('pubDate') or None
+        items.append({
+            "ticker": ticker,
+            "headline": e.get("title"),
+            "link": e.get("link"),
+            "source": source,
+            "published": published
+        })
+    df = pd.DataFrame(items)
+    logging.info(f"RSS: znaleziono {len(df)} pozycji dla {ticker}")
+    return df
+
+
+def fetch_finnhub_news(symbol, finnhub_key, days=7):
+    if not finnhub_key:
+        return pd.DataFrame()
+    to_date = datetime.utcnow().date()
+    from_date = to_date - timedelta(days=days)
+    url = f"https://finnhub.io/api/v1/company-news?symbol={symbol}&from={from_date}&to={to_date}&token={finnhub_key}"
+    logging.info(f"Pobieram Finnhub: {url}")
+    r = requests.get(url, timeout=15, headers=HEADERS)
+    r.raise_for_status()
+    data = r.json()
+    rows = []
+    for it in data:
+        ts = it.get("datetime")
+        published = datetime.utcfromtimestamp(ts).isoformat() if ts else None
+        rows.append({
+            "ticker": symbol,
+            "headline": it.get("headline"),
+            "link": it.get("url"),
+            "source": it.get("source"),
+            "published": published
+        })
+    df = pd.DataFrame(rows)
+    logging.info(f"Finnhub: znaleziono {len(df)} pozycji dla {symbol}")
+    return df
+
+
+def fetch_seekingalpha_selenium(ticker, wait=3, headless=True):
+    base = f"https://seekingalpha.com/symbol/{ticker}/news"
+    logging.info(f"Selenium: renderuję {base}")
+    opts = Options()
+    if headless:
+        opts.add_argument("--headless=new")
+    opts.add_argument("--no-sandbox")
+    opts.add_argument("--disable-dev-shm-usage")
+    opts.add_argument("--disable-blink-features=AutomationControlled")
+    opts.add_argument("--disable-infobars")
+    opts.add_argument("--disable-extensions")
+    service = Service(ChromeDriverManager().install())
+    driver = webdriver.Chrome(service=service, options=opts)
+    try:
+        driver.get(base)
+        time.sleep(wait)
+        soup = BeautifulSoup(driver.page_source, "html.parser")
+    finally:
+        driver.quit()
+
+    items = []
+    for a in soup.select('a[data-test-id="post-list-item-title"]'):
+        headline = a.get_text(strip=True)
+        link = a.get('href')
+        if link and link.startswith('/'):
+            link = urljoin("https://seekingalpha.com", link)
+        article = a.find_parent('article') or a.parent
+        published = None
+        if article:
+            t = article.select_one('time')
+            if t:
+                published = t.get('datetime') or t.get_text(strip=True)
+        items.append({
+            "ticker": ticker,
+            "headline": headline,
+            "link": link,
+            "source": "SeekingAlpha",
+            "published": published
+        })
+    df = pd.DataFrame(items)
+    logging.info(f"Selenium: znaleziono {len(df)} artykułów dla {ticker}")
+    return df
+
+
+# ---------- Sentiment helper ----------
+def add_sentiment(df, text_col='headline'):
+    if df.empty:
+        return df
+    analyzer = SentimentIntensityAnalyzer()
+    df = df.copy()
+    df['sentiment'] = df[text_col].fillna("").apply(lambda t: analyzer.polarity_scores(t)['compound'])
+    return df
+
+
+# ---------- Unified fetch function ----------
+def fetch_news_for_ticker(ticker, finnhub_key=None, use_selenium=False):
+    # 1) Try Google RSS
+    df = fetch_google_news_rss(ticker)
+    if not df.empty:
+        return add_sentiment(df)
+
+    # 2) Try Finnhub (if key provided)
+    if finnhub_key:
+        try:
+            df = fetch_finnhub_news(ticker, finnhub_key)
+            if not df.empty:
+                return add_sentiment(df)
+        except Exception as e:
+            logging.error(f"Finnhub error: {e}")
+
+    # 3) Selenium fallback (if requested)
+    if use_selenium:
+        try:
+            df = fetch_seekingalpha_selenium(ticker, headless=True)
+            if not df.empty:
+                return add_sentiment(df)
+        except Exception as e:
+            logging.error(f"Selenium error: {e}")
+
+    # none found
+    logging.info(f"Brak newsów dla {ticker} (RSS + Finnhub + Selenium przeszukane).")
+    return pd.DataFrame()
+
+
+
+#tylko jesli algorytm wykryje ze jest potencjal w spolce to zapisuje
+if __name__ == "__main__":
+    TICKERS = ["AAPL", "MSFT", "TSLA", "DLO"]
+    FINNHUB_KEY = None
+    ALL = []
+    for t in TICKERS:
+        df = fetch_news_for_ticker(t, finnhub_key=FINNHUB_KEY, use_selenium=False)
+        if not df.empty:
+            ALL.append(df)
+        else:
+            logging.info(f"Brak wyników dla {t}")
+
+    if ALL:
+        final = pd.concat(ALL, ignore_index=True)
+        print(final[['ticker', 'headline', 'link', 'source', 'published', 'sentiment']].head(10))
+    else:
+        print("Brak artykułów dla podanych tickerów.")

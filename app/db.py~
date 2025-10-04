@@ -1,0 +1,7 @@
+# pip install pymongo
+from pymongo import MongoClient
+
+# 1. Połączenie
+client = MongoClient("mongodb://localhost:27017/")
+db = client["stocks_db"]            # nasza baza
+news_collection = db["news"]        # kolekcja newsów

@@ -1,0 +1,23 @@
+2025-10-01 22:44:30,064 [INFO] STARTING predictive_model_historical
+2025-10-01 22:44:30,156 [INFO] Tabela stocks_predictions is ready (if not existed).
+2025-10-01 22:44:30,157 [INFO] Pobieram wszystkie dane z stocks_data...
+2025-10-01 22:44:30,178 [INFO] Pobrano 100 rekordów, unikalne dni: 1
+2025-10-01 22:44:30,181 [INFO] Processing dates: [datetime.date(2025, 10, 1)]
+2025-10-01 22:44:30,181 [INFO] --- PRZETWARZANIE DNIA 2025-10-01 (next: None) ---
+2025-10-01 22:44:30,181 [INFO] Brak next_day dla 2025-10-01 — labelowanie na podstawie same-day change > 2.0%
+2025-10-01 22:44:30,203 [INFO] Dzien 2025-10-01: 67 rekordów po merge sentiment
+2025-10-01 22:44:30,634 [INFO] Dzieñ 2025-10-01 - classification report:
+              precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00        11
+           1       1.00      1.00      1.00         3
+
+    accuracy                           1.00        14
+   macro avg       1.00      1.00      1.00        14
+weighted avg       1.00      1.00      1.00        14
+
+2025-10-01 22:44:30,704 [INFO] Dzieñ 2025-10-01 - top tickers: ['ACB', 'ABAT', 'ABSI', 'ABP', 'ACHR', 'ABCL', 'AAP', 'AAUC', 'AAPG', 'ABOS', 'AARD', 'AA', 'ACIU', 'ACMR', 'ACN', 'ACLX', 'ABVX', 'ACNT', 'AAOI', 'ABEV']
+2025-10-01 22:44:30,711 [INFO] Zapisano top_stocks_predictions_2025-10-01.csv
+2025-10-01 22:44:30,722 [INFO] Zapisano top dla 2025-10-01 do stocks_predictions (append).
+2025-10-01 22:44:30,725 [INFO] Zapisano zbiorczy plik top_stocks_predictions_all_days.csv
+2025-10-01 22:44:30,725 [INFO] FINISHED predictive_model_historical

@@ -1,0 +1,279 @@
+2025-09-24 23:23:31,113 [INFO] No                                   1
+Ticker                               A
+Company       Agilent Technologies Inc
+Sector                      Healthcare
+Industry        Diagnostics & Research
+Country                            USA
+Market Cap                      35.26B
+P/E                              29.17
+Price                           124.38
+Change                          -1.24%
+Volume                       1,239,904
+Name: 0, dtype: object
+2025-09-24 23:23:31,118 [INFO] Pobrano 10 spó³ek. Czas: 0:00:00.674622
+2025-09-24 23:23:31,122 [INFO] No                                   1
+Ticker                               A
+Company       Agilent Technologies Inc
+Sector                      Healthcare
+Industry        Diagnostics & Research
+Country                            USA
+Market Cap                         NaN
+P/E                              29.17
+Price                           124.38
+Change                           -1.24
+Volume                         1239904
+Name: 0, dtype: object
+2025-09-24 23:23:31,130 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\app\data\stocks\finviz_stocks_20250924.csv
+2025-09-24 23:25:55,730 [INFO] No                                   1
+Ticker                               A
+Company       Agilent Technologies Inc
+Sector                      Healthcare
+Industry        Diagnostics & Research
+Country                            USA
+Market Cap                      35.26B
+P/E                              29.17
+Price                           124.38
+Change                          -1.24%
+Volume                       1,239,904
+Name: 0, dtype: object
+2025-09-24 23:25:55,734 [INFO] Pobrano 10 spó³ek. Czas: 0:00:00.684331
+2025-09-24 23:25:55,737 [INFO] No                                   1
+Ticker                               A
+Company       Agilent Technologies Inc
+Sector                      Healthcare
+Industry        Diagnostics & Research
+Country                            USA
+Market Cap                         NaN
+P/E                              29.17
+Price                           124.38
+Change                           -1.24
+Volume                         1239904
+Name: 0, dtype: object
+2025-09-24 23:25:55,745 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\app\data\stocks\finviz_stocks_20250924.csv
+2025-09-24 23:26:57,986 [INFO] No                                   1
+Ticker                               A
+Company       Agilent Technologies Inc
+Sector                      Healthcare
+Industry        Diagnostics & Research
+Country                            USA
+Market Cap                      35.26B
+P/E                              29.17
+Price                           124.38
+Change                          -1.24%
+Volume                       1,239,904
+Name: 0, dtype: object
+2025-09-24 23:26:57,992 [INFO] Pobrano 10 spó³ek. Czas: 0:00:00.694753
+2025-09-24 23:26:57,994 [INFO] No                                   1
+Ticker                               A
+Company       Agilent Technologies Inc
+Sector                      Healthcare
+Industry        Diagnostics & Research
+Country                            USA
+Market Cap                         NaN
+P/E                              29.17
+Price                           124.38
+Change                           -1.24
+Volume                         1239904
+Name: 0, dtype: object
+2025-09-24 23:26:57,994 [INFO] Kolumny w df: ['No', 'Ticker', 'Company', 'Sector', 'Industry', 'Country', 'Market Cap', 'P/E', 'Price', 'Change', 'Volume']
+2025-09-24 23:26:57,994 [INFO] Pierwsze 5 wartoœci Market Cap: 0   NaN
+1   NaN
+2   NaN
+3   NaN
+4   NaN
+Name: Market Cap, dtype: float64
+2025-09-24 23:26:58,003 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\app\data\stocks\finviz_stocks_20250924.csv
+2025-09-24 23:30:08,567 [INFO] Pobrano 10 spó³ek, pierwszy wiersz: {'No': '1', 'Ticker': 'A', 'Company': 'Agilent Technologies Inc', 'Sector': 'Healthcare', 'Industry': 'Diagnostics & Research', 'Country': 'USA', 'Market Cap': '35.26B', 'P/E': '29.17', 'Price': '124.38', 'Change': '-1.24%', 'Volume': '1,239,904'}
+2025-09-24 23:30:08,569 [INFO] No                                   1
+Ticker                               A
+Company       Agilent Technologies Inc
+Sector                      Healthcare
+Industry        Diagnostics & Research
+Country                            USA
+Market Cap                      35.26B
+P/E                              29.17
+Price                           124.38
+Change                          -1.24%
+Volume                       1,239,904
+Name: 0, dtype: object
+2025-09-24 23:30:08,570 [INFO] Kolumny w df: ['No', 'Ticker', 'Company', 'Sector', 'Industry', 'Country', 'Market Cap', 'P/E', 'Price', 'Change', 'Volume']
+2025-09-24 23:30:08,570 [INFO] Pierwsze 5 wartoœci Market Cap: 0    35.26B
+1     8.09B
+2         -
+3         -
+4         -
+Name: Market Cap, dtype: object
+2025-09-24 23:30:08,579 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\app\data\stocks\finviz_stocks_20250924.csv
+2025-09-24 23:31:12,276 [INFO] Pierwszy rekord:
+No                                   1
+Ticker                               A
+Company       Agilent Technologies Inc
+Sector                      Healthcare
+Industry        Diagnostics & Research
+Country                            USA
+Market Cap                      35.26B
+P/E                              29.17
+Price                           124.38
+Change                          -1.24%
+Volume                       1,239,904
+Name: 0, dtype: object
+2025-09-24 23:31:12,279 [INFO] Pobrano 10 spó³ek. Czas: 0:00:00.680049
+2025-09-24 23:31:12,282 [INFO] No                                   1
+Ticker                               A
+Company       Agilent Technologies Inc
+Sector                      Healthcare
+Industry        Diagnostics & Research
+Country                            USA
+Market Cap                         NaN
+P/E                              29.17
+Price                           124.38
+Change                           -1.24
+Volume                         1239904
+Name: 0, dtype: object
+2025-09-24 23:31:12,282 [INFO] Kolumny w df: ['No', 'Ticker', 'Company', 'Sector', 'Industry', 'Country', 'Market Cap', 'P/E', 'Price', 'Change', 'Volume']
+2025-09-24 23:31:12,283 [INFO] Pierwsze 5 wartoœci Market Cap: 0   NaN
+1   NaN
+2   NaN
+3   NaN
+4   NaN
+Name: Market Cap, dtype: float64
+2025-09-24 23:31:12,291 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\app\data\stocks\finviz_stocks_20250924.csv
+2025-09-24 23:31:59,089 [INFO] Pierwszy rekord:
+No                                   1
+Ticker                               A
+Company       Agilent Technologies Inc
+Sector                      Healthcare
+Industry        Diagnostics & Research
+Country                            USA
+Market Cap                      35.26B
+P/E                              29.17
+Price                           124.38
+Change                          -1.24%
+Volume                       1,239,904
+Name: 0, dtype: object
+2025-09-24 23:31:59,093 [INFO] Pobrano 10 spó³ek. Czas: 0:00:00.647853
+2025-09-24 23:31:59,095 [INFO] No                                   1
+Ticker                               A
+Company       Agilent Technologies Inc
+Sector                      Healthcare
+Industry        Diagnostics & Research
+Country                            USA
+Market Cap                         NaN
+P/E                              29.17
+Price                           124.38
+Change                           -1.24
+Volume                         1239904
+Name: 0, dtype: object
+2025-09-24 23:31:59,095 [INFO] Kolumny w df: ['No', 'Ticker', 'Company', 'Sector', 'Industry', 'Country', 'Market Cap', 'P/E', 'Price', 'Change', 'Volume']
+2025-09-24 23:31:59,096 [INFO] Pierwsze 5 wartoœci Market Cap: 0   NaN
+1   NaN
+2   NaN
+3   NaN
+4   NaN
+Name: Market Cap, dtype: float64
+2025-09-24 23:31:59,104 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\app\data\stocks\finviz_stocks_20250924.csv
+2025-09-24 23:32:17,330 [INFO] Pobrano 10 spó³ek. Czas: 0:00:00.649577
+2025-09-24 23:32:17,334 [INFO] No                                   1
+Ticker                               A
+Company       Agilent Technologies Inc
+Sector                      Healthcare
+Industry        Diagnostics & Research
+Country                            USA
+Market Cap                      35.26B
+P/E                              29.17
+Price                           124.38
+Change                          -1.24%
+Volume                       1,239,904
+Name: 0, dtype: object
+2025-09-24 23:32:17,334 [INFO] Kolumny w df: ['No', 'Ticker', 'Company', 'Sector', 'Industry', 'Country', 'Market Cap', 'P/E', 'Price', 'Change', 'Volume']
+2025-09-24 23:32:17,334 [INFO] Pierwsze 5 wartoœci Market Cap: 0    35.26B
+1     8.09B
+2         -
+3         -
+4         -
+Name: Market Cap, dtype: object
+2025-09-24 23:32:17,343 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\app\data\stocks\finviz_stocks_20250924.csv
+2025-09-25 22:39:21,906 [INFO] Pobrano 10 spó³ek. Czas: 0:00:00.755112
+2025-09-25 22:39:21,910 [INFO] No                                   1
+Ticker                               A
+Company       Agilent Technologies Inc
+Sector                      Healthcare
+Industry        Diagnostics & Research
+Country                            USA
+Market Cap                      34.56B
+P/E                              28.58
+Price                           121.89
+Change                          -2.00%
+Volume                       1,411,781
+Name: 0, dtype: object
+2025-09-25 22:39:21,910 [INFO] Kolumny w df: ['No', 'Ticker', 'Company', 'Sector', 'Industry', 'Country', 'Market Cap', 'P/E', 'Price', 'Change', 'Volume']
+2025-09-25 22:39:21,911 [INFO] Pierwsze 5 wartoœci Market Cap: 0    34.56B
+1     8.14B
+2         -
+3         -
+4         -
+Name: Market Cap, dtype: object
+2025-09-25 22:39:21,921 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\app\data\stocks\20250925\finviz_stocks_20250925.csv
+2025-09-25 22:40:05,048 [INFO] Pobrano 100 spó³ek. Czas: 0:00:03.342431
+2025-09-25 22:40:05,052 [INFO] No                                   1
+Ticker                               A
+Company       Agilent Technologies Inc
+Sector                      Healthcare
+Industry        Diagnostics & Research
+Country                            USA
+Market Cap                      34.56B
+P/E                              28.58
+Price                           121.89
+Change                          -2.00%
+Volume                       1,411,781
+Name: 0, dtype: object
+2025-09-25 22:40:05,052 [INFO] Kolumny w df: ['No', 'Ticker', 'Company', 'Sector', 'Industry', 'Country', 'Market Cap', 'P/E', 'Price', 'Change', 'Volume']
+2025-09-25 22:40:05,053 [INFO] Pierwsze 5 wartoœci Market Cap: 0    34.56B
+1     8.14B
+2         -
+3         -
+4         -
+Name: Market Cap, dtype: object
+2025-09-25 22:40:05,062 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\app\data\stocks\20250925\finviz_stocks_20250925.csv
+2025-09-29 22:55:55,727 [INFO] Pobrano 100 spó³ek. Czas: 0:00:04.200247
+2025-09-29 22:55:55,731 [INFO] No                                   1
+Ticker                               A
+Company       Agilent Technologies Inc
+Sector                      Healthcare
+Industry        Diagnostics & Research
+Country                            USA
+Market Cap                      35.08B
+P/E                              29.02
+Price                           123.75
+Change                           0.29%
+Volume                       1,479,340
+Name: 0, dtype: object
+2025-09-29 22:55:55,732 [INFO] Kolumny w df: ['No', 'Ticker', 'Company', 'Sector', 'Industry', 'Country', 'Market Cap', 'P/E', 'Price', 'Change', 'Volume']
+2025-09-29 22:55:55,732 [INFO] Pierwsze 5 wartoœci Market Cap: 0    35.08B
+1     8.76B
+2         -
+3         -
+4         -
+Name: Market Cap, dtype: object
+2025-09-29 22:55:55,743 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\app\data\stocks\20250929\finviz_stocks_20250929.csv
+2025-10-01 22:08:15,437 [INFO] Pobrano 100 spó³ek. Czas: 0:00:04.189420
+2025-10-01 22:08:15,442 [INFO] No                                   1
+Ticker                               A
+Company       Agilent Technologies Inc
+Sector                      Healthcare
+Industry        Diagnostics & Research
+Country                            USA
+Market Cap                      39.28B
+P/E                              32.49
+Price                           138.54
+Change                           7.94%
+Volume                       3,256,462
+Name: 0, dtype: object
+2025-10-01 22:08:15,442 [INFO] Kolumny w df: ['No', 'Ticker', 'Company', 'Sector', 'Industry', 'Country', 'Market Cap', 'P/E', 'Price', 'Change', 'Volume']
+2025-10-01 22:08:15,443 [INFO] Pierwsze 5 wartoœci Market Cap: 0    39.28B
+1     8.78B
+2         -
+3         -
+4         -
+Name: Market Cap, dtype: object
+2025-10-01 22:08:15,459 [INFO] Dane zapisane do C:\Users\admin\PycharmProjects\stock-momentum-screener\app\data\stocks\20251001\finviz_stocks_20251001.csv

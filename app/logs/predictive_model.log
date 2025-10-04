@@ -1,0 +1,93 @@
+2025-09-25 22:34:12,706 [INFO] Pobrano 14 rekordów ze stocks_data
+2025-09-29 23:02:15,868 [INFO] Pobrano 0 rekordów ze stocks_data
+2025-09-29 23:02:15,873 [WARNING] Nie uda³o siê pobraæ sentymentu z MongoDB: 'ticker'
+2025-09-30 19:53:25,699 [INFO] Pobrano 0 rekordów ze stocks_data
+2025-09-30 19:53:25,711 [WARNING] Nie uda³o siê pobraæ sentymentu z MongoDB: 'ticker'
+2025-09-30 19:54:50,769 [INFO] Pobrano 0 rekordów ze stocks_data
+2025-09-30 19:54:50,772 [WARNING] Nie uda³o siê pobraæ sentymentu z MongoDB: 'ticker'
+2025-09-30 19:55:20,654 [INFO] Pobrano 0 rekordów ze stocks_data
+2025-09-30 19:55:20,657 [WARNING] Nie uda³o siê pobraæ sentymentu z MongoDB: 'ticker'
+2025-09-30 20:35:32,454 [INFO] Pobrano 0 rekordów ze stocks_data
+2025-09-30 20:35:32,470 [WARNING] Nie uda³o siê pobraæ sentymentu z MongoDB: 'ticker'
+2025-10-01 22:29:44,616 [INFO] Pobrano 100 rekordów ze stocks_data
+2025-10-01 22:29:45,055 [INFO] Raport klasyfikacji:
+              precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00        11
+           1       1.00      1.00      1.00         3
+
+    accuracy                           1.00        14
+   macro avg       1.00      1.00      1.00        14
+weighted avg       1.00      1.00      1.00        14
+
+2025-10-01 22:29:45,080 [INFO] Top 20 spó³ek wed³ug potencja³u:
+   ticker                                   company  potential_score
+34   ABAT       American Battery Technology Company         0.996667
+69    ACB                       Aurora Cannabis Inc         0.993333
+58   ABSI                                Absci Corp         0.990000
+56    ABP                        Abpro Holdings Inc         0.973333
+80   ACHR                       Archer Aviation Inc         0.970000
+37   ABCL                   AbCellera Biologics Inc         0.960000
+29   AAUC                          Allied Gold Corp         0.950000
+20   AAPG  Ascentage Pharma Group International ADR         0.936667
+17    AAP                    Advance Auto Parts Inc         0.930000
+54   ABOS                Acumen Pharmaceuticals Inc         0.926667
+27   AARD                 Aardvark Therapeutics Inc         0.910000
+86   ACIU                              AC Immune SA         0.896667
+1      AA                                Alcoa Corp         0.833333
+94   ACMR                          ACM Research Inc         0.620000
+95    ACN                             Accenture plc         0.576667
+92   ACLX                               Arcellx Inc         0.080000
+82    ACI                  Albertsons Companies Inc         0.070000
+65   ABVX                                Abivax ADR         0.053333
+10    AAL               American Airlines Group Inc         0.040000
+97   ACNT                      Ascent Industries Co         0.040000
+2025-10-01 22:29:45,115 [INFO] Zapisano ranking spó³ek do tabeli stocks_predictions
+2025-10-01 22:29:45,120 [INFO] Zapisano ranking spó³ek do top_stocks_predictions.csv
+2025-10-01 22:32:51,191 [INFO] Dzieñ 2025-10-01 - raport klasyfikacji:
+              precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00        11
+           1       1.00      1.00      1.00         3
+
+    accuracy                           1.00        14
+   macro avg       1.00      1.00      1.00        14
+weighted avg       1.00      1.00      1.00        14
+
+2025-10-01 22:32:51,200 [INFO] Zapisano ranking spó³ek do tabeli stocks_predictions
+2025-10-01 22:32:51,205 [INFO] Zapisano ranking spó³ek do top_stocks_predictions.csv
+2025-10-01 22:34:21,958 [INFO] Pobrano 100 rekordów ze stocks_data
+2025-10-01 22:34:22,364 [INFO] Raport klasyfikacji:
+              precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00        11
+           1       1.00      1.00      1.00         3
+
+    accuracy                           1.00        14
+   macro avg       1.00      1.00      1.00        14
+weighted avg       1.00      1.00      1.00        14
+
+2025-10-01 22:34:22,387 [INFO] Top 20 spó³ek wed³ug potencja³u:
+   ticker                                   company  potential_score
+34   ABAT       American Battery Technology Company         0.996667
+69    ACB                       Aurora Cannabis Inc         0.993333
+58   ABSI                                Absci Corp         0.990000
+56    ABP                        Abpro Holdings Inc         0.973333
+80   ACHR                       Archer Aviation Inc         0.970000
+37   ABCL                   AbCellera Biologics Inc         0.960000
+29   AAUC                          Allied Gold Corp         0.950000
+20   AAPG  Ascentage Pharma Group International ADR         0.936667
+17    AAP                    Advance Auto Parts Inc         0.930000
+54   ABOS                Acumen Pharmaceuticals Inc         0.926667
+27   AARD                 Aardvark Therapeutics Inc         0.910000
+86   ACIU                              AC Immune SA         0.896667
+1      AA                                Alcoa Corp         0.833333
+94   ACMR                          ACM Research Inc         0.620000
+95    ACN                             Accenture plc         0.576667
+92   ACLX                               Arcellx Inc         0.080000
+82    ACI                  Albertsons Companies Inc         0.070000
+65   ABVX                                Abivax ADR         0.053333
+10    AAL               American Airlines Group Inc         0.040000
+97   ACNT                      Ascent Industries Co         0.040000
+2025-10-01 22:34:22,393 [INFO] Zapisano ranking spó³ek do tabeli stocks_predictions
+2025-10-01 22:34:22,398 [INFO] Zapisano ranking spó³ek do top_stocks_predictions.csv

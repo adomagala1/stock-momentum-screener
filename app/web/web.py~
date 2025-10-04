@@ -1,0 +1,341 @@
+import sys, os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+
+import streamlit as st
+import pandas as pd
+import plotly.express as px
+import plotly.graph_objects as go
+import numpy as np
+from datetime import datetime
+from app.stocks import fetch_finviz
+from app.save_data import save_stocks_to_csv
+from app.news import fetch_google_news_rss, add_sentiment
+from app.predictive_model import load_all_stocks_data, get_avg_sentiment_for_tickers
+from auth import login, logout, register
+
+# ---------------- STYLE ----------------
+st.set_page_config(page_title="Stock AI Dashboard", layout="wide", page_icon="📈")
+
+# Sekcja logowania / rejestracji
+if "user" not in st.session_state or not st.session_state["user"]:
+    st.markdown("<h1 class='big-title'>🔐 Logowanie do Stock AI Dashboard</h1>", unsafe_allow_html=True)
+    choice = st.radio("Wybierz opcję:", ["Logowanie", "Rejestracja"], horizontal=True)
+
+    email = st.text_input("📧 Email")
+    password = st.text_input("🔑 Hasło", type="password")
+
+    if choice == "Logowanie":
+        if st.button("Zaloguj"):
+            if login(email, password):
+                st.rerun()
+    else:
+        if st.button("Zarejestruj"):
+            register(email, password)
+
+    st.stop()
+else:
+    user = st.session_state["user"]
+    st.sidebar.success(f"👤 Zalogowany jako: {user.email if hasattr(user, 'email') else 'Użytkownik'}")
+    if st.sidebar.button("Wyloguj"):
+        logout()
+        st.rerun()
+st.markdown("""
+    <style>
+    .big-title { font-size:36px !important; font-weight:700; margin-bottom:10px;}
+    .card {background:#fff; border-radius:16px; padding:18px; margin-bottom:16px;
+           box-shadow:0 4px 15px rgba(0,0,0,0.1);}
+    .positive {color:#4caf50;}
+    .negative {color:#f44336;}
+    .neutral {color:#9e9e9e;}
+    .hover-table tr:hover {background:#f5f5f5;}
+    .pulse {width:16px;height:16px;border-radius:50%;background:#4facfe;
+            animation:pulseAnim 1.2s infinite;margin:auto;}
+    @keyframes pulseAnim {
+        0% { transform: scale(0.9); opacity:0.7;}
+        50% { transform: scale(1.1); opacity:1;}
+        100% { transform: scale(0.9); opacity:0.7;}
+    }
+    /* Style dla kart newsów */
+    .news-card {
+        background-color: #f8f9fa;
+        border-left: 5px solid #4facfe;
+        border-radius: 8px;
+        padding: 12px 16px;
+        margin-bottom: 12px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        transition: all 0.2s ease-in-out;
+    }
+    .news-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .news-title {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 4px;
+    }
+    .news-meta {
+        font-size: 13px;
+        color: #6c757d;
+    }
+    .sentiment-badge {
+        font-weight: 700;
+        padding: 2px 8px;
+        border-radius: 12px;
+        font-size: 13px;
+        color: #fff;
+    }
+    .positive-bg { background-color: #4caf50; }
+    .negative-bg { background-color: #f44336; }
+    .neutral-bg { background-color: #9e9e9e; }
+    </style>
+""", unsafe_allow_html=True)
+
+# === NOWA FUNKCJA DO WYŚWIETLANIA NEWSÓW ===
+def display_news_cards(df):
+    """Iteruje po DataFrame i wyświetla newsy jako estetyczne karty."""
+    if df.empty:
+        return
+
+    for _, row in df.iterrows():
+        sentiment = row['sentiment']
+        headline = row['headline']
+        source = row['source']
+        published = row['published']
+        link = row.get('link', '#')
+
+        if sentiment > 0.1:
+            sentiment_class = "positive-bg"
+            sentiment_label = f"Pozytywny ({sentiment:.2f})"
+        elif sentiment < -0.1:
+            sentiment_class = "negative-bg"
+            sentiment_label = f"Negatywny ({sentiment:.2f})"
+        else:
+            sentiment_class = "neutral-bg"
+            sentiment_label = f"Neutralny ({sentiment:.2f})"
+
+        card_html = f"""
+        <div class="news-card">
+            <p class="news-title"><a href="{link}" target="_blank" style="text-decoration:none; color:inherit;">{headline}</a></p>
+            <p class="news-meta">Źródło: {source} | Opublikowano: {published}</p>
+            <div>Sentyment: <span class="sentiment-badge {sentiment_class}">{sentiment_label}</span></div>
+        </div>
+        """
+        st.markdown(card_html, unsafe_allow_html=True)
+
+st.markdown("<h1 class='big-title'>📊 AI Stock Screener + Sentiment Dashboard</h1>", unsafe_allow_html=True)
+st.caption("Analiza spółek giełdowych z Finviz, newsów i predykcji opartej na ML")
+
+# ---------------- TABS ----------------
+tab1, tab2, tab3 = st.tabs(["📈 Dane giełdowe", "📰 Newsy", "🤖 Model predykcyjny"])
+
+# ==================== TAB 1: Dane giełdowe ====================
+with tab1:
+    st.subheader("Pobierz dane giełdowe z Finviz")
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        max_companies = st.number_input("Ilość spółek (0 = wszystkie)", min_value=0, value=20, step=10,
+                                        key="max_companies_tab1")
+    with col2:
+        with_filters = st.checkbox("Filtry (Mid Cap, NASDAQ, Rel Volume > 1.5)", value=False, key="filters_tab1")
+    with col3:
+        get_only_tickers = st.checkbox("Tylko tickery?", value=False, key="tickers_only_tab1")
+
+    if st.button("🔄 Pobierz dane giełdowe"):
+        with st.spinner("Pobieram dane z Finviz..."):
+            df = fetch_finviz(max_companies, with_filters, get_only_tickers)
+            if not df.empty:
+                st.success(f"Pobrano {len(df)} spółek")
+                st.dataframe(df, use_container_width=True, height=500)
+                save_stocks_to_csv(df, get_only_tickers, with_filters)
+            else:
+                st.error("❌ Nie udało się pobrać danych.")
+
+# ==================== TAB 2: Newsy ====================
+with tab2:
+    st.subheader("Newsy i analiza sentymentu")
+    st.markdown("#### Analiza pojedynczej spółki")
+    ticker = st.text_input("🔎 Wpisz ticker (np. AAPL, TSLA)", key="ticker_news_tab2").upper()
+    if st.button("📥 Pobierz newsy dla spółki"):
+        if ticker:
+            with st.spinner(f"Pobieram i analizuję newsy dla {ticker}..."):
+                df_news = fetch_google_news_rss(ticker)
+                if not df_news.empty:
+                    df_news = add_sentiment(df_news)
+                    avg_sent = df_news['sentiment'].mean()
+
+                    c1, c2 = st.columns(2)
+                    c1.metric("Średni sentyment", f"{avg_sent:.3f}")
+                    c2.metric("Liczba newsów", len(df_news))
+
+                    fig = px.histogram(df_news, x="sentiment", nbins=20, title=f"Rozkład sentymentu dla {ticker}")
+                    st.plotly_chart(fig, use_container_width=True)
+                    st.dataframe(df_news[['headline', 'source', 'published', 'sentiment']], use_container_width=True)
+                else:
+                    st.warning(f"Brak newsów dla {ticker}")
+        else:
+            st.warning("Proszę wpisać ticker.")
+
+    st.markdown("---")
+    st.markdown("#### Analiza listy spółek z Finviz")
+    if st.button("🌍 Pobierz newsy dla listy spółek"):
+        df_tickers = fetch_finviz(20, with_filters=False, get_only_tickers=True)
+        tickers = df_tickers["Ticker"].dropna().tolist()
+        all_news = []
+        placeholder = st.empty()
+        progress_bar = st.progress(0)
+
+        for i, t in enumerate(tickers, 1):
+            placeholder.markdown(f"<div class='pulse'></div> ⏳ Skanuję: {i}/{len(tickers)} - **{t}**",
+                                 unsafe_allow_html=True)
+            progress_bar.progress(i / len(tickers))
+            df_news = fetch_google_news_rss(t)
+            if not df_news.empty:
+                df_news = add_sentiment(df_news)
+                all_news.append(df_news)
+
+        placeholder.empty()
+        progress_bar.empty()
+
+        if all_news:
+            news_df = pd.concat(all_news, ignore_index=True)
+            st.success(f"Pobrano {len(news_df)} newsów dla {len(tickers)} spółek.")
+            st.dataframe(news_df, use_container_width=True)
+        else:
+            st.warning("❌ Nie znaleziono żadnych newsów dla pobranej listy spółek.")
+
+# ==================== TAB 3: Model predykcyjny ====================
+with tab3:
+    st.subheader("Predykcja na podstawie modelu i sentymentu")
+
+    top_n = st.slider("📊 Liczba najlepszych spółek do wyświetlenia", min_value=5, max_value=50, value=20, step=5)
+
+    if st.button("🚀 Uruchom model predykcyjny"):
+        with st.spinner("⏳ Analizuję dane historyczne i sentyment... Może to potrwać chwilę."):
+            df_all = load_all_stocks_data()
+            if df_all.empty:
+                st.error("Brak danych w `stocks_data`. Uruchom najpierw skrypt `main.py`, aby zebrać dane.")
+                st.stop()
+
+            tickers = df_all['ticker'].dropna().unique()
+            dates = df_all['import_date'].dropna().unique()
+
+            all_sentiments = []
+            for day in dates:
+                sentiment_df = get_avg_sentiment_for_tickers(tickers, day)
+                sentiment_df['import_date'] = day
+                all_sentiments.append(sentiment_df)
+
+            sentiment_all = pd.concat(all_sentiments, ignore_index=True)
+            df_all = df_all.merge(sentiment_all, on=['ticker', 'import_date'], how='left')
+            df_all['avg_sentiment'] = df_all['avg_sentiment'].fillna(0.0)
+
+            df_all['market_cap_log'] = np.log1p(df_all['market_cap'].astype(float))
+            df_all['volume_log'] = np.log1p(df_all['volume'].astype(float))
+
+            p_norm = (df_all['price'] - df_all['price'].min()) / (df_all['price'].max() - df_all['price'].min() + 1e-9)
+            mc_norm = (df_all['market_cap_log'] - df_all['market_cap_log'].min()) / (
+                    df_all['market_cap_log'].max() - df_all['market_cap_log'].min() + 1e-9)
+
+            min_sent, max_sent = df_all['avg_sentiment'].min(), df_all['avg_sentiment'].max()
+            sentiment_range = max_sent - min_sent if (max_sent - min_sent) != 0 else 1
+            sentiment_norm = (df_all['avg_sentiment'] - min_sent) / sentiment_range
+
+            df_all['potential_score'] = (0.4 * p_norm + 0.4 * mc_norm + 0.2 * sentiment_norm).fillna(0)
+
+            last_day = max(df_all['import_date'])
+            df_day = df_all[df_all['import_date'] == last_day].copy()
+
+            def explain_decision(row, df):
+                reasons = []
+                if row['price'] > df['price'].quantile(0.75): reasons.append("wysoka cena")
+                if row['market_cap_log'] > df['market_cap_log'].quantile(0.75): reasons.append("duża kapitalizacja")
+                if row['avg_sentiment'] > 0.1: reasons.append("bardzo pozytywny sentyment")
+                elif row['avg_sentiment'] > 0.05: reasons.append("pozytywny sentyment")
+                if row['potential_score'] > df['potential_score'].quantile(0.75): reasons.append("wysoki potencjał modelu")
+                return "Spółka wyróżnia się: " + (", ".join(reasons) if reasons else "stabilne wskaźniki")
+
+            df_day['reason'] = df_day.apply(lambda r: explain_decision(r, df_day), axis=1)
+            top_day = df_day.sort_values('potential_score', ascending=False).head(top_n)
+
+            st.session_state['model_run_success'] = True
+            st.session_state['df_all'] = df_all
+            st.session_state['top_day'] = top_day
+            st.session_state['last_day'] = last_day
+
+    if st.session_state.get('model_run_success', False):
+        top_day = st.session_state['top_day']
+        df_all = st.session_state['df_all']
+        last_day = st.session_state['last_day']
+
+        st.success(f"✅ Analiza zakończona. Oto Top {len(top_day)} spółek z dnia {last_day}")
+        st.dataframe(top_day[['ticker', 'company', 'potential_score', 'avg_sentiment', 'price', 'reason']],
+                     use_container_width=True)
+
+        c1, c2, c3 = st.columns(3)
+        c1.metric("📊 Średni potencjał (Top)", f"{top_day['potential_score'].mean():.2f}")
+        c2.metric("💡 Średni sentyment (Top)", f"{top_day['avg_sentiment'].mean():.2f}")
+        c3.metric("🏢 Spółek w analizie", len(top_day))
+
+        st.markdown("---")
+        st.subheader("Szczegółowa analiza wybranej spółki")
+        chosen_ticker = st.selectbox(
+            "Wybierz spółkę z powyższej listy do analizy:",
+            options=top_day['ticker'].unique()
+        )
+
+        if chosen_ticker:
+            stock_data = top_day[top_day['ticker'] == chosen_ticker].iloc[0]
+            stock_history = df_all[df_all['ticker'] == chosen_ticker]
+
+            st.markdown(f"### {stock_data['company']} ({chosen_ticker})")
+            st.info(f"**Uzasadnienie wyboru:** {stock_data['reason']}")
+
+            col1, col2, col3 = st.columns(3)
+            with col1:
+                fig_gauge = go.Figure(go.Indicator(
+                    mode="gauge+number",
+                    value=stock_data['potential_score'],
+                    domain={'x': [0, 1], 'y': [0, 1]},
+                    title={'text': "Potencjał", 'font': {'size': 20}},
+                    gauge={
+                        'axis': {'range': [None, 1], 'tickwidth': 1, 'tickcolor': "darkblue"},
+                        'bar': {'color': "#4facfe"},
+                        'steps': [
+                            {'range': [0, 0.4], 'color': 'lightgray'},
+                            {'range': [0.4, 0.7], 'color': 'gray'}],
+                        'threshold': {
+                            'line': {'color': "red", 'width': 4},
+                            'thickness': 0.75,
+                            'value': top_day['potential_score'].mean()}}))
+                fig_gauge.update_layout(height=250, margin=dict(l=20, r=20, t=40, b=20))
+                st.plotly_chart(fig_gauge, use_container_width=True)
+
+            with col2:
+                st.metric("Cena (ostatni odczyt)", f"${stock_data['price']:.2f}")
+                st.metric("Średni sentyment (hist.)", f"{stock_history['avg_sentiment'].mean():.3f}")
+            with col3:
+                st.metric("Kapitalizacja rynkowa", f"${stock_data['market_cap'] / 1e9:.2f} mld")
+                st.metric("Wolumen (ostatni odczyt)", f"{stock_data['volume'] / 1e6:.2f} mln")
+
+            st.markdown("#### Analiza w czasie")
+            fig_potential = px.line(stock_history, x="import_date", y="potential_score",
+                                    title=f"Potencjał spółki {chosen_ticker} w czasie", markers=True)
+            fig_potential.update_layout(xaxis_title="Data", yaxis_title="Potential Score")
+            st.plotly_chart(fig_potential, use_container_width=True)
+
+            fig_price_sent = px.line(stock_history, x="import_date", y=["price", "avg_sentiment"],
+                                     title=f"Cena vs Sentyment dla {chosen_ticker}", markers=True,
+                                     labels={"value": "Wartość", "variable": "Wskaźnik"})
+            st.plotly_chart(fig_price_sent, use_container_width=True)
+
+            # --- OSTATNIE NEWSY (NOWA, ULEPSZONA WERSJA) ---
+            st.markdown("#### Ostatnie newsy")
+            with st.spinner(f"Pobieram najnowsze newsy dla {chosen_ticker}..."):
+                df_news = fetch_google_news_rss(chosen_ticker)
+                if not df_news.empty:
+                    df_news = add_sentiment(df_news)
+                    # Użycie nowej funkcji zamiast st.dataframe
+                    display_news_cards(df_news.head(10))
+                else:
+                    st.warning("Nie znaleziono świeżych newsów.")

@@ -1,0 +1,11 @@
+2025-10-01 22:17:00,660 [INFO] Zapisywanie do stocks_data, end_width: 20250929
+2025-10-01 22:17:00,660 [INFO] Szukam pliku: C:\Users\admin\PycharmProjects\stock-momentum-screener\app\data\stocks\20250929\finviz_stocks_20250929.csv
+2025-10-01 22:17:00,671 [ERROR] B³¹d podczas zapisu do bazy: 'DataFrame' object has no attribute 'str'
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\stock-momentum-screener\app\db\postgresql.py", line 87, in save_csv_to_db
+    df[col].astype(str).str.replace(",", "").str.replace("B", "e9").str.replace("M", "e6").str.replace(
+    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\stock-momentum-screener\.venv\Lib\site-packages\pandas\core\generic.py", line 6318, in __getattr__
+    return object.__getattribute__(self, name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'DataFrame' object has no attribute 'str'. Did you mean: 'std'?

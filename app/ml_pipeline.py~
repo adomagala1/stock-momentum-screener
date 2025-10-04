@@ -1,0 +1,272 @@
+# ml_pipeline.py
+import pandas as pd
+import numpy as np
+import logging
+import joblib
+import matplotlib.pyplot as plt
+
+from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LinearRegression
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.svm import SVR
+from sklearn.impute import SimpleImputer
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+
+logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
+
+def clean_features(X: pd.DataFrame):
+    """Usuwa NaNy poprzez imputację medianą."""
+    imputer = SimpleImputer(strategy="median")
+    X_clean = imputer.fit_transform(X)
+    return pd.DataFrame(X_clean, columns=X.columns)
+
+def convert_market_cap(value):
+    """Konwertuje '8.79B', '123M', '5K' na float lub NaN"""
+    if pd.isna(value):
+        return np.nan
+    if not isinstance(value, str):
+        try:
+            return float(value)
+        except Exception:
+            return np.nan
+    v = value.strip().upper().replace(',', '')
+    try:
+        if v.endswith('B'):
+            return float(v[:-1]) * 1e9
+        if v.endswith('M'):
+            return float(v[:-1]) * 1e6
+        if v.endswith('K'):
+            return float(v[:-1]) * 1e3
+        return float(v)
+    except Exception:
+        return np.nan
+
+
+def percent_to_float(x):
+    """Z '12.34%' -> 12.34 (float). Puste -> NaN"""
+    if pd.isna(x):
+        return np.nan
+    if isinstance(x, (int, float)):
+        return float(x)
+    s = str(x).strip()
+    if s == '-' or s == '':
+        return np.nan
+    s = s.replace('%', '').replace(',', '')
+    try:
+        return float(s)
+    except Exception:
+        return np.nan
+
+
+def load_and_clean(csv_path: str) -> pd.DataFrame:
+    """Wczytuje CSV Finviz, normalizuje nagłówki i konwertuje kolumny."""
+    df = pd.read_csv(csv_path)
+
+    # normalizacja nagłówków
+    df.columns = df.columns.str.strip().str.lower().str.replace(' ', '_').str.replace('%', '_perc')
+
+    df = df.rename(columns={
+        'p/e': 'p_e',
+        'eps_next_5y': 'eps_next_5y',
+        '52w_high': '52w_high',
+        '52w_low': '52w_low'
+    }, errors='ignore')
+
+    # Market Cap
+    if 'market_cap' in df.columns:
+        df['market_cap_num'] = df['market_cap'].apply(convert_market_cap)
+    else:
+        df['market_cap_num'] = np.nan
+
+    # Price
+    if 'price' in df.columns:
+        df['price_num'] = pd.to_numeric(
+            df['price'].astype(str).str.replace(',', '', regex=False), errors='coerce'
+        )
+    else:
+        raise ValueError("Brak kolumny 'price' w CSV")
+
+    # Volume
+    if 'volume' in df.columns:
+        df['volume_num'] = pd.to_numeric(
+            df['volume'].astype(str).str.replace(',', '', regex=False), errors='coerce'
+        )
+    else:
+        df['volume_num'] = np.nan
+
+    # EPS next 5Y
+    if 'eps_next_5y' in df.columns:
+        df['eps_next_5y_num'] = pd.to_numeric(
+            df['eps_next_5y'].astype(str).str.replace(',', '', regex=False), errors='coerce'
+        )
+    else:
+        df['eps_next_5y_num'] = np.nan
+
+    # P/E
+    if 'p_e' in df.columns:
+        df['p_e_num'] = pd.to_numeric(
+            df['p_e'].astype(str).str.replace(',', '', regex=False), errors='coerce'
+        )
+    else:
+        df['p_e_num'] = np.nan
+
+    # % kolumny
+    for col in ['change', 'perf_week', 'perf_month', 'perf_quarter', 'perf_year']:
+        if col in df.columns:
+            df[f'{col}_perc_num'] = df[col].apply(percent_to_float)
+        else:
+            df[f'{col}_perc_num'] = np.nan
+
+    # 52w high/low
+    if '52w_high' in df.columns:
+        df['52w_high_num'] = pd.to_numeric(
+            df['52w_high'].astype(str).str.replace(',', '', regex=False), errors='coerce'
+        )
+    else:
+        df['52w_high_num'] = np.nan
+    if '52w_low' in df.columns:
+        df['52w_low_num'] = pd.to_numeric(
+            df['52w_low'].astype(str).str.replace(',', '', regex=False), errors='coerce'
+        )
+    else:
+        df['52w_low_num'] = np.nan
+
+    return df
+
+
+def build_features(df: pd.DataFrame):
+    """Tworzy macierz X i target y."""
+    y = df['price_num']
+
+    X = pd.DataFrame({
+        'market_cap': df.get('market_cap_num', np.nan),
+        'p_e': df.get('p_e_num', np.nan),
+        'eps_next_5y': df.get('eps_next_5y_num', np.nan),
+        'volume': df.get('volume_num', np.nan),
+        'perf_week': df.get('perf_week_perc_num', np.nan),
+        'perf_month': df.get('perf_month_perc_num', np.nan),
+        'change': df.get('change_perc_num', np.nan),
+        '52w_high': df.get('52w_high_num', np.nan),
+        '52w_low': df.get('52w_low_num', np.nan),
+    })
+
+    # log-transform
+    X['market_cap_log'] = np.log1p(X['market_cap'].replace(0, np.nan))
+    X['volume_log'] = np.log1p(X['volume'].replace(0, np.nan))
+
+    # 52w range
+    X['52w_range'] = X['52w_high'] - X['52w_low']
+
+    # Uzupełnij medianą
+    X = X.fillna(X.median(numeric_only=True))
+
+    features = ['market_cap_log', 'p_e', 'eps_next_5y',
+                'volume_log', 'perf_week', 'perf_month',
+                'change', '52w_range']
+
+    X_final = X[features].copy()
+
+    mask = ~y.isna()
+    return X_final[mask], y[mask]
+
+
+def train_and_evaluate(X, y, do_grid_search=False):
+    """Trenuje kilka modeli i wybiera najlepszy."""
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+    scaler = StandardScaler()
+    X_train_scaled = scaler.fit_transform(X_train)
+    X_test_scaled = scaler.transform(X_test)
+
+    results = {}
+
+    # Linear Regression
+    lr = LinearRegression().fit(X_train_scaled, y_train)
+    y_pred_lr = lr.predict(X_test_scaled)
+    results['LinearRegression'] = {
+        'model': lr,
+        'mae': mean_absolute_error(y_test, y_pred_lr),
+        'rmse': np.sqrt(mean_squared_error(y_test, y_pred_lr)),
+        'r2': r2_score(y_test, y_pred_lr)
+    }
+
+    # Random Forest
+    rf = RandomForestRegressor(random_state=42, n_jobs=-1)
+    if do_grid_search:
+        param_grid = {'n_estimators': [100, 200], 'max_depth': [8, 16, None], 'min_samples_leaf': [1, 3, 5]}
+        gs = GridSearchCV(rf, param_grid, cv=3, scoring='neg_mean_absolute_error', n_jobs=-1)
+        gs.fit(X_train, y_train)
+        rf_best = gs.best_estimator_
+    else:
+        rf.fit(X_train, y_train)
+        rf_best = rf
+    y_pred_rf = rf_best.predict(X_test)
+    results['RandomForest'] = {
+        'model': rf_best,
+        'mae': mean_absolute_error(y_test, y_pred_rf),
+        'rmse': np.sqrt(mean_squared_error(y_test, y_pred_rf)),
+        'r2': r2_score(y_test, y_pred_rf)
+    }
+
+    # SVR
+    svr = SVR()
+    svr.fit(X_train_scaled, y_train)
+    y_pred_svr = svr.predict(X_test_scaled)
+    results['SVR'] = {
+        'model': svr,
+        'mae': mean_absolute_error(y_test, y_pred_svr),
+        'rmse': np.sqrt(mean_squared_error(y_test, y_pred_svr)),
+        'r2': r2_score(y_test, y_pred_svr)
+    }
+
+    best_name = min(results.keys(), key=lambda k: results[k]['mae'])
+    best = results[best_name]
+    best['name'] = best_name
+    best['scaler'] = scaler
+    return results, best, (X_test, y_test, {'lr': y_pred_lr, 'rf': y_pred_rf, 'svr': y_pred_svr})
+
+
+def plot_results(y_test, y_pred, title="Predykcje vs Rzeczywiste"):
+    plt.figure(figsize=(6, 6))
+    plt.scatter(y_test, y_pred, alpha=0.6)
+    mn, mx = min(y_test.min(), y_pred.min()), max(y_test.max(), y_pred.max())
+    plt.plot([mn, mx], [mn, mx], color='red', linewidth=1)
+    plt.xlabel('Rzeczywiste')
+    plt.ylabel('Predykowane')
+    plt.title(title)
+    plt.grid(True)
+    plt.show()
+
+
+def main():
+    csv_path = 'data/finviz_stocks_20250915.csv'
+    logging.info("Wczytuję i czyszczę dane...")
+    df = load_and_clean(csv_path)
+
+    logging.info("Tworzę cechy...")
+    X, y = build_features(df)
+    logging.info(f"Macierz cech: {X.shape}, target: {y.shape}")
+
+    logging.info("Trenuję i waliduję modele...")
+    results, best, preds_container = train_and_evaluate(X, y, do_grid_search=False)
+
+    logging.info("Wyniki wszystkich modeli:")
+    for name, res in results.items():
+        logging.info(f"{name}: MAE={res['mae']:.4f}, RMSE={res['rmse']:.4f}, R2={res['r2']:.4f}")
+
+    logging.info(f"Najlepszy model: {best['name']} (MAE={best['mae']:.4f})")
+
+    X_test, y_test, pred_dict = preds_container
+    y_pred = pred_dict['rf'] if best['name'] == 'RandomForest' else \
+             pred_dict['lr'] if best['name'] == 'LinearRegression' else pred_dict['svr']
+
+    plot_results(y_test, y_pred, title=f"Predykcje - {best['name']}")
+
+    save_obj = {'model': best['model'], 'scaler': best.get('scaler', None)}
+    joblib.dump(save_obj, 'best_model.joblib')
+    logging.info("Zapisano model do best_model.joblib")
+
+
+if __name__ == "__main__":
+    main()

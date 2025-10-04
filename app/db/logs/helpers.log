@@ -1,0 +1,32 @@
+2025-09-30 23:04:32,934 [INFO] Zapisywanie do stocks_data, end_width: 20250929
+2025-09-30 23:04:32,935 [INFO] Szukam pliku: C:\Users\admin\PycharmProjects\stock-momentum-screener\app\data\stocks\20250929\finviz_stocks_20250929.csv
+2025-09-30 23:04:32,949 [INFO] Przyk³adowe rekordy po czyszczeniu: [{'ticker': 'A', 'company': 'Agilent Technologies Inc', 'sector': 'Healthcare', 'industry': 'Diagnostics & Research', 'country': 'USA', 'market_cap': 35080000000.0, 'p_e': 29.02, 'price': 123.75, 'change': 0.29, 'volume': 1479340, 'import_date': datetime.date(2025, 9, 29)}, {'ticker': 'AA', 'company': 'Alcoa Corp', 'sector': 'Basic Materials', 'industry': 'Aluminum', 'country': 'USA', 'market_cap': 8760000000.0, 'p_e': 8.68, 'price': 33.85, 'change': 3.49, 'volume': 7457520, 'import_date': datetime.date(2025, 9, 29)}, {'ticker': 'AAA', 'company': 'Alternative Access First Priority CLO Bond ETF', 'sector': 'Financial', 'industry': 'Exchange Traded Fund', 'country': 'USA', 'market_cap': nan, 'p_e': nan, 'price': 25.11, 'change': 0.02, 'volume': 2161, 'import_date': datetime.date(2025, 9, 29)}, {'ticker': 'AAAA', 'company': 'Amplius Aggressive Asset Allocation ETF', 'sector': 'Financial', 'industry': 'Exchange Traded Fund', 'country': 'USA', 'market_cap': nan, 'p_e': nan, 'price': 26.57, 'change': -0.06, 'volume': 4094, 'import_date': datetime.date(2025, 9, 29)}, {'ticker': 'AAAU', 'company': 'Goldman Sachs Physical Gold ETF', 'sector': 'Financial', 'industry': 'Exchange Traded Fund', 'country': 'USA', 'market_cap': nan, 'p_e': nan, 'price': 37.81, 'change': 1.67, 'volume': 1890393, 'import_date': datetime.date(2025, 9, 29)}]
+2025-09-30 23:04:32,957 [INFO] Zapisywanie do stocks_data, end_width: 20250929
+2025-09-30 23:04:32,957 [INFO] Szukam pliku: C:\Users\admin\PycharmProjects\stock-momentum-screener\app\data\stocks\20250929\finviz_stocks_20250929.csv
+2025-09-30 23:04:32,964 [INFO] Przyk³adowe rekordy po czyszczeniu: [{'ticker': 'A', 'company': 'Agilent Technologies Inc', 'sector': 'Healthcare', 'industry': 'Diagnostics & Research', 'country': 'USA', 'market_cap': 35080000000.0, 'p_e': 29.02, 'price': 123.75, 'change': 0.29, 'volume': 1479340, 'import_date': datetime.date(2025, 9, 29)}, {'ticker': 'AA', 'company': 'Alcoa Corp', 'sector': 'Basic Materials', 'industry': 'Aluminum', 'country': 'USA', 'market_cap': 8760000000.0, 'p_e': 8.68, 'price': 33.85, 'change': 3.49, 'volume': 7457520, 'import_date': datetime.date(2025, 9, 29)}, {'ticker': 'AAA', 'company': 'Alternative Access First Priority CLO Bond ETF', 'sector': 'Financial', 'industry': 'Exchange Traded Fund', 'country': 'USA', 'market_cap': nan, 'p_e': nan, 'price': 25.11, 'change': 0.02, 'volume': 2161, 'import_date': datetime.date(2025, 9, 29)}, {'ticker': 'AAAA', 'company': 'Amplius Aggressive Asset Allocation ETF', 'sector': 'Financial', 'industry': 'Exchange Traded Fund', 'country': 'USA', 'market_cap': nan, 'p_e': nan, 'price': 26.57, 'change': -0.06, 'volume': 4094, 'import_date': datetime.date(2025, 9, 29)}, {'ticker': 'AAAU', 'company': 'Goldman Sachs Physical Gold ETF', 'sector': 'Financial', 'industry': 'Exchange Traded Fund', 'country': 'USA', 'market_cap': nan, 'p_e': nan, 'price': 37.81, 'change': 1.67, 'volume': 1890393, 'import_date': datetime.date(2025, 9, 29)}]
+2025-09-30 23:04:33,124 [INFO] Zapisano / zaktualizowano 100 rekordów w stocks_data
+2025-09-30 23:04:33,293 [INFO] Zapisano / zaktualizowano 100 rekordów w stocks_data
+2025-09-30 23:13:38,360 [INFO] Szukam pliku: C:\Users\admin\PycharmProjects\stock-momentum-screener\app\data\stocks\20250929\finviz_stocks_20250929.csv
+2025-09-30 23:13:38,384 [INFO] DataFrame przed zapisem:
+  ticker                                         company  ...   volume import_date
+0      A                        Agilent Technologies Inc  ...  1479340  2025-09-29
+1     AA                                      Alcoa Corp  ...  7457520  2025-09-29
+2    AAA  Alternative Access First Priority CLO Bond ETF  ...     2161  2025-09-29
+3   AAAA         Amplius Aggressive Asset Allocation ETF  ...     4094  2025-09-29
+4   AAAU                 Goldman Sachs Physical Gold ETF  ...  1890393  2025-09-29
+
+[5 rows x 11 columns]
+2025-09-30 23:13:38,384 [INFO] Liczba wierszy: 100
+2025-09-30 23:13:38,391 [INFO] Szukam pliku: C:\Users\admin\PycharmProjects\stock-momentum-screener\app\data\stocks\20250929\finviz_stocks_20250929.csv
+2025-09-30 23:13:38,408 [INFO] DataFrame przed zapisem:
+  ticker                                         company  ...   volume import_date
+0      A                        Agilent Technologies Inc  ...  1479340  2025-09-29
+1     AA                                      Alcoa Corp  ...  7457520  2025-09-29
+2    AAA  Alternative Access First Priority CLO Bond ETF  ...     2161  2025-09-29
+3   AAAA         Amplius Aggressive Asset Allocation ETF  ...     4094  2025-09-29
+4   AAAU                 Goldman Sachs Physical Gold ETF  ...  1890393  2025-09-29
+
+[5 rows x 11 columns]
+2025-09-30 23:13:38,408 [INFO] Liczba wierszy: 100
+2025-09-30 23:13:38,561 [INFO] Zapisano / zaktualizowano 100 rekordów w stocks_data
+2025-09-30 23:13:38,713 [INFO] Zapisano / zaktualizowano 100 rekordów w stocks_data

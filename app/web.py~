@@ -1,0 +1,244 @@
+import streamlit as st
+import pandas as pd
+import plotly.express as px
+import plotly.graph_objects as go
+import numpy as np
+from stocks import fetch_finviz
+from save_data import save_stocks_to_csv
+from news import fetch_google_news_rss, add_sentiment
+from predictive_model import load_all_stocks_data, get_avg_sentiment_for_tickers
+
+# ----------------- KONFIGURACJA STRONY I STYLE -----------------
+st.set_page_config(page_title="Stock AI Dashboard", layout="wide", page_icon="💎")
+
+st.markdown("""
+    <style>
+    /* --- Profesjonalny Dark Theme --- */
+    body { color: #d1d5db; }
+    .stApp {
+        background-color: #0a0f18;
+    }
+    .block-container {
+        padding-top: 2rem; padding-bottom: 2rem;
+    }
+    h1, h2, h3, h4, h5, h6 { color: #ffffff; }
+    .st-emotion-cache-16txtl3 { padding: 2.5rem 2rem; }
+    /* Tytuł */
+    .big-title {
+        font-size: 42px !important;
+        font-weight: 700;
+        margin-bottom: 10px;
+        background: -webkit-linear-gradient(45deg, #14b8a6, #00d4ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    /* Podpisy i sub-nagłówki */
+    .st-caption { color: #9ca3af; }
+    .st-subheader {
+        border-bottom: 2px solid #374151;
+        padding-bottom: 8px;
+        margin-bottom: 1rem;
+        color: #f3f4f6;
+    }
+    /* Karty Wskaźników (Metrics) */
+    .metric-card {
+        background-color: #1f2937;
+        border-radius: 12px;
+        padding: 16px;
+        border: 1px solid #374151;
+    }
+    /* Karty Newsów */
+    .news-card {
+        background-color: #1f2937;
+        border-left: 5px solid #14b8a6;
+        border-radius: 8px;
+        padding: 12px 16px; margin-bottom: 12px;
+        border-1: 1px solid #374151;
+        transition: all 0.2s ease-in-out;
+    }
+    .news-card:hover { transform: translateY(-2px); border-left-color: #00d4ff; }
+    .news-title { font-size: 16px; font-weight: 600; margin-bottom: 4px; color: #f9fafb; }
+    .news-meta { font-size: 13px; color: #9ca3af; }
+    /* Odznaki Sentymentu */
+    .sentiment-badge { font-weight: 700; padding: 3px 10px; border-radius: 12px; font-size: 12px; color: #fff; }
+    .positive-bg { background-color: #10b981; }
+    .negative-bg { background-color: #ef4444; }
+    .neutral-bg { background-color: #6b7280; }
+    </style>
+""", unsafe_allow_html=True)
+
+
+# ----------------- FUNKCJE POMOCNICZE -----------------
+def display_news_cards(df):
+    for _, row in df.head(10).iterrows():
+        sentiment, headline, source, published, link = row['sentiment'], row['headline'], row['source'], row[
+            'published'], row.get('link', '#')
+        if sentiment > 0.1:
+            s_class, s_label = "positive-bg", f"Pozytywny ({sentiment:.2f})"
+        elif sentiment < -0.1:
+            s_class, s_label = "negative-bg", f"Negatywny ({sentiment:.2f})"
+        else:
+            s_class, s_label = "neutral-bg", f"Neutralny ({sentiment:.2f})"
+        st.markdown(
+            f'<div class="news-card"><p class="news-title"><a href="{link}" target="_blank" style="text-decoration:none; color:inherit;">{headline}</a></p><p class="news-meta">Źródło: {source} | {published}</p><div><span class="sentiment-badge {s_class}">{s_label}</span></div></div>',
+            unsafe_allow_html=True)
+
+
+def style_dataframe(df):
+    """Stosuje zaawansowane style do DataFrame dla profesjonalnego wyglądu."""
+    return df.style.format({
+        'potential_score': "{:.3f}",
+        'avg_sentiment': "{:.3f}",
+        'price': "${:,.2f}"
+    }).background_gradient(
+        cmap='Greens', subset=['potential_score']
+    ).apply(
+        lambda x: ['color: #10b981' if v > 0.05 else 'color: #ef4444' if v < -0.05 else '' for v in x],
+        subset=['avg_sentiment']
+    ).set_table_styles([
+        {'selector': 'th', 'props': [('background-color', '#1f2937'), ('color', 'white'), ('text-align', 'left')]},
+        {'selector': 'td', 'props': [('text-align', 'left'), ('padding', '8px')]},
+        {'selector': 'tr:hover td', 'props': [('background-color', '#374151')]}
+    ]).hide(axis="index").to_html()
+
+
+# ==================== GŁÓWNA CZĘŚĆ APLIKACJI ====================
+st.markdown("<h1 class='big-title'>💎 AI Stock Screener & Dashboard</h1>", unsafe_allow_html=True)
+st.caption("Profesjonalna platforma do analizy akcji z wykorzystaniem AI")
+
+tab1, tab2, tab3 = st.tabs(["📈 Dane Giełdowe", "📰 Analiza Newsów", "🤖 Model Predykcyjny"])
+
+with tab1:
+    st.subheader("Pobierz dane giełdowe z Finviz")
+    with st.container(border=True):
+        c1, c2, c3 = st.columns(3)
+        max_companies = c1.number_input("Ilość spółek (0 = wszystkie)", 0, None, 20, 10)
+        with_filters = c2.checkbox("Filtry (Mid Cap, NASDAQ, Rel Vol > 1.5)", False)
+        get_only_tickers = c3.checkbox("Pobierz tylko tickery", False)
+
+        if st.button("🔄 Pobierz dane", use_container_width=True, type="primary"):
+            with st.spinner("Pobieram dane z Finviz..."):
+                df = fetch_finviz(max_companies, with_filters, get_only_tickers)
+                if not df.empty:
+                    st.success(f"Pobrano {len(df)} spółek")
+                    st.dataframe(df, use_container_width=True, height=500)
+                    save_stocks_to_csv(df, get_only_tickers, with_filters)
+                else:
+                    st.error("❌ Nie udało się pobrać danych.")
+
+with tab2:
+    st.subheader("Analiza sentymentu na podstawie newsów")
+    with st.container(border=True):
+        ticker = st.text_input("🔎 Wpisz ticker (np. AAPL, TSLA)").upper()
+        if st.button("📥 Analizuj newsy", use_container_width=True):
+            if ticker:
+                with st.spinner(f"Analizuję newsy dla {ticker}..."):
+                    df_news = add_sentiment(fetch_google_news_rss(ticker))
+                    if not df_news.empty:
+                        st.metric("Średni sentyment", f"{df_news['sentiment'].mean():.3f}")
+                        display_news_cards(df_news)
+                    else:
+                        st.warning(f"Brak newsów dla {ticker}")
+            else:
+                st.warning("Proszę wpisać ticker.")
+
+with tab3:
+    st.subheader("🤖 Model Predykcyjny i Analiza Potencjału")
+    top_n = st.slider("📊 Liczba najlepszych spółek do wyświetlenia", 5, 50, 20, 5)
+
+    if st.button("🚀 Uruchom model predykcyjny", type="primary", use_container_width=True):
+        with st.spinner("⏳ Przetwarzam dane i uruchamiam model..."):
+            df_all = load_all_stocks_data()
+            if df_all.empty:
+                st.error("Brak danych w `stocks_data`. Uruchom `main.py`.")
+                st.stop()
+            # ... (logika modelu bez zmian) ...
+            tickers = df_all['ticker'].dropna().unique();
+            dates = df_all['import_date'].dropna().unique();
+            all_sentiments = [get_avg_sentiment_for_tickers(tickers, day) for day in dates]
+            for i, day in enumerate(dates): all_sentiments[i]['import_date'] = day
+            sentiment_all = pd.concat(all_sentiments, ignore_index=True);
+            df_all = df_all.merge(sentiment_all, on=['ticker', 'import_date'], how='left').fillna(
+                {'avg_sentiment': 0.0})
+            df_all['market_cap_log'] = np.log1p(df_all['market_cap'].astype(float));
+            p_norm = (df_all['price'] - df_all['price'].min()) / (df_all['price'].max() - df_all['price'].min() + 1e-9);
+            mc_norm = (df_all['market_cap_log'] - df_all['market_cap_log'].min()) / (
+                        df_all['market_cap_log'].max() - df_all['market_cap_log'].min() + 1e-9);
+            min_s, max_s = df_all['avg_sentiment'].min(), df_all['avg_sentiment'].max();
+            sentiment_norm = (df_all['avg_sentiment'] - min_s) / (max_s - min_s if max_s != min_s else 1);
+            df_all['potential_score'] = (0.4 * p_norm + 0.4 * mc_norm + 0.2 * sentiment_norm).fillna(0)
+            last_day = max(df_all['import_date']);
+            df_day = df_all[df_all['import_date'] == last_day].copy()
+
+
+            def explain_decision(row, df):
+                reasons = [];
+                if row['price'] > df['price'].quantile(0.75): reasons.append("wysoka cena")
+                if row['market_cap_log'] > df['market_cap_log'].quantile(0.75): reasons.append("duża kapitalizacja")
+                if row['avg_sentiment'] > 0.1: reasons.append("pozytywny sentyment")
+                if row['potential_score'] > df['potential_score'].quantile(0.75): reasons.append("wysoki potencjał")
+                return "Wyróżnia się: " + (", ".join(reasons) if reasons else "stabilne wskaźniki")
+
+
+            df_day['reason'] = df_day.apply(lambda r: explain_decision(r, df_day), axis=1);
+            top_day = df_day.sort_values('potential_score', ascending=False).head(top_n)
+            st.session_state.update(
+                {'model_run_success': True, 'df_all': df_all, 'top_day': top_day, 'last_day': last_day})
+
+    if not st.session_state.get('model_run_success', False):
+        st.info("🚀 Kliknij 'Uruchom model predykcyjny', aby wygenerować ranking spółek.")
+    else:
+        top_day, df_all, last_day = st.session_state['top_day'], st.session_state['df_all'], st.session_state[
+            'last_day']
+
+        st.subheader(f"🎯 Ranking Top {len(top_day)} spółek | Dane z dnia: {last_day}")
+        st.markdown(
+            style_dataframe(top_day[['ticker', 'company', 'potential_score', 'avg_sentiment', 'price', 'reason']]),
+            unsafe_allow_html=True)
+        st.markdown("---")
+
+        st.subheader("🔍 Szczegółowa Analiza Spółki")
+        with st.container(border=True):
+            chosen_ticker = st.selectbox("Wybierz spółkę z rankingu do analizy:", top_day['ticker'].unique())
+            if chosen_ticker:
+                stock_data = top_day[top_day['ticker'] == chosen_ticker].iloc[0]
+                stock_history = df_all[df_all['ticker'] == chosen_ticker]
+
+                st.markdown(f"### {stock_data['company']} ({chosen_ticker})")
+                st.markdown("##### Kluczowe Wskaźniki")
+                c1, c2, c3 = st.columns(3)
+                with c1:
+                    st.markdown(
+                        f"<div class='metric-card'>Potencjał (ostatni)<br><h2>{stock_data['potential_score']:.3f}</h2></div>",
+                        unsafe_allow_html=True)
+                with c2:
+                    st.markdown(
+                        f"<div class='metric-card'>Sentyment (ostatni)<br><h2>{stock_data['avg_sentiment']:.3f}</h2></div>",
+                        unsafe_allow_html=True)
+                with c3:
+                    st.markdown(
+                        f"<div class='metric-card'>Cena (ostatnia)<br><h2>${stock_data['price']:.2f}</h2></div>",
+                        unsafe_allow_html=True)
+
+                st.markdown("##### Analiza Historyczna")
+                fig = go.Figure()
+                fig.add_trace(
+                    go.Scatter(x=stock_history['import_date'], y=stock_history['price'], name='Cena', yaxis='y1',
+                               line=dict(color='#14b8a6', width=3)))
+                fig.add_trace(
+                    go.Scatter(x=stock_history['import_date'], y=stock_history['avg_sentiment'], name='Sentyment',
+                               yaxis='y2', line=dict(color='#f97316', dash='dot')))
+                fig.update_layout(template='plotly_dark', title_text=f"Cena vs Sentyment dla {chosen_ticker}",
+                                  yaxis=dict(title='Cena ($)', color='#14b8a6'),
+                                  yaxis2=dict(title='Sentyment', overlaying='y', side='right', color='#f97316',
+                                              range=[-0.5, 0.5]),
+                                  legend=dict(x=0.01, y=0.99))
+                st.plotly_chart(fig, use_container_width=True)
+
+                st.markdown("##### Najnowsze Wiadomości")
+                with st.spinner(f"Pobieram najnowsze newsy dla {chosen_ticker}..."):
+                    df_news = add_sentiment(fetch_google_news_rss(chosen_ticker))
+                    if not df_news.empty:
+                        display_news_cards(df_news)
+                    else:
+                        st.warning("Nie znaleziono świeżych newsów.")
