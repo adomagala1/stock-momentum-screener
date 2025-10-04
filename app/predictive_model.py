@@ -1,9 +1,3 @@
-"""
-Predictive Model for Stock Selection (z analizą newsów).
-- PostgreSQL: stocks_data
-- MongoDB: news (sentyment)
-- Dzienna analiza, top 20 -> DB + CSV
-"""
 
 import logging
 import os
@@ -18,7 +12,7 @@ from sklearn.metrics import classification_report
 from pymongo import MongoClient
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-from config import settings
+from app.config import settings
 
 # -------- KONFIG --------
 NEWS_WINDOW_DAYS = 7
