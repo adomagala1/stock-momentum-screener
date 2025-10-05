@@ -2,6 +2,7 @@ import streamlit as st
 from sqlalchemy import create_engine
 from pymongo import MongoClient
 from supabase import create_client
+
 import streamlit as st
 
 class Settings:

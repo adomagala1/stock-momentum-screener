@@ -1,5 +1,6 @@
 import sys
 import os
+
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 import streamlit as st
@@ -13,15 +14,18 @@ from app.news import fetch_google_news_rss, add_sentiment
 from app.predictive_model import load_all_stocks_data, get_avg_sentiment_for_tickers
 from app.web.auth import login, logout, register
 from app.web.watchlist import get_watchlist, add_to_watchlist, remove_from_watchlist
-from app.web.alerts import get_alerts, add_alert, remove_alert
+from app.web.alerts import get_alerts, add_alert, remove_alert, ALERTS_CSS, render_styled_alert_card
 
 # ----------------- INICJALIZACJA APLIKACJI -----------------
 st.set_page_config(page_title="Stock AI Dashboard", layout="wide", page_icon="📈")
 
 # --- Inicjalizacja stanu sesji ---
-if "user" not in st.session_state: st.session_state.user = None
-if "is_guest" not in st.session_state: st.session_state.is_guest = False
-if "model_run_success" not in st.session_state: st.session_state.model_run_success = False
+if "user" not in st.session_state:
+    st.session_state.user = None
+if "is_guest" not in st.session_state:
+    st.session_state.is_guest = False
+if "model_run_success" not in st.session_state:
+    st.session_state.model_run_success = False
 
 
 # ----------------- FUNKCJE POMOCNICZE -----------------
@@ -176,16 +180,27 @@ def render_dashboard():
 
         if db_choice == "🔒 Użyj mojej własnej konfiguracji":
             with st.form("db_custom_form"):
+                st.text("MongoDB - NEWSY")
                 mongo_uri_input = st.text_input("MongoDB URI", placeholder="mongodb://user:pass@host:port/db")
                 mongo_db_input = st.text_input("MongoDB DB name", placeholder="stocks_db")
 
-                pg_url_input = st.text_input("PostgreSQL URL", placeholder="https://example.supabase.co")
-                pg_password_input = st.text_input("PostgreSQL Password", type="password")
-                pg_key_input = st.text_input("PostgreSQL Key (anon key)", type="password")
+                st.divider()
 
-                sb_url_input = st.text_input("Supabase URL", placeholder="https://example.supabase.co")
-                sb_api_input = st.text_input("Supabase API Key", type="password")
-                sb_password_input = st.text_input("Supabase Password", type="password")
+                st.markdown(
+                    '<h3 style="text-align: center; color: #007bff;">PostgreSQL / Supabase NEWSY</h1>',
+                    unsafe_allow_html=True
+                )
+                db_choice1, db_choice2 = st.columns(2)
+
+                with db_choice1:
+                    pg_url_input = st.text_input("PostgreSQL URL", placeholder="https://example.supabase.co")
+                    pg_password_input = st.text_input("PostgreSQL Password", type="password")
+                    pg_key_input = st.text_input("PostgreSQL Key (anon key)", type="password")
+
+                with db_choice2:
+                    sb_url_input = st.text_input("Supabase URL", placeholder="https://example.supabase.co")
+                    sb_api_input = st.text_input("Supabase API Key", type="password")
+                    sb_password_input = st.text_input("Supabase Password", type="password")
 
                 if st.form_submit_button("💾 Zapisz połączenie", type="primary"):
                     st.session_state.update({
@@ -227,6 +242,8 @@ def render_dashboard():
         st.text(f"sb_url: {st.session_state.get('sb_url', 'brak')}")
         st.text(f"sb_api: {st.session_state.get('sb_api', 'brak')}")
         st.text(f"sb_password: {st.session_state.get('sb_password', 'brak')}")
+        st.text(f"mongo_uri: {st.session_state.get('mongo_uri', 'brak')}")
+        st.text(f"mongo_db: {st.session_state.get('mongo_db', 'brak')}")
 
     tab1, tab2, tab3, tab4, tab5 = st.tabs(
         ["📈 Dane giełdowe", "📰 Newsy", "🤖 Model predykcyjny", "❤️ Watchlista", "🔔 Alerty Cenowe"])
@@ -245,8 +262,8 @@ def display_stocks_tab(tab_container):
 
         with st.expander("⚙️ Ustawienia pobierania"):
             max_companies = st.number_input("Maksymalna ilość spółek (0 = wszystkie)", min_value=0, value=20, step=10)
-            with_filters = st.checkbox("Zastosuj filtry (Mid Cap, NASDAQ)", value=False)
-            get_only_tickers = st.checkbox("Pobierz tylko tickery (szybciej)", value=False)
+            with_filters = st.checkbox("Pobierz tylko tickery (szybciej)", value=False)
+            get_only_tickers = st.checkbox("Zastosuj filtry (Mid Cap, NASDAQ)", value=False)
 
         if st.button("🔄 Pobierz dane giełdowe", type="primary", use_container_width=True):
             with st.spinner("Pobieram dane z Finviz..."):
@@ -321,9 +338,9 @@ def display_model_tab(tab_container):
                         {'avg_sentiment': 0.0})
                     df_all['market_cap_log'] = np.log1p(df_all['market_cap'].astype(float))
                     p_norm = (df_all['price'] - df_all['price'].min()) / (
-                                df_all['price'].max() - df_all['price'].min() + 1e-9)
+                            df_all['price'].max() - df_all['price'].min() + 1e-9)
                     mc_norm = (df_all['market_cap_log'] - df_all['market_cap_log'].min()) / (
-                                df_all['market_cap_log'].max() - df_all['market_cap_log'].min() + 1e-9)
+                            df_all['market_cap_log'].max() - df_all['market_cap_log'].min() + 1e-9)
                     min_sent, max_sent = df_all['avg_sentiment'].min(), df_all['avg_sentiment'].max()
                     sentiment_range = max_sent - min_sent if (max_sent - min_sent) != 0 else 1
                     sentiment_norm = (df_all['avg_sentiment'] - min_sent) / sentiment_range
@@ -361,7 +378,7 @@ def display_watchlist_tab(tab_container, user_id, is_guest):
         if is_guest:
             render_guest_lock_ui(
                 title="Twoja osobista Watchlista", icon="❤️",
-                description="Zapisuj interesujące Cię spółki, aby mieć je zawsze pod ręką. Śledź ich wyniki i analizuj newsy jednym kliknięciem. Ta funkcja jest dostępna po założeniu darmowego konta."
+                description="Zapisuj interesujące Cię spółki, aby mieć je pod ręką ogołnie. Śledź ich wyniki i analizuj newsy w jednym miejscu. Mozesz zapisac do swojej bazy danych itp Ta funkcja jest dostępna po zalozeniu konta"
             )
             return
 
@@ -396,17 +413,15 @@ def display_alerts_tab(tab_container, user_id, is_guest):
             )
             return
 
-        st.subheader("🔔 Ustaw nowe Alerty Cenowe")
+        st.markdown(ALERTS_CSS, unsafe_allow_html=True)
 
+        st.subheader("🔔 Ustaw nowe Alerty Cenowe")
         with st.form("add_alert_form", clear_on_submit=True):
             alert_ticker = st.text_input("Ticker", placeholder="np. AAPL").upper()
             col_low, col_high = st.columns(2)
-
-            # pozwól użytkownikowi wpisać tylko jedno z progów
             threshold_low_input = col_low.text_input("Powiadom, gdy cena spadnie poniżej:", placeholder="np. 150.00")
             threshold_high_input = col_high.text_input("Powiadom, gdy cena wzrośnie powyżej:", placeholder="np. 200.00")
 
-            # konwersja na liczby lub None
             threshold_low = float(threshold_low_input) if threshold_low_input.strip() else None
             threshold_high = float(threshold_high_input) if threshold_high_input.strip() else None
 
@@ -421,24 +436,17 @@ def display_alerts_tab(tab_container, user_id, is_guest):
 
         st.divider()
         st.markdown("#### Twoje aktywne alerty:")
-
         active_alerts = get_alerts(user_id)
         if not active_alerts:
             st.info("Nie masz ustawionych żadnych alertów.")
         else:
             for alert in active_alerts:
-                with st.container(border=True):
-                    col1, col2 = st.columns([3, 1])
-                    with col1:
-                        low_price = f"${alert['threshold_low']:.2f}" if alert.get('threshold_low') else "Brak"
-                        high_price = f"${alert['threshold_high']:.2f}" if alert.get('threshold_high') else "Brak"
-                        st.markdown(f"**{alert['ticker']}**")
-                        st.markdown(
-                            f"<span style='color: #dc3545;'>Poniżej: {low_price}</span> | "
-                            f"<span style='color: #28a745;'>Powyżej: {high_price}</span>",
-                            unsafe_allow_html=True
-                        )
-                    if col2.button("🗑️ Usuń alert", key=f"del_alert_{alert['id']}", use_container_width=True):
+                html = render_styled_alert_card(alert)
+                st.markdown(html, unsafe_allow_html=True)
+
+                cols = st.columns([3, 1])
+                with cols[1]:
+                    if st.button("🗑️ Usuń alert", key=f"del_alert_{alert['id']}", use_container_width=True):
                         remove_alert(alert['id'])
                         st.rerun()
 

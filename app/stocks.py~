@@ -79,26 +79,26 @@ def fetch_finviz(max_companies: int = 10, get_only_tickers: bool = False, with_f
 
 def get_current_price(ticker: str) -> float | None:
     """
-    Pobiera aktualną cenę danej spółki z Finviz (dostosowane do nowej struktury HTML)
+    Pobiera aktualną cenę danej spółki z Finviz
     Zwraca float lub None, jeśli coś pójdzie nie tak.
     """
     try:
         url = f"https://finviz.com/quote.ashx?t={ticker.upper()}"
         response = requests.get(url, headers=HEADERS, timeout=5)
         response.raise_for_status()
+
         soup = BeautifulSoup(response.text, "html.parser")
+        price_element = soup.find("b", class_="snapshot-td2-cp", string="Price")
 
-        price_tag = soup.find("strong", class_="quote-price_wrapper_price")
-        if price_tag and price_tag.text:
-            price_str = price_tag.text.strip().replace("$", "").replace(",", "")
-            return float(price_str)
+        if not price_element:
+            price_cells = soup.find_all("td", class_="snapshot-td2")
+            for cell in price_cells:
+                if "$" in cell.text:
+                    return float(cell.text.replace("$", "").replace(",", ""))
+            return None
 
-        price_cells = soup.find_all("td", class_="snapshot-td2")
-        for cell in price_cells:
-            if "$" in cell.text:
-                return float(cell.text.replace("$", "").replace(",", ""))
-
-        return None
+        price_str = price_element.find_next("td").text.strip().replace("$", "").replace(",", "")
+        return float(price_str)
 
     except Exception:
         return None

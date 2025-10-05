@@ -1,3 +1,6 @@
+import streamlit as st
+from sqlalchemy import create_engine
+
 import logging
 import os
 import sys
@@ -42,15 +45,22 @@ ch.setFormatter(fmt)
 logger.addHandler(fh)
 logger.addHandler(ch)
 
-# -------- POŁĄCZENIA DB --------
-# jeśli używasz Supabase
-DATABASE_URL = f"postgresql://{settings.PG_USER}:{settings.PG_PASSWORD}@{settings.PG_HOST}:5432/{settings.PG_DB}?sslmode=require"
 
-engine = create_engine(DATABASE_URL, echo=False, future=True)
+def get_pg_engine():
+    if 'pg_url' not in st.session_state or 'pg_key' not in st.session_state:
+        if "user" in st.session_state:
+            st.error(" Brak konfiguracji PostgreSQL dodaj konfiguracje")
+        return None
+    engine = create_engine(st.session_state['pg_url'], echo=False, future=True)
+    return engine
 
-mongo_client = MongoClient(settings.mongo_uri)
-mongo_db = mongo_client[settings.mongo_db]
-news_col = mongo_db["news"]
+
+mongo_uri = st.session_state.get("mongo_uri", "mongodb://localhost:27017")
+mongo_db_name = st.session_state.get("mongo_db", "default_db")
+mongo_client = MongoClient(mongo_uri)
+mongo_db = mongo_client[mongo_db_name]
+
+engine = get_pg_engine()
 
 
 # -------- HELPERY --------
@@ -147,7 +157,7 @@ def create_forward_label(df_all, day, next_day):
 
 
 # -------- PIPELINE GŁÓWNY --------
-def process_historical():
+def process_historical(engine, news_col):
     init_predictions_table()
     df_all = load_all_stocks_data()
     if df_all.empty:
@@ -190,9 +200,9 @@ def process_historical():
                 logger.warning(f"Niewystarczająca wariancja labeli dla {day} — fallback scoring")
                 p_norm = (X["price"] - X["price"].min()) / (X["price"].max() - X["price"].min() + 1e-9)
                 mc_norm = (X["market_cap_log"] - X["market_cap_log"].min()) / (
-                            X["market_cap_log"].max() - X["market_cap_log"].min() + 1e-9)
+                        X["market_cap_log"].max() - X["market_cap_log"].min() + 1e-9)
                 sentiment_norm = (X["avg_sentiment"] - X["avg_sentiment"].min()) / (
-                            abs(X["avg_sentiment"]).max() + 1e-9)
+                        abs(X["avg_sentiment"]).max() + 1e-9)
                 df_day["potential_score"] = (0.4 * p_norm + 0.4 * mc_norm + 0.2 * sentiment_norm).fillna(0)
             else:
                 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, shuffle=False)

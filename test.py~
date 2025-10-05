@@ -1,0 +1,10 @@
+from stocks import get_current_price  # zamień na nazwę swojego pliku
+
+tickers = ["AAPL", "TSLA", "NVDA", "FAKE"]  # dodaj kilka do testu
+
+for t in tickers:
+    price = get_current_price(t)
+    if price is not None:
+        print(f"{t}: ${price:.2f}")
+    else:
+        print(f"{t}: Nie udało się pobrać ceny")

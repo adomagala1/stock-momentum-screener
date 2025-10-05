@@ -39,3 +39,5 @@ def register(email: str, password: str):
             st.error("⚠️ Użytkownik z tym adresem email już istnieje.")
         else:
             st.error(f"⚠️ Błąd rejestracji: {e}")
+
+
