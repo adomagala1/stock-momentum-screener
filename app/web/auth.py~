@@ -9,27 +9,21 @@ def login(email: str, password: str):
         res = supabase.auth.sign_in_with_password({"email": email, "password": password})
         user = res.user
         if user:
-            # --- KLUCZOWA POPRAWKA ---
-            # Zamiast zapisywać cały obiekt, tworzymy słownik.
-            # Dzięki temu kod jest spójny z trybem gościa.
             st.session_state['user'] = {'email': user.email, 'id': user.id}
             # --------------------------
             st.success(f"✅ Zalogowano: {email}")
             return True
     except Exception as e:
-        # Bardziej przyjazny komunikat o błędzie dla użytkownika
-        st.error("⚠️ Błąd logowania: Nieprawidłowy email lub hasło.")
+        st.error(️ Błąd logowania: Nieprawidłowy email lub hasło.")
     return False
 
 def logout():
     """Wylogowanie użytkownika"""
-    # Używamy .pop() - jest bezpieczniejsze i czyści sesję
     st.session_state.pop('user', None)
     st.session_state.pop('is_guest', None)
     try:
         supabase.auth.sign_out()
     except Exception as e:
-        # Ignorujemy błędy przy wylogowywaniu, bo i tak czyścimy sesję
         pass
     st.success("👋 Wylogowano")
 

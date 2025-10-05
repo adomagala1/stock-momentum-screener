@@ -14,7 +14,7 @@ def login(email: str, password: str):
             st.success(f"✅ Zalogowano: {email}")
             return True
     except Exception as e:
-        st.error("⚠️ Błąd logowania: Nieprawidłowy email lub hasło.")
+        st.error("️Błąd logowania: Nieprawidłowy email lub hasło. Jeśli dopiero stworzyłeś konto, musisz potwierdzić na mailu")
     return False
 
 def logout():
