@@ -5,7 +5,6 @@ from .supabase_client import supabase
 
 def get_alerts(user_id: str):
     """Pobiera wszystkie alerty dla danego użytkownika."""
-    if not user_id: return []
     try:
         res = supabase.table("alerts").select("*").eq("user_id", user_id).order("ticker").execute()
         return res.data or []
@@ -19,9 +18,8 @@ def add_alert(user_id, ticker, high, low):
         supabase.table("alerts").insert({
             "user_id": user_id,
             "ticker": ticker.upper(),
-            # Poprawiona logika - przekazujemy None bezpośrednio jeśli wartość to None lub 0
-            "threshold_high": high if high else None,
-            "threshold_low": low if low else None
+            "threshold_high": high if high > 0 else None, # Zapisz null jeśli 0
+            "threshold_low": low if low > 0 else None
         }).execute()
         st.success(f"🔔 Ustawiono alert dla {ticker}!")
     except Exception as e:
