@@ -101,9 +101,6 @@ def render_login_page():
 
         choice = st.radio("Wybierz opcję:", ["Logowanie", "Rejestracja", "Tryb Gościa"], horizontal=True,
                           label_visibility="collapsed")
-
-        st.divider()
-
         if choice == "Logowanie":
             with st.form("login_form"):
                 email = st.text_input("Email", placeholder="user@example.com")
@@ -120,7 +117,7 @@ def render_login_page():
                     register(email, password)
         elif choice == "Tryb Gościa":
             st.info(
-                "Tryb gościa pozwala na przeglądanie ogólnodostępnych danych i testowanie modelu predykcyjnego. Personalizacja (watchlista, alerty) wymaga rejestracji.",
+                "Tryb gościa pozwala na przeglądanie ogólnodostępnych danych i testowanie modelu predykcyjnego. Personalizacja (watchlista, alerty) A TAKZE MODEL PREDYCYKJNY wymaga zalogowania",
                 icon="ℹ️")
             if st.button("Kontynuuj jako Gość", use_container_width=True):
                 st.session_state.user = {"email": "Gość", "id": None}
@@ -180,14 +177,17 @@ def render_dashboard():
 
         if db_choice == "🔒 Użyj mojej własnej konfiguracji":
             with st.form("db_custom_form"):
-                st.text("MongoDB - NEWSY")
+                st.markdown(
+                    '<h3 style="text-align: center; color: #007bff;">MongoDB newsy</h1>',
+                    unsafe_allow_html=True
+                )
                 mongo_uri_input = st.text_input("MongoDB URI", placeholder="mongodb://user:pass@host:port/db")
                 mongo_db_input = st.text_input("MongoDB DB name", placeholder="stocks_db")
 
                 st.divider()
 
                 st.markdown(
-                    '<h3 style="text-align: center; color: #007bff;">PostgreSQL / Supabase NEWSY</h1>',
+                    '<h3 style="text-align: center; color: #007bff;">PostgreSQL / Supabase Stock</h1>',
                     unsafe_allow_html=True
                 )
                 db_choice1, db_choice2 = st.columns(2)
