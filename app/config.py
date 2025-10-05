@@ -24,34 +24,16 @@ class Settings:
 settings = Settings()
 
 
+mongo_uri = settings.mongo_uri
+mongo_db_name = settings.mongo_db
 
+pg_user = settings.PG_USER
+pg_password = settings.PG_PASSWORD
+pg_host = settings.PG_HOST
+pg_db = settings.PG_DB
 
-# ----------------- DOMYŚLNE KONFIGURACJE (z secrets lub fallback) -----------------
-MONGO_URI_DEFAULT = st.secrets.get("default_mongo_uri", "mongodb://localhost:27017/")
-MONGO_DB_DEFAULT = st.secrets.get("default_mongo_db", "stocks_db")
-
-PG_HOST_DEFAULT = st.secrets.get("default_pg_host", "yjyezqesjpuktrlxhxxx.supabase.co")
-PG_USER_DEFAULT = st.secrets.get("default_pg_user", "postgres")
-PG_PASSWORD_DEFAULT = st.secrets.get("default_pg_password", "Adrian9875GetMeAWork")
-PG_DB_DEFAULT = st.secrets.get("default_pg_db", "trading_analyzer")
-
-SB_URL_DEFAULT = st.secrets.get("default_sb_url")
-SB_API_DEFAULT = st.secrets.get("default_sb_api")
-SB_PASSWORD_DEFAULT = st.secrets.get("default_sb_password")
-
-# ----------------- KONFIG Z SESSION STATE LUB DEFAULT -----------------
-mongo_uri = st.session_state.get("mongo_uri", MONGO_URI_DEFAULT)
-mongo_db_name = st.session_state.get("mongo_db", MONGO_DB_DEFAULT)
-
-pg_host = st.session_state.get("pg_host", PG_HOST_DEFAULT)
-pg_user = st.session_state.get("pg_user", PG_USER_DEFAULT)
-pg_password = st.session_state.get("pg_password", PG_PASSWORD_DEFAULT)
-pg_db = st.session_state.get("pg_db", PG_DB_DEFAULT)
-
-sb_url = st.session_state.get("sb_url", SB_URL_DEFAULT)
-sb_api = st.session_state.get("sb_api", SB_API_DEFAULT)
-sb_password = st.session_state.get("sb_password", SB_PASSWORD_DEFAULT)
-
+sb_url = settings.SB_URL
+sb_api = settings.SB_API
 
 mongo_client = MongoClient(mongo_uri)
 mongo_db = mongo_client[mongo_db_name]

@@ -443,6 +443,9 @@ def display_alerts_tab(tab_container, user_id, is_guest):
                         st.rerun()
 
 
+
+# ----------------- GŁÓWNY PUNKT WEJŚCIA APLIKACJI -----------------
+
 def main():
     """Główna funkcja uruchamiająca aplikację."""
     apply_custom_css()

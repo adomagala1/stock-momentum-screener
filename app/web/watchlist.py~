@@ -5,6 +5,8 @@ from .supabase_client import supabase
 
 def get_watchlist(user_id: str):
     """Pobiera watchlistę dla danego użytkownika."""
+    # Zabezpieczenie na wypadek, gdyby user_id było None
+    if not user_id: return []
     try:
         res = supabase.table("watchlist").select("id, ticker").eq("user_id", user_id).order("ticker").execute()
         return res.data or []
@@ -16,7 +18,7 @@ def add_to_watchlist(user_id: str, ticker: str):
     """Dodaje ticker do watchlisty, unikając duplikatów."""
     try:
         # Sprawdź, czy ticker już istnieje
-        exists = supabase.table("watchlist").select("id").eq("user_id", user_id).eq("ticker", ticker).execute()
+        exists = supabase.table("watchlist").select("id").eq("user_id", user_id).eq("ticker", ticker.upper()).execute()
         if not exists.data:
             supabase.table("watchlist").insert({"user_id": user_id, "ticker": ticker.upper()}).execute()
             st.toast(f"✅ Dodano {ticker} do obserwowanych!")

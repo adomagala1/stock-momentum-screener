@@ -1,4 +1,3 @@
-
 import logging
 import os
 import sys
@@ -53,6 +52,7 @@ mongo_client = MongoClient(settings.mongo_uri)
 mongo_db = mongo_client[settings.mongo_db]
 news_col = mongo_db["news"]
 
+
 # -------- HELPERY --------
 def init_predictions_table():
     ddl = """
@@ -69,6 +69,7 @@ def init_predictions_table():
         conn.execute(text(ddl))
     logger.info("Tabela stocks_predictions OK")
 
+
 def load_all_stocks_data() -> pd.DataFrame:
     logger.info("Wczytuję stocks_data z Postgresa...")
     df = pd.read_sql("SELECT * FROM stocks_data", engine)
@@ -83,6 +84,7 @@ def load_all_stocks_data() -> pd.DataFrame:
     logger.info(f"Pobrano {len(df)} rekordów ({df['import_date'].nunique()} dni)")
     logger.debug(f"Kolumny: {df.columns.tolist()}")
     return df
+
 
 def get_avg_sentiment_for_tickers(tickers, day, window_days=7):
     """
@@ -127,7 +129,6 @@ def get_avg_sentiment_for_tickers(tickers, day, window_days=7):
     return df
 
 
-
 def create_forward_label(df_all, day, next_day):
     df_day = df_all[df_all["import_date"] == day].copy()
     if next_day is None:
@@ -143,6 +144,7 @@ def create_forward_label(df_all, day, next_day):
         (merged["change"].fillna(0) > CHANGE_THRESHOLD_PCT).astype(int),
     )
     return merged
+
 
 # -------- PIPELINE GŁÓWNY --------
 def process_historical():
@@ -187,12 +189,15 @@ def process_historical():
             if y.nunique() < 2 or len(df_day) < 5:
                 logger.warning(f"Niewystarczająca wariancja labeli dla {day} — fallback scoring")
                 p_norm = (X["price"] - X["price"].min()) / (X["price"].max() - X["price"].min() + 1e-9)
-                mc_norm = (X["market_cap_log"] - X["market_cap_log"].min()) / (X["market_cap_log"].max() - X["market_cap_log"].min() + 1e-9)
-                sentiment_norm = (X["avg_sentiment"] - X["avg_sentiment"].min()) / (abs(X["avg_sentiment"]).max() + 1e-9)
+                mc_norm = (X["market_cap_log"] - X["market_cap_log"].min()) / (
+                            X["market_cap_log"].max() - X["market_cap_log"].min() + 1e-9)
+                sentiment_norm = (X["avg_sentiment"] - X["avg_sentiment"].min()) / (
+                            abs(X["avg_sentiment"]).max() + 1e-9)
                 df_day["potential_score"] = (0.4 * p_norm + 0.4 * mc_norm + 0.2 * sentiment_norm).fillna(0)
             else:
                 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, shuffle=False)
-                model = RandomForestClassifier(n_estimators=MODEL_N_ESTIMATORS, max_depth=MODEL_MAX_DEPTH, random_state=42)
+                model = RandomForestClassifier(n_estimators=MODEL_N_ESTIMATORS, max_depth=MODEL_MAX_DEPTH,
+                                               random_state=42)
                 model.fit(X_train, y_train)
                 y_pred = model.predict(X_test)
                 report = classification_report(y_test, y_pred, zero_division=0)
@@ -229,6 +234,7 @@ def process_historical():
         logger.info(f"Zapisano zbiorcze CSV: {combined_csv}")
     else:
         logger.warning("Brak wyników do zapisania.")
+
 
 # -------- ENTRYPOINT --------
 if __name__ == "__main__":

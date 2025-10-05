@@ -44,7 +44,9 @@ logger.addHandler(fh)
 logger.addHandler(ch)
 
 # -------- POŁĄCZENIA DB --------
-DATABASE_URL = f"postgresql://{settings.pg_user}:{settings.pg_password}@127.0.0.1:{settings.pg_port}/{settings.pg_db}"
+# jeśli używasz Supabase
+DATABASE_URL = f"postgresql://{settings.PG_USER}:{settings.PG_PASSWORD}@{settings.PG_HOST}:5432/{settings.PG_DB}?sslmode=require"
+
 engine = create_engine(DATABASE_URL, echo=False, future=True)
 
 mongo_client = MongoClient(settings.mongo_uri)

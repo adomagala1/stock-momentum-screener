@@ -3,6 +3,7 @@
 import streamlit as st
 from .supabase_client import supabase
 
+
 def get_watchlist(user_id: str):
     """Pobiera watchlistę dla danego użytkownika."""
     # Zabezpieczenie na wypadek, gdyby user_id było None
@@ -14,10 +15,10 @@ def get_watchlist(user_id: str):
         st.error(f"Błąd podczas ładowania watchlisty: {e}")
         return []
 
+
 def add_to_watchlist(user_id: str, ticker: str):
     """Dodaje ticker do watchlisty, unikając duplikatów."""
     try:
-        # Sprawdź, czy ticker już istnieje
         exists = supabase.table("watchlist").select("id").eq("user_id", user_id).eq("ticker", ticker.upper()).execute()
         if not exists.data:
             supabase.table("watchlist").insert({"user_id": user_id, "ticker": ticker.upper()}).execute()

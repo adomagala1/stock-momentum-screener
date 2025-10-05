@@ -75,6 +75,34 @@ def fetch_finviz(max_companies: int = 10, get_only_tickers: bool = False, with_f
     logging.info(f"Pobrano {len(df)} spółek. Czas: {finish - start_time}")
     return df
 
+
+def get_current_price(ticker: str) -> float | None:
+    """
+    Pobiera aktualną cenę danej spółki z Finviz
+    Zwraca float lub None, jeśli coś pójdzie nie tak.
+    """
+    try:
+        url = f"https://finviz.com/quote.ashx?t={ticker.upper()}"
+        response = requests.get(url, headers=HEADERS, timeout=5)
+        response.raise_for_status()
+
+        soup = BeautifulSoup(response.text, "html.parser")
+        price_element = soup.find("b", class_="snapshot-td2-cp", string="Price")
+
+        if not price_element:
+            price_cells = soup.find_all("td", class_="snapshot-td2")
+            for cell in price_cells:
+                if "$" in cell.text:
+                    return float(cell.text.replace("$", "").replace(",", ""))
+            return None
+
+        price_str = price_element.find_next("td").text.strip().replace("$", "").replace(",", "")
+        return float(price_str)
+
+    except Exception:
+        return None
+
+
 if __name__ == "__main__":
     df = fetch_finviz(max_companies=100, with_filters=False, get_only_tickers=False)
     save_stocks_to_csv(df, with_filters=False, get_only_tickers=False)
