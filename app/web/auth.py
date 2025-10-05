@@ -3,19 +3,25 @@
 import streamlit as st
 from .supabase_client import supabase
 
-def login(email: str, password: str):
-    """Logowanie użytkownika"""
-    try:
-        res = supabase.auth.sign_in_with_password({"email": email, "password": password})
-        user = res.user
-        if user:
-            st.session_state['user'] = {'email': user.email, 'id': user.id}
-            # --------------------------
-            st.success(f"✅ Zalogowano: {email}")
+def login(email, password):
+    user = supabase.auth.sign_in_with_password({"email": email, "password": password})
+    if user.user:
+        st.session_state['user'] = user.user
+        st.session_state['access_token'] = user.session.access_token
+        st.success(f"Zalogowano: {user.user.email}")
+        return True
+    else:
+        st.error("Błąd logowania")
+        return False
+
+def check_login():
+    if 'access_token' in st.session_state:
+        user = supabase.auth.get_user(st.session_state['access_token'])
+        if user.user:
+            st.session_state['user'] = user.user
             return True
-    except Exception as e:
-        st.error("️Błąd logowania: Nieprawidłowy email lub hasło. Jeśli dopiero stworzyłeś konto, musisz potwierdzić na mailu")
     return False
+
 
 def logout():
     """Wylogowanie użytkownika"""

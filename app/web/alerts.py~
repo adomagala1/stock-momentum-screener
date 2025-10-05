@@ -2,7 +2,7 @@
 
 import streamlit as st
 from .supabase_client import supabase
-from app.stocks import get_current_price
+from ..stocks import get_current_price
 import math
 
 ALERTS_CSS = """

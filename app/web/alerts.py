@@ -133,7 +133,7 @@ def check_price(ticker: str):
         return None
 
 
-def render_styled_alert_card(alert):
+def render_styled_alert_card(alert, user_id):
     """
     Zwraca HTML dla karty alertu (używane w pętli).
     """

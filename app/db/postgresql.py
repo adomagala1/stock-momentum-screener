@@ -31,7 +31,7 @@ except (ModuleNotFoundError, KeyError):
     pg_db = os.environ.get("PG_DB")
 
 
-DATABASE_URL = f"postgresql://{pg_user}:{pg_password}@{pg_host}:{pg_port}/{pg_db}"
+DATABASE_URL = "postgresql://postgres:Adrian9875GetMeAWork@localhost:5432/trading_analyzer"
 engine = create_engine(DATABASE_URL, echo=False, future=True)
 SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False)
 
