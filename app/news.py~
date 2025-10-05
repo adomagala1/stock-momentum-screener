@@ -9,8 +9,8 @@ from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import logging
 import time
 
-from save_data import save_news_to_csv
-from stocks import fetch_finviz
+from app.save_data import save_news_to_csv
+from app.stocks import fetch_finviz
 
 os.makedirs("logs", exist_ok=True)
 logging.basicConfig(level=logging.INFO, filename="logs/news_scraper.log",

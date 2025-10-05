@@ -1,7 +1,7 @@
 # app/web/alerts.py
 
 import streamlit as st
-from .supabase_client import supabase # <-- ZMIANA: Import klienta
+from .supabase_client import supabase
 
 def get_alerts(user_id: str):
     """Pobiera wszystkie alerty dla danego użytkownika."""

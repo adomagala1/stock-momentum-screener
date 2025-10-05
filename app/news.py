@@ -1,16 +1,15 @@
 import os
-
 import requests
 import feedparser
 import pandas as pd
 from urllib.parse import urljoin, quote_plus
-from datetime import datetime, timedelta
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import logging
-import time
 
-from app.save_data import save_news_to_csv
-from app.stocks import fetch_finviz
+# Te importy mogą powodować błąd cykliczny, jeśli są na górze.
+# Lepiej je przenieść do bloku __main__ lub do funkcji, które ich używają.
+# from app.save_data import save_news_to_csv
+# from app.stocks import fetch_finviz
 
 os.makedirs("logs", exist_ok=True)
 logging.basicConfig(level=logging.INFO, filename="logs/news_scraper.log",
@@ -39,7 +38,7 @@ def fetch_google_news_rss(ticker, country='US', lang='en'):
         published = e.get('published') or e.get('pubDate') or None
         items.append({
             "ticker": ticker,
-            "headline": e.get("title"),
+            "title": e.get("title"),  # <-- ZMIANA 1: Z "headline" na "title"
             "link": e.get("link"),
             "source": source,
             "published": published
@@ -50,45 +49,53 @@ def fetch_google_news_rss(ticker, country='US', lang='en'):
     return df
 
 
-def add_sentiment(df, text_col='headline'):
+def add_sentiment(df, text_col='title'): # <-- ZMIANA 2: Domyślna kolumna to teraz "title"
     if df.empty:
         return df
     analyzer = SentimentIntensityAnalyzer()
     df = df.copy()
-    df['sentiment'] = df[text_col].fillna("").apply(lambda t: analyzer.polarity_scores(t)['compound'])
+    if text_col in df.columns:
+        df['sentiment'] = df[text_col].fillna("").apply(lambda t: analyzer.polarity_scores(t)['compound'])
+    else:
+        logging.warning(f"W DataFrame brakuje kolumny '{text_col}' do analizy sentymentu.")
+        df['sentiment'] = 0.0
     return df
 
 
 def fetch_news_for_ticker(ticker):
+    """Pobiera i analizuje newsy dla pojedynczego tickera."""
     try:
         news_df = fetch_google_news_rss(ticker)
         if not news_df.empty:
+            # Wywołanie add_sentiment() automatycznie użyje teraz poprawnej kolumny 'title'
             news_df = add_sentiment(news_df)
             news_df["ticker"] = ticker
             return news_df
     except Exception as e:
-        logging.error(f"Google RSS error: {e}")
+        logging.error(f"Błąd podczas pobierania newsów RSS dla {ticker}: {e}")
 
-    # none found
     logging.info(f"Brak newsów dla {ticker} (RSS)")
     return pd.DataFrame()
 
 
 if __name__ == "__main__":
+    # Importy przeniesione tutaj, aby uniknąć problemów z cyklicznym importem
+    from app.save_data import save_news_to_csv
+    from app.stocks import fetch_finviz
+    from db.mongodb import insert_news_df
+
     only_tickers_df = fetch_finviz(get_only_tickers=True, with_filters=False, max_companies=50)
     tickers = only_tickers_df["Ticker"].tolist()
-    ALL = []
+    all_news = []
     for t in tickers:
         news_df = fetch_news_for_ticker(t)
-        news_df["ticker"] = t
         if not news_df.empty:
-            ALL.append(news_df)
+            all_news.append(news_df)
 
-    if ALL:
-        final = pd.concat(ALL, ignore_index=True)
-        save_news_to_csv(final)
-        logging.info(f"Pobrano {len(final)} newsów dla {len(tickers)} spółek")
+    if all_news:
+        final_df = pd.concat(all_news, ignore_index=True)
+        save_news_to_csv(final_df)
+        logging.info(f"Pobrano {len(final_df)} newsów dla {len(tickers)} spółek")
 
-        #dodanie do MongoDB
-        from db.mongodb import insert_news_df
-        insert_news_df(final)
+        # Dodanie do MongoDB
+        insert_news_df(final_df)

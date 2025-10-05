@@ -3,6 +3,28 @@ import pandas as pd
 import logging
 from datetime import datetime
 
+try:
+    import streamlit as st
+    if "pg_user" in st.session_state:
+        pg_user = st.session_state["pg_user"]
+        pg_password = st.session_state["pg_password"]
+        pg_host = st.session_state.get("pg_host", "localhost")
+        pg_port = int(st.session_state.get("pg_port", 5432))
+        pg_db = st.session_state["pg_db"]
+        logging.info("Używam połączenia z sesji użytkownika (custom DB).")
+    else:
+        raise KeyError("Brak sesji użytkownika")
+except (ModuleNotFoundError, KeyError):
+    from dotenv import load_dotenv
+    load_dotenv()
+    pg_user = os.environ.get("PG_USER")
+    pg_password = os.environ.get("PG_PASSWORD")
+    pg_host = os.environ.get("PG_HOST", "127.0.0.1")
+    pg_port = int(os.environ.get("PG_PORT", 5432))
+    pg_db = os.environ.get("PG_DB")
+    logging.info("Używam połączenia z lokalnego .env / secrets.")
+
+
 logging.basicConfig(
     level=logging.INFO,
     filename="logs/save_data.log",
@@ -101,6 +123,6 @@ def save_news_to_csv(df: pd.DataFrame, filename_prefix: str = "news_data") -> No
     path = os.path.join(folder, f"{filename_prefix}_{today}.csv")
     filename = os.path.abspath(path)
 
-    df.to_csv(filename, index=False)
+    df.to_csv(filename, index=False, chunksize=2000)
     logging.info(f"Dane zapisane do {filename}")
     return
