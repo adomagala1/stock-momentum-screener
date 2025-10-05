@@ -17,7 +17,6 @@ from app.web.watchlist import get_watchlist, add_to_watchlist, remove_from_watch
 from app.web.alerts import get_alerts, add_alert, remove_alert, ALERTS_CSS, render_styled_alert_card
 from app.db.db_manager import save_user_model_results
 
-# ----------------- INICJALIZACJA APLIKACJI -----------------
 st.set_page_config(page_title="Stock AI Dashboard", layout="wide", page_icon="📈")
 st.markdown("""
     <style>
@@ -27,7 +26,6 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# --- Inicjalizacja stanu sesji ---
 if "user" not in st.session_state:
     st.session_state.user = None
 if "is_guest" not in st.session_state:
@@ -38,7 +36,6 @@ if "db_configured" not in st.session_state:
     st.session_state.db_configured = False
 
 
-# ----------------- FUNKCJE POMOCNICZE -----------------
 def apply_custom_css():
     st.markdown("""
         <style>
@@ -130,7 +127,7 @@ def render_dashboard():
     user, is_guest = st.session_state.user, st.session_state.is_guest
     col_title, col_user = st.columns([0.7, 0.3])
     with col_title:
-        st.title("📊 AI Stock Screener")
+        st.title("AI Stock Screener")
     with col_user:
         if is_guest:
             if st.button("Zaloguj / Zarejestruj się", use_container_width=True):
@@ -169,7 +166,7 @@ def render_dashboard():
 
         db_choice = st.radio(
             "Wybierz sposób połączenia:",
-            ["🔒 Użyj mojej własnej konfiguracji", "⚙️ Użyj domyślnej konfiguracji (z secrets.toml lub fallback)"],
+            ["🔒 Użyj mojej własnej konfiguracji", "⚙️ Użyj domyślnej konfiguracji (z secrets.toml z pliku .streamlit tego projektu)"],
             horizontal=True,
         )
 

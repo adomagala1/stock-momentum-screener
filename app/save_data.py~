@@ -121,12 +121,7 @@ def save_news_to_csv(df: pd.DataFrame, filename_prefix: str = "news_data") -> No
         st.error(f"Błąd zapisu pliku newsów: {e}")
 
 
-
 def save_or_skip(df, data_type, user_id=None, ticker=None):
-    """
-    Wyświetla opcję: zapis do bazy danych (PostgreSQL/Mongo/MODEL) czy pomiń.
-    data_type: 'stocks', 'news', 'model'
-    """
     if df is None or df.empty:
         st.warning("Brak danych do zapisania.")
         return

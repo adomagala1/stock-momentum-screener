@@ -122,15 +122,11 @@ def save_news_to_csv(df: pd.DataFrame, filename_prefix: str = "news_data") -> No
 
 
 def save_or_skip(df, data_type, user_id=None, ticker=None):
-    """
-    Wyświetla opcję: zapis do bazy danych (PostgreSQL/Mongo/MODEL) czy pomiń.
-    data_type: 'stocks', 'news', 'model'
-    """
     if df is None or df.empty:
         st.warning("Brak danych do zapisania.")
         return
 
-    if st.checkbox(f"💾 Zapisz {data_type} do bazy danych", value=True):
+    if st.checkbox(f"💾 Zapisz {data_type} do bazy danych", value=False):
         if data_type == "stocks":
             save_stock_to_pg(df)
         elif data_type == "news":
