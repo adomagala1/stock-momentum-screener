@@ -4,14 +4,13 @@ import json
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-import plotly.graph_objects as go
 import numpy as np
 import streamlit.components.v1 as components
 
 # --- Konfiguracja Ścieżek ---
-sys.path.append(os.path.abspath(os.path.dirname(__file__)))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-# --- Importy z modułów ---
+# --- Importy z Twoich modułów ---
 from app.stocks import fetch_finviz
 from app.save_data import save_stocks_to_csv
 from app.news import fetch_google_news_rss, add_sentiment
@@ -23,267 +22,222 @@ from app.web.alerts import get_alerts, add_alert, remove_alert
 # ----------------- INICJALIZACJA APLIKACJI -----------------
 st.set_page_config(page_title="Stock AI Dashboard", layout="wide", page_icon="📈")
 
-
-# --- Funkcja dDo ładowania animacji (zwraca teraz dane JSON) ---
-def load_lottie_json(filepath: str):
-    try:
-        with open(filepath, "r") as f:
-            return json.load(f)
-    except FileNotFoundError:
-        return None
+# --- Inicjalizacja stanu sesji ---
+if "user" not in st.session_state: st.session_state.user = None
+if "is_guest" not in st.session_state: st.session_state.is_guest = False
+if "model_run_success" not in st.session_state: st.session_state.model_run_success = False
 
 
-# --- NOWA FUNKCJA DLA ANIMACJI Z COOLDOWNEM ---
-def display_lottie_with_cooldown(lottie_json):
-    if not lottie_json:
-        return
+# ----------------- FUNKCJE POMOCNICZE -----------------
 
-    # Konwertujemy dane JSON na string, aby wstrzyknąć je do JS
-    animation_data_str = json.dumps(lottie_json)
-
-    # HTML i JavaScript do kontrolowania animacji
-    html_code = f"""
-        <div id="lottie-container" style="width: 100%; height: 200px;"></div>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
-        <script>
-            var animationData = {animation_data_str};
-            var container = document.getElementById('lottie-container');
-
-            var anim = lottie.loadAnimation({{
-                container: container,
-                renderer: 'svg',
-                loop: false, // Ważne: wyłączamy domyślne zapętlanie
-                autoplay: true,
-                animationData: animationData
-            }});
-
-            // Kiedy animacja się zakończy...
-            anim.addEventListener('complete', function() {{
-                // ...poczekaj 5 sekund...
-                setTimeout(function() {{
-                    // ...i odpal ją od nowa.
-                    anim.play();
-                }}, 5000); // 5000 milisekund = 5 sekund
-            }});
-        </script>
-    """
-    components.html(html_code, height=210)
-
-
-# --- NOWY CSS Z CZCIONKĄ POPPINS ---
-st.markdown("""
-    <style>
-    /* Import czcionki Poppins z Google Fonts */
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-
-    /* Ukrycie domyślnego menu Streamlit */
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    header {visibility: hidden;}
-
-    /* Nowy styl dla tytułu na stronie logowania */
-    .login-title {{
-        font-family: 'Poppins', sans-serif;
-        font-size: 2.5rem; /* Większa czcionka */
-        font-weight: 700;
-        text-align: center;
-        color: #2A3B4D;
-        margin-top: 20px;
-        margin-bottom: 10px;
-    }}
-    .login-subtitle {{
-        font-family: 'Poppins', sans-serif;
-        text-align: center;
-        color: #5A6B7D;
-        margin-bottom: 30px;
-    }}
-
-    /* Style dla kart newsów (zostają bez zmian) */
-    .news-card {{
-        background-color: #f8f9fa; border-left: 4px solid #007bff; border-radius: 5px;
-        padding: 1rem; margin-bottom: 1rem;
-    }}
-    .news-title a {{ font-size: 1.1rem; font-weight: 600; text-decoration: none; color: inherit; }}
-    .news-meta {{ font-size: 0.85rem; color: #6c757d; }}
-    .sentiment-badge {{ font-weight: 700; padding: 3px 10px; border-radius: 12px; font-size: 13px; color: #fff; }}
-    .positive-bg {{ background-color: #28a745; }}
-    .negative-bg {{ background-color: #dc3545; }}
-    .neutral-bg {{ background-color: #6c757d; }}
-    </style>
-""", unsafe_allow_html=True)
+def apply_custom_css():
+    """Aplikuje subtelne, niestandardowe style CSS do aplikacji."""
+    st.markdown("""
+        <style>
+            /* --- Style dla kart z Newsami --- */
+            .news-card {
+                background-color: #ffffff;
+                border-radius: 10px;
+                padding: 16px;
+                margin-bottom: 12px;
+                border: 1px solid #e6e6e6;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            }
+            .news-title a {
+                text-decoration: none;
+                color: #0d1b2a !important;
+                font-weight: 600;
+                font-size: 1.1em;
+            }
+            .news-title a:hover { text-decoration: underline; }
+            .news-meta { font-size: 0.85em; color: #6c757d; margin-top: 8px; }
+            .sentiment-badge { display: inline-block; padding: 3px 10px; border-radius: 15px; font-weight: 500; color: white; font-size: 0.8em; }
+            .positive-bg { background-color: #28a745; }
+            .negative-bg { background-color: #dc3545; }
+            .neutral-bg { background-color: #6c757d; }
+        </style>
+    """, unsafe_allow_html=True)
 
 
 def display_news_cards(df):
-    # ... ta funkcja bez zmian
-    pass
-
-
-# ----------------- SEKCJA LOGOWANIA / REJESTRACJI (Z NOWYM WYGLĄDEM) -----------------
-if "user" not in st.session_state or not st.session_state["user"]:
-    lottie_json_data = load_lottie_json("assets/animation.json")
-
-    _, col_main, _ = st.columns([1, 2, 1])
-    with col_main:
-        # Używamy nowej funkcji do animacji
-        display_lottie_with_cooldown(lottie_json_data)
-
-        st.markdown("<h1 class='login-title'>Witaj w Stock AI Dashboard</h1>", unsafe_allow_html=True)
-        st.markdown("<p class='login-subtitle'>Zaloguj się lub utwórz konto, aby rozpocząć analizę.</p>",
-                    unsafe_allow_html=True)
-
-        choice = st.radio("Wybierz opcję:", ["Logowanie", "Rejestracja"], horizontal=True, label_visibility="collapsed")
-
-        if choice == "Logowanie":
-            with st.form("login_form", border=True):
-                email = st.text_input("Email", placeholder="user@example.com")
-                password = st.text_input("Hasło", type="password", placeholder="••••••••")
-                submitted = st.form_submit_button("Zaloguj się", use_container_width=True, type="primary")
-                if submitted:
-                    if login(email, password):
-                        st.rerun()
+    """Wyświetla newsy w formie estetycznych kart."""
+    for _, row in df.iterrows():
+        sentiment_score = row['sentiment']
+        if sentiment_score > 0.05:
+            sentiment_label, sentiment_class = "Pozytywny", "positive-bg"
+        elif sentiment_score < -0.05:
+            sentiment_label, sentiment_class = "Negatywny", "negative-bg"
         else:
-            with st.form("register_form", border=True):
-                email = st.text_input("Email", placeholder="user@example.com")
-                password = st.text_input("Hasło", type="password", placeholder="••••••••")
-                submitted = st.form_submit_button("Zarejestruj się", use_container_width=True)
-                if submitted:
-                    register(email, password)
-    st.stop()
+            sentiment_label, sentiment_class = "Neutralny", "neutral-bg"
+        st.markdown(f"""
+            <div class="news-card">
+                <p class="news-title"><a href="{row['link']}" target="_blank">{row['title']}</a></p>
+                <p class="news-meta">Opublikowano: {row['published']} | Sentyment: <span class="sentiment-badge {sentiment_class}">{sentiment_label} ({sentiment_score:.2f})</span></p>
+            </div>
+        """, unsafe_allow_html=True)
 
-# ----------------- GŁÓWNA CZĘŚĆ APLIKACJI (PO ZALOGOWANIU) -----------------
-else:
-    user = st.session_state["user"]
 
-    # --- NAGŁÓWEK BEZ SIDEBARA ---
-    col_title, col_user_panel = st.columns([0.7, 0.3])
-    with col_title:
-        st.title("📊 AI Stock Screener")
-    with col_user_panel:
-        col_icon, col_email, col_button = st.columns([1, 3, 2])
-        with col_icon:
-            st.markdown("""
-                <div style="text-align: right; padding-top: 5px;">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
-                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                    </svg>
-                </div>
-            """, unsafe_allow_html=True)
-        with col_email:
-            st.markdown(f"<div style='padding-top: 8px;'>{user.email}</div>", unsafe_allow_html=True)
-        with col_button:
-            if st.button("Wyloguj"):
-                logout()
-                st.rerun()
-    st.markdown("---")
-    st.subheader("🔧 Połącz własną bazę danych")
-
-    with st.form("db_config_form"):
-        use_custom = st.checkbox("Chcę użyć własnej bazy", value=False)
-
-        if use_custom:
-            mongo_uri_input = st.text_input("MongoDB URI", placeholder="mongodb://user:pass@host:port/db")
-            mongo_db_input = st.text_input("MongoDB DB name", placeholder="stocks_db")
-            pg_url_input = st.text_input("PostgreSQL URL", placeholder=PG_URL_DEFAULT)
-            pg_password_input = st.text_input("PostgreSQL Password", type="password")
-            pg_key_input = st.text_input("PostgreSQL Key", type="password")
-            sb_url_input = st.text_input("Supabase URL", placeholder=SB_URL_DEFAULT)
-            sb_api_input = st.text_input("Supabase API", type="password")
-            sb_password_input = st.text_input("Supabase Password", type="password")
-
-        if st.form_submit_button("💾 Połącz"):
-            if use_custom:
-                st.session_state.update({
-                    "mongo_uri": mongo_uri_input,
-                    "mongo_db": mongo_db_input,
-                    "pg_url": pg_url_input,
-                    "pg_password": pg_password_input,
-                    "pg_key": pg_key_input,
-                    "sb_url": sb_url_input,
-                    "sb_api": sb_api_input,
-                    "sb_password": sb_password_input
-                })
-            st.success("✅ Połączono z wybraną bazą!")
+def render_guest_lock_ui(title, icon, description):
+    """Renderuje estetyczny placeholder dla funkcji dostępnych po zalogowaniu, używając natywnych komponentów Streamlit."""
+    with st.container(border=True):
+        st.markdown(f"### {icon} {title}")
+        st.markdown(description)
+        st.divider()
+        if st.button("Zarejestruj się lub zaloguj, aby odblokować", type="primary", use_container_width=True):
+            logout()  # Czyści stan sesji
             st.rerun()
 
-    # --- ZAKŁADKI APLIKACJI ---
+
+# ----------------- SEKCJE APLIKACJI (RENDEROWANIE UI) -----------------
+
+def render_login_page():
+    """Renderuje stronę logowania, rejestracji i wejścia jako gość."""
+    _, col_main, _ = st.columns([1, 2, 1])
+    with col_main:
+        st.markdown("<h1 style='text-align: center;'>Witaj w Stock AI Dashboard</h1>", unsafe_allow_html=True)
+        st.markdown(
+            "<p style='text-align: center;'>Zaloguj się, zarejestruj lub wejdź jako gość, by zobaczyć aplikację.</p>",
+            unsafe_allow_html=True)
+
+        choice = st.radio("Wybierz opcję:", ["Logowanie", "Rejestracja", "Tryb Gościa"], horizontal=True,
+                          label_visibility="collapsed")
+
+        st.divider()
+
+        if choice == "Logowanie":
+            with st.form("login_form"):
+                email = st.text_input("Email", placeholder="user@example.com")
+                password = st.text_input("Hasło", type="password", placeholder="••••••••")
+                if st.form_submit_button("Zaloguj się", use_container_width=True, type="primary"):
+                    if login(email, password):
+                        st.session_state.is_guest = False
+                        st.rerun()
+        elif choice == "Rejestracja":
+            with st.form("register_form"):
+                email = st.text_input("Email", placeholder="user@example.com")
+                password = st.text_input("Hasło", type="password", placeholder="••••••••")
+                if st.form_submit_button("Zarejestruj się", use_container_width=True):
+                    register(email, password)
+        elif choice == "Tryb Gościa":
+            st.info(
+                "Tryb gościa pozwala na przeglądanie ogólnodostępnych danych i testowanie modelu predykcyjnego. Personalizacja (watchlista, alerty) wymaga rejestracji.",
+                icon="ℹ️")
+            if st.button("Kontynuuj jako Gość", use_container_width=True):
+                st.session_state.user = {"email": "Gość", "id": None}
+                st.session_state.is_guest = True
+                st.toast("✅ Uruchomiono tryb gościa.")
+                st.rerun()
+
+
+def render_dashboard():
+    """Renderuje główny dashboard aplikacji."""
+    user, is_guest = st.session_state.user, st.session_state.is_guest
+
+    col_title, col_user = st.columns([0.7, 0.3])
+    with col_title:
+        st.title("📊 AI Stock Screener")
+    with col_user:
+        if is_guest:
+            if st.button("Zaloguj / Zarejestruj się", use_container_width=True):
+                logout()
+                st.rerun()
+        else:
+            with st.container():
+                st.markdown(f"<div style='text-align: right;'>Zalogowano jako:<br><b>{user['email']}</b></div>",
+                            unsafe_allow_html=True)
+                if st.button("Wyloguj", use_container_width=True, type="secondary"):
+                    logout()
+                    st.rerun()
+    st.divider()
+
     tab1, tab2, tab3, tab4, tab5 = st.tabs(
         ["📈 Dane giełdowe", "📰 Newsy", "🤖 Model predykcyjny", "❤️ Watchlista", "🔔 Alerty Cenowe"])
 
-    user_id = user.id
+    display_stocks_tab(tab1)
+    display_news_tab(tab2, user.get('id'), is_guest)
+    display_model_tab(tab3)
+    display_watchlist_tab(tab4, user.get('id'), is_guest)
+    display_alerts_tab(tab5, user.get('id'), is_guest)
 
-    # ... Wszystkie taby od 1 do 5 wklej tutaj z poprzedniej, pełnej wersji ...
-    # Poniżej wklejam je dla kompletności
 
-    # ==================== TAB 1: DANE GIEŁDOWE ====================
-    with tab1:
+def display_stocks_tab(tab_container):
+    with tab_container:
         st.subheader("Pobierz dane giełdowe z Finviz")
-        with st.container(border=True):
-            col1, col2, col3 = st.columns(3)
-            max_companies = col1.number_input("Ilość spółek (0 = wszystkie)", min_value=0, value=20, step=10,
-                                              key="max_companies_tab1")
-            with_filters = col2.checkbox("Filtry (Mid Cap, NASDAQ)", value=False, key="filters_tab1")
-            get_only_tickers = col3.checkbox("Tylko tickery?", value=False, key="tickers_only_tab1")
-        if st.button("🔄 Pobierz dane giełdowe", type="primary"):
+        st.caption("Użyj poniższych opcji, aby pobrać najnowsze dane o spółkach i zapisać je do analizy.")
+
+        with st.expander("⚙️ Ustawienia pobierania"):
+            max_companies = st.number_input("Maksymalna ilość spółek (0 = wszystkie)", min_value=0, value=20, step=10)
+            with_filters = st.checkbox("Zastosuj filtry (Mid Cap, NASDAQ)", value=False)
+            get_only_tickers = st.checkbox("Pobierz tylko tickery (szybciej)", value=False)
+
+        if st.button("🔄 Pobierz dane giełdowe", type="primary", use_container_width=True):
             with st.spinner("Pobieram dane z Finviz..."):
                 df = fetch_finviz(max_companies, with_filters, get_only_tickers)
                 if not df.empty:
-                    st.success(f"Pobrano {len(df)} spółek")
+                    st.success(f"Pobrano dane dla {len(df)} spółek.")
                     st.dataframe(df, use_container_width=True, height=500)
                     save_stocks_to_csv(df, get_only_tickers, with_filters)
                 else:
-                    st.error("❌ Nie udało się pobrać danych.")
+                    st.error("❌ Nie udało się pobrać danych. Spróbuj ponownie później.")
 
-    # ==================== TAB 2: NEWSY ====================
-    with tab2:
-        st.subheader("Newsy i analiza sentymentu")
-        watchlist_tickers = [item['ticker'] for item in get_watchlist(user_id)]
-        analysis_choice = st.radio("Wybierz źródło tickera:", ["Wpisz ręcznie", "Wybierz z obserwowanych"],
-                                   horizontal=True, key="news_choice")
 
-        if analysis_choice == "Wpisz ręcznie":
-            ticker = st.text_input("🔎 Wpisz ticker (np. AAPL, TSLA)", key="ticker_news_tab2").upper()
+def display_news_tab(tab_container, user_id, is_guest):
+    with tab_container:
+        st.subheader("Analiza sentymentu na podstawie newsów")
+        st.caption("Wpisz ticker spółki, aby pobrać najnowsze wiadomości i zobaczyć ich analizę sentymentu.")
+
+        if is_guest:
+            ticker = st.text_input("🔎 Wpisz ticker (np. AAPL, TSLA)", key="news_ticker_guest").upper()
+            st.info("Załóż konto, aby móc szybko wybierać spółki ze swojej spersonalizowanej watchlisty!", icon="⭐")
         else:
-            if not watchlist_tickers:
-                st.warning("Twoja watchlista jest pusta. Dodaj spółki w zakładce '❤️ Watchlista'.")
-                ticker = ""
-            else:
-                ticker = st.selectbox("Wybierz spółkę z Twojej watchlisty:", options=watchlist_tickers)
+            watchlist_tickers = [item['ticker'] for item in get_watchlist(user_id)]
+            options = ["Wpisz ręcznie"]
+            if watchlist_tickers: options.append("Wybierz z obserwowanych")
 
-        if st.button("📥 Pobierz newsy dla spółki", type="primary"):
+            analysis_choice = st.radio("Wybierz źródło tickera:", options, horizontal=True)
+            if analysis_choice == "Wpisz ręcznie":
+                ticker = st.text_input("🔎 Wpisz ticker (np. AAPL, TSLA)", key="news_ticker_user").upper()
+            else:
+                ticker = st.selectbox("Wybierz spółkę z Twojej watchlisty:", options=watchlist_tickers,
+                                      key="news_ticker_select")
+
+        if st.button("📥 Pobierz i analizuj newsy", type="primary", use_container_width=True):
             if ticker:
-                with st.spinner(f"Pobieram i analizuję newsy dla {ticker}..."):
+                with st.spinner(f"Pracuję nad analizą dla {ticker}..."):
                     df_news = fetch_google_news_rss(ticker)
                     if not df_news.empty:
                         df_news = add_sentiment(df_news)
-                        avg_sent = df_news['sentiment'].mean()
-                        c1, c2 = st.columns(2)
-                        c1.metric("Średni sentyment", f"{avg_sent:.3f}")
-                        c2.metric("Liczba newsów", len(df_news))
+                        st.divider()
+                        st.markdown(f"**Wyniki dla: {ticker}**")
+                        cols = st.columns(2)
+                        cols[0].metric("Średni sentyment", f"{df_news['sentiment'].mean():.3f}")
+                        cols[1].metric("Liczba przeanalizowanych newsów", len(df_news))
                         fig = px.histogram(df_news, x="sentiment", nbins=20, title=f"Rozkład sentymentu dla {ticker}")
                         st.plotly_chart(fig, use_container_width=True)
                         display_news_cards(df_news)
                     else:
-                        st.warning(f"Brak newsów dla {ticker}")
+                        st.warning(f"Nie znaleziono nowszych wiadomości dla tickera {ticker}.")
             else:
-                st.warning("Proszę wpisać lub wybrać ticker.")
+                st.warning("Proszę wpisać lub wybrać ticker do analizy.")
 
-    # ==================== TAB 3: MODEL PREYDYKCYJNY ====================
-    with tab3:
-        st.subheader("Predykcja na podstawie modelu i sentymentu")
-        top_n = st.slider("📊 Liczba najlepszych spółek do wyświetlenia", min_value=5, max_value=50, value=20, step=5)
 
-        if st.button("🚀 Uruchom model predykcyjny", type="primary"):
-            with st.spinner("⏳ Analizuję dane historyczne i sentyment... Może to potrwać chwilę."):
+def display_model_tab(tab_container):
+    with tab_container:
+        st.subheader("Model predykcyjny AI")
+        st.info(
+            "Model ocenia spółki na podstawie ceny, kapitalizacji rynkowej i uśrednionego sentymentu z newsów, tworząc 'Potential Score'. Im wyższy wynik, tym większy potencjał według modelu.",
+            icon="💡")
+
+        top_n = st.slider("📊 Wybierz, ile najlepszych spółek wyświetlić", 5, 50, 20, 5)
+
+        if st.button("🚀 Uruchom model", type="primary", use_container_width=True):
+            with st.spinner("Analizuję dane i uruchamiam model... To może potrwać chwilę."):
                 df_all = load_all_stocks_data()
                 if not df_all.empty:
-                    # Tutaj cała logika modelu
-                    tickers = df_all['ticker'].dropna().unique()
+                    # Logika modelu pozostaje bez zmian
+                    tickers = df_all['ticker'].dropna().unique();
                     dates = df_all['import_date'].dropna().unique()
-                    all_sentiments = []
-                    for day in dates:
-                        sentiment_df = get_avg_sentiment_for_tickers(tickers, day)
-                        sentiment_df['import_date'] = day
-                        all_sentiments.append(sentiment_df)
+                    all_sentiments = [get_avg_sentiment_for_tickers(tickers, day) for day in dates]
                     sentiment_all = pd.concat(all_sentiments, ignore_index=True)
                     df_all = df_all.merge(sentiment_all, on=['ticker', 'import_date'], how='left').fillna(
                         {'avg_sentiment': 0.0})
@@ -299,77 +253,85 @@ else:
                     last_day = max(df_all['import_date'])
                     df_day = df_all[df_all['import_date'] == last_day].copy()
 
-
                     def explain_decision(row, df):
                         reasons = []
                         if row['price'] > df['price'].quantile(0.75): reasons.append("wysoka cena")
                         if row['market_cap_log'] > df['market_cap_log'].quantile(0.75): reasons.append(
                             "duża kapitalizacja")
-                        if row['avg_sentiment'] > 0.1: reasons.append("bardzo pozytywny sentyment")
+                        if row['avg_sentiment'] > 0.1: reasons.append("pozytywny sentyment")
                         if row['potential_score'] > df['potential_score'].quantile(0.75): reasons.append(
-                            "wysoki potencjał modelu")
+                            "wysoki potencjał")
                         return ", ".join(reasons) if reasons else "stabilne wskaźniki"
-
 
                     df_day['reason'] = df_day.apply(lambda r: explain_decision(r, df_day), axis=1)
                     top_day = df_day.sort_values('potential_score', ascending=False).head(top_n)
-                    st.session_state.update(
-                        {'model_run_success': True, 'df_all': df_all, 'top_day': top_day, 'last_day': last_day})
+                    st.session_state.update({'model_run_success': True, 'top_day': top_day, 'last_day': last_day})
                 else:
-                    st.error("Brak danych historycznych. Uruchom skrypt zbierający dane.")
+                    st.error("Brak danych historycznych do analizy. Pobierz dane w pierwszej zakładce.")
 
-        if st.session_state.get('model_run_success', False):
-            top_day = st.session_state['top_day']
-            df_all = st.session_state['df_all']
-            st.success(f"✅ Analiza zakończona. Oto Top {len(top_day)} spółek z dnia {st.session_state['last_day']}")
-            st.dataframe(top_day[['ticker', 'company', 'potential_score', 'avg_sentiment', 'price', 'reason']],
-                         use_container_width=True)
+        if st.session_state.get('model_run_success'):
+            st.divider()
+            st.success(
+                f"Oto Top {len(st.session_state.top_day)} spółek z dnia {st.session_state.last_day} według modelu:")
+            st.dataframe(
+                st.session_state.top_day[['ticker', 'company', 'potential_score', 'avg_sentiment', 'price', 'reason']],
+                use_container_width=True)
 
-            st.markdown("---")
-            st.subheader("Szczegółowa analiza wybranej spółki")
-            chosen_ticker = st.selectbox("Wybierz spółkę z powyższej listy:", options=top_day['ticker'].unique())
-            if chosen_ticker:
-                stock_data = top_day[top_day['ticker'] == chosen_ticker].iloc[0]
-                st.info(f"**Uzasadnienie wyboru:** {stock_data['reason']}")
 
-    # ==================== TAB 4: WATCHLISTA ====================
-    with tab4:
+def display_watchlist_tab(tab_container, user_id, is_guest):
+    with tab_container:
+        if is_guest:
+            render_guest_lock_ui(
+                title="Twoja osobista Watchlista", icon="❤️",
+                description="Zapisuj interesujące Cię spółki, aby mieć je zawsze pod ręką. Śledź ich wyniki i analizuj newsy jednym kliknięciem. Ta funkcja jest dostępna po założeniu darmowego konta."
+            )
+            return
+
         st.subheader("❤️ Twoja Watchlista")
         with st.form("add_ticker_form", clear_on_submit=True):
             new_ticker = st.text_input("Dodaj ticker do obserwowanych:", placeholder="np. NVDA").upper()
-            if st.form_submit_button("➕ Dodaj", use_container_width=True, type="primary"):
-                if new_ticker:
-                    add_to_watchlist(user_id, new_ticker)
-                    st.rerun()
-        st.markdown("---")
+            if st.form_submit_button("➕ Dodaj do watchlisty", use_container_width=True, type="primary"):
+                if new_ticker: add_to_watchlist(user_id, new_ticker); st.rerun()
+
+        st.divider()
         st.markdown("#### Obecnie obserwujesz:")
         watchlist_data = get_watchlist(user_id)
         if not watchlist_data:
-            st.info("Twoja watchlista jest pusta.")
+            st.info("Twoja watchlista jest pusta. Dodaj ticker powyżej, aby zacząć obserwować.")
         else:
             for item in watchlist_data:
                 col1, col2 = st.columns([4, 1])
                 col1.code(item['ticker'])
                 if col2.button("🗑️ Usuń", key=f"del_watch_{item['id']}", use_container_width=True):
-                    remove_from_watchlist(item['id'])
-                    st.toast(f"Usunięto {item['ticker']} z obserwowanych.")
+                    remove_from_watchlist(item['id']);
                     st.rerun()
 
-    # ==================== TAB 5: ALERTY CENOWE ====================
-    with tab5:
-        st.subheader("🔔 Alerty Cenowe")
+
+def display_alerts_tab(tab_container, user_id, is_guest):
+    with tab_container:
+        if is_guest:
+            render_guest_lock_ui(
+                title="Automatyczne Alerty Cenowe", icon="🔔",
+                description="Nie przegap żadnej okazji! Ustaw progi cenowe dla wybranych spółek, a system powiadomi Cię, gdy cena osiągnie docelowy poziom. Ta funkcja jest dostępna po założeniu darmowego konta."
+            )
+            return
+
+        st.subheader("🔔 Ustaw nowe Alerty Cenowe")
         with st.form("add_alert_form", clear_on_submit=True):
             alert_ticker = st.text_input("Ticker", placeholder="np. AAPL").upper()
             col_low, col_high = st.columns(2)
-            threshold_low = col_low.number_input("Powiadom, gdy cena spadnie poniżej:", min_value=0.0, format="%.2f")
-            threshold_high = col_high.number_input("Powiadom, gdy cena wzrośnie powyżej:", min_value=0.0, format="%.2f")
+            threshold_low = col_low.number_input("Powiadom, gdy cena spadnie poniżej:", min_value=0.01, format="%.2f",
+                                                 value=None, placeholder="np. 150.00")
+            threshold_high = col_high.number_input("Powiadom, gdy cena wzrośnie powyżej:", min_value=0.01,
+                                                   format="%.2f", value=None, placeholder="np. 200.00")
             if st.form_submit_button("🔔 Ustaw alert", use_container_width=True, type="primary"):
-                if alert_ticker and (threshold_low > 0 or threshold_high > 0):
-                    add_alert(user_id, alert_ticker, threshold_high, threshold_low)
+                if alert_ticker and ((threshold_low or 0) > 0 or (threshold_high or 0) > 0):
+                    add_alert(user_id, alert_ticker, threshold_high, threshold_low);
                     st.rerun()
                 else:
                     st.warning("Wpisz ticker i co najmniej jeden próg cenowy.")
-        st.markdown("---")
+
+        st.divider()
         st.markdown("#### Twoje aktywne alerty:")
         active_alerts = get_alerts(user_id)
         if not active_alerts:
@@ -379,13 +341,27 @@ else:
                 with st.container(border=True):
                     col1, col2 = st.columns([3, 1])
                     with col1:
-                        low_price = f"${alert['threshold_low']}" if alert['threshold_low'] else "Brak"
-                        high_price = f"${alert['threshold_high']}" if alert['threshold_high'] else "Brak"
+                        low_price = f"${alert['threshold_low']}" if alert.get('threshold_low') else "Brak"
+                        high_price = f"${alert['threshold_high']}" if alert.get('threshold_high') else "Brak"
                         st.markdown(f"**{alert['ticker']}**")
                         st.markdown(
-                            f"<span style='color: #dc3545;'>↓ {low_price}</span> | <span style='color: #28a745;'>↑ {high_price}</span>",
+                            f"<span style='color: #dc3545;'>Poniżej: {low_price}</span> | <span style='color: #28a745;'>Powyżej: {high_price}</span>",
                             unsafe_allow_html=True)
                     if col2.button("🗑️ Usuń alert", key=f"del_alert_{alert['id']}", use_container_width=True):
-                        remove_alert(alert['id'])
-                        st.toast(f"Usunięto alert dla {alert['ticker']}.")
+                        remove_alert(alert['id']);
                         st.rerun()
+
+
+# ----------------- GŁÓWNY PUNKT WEJŚCIA APLIKACJI -----------------
+
+def main():
+    """Główna funkcja uruchamiająca aplikację."""
+    apply_custom_css()
+    if not st.session_state.user:
+        render_login_page()
+    else:
+        render_dashboard()
+
+
+if __name__ == "__main__":
+    main()
