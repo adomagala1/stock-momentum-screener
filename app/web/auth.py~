@@ -32,7 +32,7 @@ def register(email: str, password: str):
     try:
         res = supabase.auth.sign_up({"email": email, "password": password})
         st.success(f"🎉 Utworzono konto dla {email}. Sprawdź email, aby potwierdzić rejestrację.")
-        st.info("Możesz się teraz zalogować.")
+        st.info("Jeśli potwierdzisz na mailu to możesz się teraz zalogować")
     except Exception as e:
         # Lepsza obsługa błędów, np. gdy użytkownik już istnieje
         if 'User already registered' in str(e):
@@ -41,4 +41,3 @@ def register(email: str, password: str):
             st.error(f"⚠️ Błąd rejestracji: {e}")
 
 
-def

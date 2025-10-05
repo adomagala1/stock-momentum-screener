@@ -18,7 +18,13 @@ from app.web.alerts import get_alerts, add_alert, remove_alert, ALERTS_CSS, rend
 
 # ----------------- INICJALIZACJA APLIKACJI -----------------
 st.set_page_config(page_title="Stock AI Dashboard", layout="wide", page_icon="📈")
-
+st.markdown("""
+    <style>
+        [data-testid="stSidebar"] {background-color: #f8f9fa;}
+        .stButton>button {border-radius: 8px;}
+        h1, h2, h3 {color: #0d1b2a;}
+    </style>
+""", unsafe_allow_html=True)
 # --- Inicjalizacja stanu sesji ---
 if "user" not in st.session_state:
     st.session_state.user = None

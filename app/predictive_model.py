@@ -1,5 +1,5 @@
 import streamlit as st
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text
 
 import logging
 import os
@@ -7,16 +7,14 @@ import sys
 from datetime import datetime, timedelta
 import pandas as pd
 import numpy as np
-from sqlalchemy import create_engine, text
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
 from pymongo import MongoClient
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-from app.config import settings
+from app.config import settings  # jeżeli tego nie ma, usuń lub zastąp odpowiednią konfiguracją
 
-# -------- KONFIG --------
 NEWS_WINDOW_DAYS = 7
 FUTURE_THRESHOLD_PCT = 2.0
 CHANGE_THRESHOLD_PCT = 2.0
@@ -29,7 +27,6 @@ os.makedirs(OUTPUT_DIR, exist_ok=True)
 os.makedirs(LOG_DIR, exist_ok=True)
 LOG_FILE = os.path.join(LOG_DIR, "predictive_model.log")
 
-# -------- LOGOWANIE --------
 logger = logging.getLogger("predictive_model")
 logger.setLevel(logging.DEBUG)
 
@@ -42,29 +39,67 @@ fmt = logging.Formatter("%(asctime)s [%(levelname)s] %(message)s")
 fh.setFormatter(fmt)
 ch.setFormatter(fmt)
 
-logger.addHandler(fh)
-logger.addHandler(ch)
+if not logger.handlers:
+    logger.addHandler(fh)
+    logger.addHandler(ch)
 
 
 def get_pg_engine():
-    if 'pg_url' not in st.session_state or 'pg_key' not in st.session_state:
-        if "user" in st.session_state:
-            st.error(" Brak konfiguracji PostgreSQL dodaj konfiguracje")
+    """
+    Pobiera URL do Postgresa ze st.session_state gdy przez Streamlit odpalony
+    albo ze zmiennej środowiskowej PG_URL (fallback)
+    Zwraca SQLAlchemy engine lub None
+    """
+    pg_url = None
+    try:
+        pg_url = st.session_state.get("pg_url")
+    except Exception:
+        pg_url = None
+
+    if not pg_url:
+        pg_url = os.getenv("PG_URL")
+
+    if not pg_url:
+        logger.error("Brak konfiguracji PG_URL (st.session_state['pg_url'] lub env PG_URL).")
         return None
-    engine = create_engine(st.session_state['pg_url'], echo=False, future=True)
-    return engine
+
+    try:
+        engine = create_engine(pg_url, echo=False, future=True)
+        return engine
+    except Exception as e:
+        logger.exception(f"Błąd tworzenia engine'a Postgres: {e}")
+        return None
 
 
-mongo_uri = st.session_state.get("mongo_uri", "mongodb://localhost:27017")
-mongo_db_name = st.session_state.get("mongo_db", "default_db")
-mongo_client = MongoClient(mongo_uri)
-mongo_db = mongo_client[mongo_db_name]
+def get_mongo_collection():
+    """
+    Zwraca kolekcję 'news' z MongoDB. Źródła: st.session_state lub env MONGO_URI / MONGO_DB.
+    """
+    try:
+        mongo_uri = None
+        mongo_db_name = None
+        try:
+            mongo_uri = st.session_state.get("mongo_uri")
+            mongo_db_name = st.session_state.get("mongo_db")
+        except Exception:
+            mongo_uri = None
+            mongo_db_name = None
 
-engine = get_pg_engine()
+        if not mongo_uri:
+            mongo_uri = os.getenv("MONGO_URI", "mongodb://localhost:27017")
+        if not mongo_db_name:
+            mongo_db_name = os.getenv("MONGO_DB", "default_db")
+
+        client = MongoClient(mongo_uri)
+        db = client[mongo_db_name]
+        return db.get_collection("news")
+    except Exception as e:
+        logger.exception(f"Błąd połączenia z MongoDB: {e}")
+        return None
 
 
 # -------- HELPERY --------
-def init_predictions_table():
+def init_predictions_table(engine):
     ddl = """
     CREATE TABLE IF NOT EXISTS stocks_predictions (
         id SERIAL PRIMARY KEY,
@@ -75,14 +110,22 @@ def init_predictions_table():
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
     """
-    with engine.begin() as conn:
-        conn.execute(text(ddl))
-    logger.info("Tabela stocks_predictions OK")
+    try:
+        with engine.begin() as conn:
+            conn.execute(text(ddl))
+        logger.info("Tabela stocks_predictions OK")
+    except Exception as e:
+        logger.exception(f"Błąd inicjalizacji tabeli stocks_predictions: {e}")
+        raise
 
 
-def load_all_stocks_data() -> pd.DataFrame:
+def load_all_stocks_data(engine) -> pd.DataFrame:
     logger.info("Wczytuję stocks_data z Postgresa...")
-    df = pd.read_sql("SELECT * FROM stocks_data", engine)
+    try:
+        df = pd.read_sql("SELECT * FROM stocks_data", engine)
+    except Exception as e:
+        logger.exception(f"Błąd odczytu stocks_data: {e}")
+        return pd.DataFrame()
     if df.empty:
         logger.error("Brak danych w stocks_data")
         return df
@@ -96,38 +139,46 @@ def load_all_stocks_data() -> pd.DataFrame:
     return df
 
 
-def get_avg_sentiment_for_tickers(tickers, day, window_days=7):
+def get_avg_sentiment_for_tickers(news_col, tickers, day, window_days=NEWS_WINDOW_DAYS):
     """
     Średni sentyment z newsów w oknie (domyślnie 7 dni) do danego dnia.
     """
+    if news_col is None:
+        logger.warning("Brak kolekcji news_col — zwracam pusty DataFrame sentymentu.")
+        return pd.DataFrame(columns=["ticker", "avg_sentiment"])
+
     if not isinstance(day, (datetime, pd.Timestamp)):
         day = pd.to_datetime(day)
 
     start = day - timedelta(days=window_days)
     end = day + timedelta(days=1)
 
-    cursor = news_col.aggregate([
-        {"$addFields": {
-            "published_dt": {
-                "$cond": {
-                    "if": {"$eq": [{"$type": "$published"}, "string"]},
-                    "then": {"$toDate": "$published"},
-                    "else": "$published"
+    try:
+        cursor = news_col.aggregate([
+            {"$addFields": {
+                "published_dt": {
+                    "$cond": {
+                        "if": {"$eq": [{"$type": "$published"}, "string"]},
+                        "then": {"$toDate": "$published"},
+                        "else": "$published"
+                    }
                 }
-            }
-        }},
-        {"$match": {
-            "ticker": {"$in": list(tickers)},
-            "published_dt": {"$gte": start, "$lt": end}
-        }},
-        {"$group": {
-            "_id": "$ticker",
-            "avg_sentiment": {"$avg": "$sentiment"},
-            "count": {"$sum": 1}
-        }}
-    ])
+            }},
+            {"$match": {
+                "ticker": {"$in": list(tickers)},
+                "published_dt": {"$gte": start, "$lt": end}
+            }},
+            {"$group": {
+                "_id": "$ticker",
+                "avg_sentiment": {"$avg": "$sentiment"},
+                "count": {"$sum": 1}
+            }}
+        ])
+        results = list(cursor)
+    except Exception as e:
+        logger.exception(f"Błąd agregacji newsów: {e}")
+        results = []
 
-    results = list(cursor)
     if not results:
         logger.info(f"{day.date()}: brak newsów (okno {window_days} dni)")
         return pd.DataFrame(columns=["ticker", "avg_sentiment"])
@@ -136,7 +187,7 @@ def get_avg_sentiment_for_tickers(tickers, day, window_days=7):
     df.rename(columns={"_id": "ticker"}, inplace=True)
 
     logger.info(f"{day.date()}: {len(df)} tickerów z sentymentem (z okna {window_days} dni)")
-    return df
+    return df[["ticker", "avg_sentiment"]]
 
 
 def create_forward_label(df_all, day, next_day):
@@ -147,7 +198,7 @@ def create_forward_label(df_all, day, next_day):
         return df_day
     df_next = df_all[df_all["import_date"] == next_day][["ticker", "price"]].rename(columns={"price": "price_next"})
     merged = df_day.merge(df_next, on="ticker", how="left")
-    merged["future_pct"] = (merged["price_next"] - merged["price"]) / merged["price"] * 100
+    merged["future_pct"] = (merged["price_next"] - merged["price"]) / (merged["price"] + 1e-9) * 100
     merged["high_potential"] = np.where(
         merged["price_next"].notna(),
         (merged["future_pct"] > FUTURE_THRESHOLD_PCT).astype(int),
@@ -158,9 +209,14 @@ def create_forward_label(df_all, day, next_day):
 
 # -------- PIPELINE GŁÓWNY --------
 def process_historical(engine, news_col):
-    init_predictions_table()
-    df_all = load_all_stocks_data()
+    if engine is None:
+        logger.error("Brak połączenia do Postgresa — przerywam przetwarzanie.")
+        return
+
+    init_predictions_table(engine)
+    df_all = load_all_stocks_data(engine)
     if df_all.empty:
+        logger.warning("Brak danych do przetworzenia — kończę.")
         return
 
     # filtr podstawowy
@@ -182,7 +238,7 @@ def process_historical(engine, news_col):
                 logger.warning(f"Brak tickerów dla {day}, pomijam")
                 continue
 
-            sentiment_df = get_avg_sentiment_for_tickers(tickers, day)
+            sentiment_df = get_avg_sentiment_for_tickers(news_col, tickers, day)
             df_day = df_day.merge(sentiment_df, on="ticker", how="left")
             df_day["avg_sentiment"] = df_day["avg_sentiment"].fillna(0.0)
 
@@ -220,7 +276,7 @@ def process_historical(engine, news_col):
 
             save_cols = ["ticker", "company", "potential_score"]
             top_day_to_save = top_day[save_cols].copy()
-            top_day_to_save["import_date"] = pd.to_datetime(day)
+            top_day_to_save["import_date"] = pd.to_datetime(day).date()
 
             per_day_csv = os.path.join(OUTPUT_DIR, f"top_stocks_predictions_{day}.csv")
             top_day_to_save.to_csv(per_day_csv, index=False)
@@ -249,5 +305,7 @@ def process_historical(engine, news_col):
 # -------- ENTRYPOINT --------
 if __name__ == "__main__":
     logger.info("Start")
-    process_historical()
+    engine = get_pg_engine()
+    news_col = get_mongo_collection()
+    process_historical(engine, news_col)
     logger.info("Koniec")

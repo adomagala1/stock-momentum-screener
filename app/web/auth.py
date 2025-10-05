@@ -31,8 +31,8 @@ def register(email: str, password: str):
     """Rejestracja nowego użytkownika"""
     try:
         res = supabase.auth.sign_up({"email": email, "password": password})
-        st.success(f"🎉 Utworzono konto dla {email}. Sprawdź email, aby potwierdzić rejestrację.")
-        st.info("Możesz się teraz zalogować.")
+        st.success(f"🎉 Utworzono konto dla {email}")
+        st.info("Mail -> potwierdzic -> Mozesz sie zalogowac")
     except Exception as e:
         # Lepsza obsługa błędów, np. gdy użytkownik już istnieje
         if 'User already registered' in str(e):

@@ -177,7 +177,10 @@ def render_dashboard():
 
         if db_choice == "🔒 Użyj mojej własnej konfiguracji":
             with st.form("db_custom_form"):
-                st.text("MongoDB - NEWSY")
+                st.markdown(
+                    '<h3 style="text-align: center; color: #007bff;">MongoDB newsy</h1>',
+                    unsafe_allow_html=True
+                )
                 mongo_uri_input = st.text_input("MongoDB URI", placeholder="mongodb://user:pass@host:port/db")
                 mongo_db_input = st.text_input("MongoDB DB name", placeholder="stocks_db")
 

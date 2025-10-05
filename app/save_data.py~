@@ -2,127 +2,118 @@ import os
 import pandas as pd
 import logging
 from datetime import datetime
+import streamlit as st  # Dodajemy import Streamlit do informacji zwrotnej
 
-try:
-    import streamlit as st
-    if "pg_user" in st.session_state:
-        pg_user = st.session_state["pg_user"]
-        pg_password = st.session_state["pg_password"]
-        pg_host = st.session_state.get("pg_host", "localhost")
-        pg_port = int(st.session_state.get("pg_port", 5432))
-        pg_db = st.session_state["pg_db"]
-        logging.info("Używam połączenia z sesji użytkownika (custom DB).")
-    else:
-        raise KeyError("Brak sesji użytkownika")
-except (ModuleNotFoundError, KeyError):
-    from dotenv import load_dotenv
-    load_dotenv()
-    pg_user = os.environ.get("PG_USER")
-    pg_password = os.environ.get("PG_PASSWORD")
-    pg_host = os.environ.get("PG_HOST", "127.0.0.1")
-    pg_port = int(os.environ.get("PG_PORT", 5432))
-    pg_db = os.environ.get("PG_DB")
-    logging.info("Używam połączenia z lokalnego .env / secrets.")
-
-
+# Prosta konfiguracja loggingu
 logging.basicConfig(
     level=logging.INFO,
-    filename="logs/save_data.log",
     format="%(asctime)s [%(levelname)s] %(message)s"
 )
+
+
 def convert_market_cap(value):
+    """Bezpiecznie konwertuje string z kapitalizacją rynkową na liczbę float."""
     if pd.isna(value):
         return None
-    value = str(value).replace(",", "").strip()
+    value = str(value).strip()
     try:
         if value.endswith('B'):
-            return float(value[:-1]) * 1e9
+            return float(value[:-1]) * 1_000_000_000
         elif value.endswith('M'):
-            return float(value[:-1]) * 1e6
+            return float(value[:-1]) * 1_000_000
         elif value.endswith('K'):
-            return float(value[:-1]) * 1e3
+            return float(value[:-1]) * 1_000
         else:
             return float(value)
-    except:
+    except (ValueError, TypeError):
         return None
 
 
 def save_stocks_to_csv(df: pd.DataFrame, get_only_tickers=False, with_filters=False) -> None:
-    date_folder = datetime.now().strftime("%Y%m%d")
-    os.makedirs(f"data/stocks/{date_folder}", exist_ok=True)
-    os.makedirs(f"data/tickers/{date_folder}", exist_ok=True)
-    path = os.path.join("data/tickers", date_folder) if get_only_tickers else os.path.join("data/stocks", date_folder)
+    """
+    Inteligentnie zapisuje dane giełdowe do CSV, obsługując tryb pełny i 'tylko tickery'.
+    """
+    if df is None or df.empty:
+        logging.warning("Otrzymano pusty DataFrame. Pomijam zapis do pliku.")
+        return
 
-    logging.info(f"{df.iloc[0]}")
-    logging.info(f"Kolumny w df: {df.columns.tolist()}")
-    logging.info(f"Pierwsze 5 wartości Market Cap: {df['Market Cap'].head()}")
-    if "Market Cap" in df.columns:
-        df["market_cap"] = df["Market Cap"].astype(str).str.replace(",", "").apply(convert_market_cap)
+    # --- NOWA, BEZPIECZNA LOGIKA ---
+
+    # Krok 1: Określ ścieżkę i nazwę pliku na podstawie trybu pracy
+    today_str = datetime.now().strftime("%Y%m%d")
 
     if get_only_tickers:
-        columns = ["No", "Ticker"]
-    elif with_filters:
-        columns = [
-            "Ticker", "Company", "Sector", "Industry", "Country", "Market Cap","market_cap", "P/E",
-            "EPS next 5Y", "Perf Week", "Perf Month", "52w High", "52w Low",
-            "Rel Vol", "Volume", "Price", "Change"
-        ]
+        # --- SCENARIUSZ 1: ZAPISUJEMY TYLKO TICKERY ---
+        logging.info("Tryb 'Tylko tickery'. Zapisywanie uproszczonych danych.")
+
+        path_dir = os.path.join("data", "tickers", today_str)
+        filename_suffix = f"finviz_{'filtered_' if with_filters else ''}tickers_{today_str}.csv"
+
+        # Upewniamy się, że mamy tylko te dwie kolumny
+        df_to_save = df[["No", "Ticker"]].copy()
+
     else:
-        columns = [
-            "Ticker", "Company", "Sector", "Industry", "Country","market_cap",
-            "Market Cap", "P/E", "Price", "Change", "Volume"
-        ]
+        # --- SCENARIUSZ 2: ZAPISUJEMY PEŁNE DANE ---
+        logging.info("Tryb pełnych danych. Przetwarzanie i zapisywanie szczegółowych informacji.")
 
-    # Uzupełnienie brakujących kolumn
-    for col in columns:
-        if col not in df.columns:
-            df[col] = pd.NA
+        path_dir = os.path.join("data", "stocks", today_str)
+        filename_suffix = f"finviz_{'filtered_' if with_filters else ''}stocks_{today_str}.csv"
 
-    df["market_cap"] = df["Market Cap"].apply(convert_market_cap)
+        df_to_save = df.copy()  # Pracujemy na kopii, aby uniknąć problemów z modyfikacją
 
-    # Konwersja liczb
-    numeric_cols = ["Price", "Volume", "52w High", "52w Low"]
-    percent_cols = ["EPS next 5Y", "Perf Week", "Perf Month", "Change"]
-    for col in numeric_cols:
-        if col in df.columns:
-            df[col] = pd.to_numeric(df[col].astype(str).str.replace(",", "", regex=False), errors="coerce")
-    for col in percent_cols:
-        if col in df.columns:
-            df[col] = pd.to_numeric(df[col].astype(str).str.replace("%", "", regex=False), errors="coerce")
+        # Bezpieczne przetwarzanie kolumn (tylko jeśli istnieją)
+        if "Market Cap" in df_to_save.columns:
+            logging.info(f"Kolumny w DataFrame: {df_to_save.columns.tolist()}")
+            logging.info(
+                f"Pierwsze 5 wartości 'Market Cap' (przed konwersją): {df_to_save['Market Cap'].head().tolist()}")
+            df_to_save['market_cap_numeric'] = df_to_save['Market Cap'].apply(convert_market_cap)
+            logging.info(
+                f"Pierwsze 5 wartości 'market_cap_numeric' (po konwersji): {df_to_save['market_cap_numeric'].head().tolist()}")
 
-    # Wybór kolumn w odpowiedniej kolejności
-    df = df[columns]
+        numeric_cols = ["Price", "Volume", "52w High", "52w Low", "P/E", "Rel Vol"]
+        for col in numeric_cols:
+            if col in df_to_save.columns:
+                df_to_save[col] = pd.to_numeric(df_to_save[col].astype(str).str.replace(",", "", regex=False),
+                                                errors="coerce")
 
-    # Zapis CSV
-    today = datetime.now().strftime("%Y%m%d")
-    filename_suffix = {
-        (True, False): f"finviz_tickers_{today}.csv",
-        (False, False): f"finviz_stocks_{today}.csv",
-        (False, True): f"finviz_filtered_stocks_{today}.csv",
-        (True, True): f"finviz_filtered_tickers_{today}.csv"
-    }[(get_only_tickers, with_filters)]
+        percent_cols = ["EPS next 5Y", "Perf Week", "Perf Month", "Change"]
+        for col in percent_cols:
+            if col in df_to_save.columns:
+                df_to_save[col] = pd.to_numeric(df_to_save[col].astype(str).str.replace("%", "", regex=False),
+                                                errors="coerce") / 100.0
 
-    filename = os.path.abspath(os.path.join(path, filename_suffix))
-    df.to_csv(filename, index=False, chunksize=2000)
-    logging.info(f"Dane zapisane do {filename}")
+    # Krok 2: Utwórz katalog i zapisz plik
+    try:
+        os.makedirs(path_dir, exist_ok=True)
+        full_path = os.path.join(path_dir, filename_suffix)
+
+        df_to_save.to_csv(full_path, index=False)
+        logging.info(f"Dane pomyślnie zapisane do: {full_path}")
+        st.toast(f"Zapisano plik: {filename_suffix}", icon="💾")
+
+    except Exception as e:
+        logging.error(f"Nie udało się zapisać pliku {filename_suffix}. Błąd: {e}")
+        st.error(f"Błąd zapisu pliku: {e}")
 
 
 def save_news_to_csv(df: pd.DataFrame, filename_prefix: str = "news_data") -> None:
     """Zapisuje newsy do pliku CSV"""
     if df.empty:
-        logging.info("Brak danych do zapisania (df puste)")
+        logging.info("Brak danych newsowych do zapisania (DataFrame jest pusty).")
         return
 
     folder = os.path.join("data", "news")
     os.makedirs(folder, exist_ok=True)
 
     columns_order = ["ticker", "headline", "link", "source", "published", "sentiment"]
-    df = df[[col for col in columns_order if col in df.columns]]
+    df_to_save = df[[col for col in columns_order if col in df.columns]]
 
     today = datetime.now().strftime("%Y%m%d")
     path = os.path.join(folder, f"{filename_prefix}_{today}.csv")
-    filename = os.path.abspath(path)
 
-    df.to_csv(filename, index=False, chunksize=2000)
-    logging.info(f"Dane zapisane do {filename}")
-    return
+    try:
+        df_to_save.to_csv(path, index=False)
+        logging.info(f"Dane newsowe zapisane do {path}")
+    except Exception as e:
+        logging.error(f"Błąd zapisu pliku newsów: {e}")
+        st.error(f"Błąd zapisu pliku newsów: {e}")
