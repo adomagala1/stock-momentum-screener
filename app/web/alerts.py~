@@ -146,11 +146,9 @@ def render_styled_alert_card(alert):
     except Exception:
         current = None
 
-    # status i strzałka
     status = "neutral"
     arrow = "●"
-    # current = check_price(ticker)
-    fill_pct = 50  # domyślnie neutralnie
+    fill_pct = 50
     fill_color = "linear-gradient(180deg, rgba(99,102,241,0.9), rgba(79,70,229,0.8))"
     status = "neutral"
     arrow = "●"
