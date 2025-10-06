@@ -8,11 +8,11 @@ from pymongo import MongoClient, DESCENDING
 from app.config import settings
 from dateutil import parser as date_parser
 
-from predictive_model import get_avg_sentiment_for_tickers
 
 logging.basicConfig(
     level=logging.INFO,
     filename="logs/mongodb.log",
+    format="%(asctime)s [%(levelname)s] %(message)s"
     format="%(asctime)s [%(levelname)s] %(message)s"
 )
 
