@@ -3,7 +3,7 @@ import os
 import pandas as pd
 import logging
 from datetime import datetime
-import streamlit as st  # Dodajemy import Streamlit do informacji zwrotnej
+import streamlit as st
 from app.db.db_manager import save_stock_to_pg, save_news_to_mongo, save_user_model_results
 
 # Prosta konfiguracja loggingu
@@ -84,7 +84,6 @@ def save_stocks_to_csv(df: pd.DataFrame, get_only_tickers=False, with_filters=Fa
                 df_to_save[col] = pd.to_numeric(df_to_save[col].astype(str).str.replace("%", "", regex=False),
                                                 errors="coerce") / 100.0
 
-    # Krok 2: Utwórz katalog i zapisz plik
     try:
         os.makedirs(path_dir, exist_ok=True)
         full_path = os.path.join(path_dir, filename_suffix)
@@ -121,20 +120,4 @@ def save_news_to_csv(df: pd.DataFrame, filename_prefix: str = "news_data") -> No
         st.error(f"Błąd zapisu pliku newsów: {e}")
 
 
-def save_or_skip(df, data_type, user_id=None, ticker=None):
-    if df is None or df.empty:
-        st.warning("Brak danych do zapisania.")
-        return
 
-    if st.checkbox(f"💾 Zapisz {data_type} do bazy danych", value=False):
-        if data_type == "stocks":
-            save_stock_to_pg(df)
-        elif data_type == "news":
-            if ticker:
-                save_news_to_mongo(df, ticker)
-        elif data_type == "model":
-            if user_id:
-                save_user_model_results(df, user_id)
-        st.success(f"Dane {data_type} zostały zapisane do bazy.")
-    else:
-        st.info(f"Pominięto zapis danych {data_type}.")

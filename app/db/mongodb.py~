@@ -13,7 +13,6 @@ logging.basicConfig(
     level=logging.INFO,
     filename="logs/mongodb.log",
     format="%(asctime)s [%(levelname)s] %(message)s"
-    format="%(asctime)s [%(levelname)s] %(message)s"
 )
 
 # --- MongoDB setup ---

@@ -1,0 +1,58 @@
+import streamlit as st
+from sqlalchemy import create_engine, text
+from pymongo import MongoClient
+import logging
+
+from app.database import init_db_if_not_exists
+from app.predictive_model import init_predictions_table
+
+logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
+
+
+def auto_setup():
+    st.header("🔧 Automatyczna konfiguracja bazy danych")
+
+    st.write("Podaj dane dostępowe do swoich baz danych (Postgres + MongoDB).")
+
+    # Formularz
+    pg_url = st.text_input("🔹 PostgreSQL URL (np. postgresql://user:pass@host:port/dbname)")
+    mongo_uri = st.text_input("🔹 Mongo URI (np. mongodb://user:pass@host:27017)")
+    mongo_db = st.text_input("🔹 Mongo DB name", "stocks_ai")
+
+    if st.button("🚀 Uruchom konfigurację"):
+        if not pg_url or not mongo_uri:
+            st.error("Uzupełnij wszystkie pola!")
+            return
+
+        try:
+            # --- PostgreSQL ---
+            st.info("Łączenie z PostgreSQL...")
+            pg_engine = create_engine(pg_url)
+            with pg_engine.connect() as conn:
+                conn.execute(text("SELECT 1"))
+            st.success("✅ Połączono z PostgreSQL!")
+
+            # Tworzenie tabel, jeśli nie istnieją
+            st.info("Tworzenie tabel w Postgres...")
+            init_db_if_not_exists()
+            init_predictions_table(pg_engine)
+            st.success("✅ Tabele utworzone!")
+
+            # --- MongoDB ---
+            st.info("Łączenie z MongoDB...")
+            mongo_client = MongoClient(mongo_uri)
+            db = mongo_client[mongo_db]
+            db.create_collection("news", capped=False) if "news" not in db.list_collection_names() else None
+            st.success("✅ Kolekcja news gotowa!")
+
+            # --- Zapis konfiguracji do session_state ---
+            st.session_state["pg_url"] = pg_url
+            st.session_state["mongo_uri"] = mongo_uri
+            st.session_state["mongo_db"] = mongo_db
+
+            st.success("🎯 Konfiguracja zakończona sukcesem! System gotowy do pracy.")
+            st.toast("Możesz teraz odpalić scraper lub moduł predykcyjny.", icon="🤖")
+
+        except Exception as e:
+            st.error(f"Błąd konfiguracji: {e}")
+            logging.exception(e)

@@ -9,13 +9,14 @@ import plotly.express as px
 import numpy as np
 
 from app.stocks import fetch_finviz
-from app.save_data import save_stocks_to_csv, save_or_skip
+from app.save_data import save_stocks_to_csv
 from app.news import fetch_google_news_rss, add_sentiment
 from app.predictive_model import load_all_stocks_data, get_avg_sentiment_for_tickers
 from app.web.auth import login, logout, register, check_login
 from app.web.watchlist import get_watchlist, add_to_watchlist, remove_from_watchlist
 from app.web.alerts import get_alerts, add_alert, remove_alert, ALERTS_CSS, render_styled_alert_card
 from app.db.db_manager import save_user_model_results
+from app.db.auto_setup import auto_initialize_all
 
 st.set_page_config(page_title="Stock AI Dashboard", layout="wide", page_icon="📈")
 st.markdown("""
@@ -172,18 +173,24 @@ def render_dashboard():
 
         if db_choice == "🔒 Użyj mojej własnej konfiguracji":
             with st.form("db_custom_form"):
-                st.markdown('<h3 style="text-align: center; color: #007bff;">MongoDB newsy</h3>', unsafe_allow_html=True)
-                mongo_uri_input = st.text_input("MongoDB URI", placeholder="mongodb://user:pass@host:port/db")
-                mongo_db_input = st.text_input("MongoDB DB name", placeholder="stocks_db")
+                st.markdown("### ~~MongoDB newsy~~  \nNiedostępne w wersji ogólnodostępnej (jeszcze)")
+                mongo_uri_input = st.text_input("MongoDB URI", placeholder="mongodb://user:pass@host:port/db", disabled=True)
+                mongo_db_input = st.text_input("MongoDB DB name", placeholder="stocks_db", disabled=True)
 
                 st.divider()
-                st.markdown('<h3 style="text-align: center; color: #007bff;">PostgreSQL / Supabase Stock</h3>', unsafe_allow_html=True)
+                st.markdown(
+                    '<h3 style="text-align: center; color: #007bff;">'
+                    '<span style="text-decoration: line-through;">PostgreSQL</span> / Supabase Stock'
+                    '</h3>',
+                    unsafe_allow_html=True
+                )
+
                 db_choice1, db_choice2 = st.columns(2)
 
                 with db_choice1:
-                    pg_url_input = st.text_input("PostgreSQL URL", placeholder="https://example.supabase.co")
-                    pg_password_input = st.text_input("PostgreSQL Password", type="password")
-                    pg_key_input = st.text_input("PostgreSQL Key (anon key)", type="password")
+                    pg_url_input = st.text_input("PostgreSQL URL", placeholder="https://example.supabase.co", disabled=True)
+                    pg_password_input = st.text_input("PostgreSQL Password", type="password", disabled=True)
+                    pg_key_input = st.text_input("PostgreSQL Key (anon key)", type="password", disabled=True)
 
                 with db_choice2:
                     sb_url_input = st.text_input("Supabase URL", placeholder="https://example.supabase.co")
@@ -204,7 +211,11 @@ def render_dashboard():
                         "db_configured": True
                     })
                     st.success("✅ Zapisano niestandardową konfigurację bazy danych. Uruchom ponownie aplikację.")
-                    st.rerun()
+                    if not st.session_state.get("db_initialized", False):
+                        auto_initialize_all()
+                        st.session_state.db_initialized = True
+                    import time
+                    time.sleep(2)
         else:
             st.session_state.update({
                 "mongo_uri": st.secrets.get("mongo_uri", default_mongo_uri),
@@ -212,24 +223,23 @@ def render_dashboard():
                 "pg_url": st.secrets.get("pg_url", default_pg_url),
                 "pg_password": st.secrets.get("pg_password", default_pg_password),
                 "pg_key": st.secrets.get("pg_key", default_pg_key),
-                "sb_url": st.secrets.get("sb_url", default_sb_url),
-                "sb_api": st.secrets.get("sb_api", default_sb_api),
-                "sb_password": st.secrets.get("sb_password", default_sb_password),
+                "sb_url": st.secrets.get("sb_url", None),
+                "sb_api": st.secrets.get("sb_api", None),
+                "sb_password": st.secrets.get("sb_password", None),
                 "db_mode": "default",
                 "db_configured": True
             })
             st.success("✅ Używana jest domyślna konfiguracja połączenia z bazą danych.")
 
-    # ----------------- DANE KONFIGURACYJNE -----------------
     with st.expander("🔧 Pokaż dane konfiguracyjne"):
-        st.text(f"pg_url: {st.session_state.get('pg_url', 'brak')}")
-        st.text(f"pg_password: {st.session_state.get('pg_password', 'brak')}")
-        st.text(f"pg_key: {st.session_state.get('pg_key', 'brak')}")
-        st.text(f"sb_url: {st.session_state.get('sb_url', 'brak')}")
-        st.text(f"sb_api: {st.session_state.get('sb_api', 'brak')}")
-        st.text(f"sb_password: {st.session_state.get('sb_password', 'brak')}")
-        st.text(f"mongo_uri: {st.session_state.get('mongo_uri', 'brak')}")
-        st.text(f"mongo_db: {st.session_state.get('mongo_db', 'brak')}")
+        st.text(f"PostgreSQL: {st.session_state.get('pg_url', 'jeszcze niedostępne')}")
+        st.text(f"PostgreSQL Password: {st.session_state.get('pg_password', 'jeszcze niedostępne')}")
+        st.text(f"PostgreSQL Key: {st.session_state.get('pg_key', 'jeszcze niedostępne')}")
+        st.text(f"SupaBase URL: {st.session_state.get('sb_url', 'brak')}")
+        st.text(f"SupaBase API: {st.session_state.get('sb_api', 'brak')}")
+        st.text(f"SupaBase Password: {st.session_state.get('sb_password', 'brak')}")
+        st.text(f"mongo_uri: {st.session_state.get('mongo_uri', 'jeszcze niedostępne')}")
+        st.text(f"mongo_db: {st.session_state.get('mongo_db', 'jeszcze niedostępne')}")
 
     # ----------------- TABS -----------------
     tab1, tab2, tab3, tab4, tab5 = st.tabs(["📈 Dane giełdowe", "📰 Newsy", "🤖 Model predykcyjny", "❤️ Watchlista", "🔔 Alerty Cenowe"])
@@ -258,7 +268,11 @@ def display_stocks_tab(tab_container):
                 if not df.empty:
                     st.success(f"Pobrano dane dla {len(df)} spółek.")
                     st.dataframe(df, use_container_width=True, height=500)
-                    save_or_skip(df, "stocks")
+                    if st.button("✅ Zapisz do SupaBase", type="primary"):
+
+                        st.info("✅ Dane zostaną zapisane.")
+                    else:
+                        st.warning("⏭️ Pominięto zapis danych.")
                 else:
                     st.error("❌ Nie udało się pobrać danych. Spróbuj ponownie później.")
 
