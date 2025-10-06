@@ -3,7 +3,7 @@ import logging
 from datetime import datetime
 import pandas as pd
 
-from news import fetch_news_for_ticker, add_sentiment
+from app.news import fetch_news_for_ticker, add_sentiment
 from pymongo import MongoClient, DESCENDING
 from app.config import settings
 from dateutil import parser as date_parser
