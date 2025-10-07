@@ -17,7 +17,7 @@ def setup_supabase_tables_as_postgres():
         db_url = st.session_state.get("db_connection_string")
 
         if not db_url:
-            st.warning("⚠️ Supabase: Brak connection stringa do bazy danych.")
+            st.warning("⚠️ Supabase/PostgreSQL: Brak connection stringa do bazy danych.")
             return False
 
         # Tworzymy silnik do połączenia z bazą danych

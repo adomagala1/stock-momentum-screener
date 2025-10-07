@@ -184,7 +184,9 @@ def render_dashboard():
                     '</h3>',
                     unsafe_allow_html=True
                 )
-
+                st.text("https://hhgljugljgxswlgedrzu.supabase.co")
+                st.text("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhoZ2xqdWdsamd4c3dsZ2Vkcnp1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk3NjI4MjcsImV4cCI6MjA3NTMzODgyN30.fW22awElY4yEuaN67C8poCyFuKmAqVn_i94p6CqF3Fc")
+                st.text("Adrian9875GetMeAWork")
                 db_choice1, db_choice2 = st.columns(2)
 
                 with db_choice1:

@@ -9,7 +9,7 @@ import plotly.express as px
 import numpy as np
 
 from app.stocks import fetch_finviz
-from app.save_data import save_stocks_to_csv, save_or_skip
+from app.save_data import save_stocks_to_csv
 from app.news import fetch_google_news_rss, add_sentiment
 from app.predictive_model import load_all_stocks_data, get_avg_sentiment_for_tickers
 from app.web.auth import login, logout, register, check_login
@@ -188,9 +188,9 @@ def render_dashboard():
                 db_choice1, db_choice2 = st.columns(2)
 
                 with db_choice1:
-                    pg_url_input = st.text_input("PostgreSQL URL", placeholder="https://example.supabase.co", disabled=True)
-                    pg_password_input = st.text_input("PostgreSQL Password", type="password", disabled=True)
-                    pg_key_input = st.text_input("PostgreSQL Key (anon key)", type="password", disabled=True)
+                    pg_url_input = st.text_input("PostgreSQL URL", placeholder="https://example.supabase.co", disabled=True, default="https://hhgljugljgxswlgedrzu.supabase.co")
+                    pg_password_input = st.text_input("PostgreSQL Password", type="password", disabled=True, default="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhoZ2xqdWdsamd4c3dsZ2Vkcnp1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk3NjI4MjcsImV4cCI6MjA3NTMzODgyN30.fW22awElY4yEuaN67C8poCyFuKmAqVn_i94p6CqF3Fc")
+                    pg_key_input = st.text_input("PostgreSQL Key (anon key)", type="password", disabled=True, default="Adrian9875GetMeAWork")
 
                 with db_choice2:
                     sb_url_input = st.text_input("Supabase URL", placeholder="https://example.supabase.co")
@@ -268,7 +268,8 @@ def display_stocks_tab(tab_container):
                 if not df.empty:
                     st.success(f"Pobrano dane dla {len(df)} spółek.")
                     st.dataframe(df, use_container_width=True, height=500)
-                    if save_or_skip():
+                    if st.button("✅ Zapisz do SupaBase", type="primary"):
+
                         st.info("✅ Dane zostaną zapisane.")
                     else:
                         st.warning("⏭️ Pominięto zapis danych.")
