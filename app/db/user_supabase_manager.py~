@@ -59,11 +59,11 @@ class SupabaseHandler:
                 response = self.client.table(table_name).insert(chunk).execute()
                 if hasattr(response, "error") and response.error:
                     logging.error(f"❌ Błąd Supabase: {response.error}")
-                    st.error(f"❌ Błąd Supabase w batchu {i//batch_size + 1}: {response.error}")
+                    st.error(f"❌ Błąd Supabase w batchu {i // batch_size + 1}: {response.error}")
                 else:
                     saved_count += len(chunk)
-                    logging.info(f"✅ Zapisano batch {i//batch_size + 1}, rekordy: {len(chunk)}")
-                    st.success(f"✅ Zapisano batch {i//batch_size + 1}, rekordy: {len(chunk)}")
+                    logging.info(f"✅ Zapisano batch {i // batch_size + 1}, rekordy: {len(chunk)}")
+                    st.success(f"✅ Zapisano batch {i // batch_size + 1}, rekordy: {len(chunk)}")
 
             logging.info(f"✅ Łącznie zapisano {saved_count} rekordów do {table_name}")
             st.success(f"✅ Łącznie zapisano {saved_count} rekordów do {table_name}")
@@ -73,8 +73,6 @@ class SupabaseHandler:
             logging.exception(f"❌ Błąd podczas zapisu do Supabase: {e}")
             st.error(f"❌ Nie udało się zapisać żadnego rekordu. Szczegóły w logach: {e}")
             return saved_count
-
-
 
 
 def create_user(email: str, password: str, sb_url: str, sb_key: str) -> bool:
@@ -113,3 +111,58 @@ def get_users(sb_url: str, sb_key: str) -> pd.DataFrame:
         logging.exception(f"❌ Wyjątek przy pobieraniu użytkowników: {e}")
         st.error(f"❌ Wyjątek przy pobieraniu użytkowników: {e}")
         return pd.DataFrame()
+
+
+def clean_and_transform_for_db(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Kompleksowo czyści i transformuje DataFrame z Finviz do formatu bazodanowego.
+    1. Standaryzuje nazwy kolumn (małe litery, podkreślniki).
+    2. Usuwa znaki specjalne (B, M, %, ,) z wartości.
+    3. Konwertuje kolumny na właściwe typy numeryczne, obsługując błędy.
+    4. Zamienia wszystkie pozostałe NaN/NaT na None dla kompatybilności z JSON/SQL.
+    """
+    df_copy = df.copy()
+
+    # --- 1. Standaryzacja nazw kolumn (kluczowe dla spójności z bazą danych!) ---
+    # np. 'Market Cap' -> 'market_cap', 'P/E' -> 'p_e'
+    original_columns = df_copy.columns.tolist()
+    new_columns = [
+        col.lower().replace(' ', '_').replace('.', '').replace('/', '_')
+        for col in original_columns
+    ]
+    df_copy.columns = new_columns
+
+    # Słownik kolumn do transformacji
+    # Klucze to już nowe, czyste nazwy kolumn
+    cols_to_process = {
+        'market_cap': lambda x: str(x).replace('B', 'e9').replace('M', 'e6').replace('K', 'e3'),
+        'p_e': lambda x: x,
+        'price': lambda x: x,
+        'change': lambda x: str(x).replace('%', ''),
+        'volume': lambda x: str(x).replace(',', '')
+    }
+
+    # --- 2. Wstępne czyszczenie wartości tekstowych ---
+    for col, clean_func in cols_to_process.items():
+        if col in df_copy.columns:
+            # Używamy .loc, aby uniknąć SettingWithCopyWarning
+            df_copy.loc[:, col] = df_copy[col].apply(clean_func)
+
+    # Lista kolumn, które mają być liczbami
+    numeric_cols = ['market_cap', 'p_e', 'price', 'change', 'volume']
+
+    # --- 3. Konwersja na typy numeryczne (NAJWAŻNIEJSZY KROK) ---
+    # errors='coerce' zamieni wszystko, co nie jest liczbą (np. myślnik '-') na NaN
+    for col in numeric_cols:
+        if col in df_copy.columns:
+            df_copy.loc[:, col] = pd.to_numeric(df_copy[col], errors='coerce')
+
+    # Dodatkowa transformacja dla analizy: zmiana procentowa jako ułamek
+    if 'change' in df_copy.columns:
+        df_copy.loc[:, 'change'] = df_copy['change'] / 100.0
+
+    # --- 4. Ostateczna zamiana NaN na None (rozwiązuje problem z JSON) ---
+    # To łapie wszystkie NaN stworzone przez 'coerce' w kroku 3
+    df_final = df_copy.replace({np.nan: None, pd.NaT: None})
+
+    return df_final

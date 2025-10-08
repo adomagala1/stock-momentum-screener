@@ -683,3 +683,306 @@ ValueError: Out of range float values are not JSON compliant: nan
 2025-10-07 23:52:40,619 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
 2025-10-07 23:52:40,807 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
 2025-10-07 23:52:40,992 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 15:51:05,619 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-08 15:51:05,888 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-08 15:51:07,507 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 15:51:07,710 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 15:51:07,916 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 15:53:17,996 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-08 15:53:18,261 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-08 15:53:19,481 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 15:53:19,698 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 15:53:19,913 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 15:58:25,820 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-08 15:58:26,067 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-08 15:58:27,093 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 15:58:27,248 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 15:58:27,410 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:01:13,398 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-08 16:01:13,648 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-08 16:01:14,454 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:01:14,626 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:01:14,790 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:05:47,789 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-08 16:05:48,049 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-08 16:06:44,842 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-08 16:06:45,096 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-08 16:08:02,572 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-08 16:08:02,841 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-08 16:09:00,302 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-08 16:09:00,552 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-08 16:09:01,675 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:09:01,927 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:09:02,156 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:09:17,577 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-08 16:09:20,030 [INFO] Pobrano 50 spó³ek. Czas: 0:00:02.435964
+2025-10-08 16:09:20,328 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:09:20,570 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:09:20,778 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:09:26,942 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-08 16:09:27,304 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-08 16:09:27,623 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:09:27,626 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAPL+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-08 16:09:28,406 [INFO] RSS: znaleziono 100 pozycji dla AAPL
+2025-10-08 16:09:28,989 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:09:29,171 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:10:09,445 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-08 16:10:11,969 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:10:12,164 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:10:12,322 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:10:40,494 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-08 16:10:42,901 [INFO] Pobrano 50 spó³ek. Czas: 0:00:02.397142
+2025-10-08 16:10:43,706 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:10:43,892 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:10:44,061 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:10:49,964 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-08 16:10:50,471 [INFO] Próbujê zapisaæ 50 rekordów do stocks_data
+2025-10-08 16:10:50,500 [INFO] Liczba rekordów po czyszczeniu: 50
+2025-10-08 16:10:51,004 [ERROR] \u274c B³¹d podczas zapisu do Supabase: Out of range float values are not JSON compliant: nan
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\stock-momentum-screener\app\db\user_supabase_manager.py", line 59, in save_dataframe
+    response = self.client.table(table_name).insert(chunk).execute()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\stock-momentum-screener\.venv\Lib\site-packages\postgrest\_sync\request_builder.py", line 56, in execute
+    r = self.session.request(
+        ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\stock-momentum-screener\.venv\Lib\site-packages\httpx\_client.py", line 812, in request
+    request = self.build_request(
+              ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\stock-momentum-screener\.venv\Lib\site-packages\httpx\_client.py", line 378, in build_request
+    return Request(
+           ^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\stock-momentum-screener\.venv\Lib\site-packages\httpx\_models.py", line 408, in __init__
+    headers, stream = encode_request(
+                      ^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\stock-momentum-screener\.venv\Lib\site-packages\httpx\_content.py", line 216, in encode_request
+    return encode_json(json)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\stock-momentum-screener\.venv\Lib\site-packages\httpx\_content.py", line 177, in encode_json
+    body = json_dumps(
+           ^^^^^^^^^^^
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+ValueError: Out of range float values are not JSON compliant: nan
+2025-10-08 16:10:51,328 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:10:51,533 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:10:51,694 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:13:47,768 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-08 16:13:48,027 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-08 16:13:48,961 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:13:49,126 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:13:49,319 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:13:53,469 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-08 16:13:55,872 [INFO] Pobrano 50 spó³ek. Czas: 0:00:02.387035
+2025-10-08 16:13:56,089 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:13:56,249 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:13:56,426 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:13:57,481 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-08 16:13:57,671 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:13:57,827 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:13:58,019 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:15:37,801 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-08 16:15:38,048 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-08 16:15:38,799 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:15:38,954 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:15:39,123 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:15:51,979 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-08 16:15:54,347 [INFO] Pobrano 50 spó³ek. Czas: 0:00:02.347617
+2025-10-08 16:15:54,552 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:15:54,719 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:15:54,887 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:15:56,997 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-08 16:15:57,225 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:15:57,444 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:15:57,605 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:16:08,425 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-08 16:16:10,636 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:16:10,796 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:16:10,957 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:16:11,888 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-08 16:16:12,550 [INFO] Próbujê zapisaæ 50 rekordów do stocks_data
+2025-10-08 16:16:12,567 [INFO] Liczba rekordów po czyszczeniu: 50
+2025-10-08 16:16:13,212 [ERROR] \u274c B³¹d podczas zapisu do Supabase: Out of range float values are not JSON compliant: nan
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\stock-momentum-screener\app\db\user_supabase_manager.py", line 59, in save_dataframe
+    response = self.client.table(table_name).insert(chunk).execute()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\stock-momentum-screener\.venv\Lib\site-packages\postgrest\_sync\request_builder.py", line 56, in execute
+    r = self.session.request(
+        ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\stock-momentum-screener\.venv\Lib\site-packages\httpx\_client.py", line 812, in request
+    request = self.build_request(
+              ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\stock-momentum-screener\.venv\Lib\site-packages\httpx\_client.py", line 378, in build_request
+    return Request(
+           ^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\stock-momentum-screener\.venv\Lib\site-packages\httpx\_models.py", line 408, in __init__
+    headers, stream = encode_request(
+                      ^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\stock-momentum-screener\.venv\Lib\site-packages\httpx\_content.py", line 216, in encode_request
+    return encode_json(json)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\stock-momentum-screener\.venv\Lib\site-packages\httpx\_content.py", line 177, in encode_json
+    body = json_dumps(
+           ^^^^^^^^^^^
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+ValueError: Out of range float values are not JSON compliant: nan
+2025-10-08 16:16:13,374 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:16:13,528 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:16:13,689 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:18:23,881 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-08 16:18:24,122 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-08 16:18:24,889 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:18:25,050 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:18:25,211 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:18:53,960 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-08 16:18:54,188 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:18:54,380 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:18:54,552 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:18:55,019 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-08 16:18:57,693 [INFO] Pobrano 50 spó³ek. Czas: 0:00:02.655473
+2025-10-08 16:18:57,874 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:18:58,037 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:18:58,264 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:19:00,468 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-08 16:19:00,950 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:19:01,156 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:19:01,337 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:19:17,196 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-08 16:19:19,411 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:19:19,598 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:19:19,761 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:19:57,003 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-08 16:19:57,556 [INFO] Próbujê zapisaæ 50 rekordów do stocks_data
+2025-10-08 16:19:57,571 [INFO] Liczba rekordów po czyszczeniu: 50
+2025-10-08 16:19:58,091 [ERROR] \u274c B³¹d podczas zapisu do Supabase: Out of range float values are not JSON compliant: nan
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\stock-momentum-screener\app\db\user_supabase_manager.py", line 59, in save_dataframe
+    response = self.client.table(table_name).insert(chunk).execute()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\stock-momentum-screener\.venv\Lib\site-packages\postgrest\_sync\request_builder.py", line 56, in execute
+    r = self.session.request(
+        ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\stock-momentum-screener\.venv\Lib\site-packages\httpx\_client.py", line 812, in request
+    request = self.build_request(
+              ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\stock-momentum-screener\.venv\Lib\site-packages\httpx\_client.py", line 378, in build_request
+    return Request(
+           ^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\stock-momentum-screener\.venv\Lib\site-packages\httpx\_models.py", line 408, in __init__
+    headers, stream = encode_request(
+                      ^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\stock-momentum-screener\.venv\Lib\site-packages\httpx\_content.py", line 216, in encode_request
+    return encode_json(json)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\stock-momentum-screener\.venv\Lib\site-packages\httpx\_content.py", line 177, in encode_json
+    body = json_dumps(
+           ^^^^^^^^^^^
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+ValueError: Out of range float values are not JSON compliant: nan
+2025-10-08 16:19:58,330 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:19:58,497 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:19:58,685 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:25:12,279 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-08 16:25:12,527 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-08 16:25:13,647 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:25:13,881 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:25:14,114 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:25:20,898 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-08 16:25:23,192 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:25:23,424 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:25:23,677 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-08 16:25:26,243 [INFO] Pobrano 50 spó³ek. Czas: 0:00:02.556582
+2025-10-08 16:25:26,471 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:25:26,723 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:25:26,947 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:25:29,529 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-08 16:25:30,361 [INFO] Próbujê zapisaæ 50 rekordów do stocks_data
+2025-10-08 16:25:30,437 [INFO] Liczba rekordów po czyszczeniu: 50
+2025-10-08 16:25:31,130 [ERROR] \u274c B³¹d podczas zapisu do Supabase: Out of range float values are not JSON compliant: nan
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\stock-momentum-screener\app\db\user_supabase_manager.py", line 59, in save_dataframe
+    response = self.client.table(table_name).insert(chunk).execute()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\stock-momentum-screener\.venv\Lib\site-packages\postgrest\_sync\request_builder.py", line 56, in execute
+    r = self.session.request(
+        ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\stock-momentum-screener\.venv\Lib\site-packages\httpx\_client.py", line 812, in request
+    request = self.build_request(
+              ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\stock-momentum-screener\.venv\Lib\site-packages\httpx\_client.py", line 378, in build_request
+    return Request(
+           ^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\stock-momentum-screener\.venv\Lib\site-packages\httpx\_models.py", line 408, in __init__
+    headers, stream = encode_request(
+                      ^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\stock-momentum-screener\.venv\Lib\site-packages\httpx\_content.py", line 216, in encode_request
+    return encode_json(json)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\stock-momentum-screener\.venv\Lib\site-packages\httpx\_content.py", line 177, in encode_json
+    body = json_dumps(
+           ^^^^^^^^^^^
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+ValueError: Out of range float values are not JSON compliant: nan
+2025-10-08 16:25:31,412 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:25:31,662 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:25:31,875 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:40:52,064 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-08 16:40:52,370 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-08 16:40:53,497 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:40:53,652 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:40:53,816 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:41:41,070 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-08 16:41:43,395 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:41:43,578 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:41:43,762 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:42:47,636 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-08 16:42:50,122 [INFO] Pobrano 50 spó³ek. Czas: 0:00:02.476586
+2025-10-08 16:42:50,362 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:42:50,525 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:42:50,689 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:42:52,725 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-08 16:42:53,348 [INFO] Dane skonwertowane do formatu JSON. Rozmiar: 50 rekordów.
+2025-10-08 16:42:55,266 [INFO] HTTP Request: POST https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?columns=%22market_cap%22%2C%22p_e%22%2C%22import_date%22%2C%22volume%22%2C%22no%22%2C%22ticker%22%2C%22price%22%2C%22company%22%2C%22country%22%2C%22industry%22%2C%22sector%22%2C%22change%22 "HTTP/2 404 Not Found"
+2025-10-08 16:42:55,268 [ERROR] \u274c Krytyczny wyj¹tek podczas zapisu do Supabase: {'message': "Could not find the table 'public.stocks_data' in the schema cache", 'code': 'PGRST205', 'hint': None, 'details': None}
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\stock-momentum-screener\app\db\user_supabase_manager.py", line 53, in save_dataframe
+    response = self.client.table(table_name).insert(chunk).execute()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\stock-momentum-screener\.venv\Lib\site-packages\postgrest\_sync\request_builder.py", line 77, in execute
+    raise APIError(dict(json_obj))
+postgrest.exceptions.APIError: {'message': "Could not find the table 'public.stocks_data' in the schema cache", 'code': 'PGRST205', 'hint': None, 'details': None}
+2025-10-08 16:42:55,485 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:42:55,652 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-08 16:42:55,869 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"

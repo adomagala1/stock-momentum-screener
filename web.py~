@@ -290,6 +290,8 @@ def display_stocks_tab(tab_container):
 
                 try:
                     sb = SupabaseHandler(st.session_state.get("sb_url"), st.session_state.get("sb_api"))
+
+                    # Przekazujemy do zapisu idealnie czysty DataFrame
                     saved = sb.save_dataframe(df_cleaned)
 
                     st.info(f"Liczba rekordów próbujących się zapisać: {len(df_cleaned)}")
