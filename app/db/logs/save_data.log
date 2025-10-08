@@ -1,3 +1,0 @@
-2025-10-01 22:20:57,520 [INFO] Szukam pliku: C:\Users\admin\PycharmProjects\stock-momentum-screener\app\data\stocks\20251001\finviz_stocks_20251001.csv
-2025-10-01 22:20:57,520 [ERROR] B³¹d podczas zapisywania do bazy danych: Brak pliku 'finviz_stocks_20251001.csv' w folderze C:\Users\admin\PycharmProjects\stock-momentum-screener\app\data\stocks\20251001
-2025-10-02 19:23:24,988 [INFO] Pipeline result dla 2025-10-02: []

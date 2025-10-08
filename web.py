@@ -7,7 +7,6 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import numpy as np
-
 from app.stocks import fetch_finviz
 from app.save_data import save_stocks_to_csv
 from app.news import fetch_google_news_rss, add_sentiment
@@ -15,8 +14,9 @@ from app.predictive_model import load_all_stocks_data, get_avg_sentiment_for_tic
 from app.web.auth import login, logout, register, check_login
 from app.web.watchlist import get_watchlist, add_to_watchlist, remove_from_watchlist
 from app.web.alerts import get_alerts, add_alert, remove_alert, ALERTS_CSS, render_styled_alert_card
-from app.db.db_manager import save_user_model_results
-from app.db.auto_setup import auto_initialize_all
+from app.db.supabase_manager import *
+
+from app.db.user_supabase_manager import *
 
 st.set_page_config(page_title="Stock AI Dashboard", layout="wide", page_icon="📈")
 st.markdown("""
@@ -87,7 +87,7 @@ def render_guest_lock_ui(title, icon, description):
         st.markdown(f"### {icon} {title}")
         st.markdown(description)
         st.divider()
-        if st.button("Zarejestruj się lub zaloguj, aby odblokować", type="primary", use_container_width=True):
+        if st.button("Zarejestruj się lub zaloguj, aby odblokować", type="primary", width='stretch'):
             logout()
             st.rerun()
 
@@ -105,7 +105,7 @@ def render_login_page():
             with st.form("login_form"):
                 email = st.text_input("Email", placeholder="user@example.com")
                 password = st.text_input("Hasło", type="password", placeholder="••••••••")
-                if st.form_submit_button("Zaloguj się", use_container_width=True, type="primary"):
+                if st.form_submit_button("Zaloguj się", width='stretch', type="primary"):
                     if login(email, password):
                         st.session_state.is_guest = False
                         st.rerun()
@@ -113,11 +113,11 @@ def render_login_page():
             with st.form("register_form"):
                 email = st.text_input("Email", placeholder="user@example.com")
                 password = st.text_input("Hasło", type="password", placeholder="••••••••")
-                if st.form_submit_button("Zarejestruj się", use_container_width=True):
+                if st.form_submit_button("Zarejestruj się", width='stretch'):
                     register(email, password)
         elif choice == "Tryb Gościa":
             st.info("Tryb gościa pozwala na przeglądanie ogólnodostępnych danych i testowanie modelu. Personalizacja wymaga zalogowania", icon="ℹ️")
-            if st.button("Kontynuuj jako Gość", use_container_width=True):
+            if st.button("Kontynuuj jako Gość", width='stretch'):
                 st.session_state.user = {"email": "Gość", "id": None}
                 st.session_state.is_guest = True
                 st.toast("✅ Uruchomiono tryb gościa.")
@@ -131,7 +131,7 @@ def render_dashboard():
         st.title("AI Stock Screener")
     with col_user:
         if is_guest:
-            if st.button("Zaloguj / Zarejestruj się", use_container_width=True):
+            if st.button("Zaloguj / Zarejestruj się", width='stretch'):
                 logout()
                 st.rerun()
         else:
@@ -140,12 +140,11 @@ def render_dashboard():
                 st.markdown(
                     f"<div style='text-align: right;'>Zalogowano jako:<br><b>{user_dict['email']}</b></div>",
                     unsafe_allow_html=True)
-                if st.button("Wyloguj", use_container_width=True, type="secondary"):
+                if st.button("Wyloguj", width='stretch', type="secondary"):
                     logout()
                     st.rerun()
     st.divider()
 
-    # ----------------- KONFIGURACJA BAZY DANYCH -----------------
     if not st.session_state.db_configured:
         def safe_get(secret_name, fallback_value):
             try:
@@ -161,9 +160,6 @@ def render_dashboard():
         default_pg_url = safe_get("default_pg_url", "⚠️ Brak wartości (fallback)")
         default_pg_password = safe_get("default_pg_password", "⚠️ Brak wartości (fallback)")
         default_pg_key = safe_get("default_pg_key", "⚠️ Brak wartości (fallback)")
-        default_sb_url = safe_get("default_sb_url", "⚠️ Brak wartości (fallback)")
-        default_sb_api = safe_get("default_sb_api", "⚠️ Brak wartości (fallback)")
-        default_sb_password = safe_get("default_sb_password", "⚠️ Brak wartości (fallback)")
 
         db_choice = st.radio(
             "Wybierz sposób połączenia:",
@@ -214,7 +210,7 @@ def render_dashboard():
                     })
                     st.success("✅ Zapisano niestandardową konfigurację bazy danych. Uruchom ponownie aplikację.")
                     if not st.session_state.get("db_initialized", False):
-                        auto_initialize_all()
+                        # auto_initialize_all()
                         st.session_state.db_initialized = True
                     import time
                     time.sleep(2)
@@ -234,14 +230,9 @@ def render_dashboard():
             st.success("✅ Używana jest domyślna konfiguracja połączenia z bazą danych.")
 
     with st.expander("🔧 Pokaż dane konfiguracyjne"):
-        st.text(f"PostgreSQL: {st.session_state.get('pg_url', 'jeszcze niedostępne')}")
-        st.text(f"PostgreSQL Password: {st.session_state.get('pg_password', 'jeszcze niedostępne')}")
-        st.text(f"PostgreSQL Key: {st.session_state.get('pg_key', 'jeszcze niedostępne')}")
         st.text(f"SupaBase URL: {st.session_state.get('sb_url', 'brak')}")
         st.text(f"SupaBase API: {st.session_state.get('sb_api', 'brak')}")
         st.text(f"SupaBase Password: {st.session_state.get('sb_password', 'brak')}")
-        st.text(f"mongo_uri: {st.session_state.get('mongo_uri', 'jeszcze niedostępne')}")
-        st.text(f"mongo_db: {st.session_state.get('mongo_db', 'jeszcze niedostępne')}")
 
     # ----------------- TABS -----------------
     tab1, tab2, tab3, tab4, tab5 = st.tabs(["📈 Dane giełdowe", "📰 Newsy", "🤖 Model predykcyjny", "❤️ Watchlista", "🔔 Alerty Cenowe"])
@@ -260,23 +251,38 @@ def display_stocks_tab(tab_container):
         st.caption("Użyj poniższych opcji, aby pobrać najnowsze dane o spółkach i zapisać je do analizy.")
 
         with st.expander("⚙️ Ustawienia pobierania"):
-            max_companies = st.number_input("Maksymalna ilość spółek (0 = wszystkie)", min_value=0, value=20, step=10)
-            with_filters = st.checkbox("Pobierz tylko tickery (szybciej)", value=False)
+            max_companies = st.number_input("Maksymalna ilość spółek (0 = wszystkie)", min_value=0, value=50, step=10)
+            with_filters = st.checkbox("Pobierz tylko tickery i numery", value=False)
             get_only_tickers = st.checkbox("Zastosuj filtry (Mid Cap, NASDAQ)", value=False)
 
-        if st.button("🔄 Pobierz dane giełdowe", type="primary", use_container_width=True):
+        if st.button("🔄 Pobierz dane giełdowe", type="primary", width='stretch'):
             with st.spinner("Pobieram dane z Finviz..."):
-                df = fetch_finviz(max_companies, with_filters, get_only_tickers)
-                if not df.empty:
-                    st.success(f"Pobrano dane dla {len(df)} spółek.")
-                    st.dataframe(df, use_container_width=True, height=500)
-                    if st.button("✅ Zapisz do SupaBase", type="primary"):
-
-                        st.info("✅ Dane zostaną zapisane.")
+                try:
+                    df = fetch_finviz(max_companies, with_filters, get_only_tickers)
+                    if df.empty:
+                        st.warning("Nie znaleziono danych.")
                     else:
-                        st.warning("⏭️ Pominięto zapis danych.")
+                        st.success(f"Pobrano dane dla {len(df)} spółek.")
+                        st.dataframe(df, width='stretch')
+
+                        st.session_state["latest_df"] = df
+
+                except Exception as e:
+                    st.error(f"Nie udało się pobrać danych: {e}")
+        if st.button("💾 Zapisz do Supabase", type="secondary", width='stretch'):
+            df = st.session_state.get("latest_df")
+            if df is None:
+                st.warning("Najpierw pobierz dane.")
+            elif st.session_state.get("sb_url") and st.session_state.get("sb_api"):
+                sb = SupabaseHandler(st.session_state.get("sb_url"), st.session_state.get("sb_api"))
+                saved = sb.save_dataframe(df)
+                st.info(f"Liczba rekordów próbujących się zapisać: {len(df)}")
+                if saved > 0:
+                    st.success(f"✅ Zapisano {saved} rekordów do Supabase!")
                 else:
-                    st.error("❌ Nie udało się pobrać danych. Spróbuj ponownie później.")
+                    st.error("❌ Nie udało się zapisać żadnego rekordu. Sprawdź szczegóły w logach i wyświetlonym JSON.")
+            else:
+                st.error("Brak konfiguracji Supabase w secrets.toml.")
 
 
 def display_news_tab(tab_container, user_id, is_guest):
@@ -297,7 +303,7 @@ def display_news_tab(tab_container, user_id, is_guest):
             else:
                 ticker = st.selectbox("Wybierz spółkę z Twojej watchlisty:", options=watchlist_tickers, key="news_ticker_select")
 
-        if st.button("📥 Pobierz i analizuj newsy", type="primary", use_container_width=True):
+        if st.button("📥 Pobierz i analizuj newsy", type="primary", width="stretch"):
             if ticker:
                 with st.spinner(f"Pracuję nad analizą dla {ticker}..."):
                     df_news = fetch_google_news_rss(ticker)
@@ -309,7 +315,7 @@ def display_news_tab(tab_container, user_id, is_guest):
                         cols[0].metric("Średni sentyment", f"{df_news['sentiment'].mean():.3f}")
                         cols[1].metric("Liczba przeanalizowanych newsów", len(df_news))
                         fig = px.histogram(df_news, x="sentiment", nbins=20, title=f"Rozkład sentymentu dla {ticker}")
-                        st.plotly_chart(fig, use_container_width=True)
+                        st.plotly_chart(fig, width="stretch")
                         display_news_cards(df_news)
                     else:
                         st.warning(f"Nie znaleziono nowszych wiadomości dla tickera {ticker}.")
@@ -324,7 +330,7 @@ def display_model_tab(tab_container, user_id):
 
         top_n = st.slider("📊 Wybierz, ile najlepszych spółek wyświetlić", 5, 50, 20, 5)
 
-        if st.button("🚀 Uruchom model", type="primary", use_container_width=True):
+        if st.button("🚀 Uruchom model", type="primary", width='stretch'):
             with st.spinner("Analizuję dane i uruchamiam model... To może potrwać chwilę."):
                 df_all = load_all_stocks_data()
                 if not df_all.empty:
@@ -339,8 +345,8 @@ def display_model_tab(tab_container, user_id):
                     sentiment_norm = (df_all['avg_sentiment'] - df_all['avg_sentiment'].min()) / (df_all['avg_sentiment'].max() - df_all['avg_sentiment'].min())
                     df_all['potential_score'] = (0.5*p_norm + 0.3*mc_norm + 0.2*sentiment_norm)*100
                     df_all = df_all.sort_values(by='potential_score', ascending=False).head(top_n)
-                    st.dataframe(df_all[['ticker', 'price', 'market_cap', 'avg_sentiment', 'potential_score']], use_container_width=True)
-                    save_user_model_results(user_id, df_all.to_dict(orient='records'))
+                    st.dataframe(df_all[['ticker', 'price', 'market_cap', 'avg_sentiment', 'potential_score']], width='stretch')
+                    # save_user_model_results(user_id, df_all.to_dict(orient='records'))
                     st.success("✅ Model zakończony.")
                 else:
                     st.warning("Brak danych do analizy modelu. Pobierz najpierw dane giełdowe.")
@@ -355,11 +361,11 @@ def display_watchlist_tab(tab_container, user_id, is_guest):
 
         watchlist = get_watchlist(user_id)
         tickers = [w['ticker'] for w in watchlist]
-        st.dataframe(pd.DataFrame(tickers, columns=["Ticker"]), use_container_width=True)
+        st.dataframe(pd.DataFrame(tickers, columns=["Ticker"]), width='stretch')
 
         with st.expander("Dodaj spółkę do watchlisty"):
             ticker_input = st.text_input("Ticker", placeholder="AAPL, TSLA")
-            if st.button("➕ Dodaj", type="primary", use_container_width=True):
+            if st.button("➕ Dodaj", type="primary", width='stretch'):
                 add_to_watchlist(user_id, ticker_input)
                 st.success(f"Dodano {ticker_input} do watchlisty.")
                 st.rerun()
@@ -367,7 +373,7 @@ def display_watchlist_tab(tab_container, user_id, is_guest):
         with st.expander("Usuń spółkę z watchlisty"):
             if tickers:
                 ticker_remove = st.selectbox("Wybierz spółkę do usunięcia", options=tickers)
-                if st.button("❌ Usuń", type="secondary", use_container_width=True):
+                if st.button("❌ Usuń", type="secondary", width='stretch'):
                     remove_from_watchlist(user_id, ticker_remove)
                     st.success(f"Usunięto {ticker_remove} z watchlisty.")
                     st.rerun()
@@ -393,7 +399,7 @@ def display_alerts_tab(tab_container, user_id, is_guest):
             ticker_input = st.text_input("Ticker alertu", placeholder="AAPL, TSLA")
             target_price = st.number_input("Cena docelowa", min_value=0.0, value=0.0, step=0.01, format="%.2f")
             above_or_below = st.radio("Wyzwalacz", ["Powyżej", "Poniżej"], horizontal=True)
-            if st.button("💾 Dodaj alert", type="primary", use_container_width=True):
+            if st.button("💾 Dodaj alert", type="primary", width='stretch'):
                 add_alert(user_id, ticker_input, target_price, above_or_below)
                 st.success(f"Alert dodany dla {ticker_input}.")
                 st.rerun()

@@ -14,8 +14,6 @@ logging.basicConfig(
 )
 
 
-# ==================== USER MANAGEMENT (SUPABASE) ====================
-
 def get_user_by_email(email: str):
     """Zwraca użytkownika z Supabase na podstawie emaila"""
     resp = supabase.table("users").select("*").eq("email", email).execute()

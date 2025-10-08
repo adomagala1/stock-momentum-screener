@@ -1,4 +1,4 @@
-# app/db/db_manager.py
+# app/db/supabase_manager.py
 import streamlit as st
 
 from sqlalchemy import text
@@ -13,8 +13,6 @@ logging.basicConfig(
     format="%(asctime)s [%(levelname)s] %(message)s"
 )
 
-
-# ==================== USER MANAGEMENT (SUPABASE) ====================
 
 def get_user_by_email(email: str):
     """Zwraca użytkownika z Supabase na podstawie emaila"""

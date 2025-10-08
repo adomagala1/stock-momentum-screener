@@ -4,7 +4,7 @@ import pandas as pd
 import logging
 from datetime import datetime
 import streamlit as st
-from app.db.supabase_manager import *
+from app.db.db_supabase_manager import *
 
 # Prosta konfiguracja loggingu
 logging.basicConfig(
