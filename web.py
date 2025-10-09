@@ -79,8 +79,8 @@ def apply_custom_css():
 
 def load_demo_secrets():
     """Ładuje przykładowe dane do session_state, jeśli nie masz własnych secrets."""
-    st.session_state["sb_url"] = "https://demo.supabase.co"
-    st.session_state["sb_api"] = "demo_anon_key"
+    st.session_state["sb_url"] = "https://hhgljugljgxswlgedrzu.supabase.co"
+    st.session_state["sb_api"] = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhoZ2xqdWdsamd4c3dsZ2Vkcnp1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk3NjI4MjcsImV4cCI6MjA3NTMzODgyN30.fW22awElY4yEuaN67C8poCyFuKmAqVn_i94p6CqF3Fc"
     st.session_state["mongo_uri"] = "mongodb://localhost:27017/demo_db"
     st.session_state["mongo_db"] = "demo_db"
     st.session_state["db_configured"] = True
