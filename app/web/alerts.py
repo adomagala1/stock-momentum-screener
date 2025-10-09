@@ -91,7 +91,10 @@ ALERTS_CSS = """
 
 
 def get_alerts(user_id: str):
-    """Pobiera wszystkie alerty dla danego użytkownika."""
+    if not user_id:
+        return []
+    if not st.session_state.get("db_configured"):
+        return st.session_state.get("demo_alerts", [])
     try:
         res = supabase.table("alerts").select("*").eq("user_id", user_id).order("ticker").execute()
         return res.data or []
@@ -100,8 +103,14 @@ def get_alerts(user_id: str):
         return []
 
 
+
 def add_alert(user_id, ticker, high, low):
-    """Dodaje nowy alert cenowy."""
+    if not st.session_state.get("db_configured"):
+        demo_alerts = st.session_state.get("demo_alerts", [])
+        demo_alerts.append({"id": len(demo_alerts)+1, "ticker": ticker.upper(), "threshold_high": high, "threshold_low": low})
+        st.session_state["demo_alerts"] = demo_alerts
+        st.toast(f"🔔 Alert dla {ticker} dodany (demo).")
+        return
     try:
         supabase.table("alerts").insert({
             "user_id": user_id,
@@ -114,8 +123,13 @@ def add_alert(user_id, ticker, high, low):
         st.error(f"Błąd podczas dodawania alertu: {e}")
 
 
+
 def remove_alert(alert_id: int):
-    """Usuwa alert na podstawie jego ID."""
+    if not st.session_state.get("db_configured"):
+        demo_alerts = st.session_state.get("demo_alerts", [])
+        st.session_state["demo_alerts"] = [a for a in demo_alerts if a["id"] != alert_id]
+        st.toast("🗑️ Usunięto alert (demo).")
+        return
     try:
         supabase.table("alerts").delete().eq("id", alert_id).execute()
         st.toast("🗑️ Usunięto alert.")

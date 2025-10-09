@@ -77,6 +77,16 @@ def apply_custom_css():
     """, unsafe_allow_html=True)
     st.markdown(ALERTS_CSS, unsafe_allow_html=True)
 
+def load_demo_secrets():
+    """Ładuje przykładowe dane do session_state, jeśli nie masz własnych secrets."""
+    st.session_state["sb_url"] = "https://demo.supabase.co"
+    st.session_state["sb_api"] = "demo_anon_key"
+    st.session_state["mongo_uri"] = "mongodb://localhost:27017/demo_db"
+    st.session_state["mongo_db"] = "demo_db"
+    st.session_state["db_configured"] = True
+    st.session_state["mongo_configured"] = True
+    st.toast("✅ Załadowano przykładowe dane demo.", icon="🔑")
+
 
 def render_db_status_indicator(db_name: str, is_configured: bool):
     """Renderuje wskaźnik statusu połączenia."""
@@ -151,10 +161,16 @@ def render_dashboard():
     st.divider()
 
     with st.expander("⚙️ Konfiguracja Połączenia z Bazami Danych"):
+        st.markdown("### 🔧 Demo / Załaduj przykładowe secrets")
+        if st.button("💾 Załaduj dane demo z secrets.toml"):
+            load_demo_secrets()
+            st.rerun()
         with st.container(border=True):
             col1, col2 = st.columns(2)
-            with col1: render_db_status_indicator("Supabase (Dane Użytkowników)", st.session_state.get("db_configured"))
-            with col2: render_db_status_indicator("MongoDB (Newsy)", st.session_state.get("mongo_configured"))
+            with col1:
+                render_db_status_indicator("Supabase (Dane Użytkowników)", st.session_state.get("db_configured"))
+            with col2:
+                render_db_status_indicator("MongoDB (Newsy)", st.session_state.get("mongo_configured"))
 
         # --- Konfiguracja Supabase (bez zmian) ---
         st.markdown("##### Supabase (Główna baza)")
@@ -190,7 +206,7 @@ def render_dashboard():
                             st.session_state.update(
                                 {"mongo_uri": mongo_uri, "mongo_db": db_name, "mongo_configured": True})
                             st.success(f"Konfiguracja MongoDB zapisana. Baza: '{db_name}'")
-                            st.experimental_rerun()
+                            st.rerun()
                     except Exception as e:
                         st.error(f"Nieprawidłowy format URI: {e}")
                 else:
@@ -204,7 +220,7 @@ def render_dashboard():
                     st.session_state.update(
                         {"mongo_uri": mongo_uri_sep, "mongo_db": mongo_db_name_sep, "mongo_configured": True})
                     st.success(f"Konfiguracja MongoDB zapisana. Baza: '{mongo_db_name_sep}'")
-                    st.experimental_rerun()
+                    st.rerun()
                 else:
                     st.error("Wypełnij oba pola: URI i nazwę bazy.")
 
@@ -364,6 +380,7 @@ def display_watchlist_tab(tab_container, user_id, is_guest):
                                  "Zapisuj interesujące Cię spółki i miej je zawsze pod ręką. Ta funkcja wymaga konta użytkownika.")
             return
 
+        st.session_state.db_configured = True
         if not st.session_state.get("db_configured"):
             st.warning("Watchlista wymaga połączenia z bazą danych.", icon="⚠️")
             return
@@ -376,17 +393,17 @@ def display_watchlist_tab(tab_container, user_id, is_guest):
                 if ticker_input:
                     add_to_watchlist(user_id, ticker_input.upper())
                     st.toast(f"Dodano {ticker_input.upper()}")
-                    st.experimental_rerun()
+                    st.rerun()
 
         watchlist = get_watchlist(user_id)
         if watchlist:
-            df_watchlist = pd.DataFrame(watchlist)[['ticker', 'created_at']]
+            df_watchlist = pd.DataFrame(watchlist)[['ticker']]
             st.dataframe(df_watchlist, use_container_width=True, hide_index=True)
             ticker_to_remove = st.selectbox("Wybierz ticker do usunięcia", options=[w['ticker'] for w in watchlist])
             if st.button(f"❌ Usuń {ticker_to_remove}", use_container_width=True):
-                remove_from_watchlist(user_id, ticker_to_remove)
+                remove_from_watchlist(user_id)
                 st.toast(f"Usunięto {ticker_to_remove}")
-                st.experimental_rerun()
+                st.rerun()
         else:
             st.info("Twoja watchlista jest pusta.")
 
@@ -414,7 +431,7 @@ def display_alerts_tab(tab_container, user_id, is_guest):
                         add_alert(user_id, ticker_input.upper(), target_price,
                                   "above" if condition == "Powyżej" else "below")
                         st.toast(f"Alert dla {ticker_input.upper()} dodany.")
-                        st.experimental_rerun()
+                        st.rerun()
 
         alerts = get_alerts(user_id)
         if alerts:
