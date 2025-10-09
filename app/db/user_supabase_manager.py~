@@ -8,161 +8,126 @@ import streamlit as st
 
 class SupabaseHandler:
     def __init__(self, url: str, key: str):
+        if not url or not key:
+            raise ValueError("Supabase URL and Key must be provided.")
         self.client: Client = create_client(url, key)
+        self._checked_tables = set()
+
+    def _ensure_table_exists(self, table_name: str):
+        if table_name in self._checked_tables:
+            return
+
+        try:
+            self.client.table(table_name).select("id", head=True).limit(1).execute()
+            logging.info(f"Tabela '{table_name}' istnieje i jest dostępna.")
+            self._checked_tables.add(table_name)
+        except Exception:
+            st.warning(f"Tabela '{table_name}' nie znaleziona. Próbuję ją automatycznie utworzyć...", icon="🛠️")
+            logging.warning(
+                f"Tabela '{table_name}' nie znaleziona. Wywołuję RPC 'create_stocks_data_table_if_not_exists'.")
+
+            try:
+                self.client.rpc('create_stocks_data_table_if_not_exists', {}).execute()
+
+                st.success(f"Tabela '{table_name}' została pomyślnie utworzona w bazie danych!", icon="✅")
+                logging.info(f"RPC zakończone sukcesem. Tabela '{table_name}' powinna już istnieć.")
+                self._checked_tables.add(table_name)
+            except Exception as rpc_error:
+                logging.error(f"Krytyczny błąd podczas wywoływania RPC do tworzenia tabeli: {rpc_error}")
+                st.error(
+                    f"Nie udało się automatycznie utworzyć tabeli '{table_name}'.",
+                    icon="❌"
+                )
+                st.warning(
+                    "Upewnij się, że funkcja `create_stocks_data_table_if_not_exists` została poprawnie dodana w edytorze SQL w panelu Supabase.",
+                    icon="ℹ️"
+                )
+                raise RuntimeError(f"Failed to create table '{table_name}' via RPC.")
 
     def save_dataframe(self, df: pd.DataFrame, table_name: str = "stocks_data") -> int:
-        saved_count = 0
         try:
-            logging.info(f"Próbuję zapisać {len(df)} rekordów do {table_name}")
-            st.info(f"Liczba rekordów próbujących się zapisać: {len(df)}")
+            self._ensure_table_exists(table_name)
+        except RuntimeError as e:
+            logging.error(str(e))
+            return 0
 
-            rename_map = {
-                "Ticker": "ticker", "Company": "company", "Sector": "sector",
-                "Industry": "industry", "Country": "country", "market_cap": "market_cap",
-                "Market Cap": "market_cap", "P/E": "p_e", "Price": "price",
-                "Change": "change", "Volume": "volume",
-            }
-            df = df.rename(columns=rename_map)
-            df = df.loc[:, ~df.columns.duplicated()]
+        if df.empty:
+            st.warning("Otrzymano pusty DataFrame. Nic nie zostało zapisane.")
+            return 0
 
-            expected_cols = [
-                "ticker", "company", "sector", "industry", "country",
-                "market_cap", "p_e", "price", "change", "volume"
-            ]
-            df = df[[c for c in expected_cols if c in df.columns]]
+        df_to_save = df.copy()
+        df_to_save["import_date"] = date.today().isoformat()
+        df_to_save = df_to_save.replace({np.nan: None, pd.NaT: None})
+        records = df_to_save.to_dict(orient="records")
 
-            for col in ["eps_next_5y", "perf_week", "perf_month",
-                        "fifty_two_week_high", "fifty_two_week_low", "rel_volume"]:
-                if col not in df.columns:
-                    df[col] = None
+        saved_count = 0
+        batch_size = 500
 
-            df["import_date"] = date.today().isoformat()
+        st.info(f"Rozpoczynam zapis {len(records)} rekordów do tabeli '{table_name}'...")
 
-            for col in ["market_cap", "p_e", "price", "rel_volume", "volume"]:
-                if col in df.columns:
-                    df[col] = df[col].astype(str).str.replace(",", "", regex=False)
-                    df[col] = df[col].str.replace("B", "e9", regex=False)
-                    df[col] = df[col].str.replace("M", "e6", regex=False)
-                    df[col] = df[col].str.replace("K", "e3", regex=False)
-                    df[col] = pd.to_numeric(df[col], errors="coerce")
-                    df[col] = df[col].apply(lambda x: None if x is None or pd.isna(x) or np.isinf(x) else x)
-
-            df = df.where(pd.notnull(df), None)
-
-            data = df.to_dict(orient="records")
-            logging.info(f"Liczba rekordów po czyszczeniu: {len(data)}")
-            st.info(f"Liczba rekordów po czyszczeniu NaN/inf: {len(data)}")
-
-            batch_size = 500
-            for i in range(0, len(data), batch_size):
-                chunk = data[i:i + batch_size]
+        for i in range(0, len(records), batch_size):
+            chunk = records[i:i + batch_size]
+            try:
                 response = self.client.table(table_name).insert(chunk).execute()
-                if hasattr(response, "error") and response.error:
-                    logging.error(f"❌ Błąd Supabase: {response.error}")
-                    st.error(f"❌ Błąd Supabase w batchu {i // batch_size + 1}: {response.error}")
+                if response.error:
+                    st.error(f"Błąd Supabase w trakcie zapisu (batch {i // batch_size + 1}): {response.error.message}")
+                    logging.error(f"Supabase insert error: {response.error}")
+                    break
                 else:
-                    saved_count += len(chunk)
-                    logging.info(f"✅ Zapisano batch {i // batch_size + 1}, rekordy: {len(chunk)}")
-                    st.success(f"✅ Zapisano batch {i // batch_size + 1}, rekordy: {len(chunk)}")
+                    saved_count += len(response.data)
+            except Exception as e:
+                st.error(f"Wystąpił nieoczekiwany błąd sieci lub klienta podczas zapisu: {e}")
+                logging.exception("Exception during Supabase insert batch.")
+                break
 
-            logging.info(f"✅ Łącznie zapisano {saved_count} rekordów do {table_name}")
-            st.success(f"✅ Łącznie zapisano {saved_count} rekordów do {table_name}")
-            return saved_count
-
-        except Exception as e:
-            logging.exception(f"❌ Błąd podczas zapisu do Supabase: {e}")
-            st.error(f"❌ Nie udało się zapisać żadnego rekordu. Szczegóły w logach: {e}")
-            return saved_count
-
-
-def create_user(email: str, password: str, sb_url: str, sb_key: str) -> bool:
-    """
-    Tworzy nowego użytkownika w tabeli 'users' Supabase
-    """
-    sb = SupabaseHandler(sb_url, sb_key)
-    try:
-        response = sb.client.table("users").insert([{"email": email, "password": password}]).execute()
-        if hasattr(response, "error") and response.error:
-            logging.error(f"❌ Błąd przy tworzeniu użytkownika: {response.error}")
-            st.error(f"❌ Błąd przy tworzeniu użytkownika: {response.error}")
-            return False
-        logging.info(f"✅ Utworzono użytkownika {email}")
-        return True
-    except Exception as e:
-        logging.exception(f"❌ Wyjątek przy tworzeniu użytkownika: {e}")
-        st.error(f"❌ Wyjątek przy tworzeniu użytkownika: {e}")
-        return False
-
-
-def get_users(sb_url: str, sb_key: str) -> pd.DataFrame:
-    """
-    Pobiera wszystkich użytkowników z tabeli 'users'
-    """
-    sb = SupabaseHandler(sb_url, sb_key)
-    try:
-        response = sb.client.table("users").select("*").execute()
-        if hasattr(response, "error") and response.error:
-            logging.error(f"❌ Błąd przy pobieraniu użytkowników: {response.error}")
-            st.error(f"❌ Błąd przy pobieraniu użytkowników: {response.error}")
-            return pd.DataFrame()
-        data = response.data
-        return pd.DataFrame(data)
-    except Exception as e:
-        logging.exception(f"❌ Wyjątek przy pobieraniu użytkowników: {e}")
-        st.error(f"❌ Wyjątek przy pobieraniu użytkowników: {e}")
-        return pd.DataFrame()
+        return saved_count
 
 
 def clean_and_transform_for_db(df: pd.DataFrame) -> pd.DataFrame:
-    """
-    Kompleksowo czyści i transformuje DataFrame z Finviz do formatu bazodanowego.
-    1. Standaryzuje nazwy kolumn (małe litery, podkreślniki).
-    2. Usuwa znaki specjalne (B, M, %, ,) z wartości.
-    3. Konwertuje kolumny na właściwe typy numeryczne, obsługując błędy.
-    4. Zamienia wszystkie pozostałe NaN/NaT na None dla kompatybilności z JSON/SQL.
-    """
+    """Czyści i przekształca surowy DataFrame z Finviz do wstawienia do bazy danych."""
+    if df.empty:
+        return df
+
     df_copy = df.copy()
 
-    # --- 1. Standaryzacja nazw kolumn (kluczowe dla spójności z bazą danych!) ---
-    # np. 'Market Cap' -> 'market_cap', 'P/E' -> 'p_e'
-    original_columns = df_copy.columns.tolist()
-    new_columns = [
-        col.lower().replace(' ', '_').replace('.', '').replace('/', '_')
-        for col in original_columns
-    ]
-    df_copy.columns = new_columns
+    df_copy.columns = [col.lower().replace(' ', '_').replace('.', '').replace('/', '_') for col in df_copy.columns]
 
-    # Słownik kolumn do transformacji
-    # Klucze to już nowe, czyste nazwy kolumn
-    cols_to_process = {
-        'market_cap': lambda x: str(x).replace('B', 'e9').replace('M', 'e6').replace('K', 'e3'),
-        'p_e': lambda x: x,
-        'price': lambda x: x,
-        'change': lambda x: str(x).replace('%', ''),
-        'volume': lambda x: str(x).replace(',', '')
-    }
+    def clean_numeric(value):
+        if isinstance(value, (int, float)):
+            return value
+        if isinstance(value, str):
+            value = value.strip().replace(',', '')
+            if value.endswith('B'): return float(value[:-1]) * 1e9
+            if value.endswith('M'): return float(value[:-1]) * 1e6
+            if value.endswith('K'): return float(value[:-1]) * 1e3
+            if value.endswith('%'): return float(value[:-1])
+        return value
 
-    # --- 2. Wstępne czyszczenie wartości tekstowych ---
-    for col, clean_func in cols_to_process.items():
+    cols_to_process = ['market_cap', 'p_e', 'price', 'change', 'volume']
+    for col in cols_to_process:
         if col in df_copy.columns:
-            # Używamy .loc, aby uniknąć SettingWithCopyWarning
-            df_copy.loc[:, col] = df_copy[col].apply(clean_func)
+            df_copy[col] = df_copy[col].apply(clean_numeric)
+            df_copy[col] = pd.to_numeric(df_copy[col], errors='coerce')
 
-    # Lista kolumn, które mają być liczbami
-    numeric_cols = ['market_cap', 'p_e', 'price', 'change', 'volume']
+    return df_copy.replace({np.nan: None, pd.NaT: None})
 
-    # --- 3. Konwersja na typy numeryczne (NAJWAŻNIEJSZY KROK) ---
-    # errors='coerce' zamieni wszystko, co nie jest liczbą (np. myślnik '-') na NaN
-    for col in numeric_cols:
-        if col in df_copy.columns:
-            df_copy.loc[:, col] = pd.to_numeric(df_copy[col], errors='coerce')
 
-    # Dodatkowa transformacja dla analizy: zmiana procentowa jako ułamek
-    if 'change' in df_copy.columns:
-        df_copy.loc[:, 'change'] = df_copy['change'] / 100.0
+def create_user(email: str, password: str, sb_url: str, sb_key: str) -> bool:
+    """Tworzy nowego użytkownika w systemie uwierzytelniania Supabase."""
+    try:
+        sb = SupabaseHandler(sb_url, sb_key)
+        response = sb.client.auth.sign_up({"email": email, "password": password})
 
-    # --- 4. Ostateczna zamiana NaN na None (rozwiązuje problem z JSON) ---
-    # To łapie wszystkie NaN stworzone przez 'coerce' w kroku 3
-    df_final = df_copy.replace({np.nan: None, pd.NaT: None})
-
-    return df_final
+        if response.user:
+            logging.info(f"Użytkownik {email} został pomyślnie zarejestrowany.")
+            st.success("Rejestracja pomyślna! Sprawdź email, aby zweryfikować konto.")
+            return True
+        elif response.error:
+            logging.error(f"Błąd przy tworzeniu użytkownika: {response.error.message}")
+            st.error(f"Błąd przy tworzeniu użytkownika: {response.error.message}")
+            return False
+        return False
+    except Exception as e:
+        logging.exception(f"Wyjątek przy tworzeniu użytkownika: {e}")
+        st.error(f"Wystąpił nieoczekiwany błąd: {e}")
+        return False
