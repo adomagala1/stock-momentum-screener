@@ -229,26 +229,22 @@ def display_stocks_tab(tab_container):
                 except Exception as e:
                     st.error(f"Nie udało się pobrać danych: {e}")
 
-        # ZMIANA LOGIKI: Przycisk zapisu jest teraz warunkowy
         if "latest_df" in st.session_state:
             if not st.session_state.get("db_configured"):
-                st.warning("Skonfiguruj połączenie z bazą danych, aby móc zapisać dane.", icon="ℹ️")
-                st.button("💾 Zapisz do Supabase", type="secondary", width="stretch", disabled=True)
+                st.info("Skonfiguruj połączenie z bazą danych, aby zapisać dane.")
+                st.button("💾 Zapisz do Supabase", use_container_width=True, disabled=True)
             else:
-                if st.button("💾 Zapisz do Supabase", type="secondary", width="stretch"):
-                    with st.spinner("Przygotowuję i zapisuję dane do Supabase..."):
+                # Ta logika jest teraz prosta, ponieważ cała złożoność jest w SupabaseHandler
+                if st.button("💾 Zapisz do Supabase", use_container_width=True):
+                    with st.spinner("Przygotowuję i zapisuję dane..."):
+                        sb_handler = SupabaseHandler(st.session_state["sb_url"], st.session_state["sb_api"])
                         df_raw = st.session_state.get("latest_df")
                         df_cleaned = clean_and_transform_for_db(df_raw)
-                        try:
-                            sb = SupabaseHandler(st.session_state["sb_url"], st.session_state["sb_api"])
-                            saved_count = sb.save_dataframe(df_cleaned, table_name="stocks_data")
-                            if saved_count > 0:
-                                st.success(f"✅ Pomyślnie zapisano {saved_count} rekordów do Supabase!")
-                            else:
-                                st.error("❌ Nie udało się zapisać rekordów. Sprawdź komunikaty powyżej lub w konsoli.")
-                        except Exception as e:
-                            st.error(f"❌ Wystąpił krytyczny błąd podczas zapisu: {e}")
-
+                        saved_count = sb_handler.save_dataframe(df_cleaned)
+                        if saved_count > 0:
+                            st.success(f"✅ Zapisano {saved_count} rekordów!")
+                        else:
+                            st.error("❌ Zapis nie powiódł się. Sprawdź komunikaty o błędach powyżej.")
 
 def display_news_tab(tab_container, user_id, is_guest):
     with tab_container:
@@ -300,7 +296,7 @@ def display_model_tab(tab_container):
         else:
             if st.button("🚀 Uruchom model", type="primary", width="stretch"):
                 with st.spinner("Analizuję dane i uruchamiam model..."):
-                    df_all = load_all_stocks_data()  # Ta funkcja musi łączyć się z bazą
+                    df_all = load_all_stocks_data()
                     if not df_all.empty:
                         tickers = df_all['ticker'].dropna().unique()
                         dates = df_all['import_date'].dropna().unique()
