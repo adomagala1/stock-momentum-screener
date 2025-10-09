@@ -1321,3 +1321,154 @@ postgrest.exceptions.APIError: {'message': 'Could not find the function public.e
 2025-10-09 22:20:06,319 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
 2025-10-09 22:20:06,471 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
 2025-10-09 22:20:06,641 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:24:10,830 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-09 22:24:11,074 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-09 22:24:14,474 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-09 22:24:14,731 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-09 22:24:15,406 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:24:15,567 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:24:15,728 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:24:21,503 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-09 22:24:23,688 [INFO] Pobrano 50 spó³ek. Czas: 0:00:02.177454
+2025-10-09 22:24:23,890 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:24:24,042 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:24:24,199 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:24:26,064 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-09 22:24:27,861 [INFO] HTTP Request: HEAD https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=id&limit=1 "HTTP/2 404 Not Found"
+2025-10-09 22:24:27,862 [WARNING] Tabela 'stocks_data' nie znaleziona. Wywo³ujê RPC 'create_stocks_data_table_if_not_exists'.
+2025-10-09 22:24:28,070 [INFO] HTTP Request: POST https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/rpc/create_stocks_data_table_if_not_exists "HTTP/2 404 Not Found"
+2025-10-09 22:24:28,070 [ERROR] Krytyczny b³¹d podczas wywo³ywania RPC: {'message': 'Could not find the function public.create_stocks_data_table_if_not_exists without parameters in the schema cache', 'code': 'PGRST202', 'hint': None, 'details': 'Searched for the function public.create_stocks_data_table_if_not_exists without parameters or with a single unnamed json/jsonb parameter, but no matches were found in the schema cache.'}
+2025-10-09 22:24:28,071 [ERROR] Failed to create table 'stocks_data' via RPC.
+2025-10-09 22:24:28,353 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:24:28,560 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:24:28,752 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:25:19,870 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-09 22:25:20,142 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-09 22:25:23,231 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-09 22:25:23,487 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-09 22:25:24,351 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:25:24,683 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:25:25,010 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:25:28,066 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-09 22:25:30,388 [INFO] Pobrano 50 spó³ek. Czas: 0:00:02.313364
+2025-10-09 22:25:30,640 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:25:30,845 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:25:31,123 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:25:33,561 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-09 22:25:35,042 [INFO] HTTP Request: HEAD https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=id&limit=1 "HTTP/2 200 OK"
+2025-10-09 22:25:35,043 [INFO] Tabela 'stocks_data' istnieje i jest dostêpna.
+2025-10-09 22:25:35,241 [INFO] HTTP Request: POST https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?columns=%22ticker%22%2C%22price%22%2C%22change%22%2C%22country%22%2C%22import_date%22%2C%22market_cap%22%2C%22industry%22%2C%22p_e%22%2C%22volume%22%2C%22sector%22%2C%22no%22%2C%22company%22 "HTTP/2 400 Bad Request"
+2025-10-09 22:25:35,242 [ERROR] Exception during Supabase insert batch.
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\stock-momentum-screener\app\db\user_supabase_manager.py", line 149, in save_dataframe
+    response = self.client.table(table_name).insert(chunk).execute()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\stock-momentum-screener\.venv\Lib\site-packages\postgrest\_sync\request_builder.py", line 77, in execute
+    raise APIError(dict(json_obj))
+postgrest.exceptions.APIError: {'message': "Could not find the 'no' column of 'stocks_data' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-10-09 22:25:35,420 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:25:36,149 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:25:36,310 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:27:13,338 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-09 22:27:13,584 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-09 22:27:17,010 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-09 22:27:17,269 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-09 22:27:17,955 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:27:18,106 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:27:18,265 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:27:21,059 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-09 22:27:23,586 [INFO] Pobrano 50 spó³ek. Czas: 0:00:02.517902
+2025-10-09 22:27:23,789 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:27:23,944 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:27:24,132 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:27:26,108 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-09 22:27:27,795 [INFO] HTTP Request: HEAD https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=id&limit=1 "HTTP/2 200 OK"
+2025-10-09 22:27:27,795 [INFO] Tabela 'stocks_data' istnieje i jest dostêpna.
+2025-10-09 22:27:27,999 [INFO] HTTP Request: POST https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?columns=%22ticker%22%2C%22price%22%2C%22change%22%2C%22country%22%2C%22import_date%22%2C%22market_cap%22%2C%22industry%22%2C%22p_e%22%2C%22volume%22%2C%22sector%22%2C%22company%22 "HTTP/2 201 Created"
+2025-10-09 22:27:28,156 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:27:28,322 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:27:28,494 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:28:16,062 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-09 22:28:18,406 [INFO] Pobrano 50 spó³ek. Czas: 0:00:02.332915
+2025-10-09 22:28:18,634 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:28:18,797 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:28:18,969 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:33:46,164 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-09 22:33:48,363 [INFO] Pobrano 50 spó³ek. Czas: 0:00:02.191548
+2025-10-09 22:33:49,307 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:33:49,528 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:33:49,737 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:33:56,316 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-09 22:33:57,820 [INFO] HTTP Request: HEAD https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=id&limit=1 "HTTP/2 404 Not Found"
+2025-10-09 22:33:57,821 [WARNING] Tabela 'stocks_data' nie znaleziona. Wywo³ujê RPC 'create_stocks_data_table_if_not_exists'.
+2025-10-09 22:33:57,996 [INFO] HTTP Request: POST https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/rpc/create_stocks_data_table_if_not_exists "HTTP/2 404 Not Found"
+2025-10-09 22:33:57,997 [ERROR] Krytyczny b³¹d podczas wywo³ywania RPC: {'message': 'Could not find the function public.create_stocks_data_table_if_not_exists without parameters in the schema cache', 'code': 'PGRST202', 'hint': None, 'details': 'Searched for the function public.create_stocks_data_table_if_not_exists without parameters or with a single unnamed json/jsonb parameter, but no matches were found in the schema cache.'}
+2025-10-09 22:33:57,999 [ERROR] Failed to create table 'stocks_data' via RPC.
+2025-10-09 22:33:58,266 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:33:58,483 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:33:58,695 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:34:45,364 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-09 22:34:46,494 [INFO] HTTP Request: HEAD https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=id&limit=1 "HTTP/2 200 OK"
+2025-10-09 22:34:46,494 [INFO] Tabela 'stocks_data' istnieje i jest dostêpna.
+2025-10-09 22:34:46,703 [INFO] HTTP Request: POST https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?columns=%22ticker%22%2C%22price%22%2C%22change%22%2C%22country%22%2C%22import_date%22%2C%22market_cap%22%2C%22industry%22%2C%22p_e%22%2C%22volume%22%2C%22sector%22%2C%22company%22 "HTTP/2 201 Created"
+2025-10-09 22:34:46,988 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:34:47,208 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:34:47,408 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:36:37,611 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-09 22:36:37,855 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-09 22:36:46,647 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-09 22:36:46,912 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-09 22:36:47,679 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:36:47,899 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:36:48,115 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:36:49,820 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-09 22:36:58,051 [INFO] Pobrano 50 spó³ek. Czas: 0:00:08.218871
+2025-10-09 22:36:58,407 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:36:58,629 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:36:58,832 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:37:04,264 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-09 22:37:05,491 [INFO] HTTP Request: HEAD https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=id&limit=1 "HTTP/2 404 Not Found"
+2025-10-09 22:37:05,492 [WARNING] Tabela 'stocks_data' nie znaleziona. Wywo³ujê RPC 'create_stocks_data_table_if_not_exists'.
+2025-10-09 22:37:05,684 [INFO] HTTP Request: POST https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/rpc/create_stocks_data_table_if_not_exists "HTTP/2 404 Not Found"
+2025-10-09 22:37:05,684 [ERROR] Krytyczny b³¹d podczas wywo³ywania RPC: {'message': 'Could not find the function public.create_stocks_data_table_if_not_exists without parameters in the schema cache', 'code': 'PGRST202', 'hint': None, 'details': 'Searched for the function public.create_stocks_data_table_if_not_exists without parameters or with a single unnamed json/jsonb parameter, but no matches were found in the schema cache.'}
+2025-10-09 22:37:05,685 [ERROR] Failed to create table 'stocks_data' via RPC.
+2025-10-09 22:37:05,901 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:37:06,073 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:37:06,238 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:37:20,178 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-09 22:37:21,358 [INFO] HTTP Request: HEAD https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=id&limit=1 "HTTP/2 200 OK"
+2025-10-09 22:37:21,358 [INFO] Tabela 'stocks_data' istnieje i jest dostêpna.
+2025-10-09 22:37:21,541 [INFO] HTTP Request: POST https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?columns=%22ticker%22%2C%22price%22%2C%22change%22%2C%22country%22%2C%22import_date%22%2C%22market_cap%22%2C%22industry%22%2C%22p_e%22%2C%22volume%22%2C%22sector%22%2C%22company%22 "HTTP/2 400 Bad Request"
+2025-10-09 22:37:21,542 [ERROR] Exception during Supabase insert batch.
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\stock-momentum-screener\app\db\user_supabase_manager.py", line 164, in save_dataframe
+    response = self.client.table(table_name).insert(chunk).execute()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\stock-momentum-screener\.venv\Lib\site-packages\postgrest\_sync\request_builder.py", line 77, in execute
+    raise APIError(dict(json_obj))
+postgrest.exceptions.APIError: {'message': 'invalid input syntax for type bigint: "1149154.0"', 'code': '22P02', 'hint': None, 'details': None}
+2025-10-09 22:37:21,734 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:37:21,895 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:37:22,053 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:38:45,546 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-09 22:38:45,796 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-09 22:38:48,846 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-09 22:38:49,101 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-09 22:38:49,806 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:38:49,972 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:38:50,144 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:38:52,082 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-09 22:38:54,429 [INFO] Pobrano 50 spó³ek. Czas: 0:00:02.338369
+2025-10-09 22:38:54,598 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:38:54,766 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:38:54,939 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:38:57,291 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-09 22:38:58,873 [INFO] HTTP Request: HEAD https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=id&limit=1 "HTTP/2 200 OK"
+2025-10-09 22:38:58,873 [INFO] Tabela 'stocks_data' istnieje i jest dostêpna.
+2025-10-09 22:38:59,076 [INFO] HTTP Request: POST https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?columns=%22ticker%22%2C%22price%22%2C%22change%22%2C%22country%22%2C%22import_date%22%2C%22market_cap%22%2C%22industry%22%2C%22p_e%22%2C%22volume%22%2C%22sector%22%2C%22company%22 "HTTP/2 201 Created"
+2025-10-09 22:38:59,267 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:38:59,438 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:38:59,611 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-09 22:40:24,376 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-09 22:40:24,578 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/logout?scope=global "HTTP/2 204 No Content"
+2025-10-09 22:40:24,846 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 403 Forbidden"
