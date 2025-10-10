@@ -47,7 +47,6 @@ if "mongo_uri" not in st.session_state or not st.session_state["mongo_uri"]:
     except KeyError:
         st.session_state["mongo_configured"] = False
 
-# --- Funkcje pomocnicze i UI ---
 
 def apply_custom_css():
     """Aplikuje niestandardowe style CSS dla całej aplikacji."""
@@ -81,7 +80,7 @@ def load_demo_secrets():
     """Ładuje przykładowe dane do session_state, jeśli nie masz własnych secrets."""
     st.session_state["sb_url"] = "https://hhgljugljgxswlgedrzu.supabase.co"
     st.session_state["sb_api"] = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhoZ2xqdWdsamd4c3dsZ2Vkcnp1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk3NjI4MjcsImV4cCI6MjA3NTMzODgyN30.fW22awElY4yEuaN67C8poCyFuKmAqVn_i94p6CqF3Fc"
-    st.session_state["mongo_uri"] = "mongodb://localhost:27017/demo_db"
+    st.session_state["mongo_uri"] = "mongodb+srv://adrian:Michaltonieja@cluster0.ehoobfy.mongodb.net/"
     st.session_state["mongo_db"] = "demo_db"
     st.session_state["db_configured"] = True
     st.session_state["mongo_configured"] = True
@@ -195,7 +194,11 @@ def render_dashboard():
 
         # Łączenie z MongoDB
         if mongo_mode == "Użyj Connection String (zalecane)":
-            mongo_uri = st.text_input("MongoDB Connection String (URI)", value=st.session_state.get("mongo_uri", ""))
+            mongo_uri = st.text_input(
+                "MongoDB Connection String (URI)",
+                value=st.session_state.get("default_connection_string", ""),
+                placeholder="mongodb+srv://user:pass@cluster.mongodb.net/nazwabazy"
+            )
             if st.button("💾 Połącz z MongoDB", key="connect_mongo_uri", use_container_width=True):
                 if mongo_uri:
                     try:
