@@ -1,10 +1,12 @@
+# app/db/user_supabase_manager.py
 import logging
 import pandas as pd
 import numpy as np
 from datetime import date
 from supabase import create_client, Client
 import streamlit as st
-
+from sqlalchemy.engine import URL
+from sqlalchemy import create_engine
 
 class SupabaseHandler:
     def __init__(self, url: str, key: str):
@@ -13,6 +15,42 @@ class SupabaseHandler:
         self.client: Client = create_client(url, key)
         self._checked_tables = set()
 
+    def create_sqlalchemy_engine(self):
+        """
+        Tworzy silnik SQLAlchemy na podstawie danych wprowadzonych przez UŻYTKOWNIKA
+        i zapisanych w st.session_state.
+        """
+        try:
+            # POBIERAMY DANE Z SESJI UŻYTKOWNIKA!
+            db_user = st.session_state["sb_db_user"]
+            db_password = st.session_state["sb_db_password"]
+            db_host = st.session_state["sb_db_host"]
+            db_port = st.session_state["sb_db_port"]
+            db_name = st.session_state["sb_db_name"]
+
+            # Sprawdzamy, czy dane nie są puste
+            if not all([db_user, db_password, db_host, db_port, db_name]):
+                st.error("Nie wszystkie dane do połączenia z bazą danych zostały podane w konfiguracji.")
+                return None
+
+            db_url = URL.create(
+                "postgresql+psycopg2",
+                username=db_user,
+                password=db_password,
+                host=db_host,
+                port=db_port,
+                database=db_name,
+            )
+            engine = create_engine(db_url)
+            logging.info("Pomyślnie utworzono silnik SQLAlchemy dla Supabase na podstawie danych z sesji.")
+            return engine
+        except KeyError:
+            # Ten błąd pojawi się, jeśli użytkownik jeszcze nie wypełnił formularza
+            st.warning("Proszę najpierw uzupełnić i zapisać dane do połączenia z bazą danych w zakładce konfiguracyjnej.")
+            return None
+        except Exception as e:
+            st.error(f"Nie udało się utworzyć połączenia z bazą danych użytkownika: {e}")
+            return None
     def check_and_inform(self, table_name: str = "stocks_data") -> bool:
         """
         Sprawdza, czy tabela istnieje. Jeśli nie, wyświetla jasne instrukcje dla użytkownika.
@@ -230,7 +268,7 @@ def clean_and_transform_for_db(df: pd.DataFrame) -> pd.DataFrame:
         if col in df_copy.columns:
             df_copy[col] = df_copy[col].apply(clean_numeric)
             if col == 'volume':
-                
+                df_copy[col] = df_copy[col].apply(lambda x: int(x) if x is not None else None)
     df_copy = df_copy.replace({np.nan: None, pd.NaT: None})
     return df_copy
 

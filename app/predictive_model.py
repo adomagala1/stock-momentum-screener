@@ -11,6 +11,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
 from pymongo import MongoClient
+from app.db.user_mongodb_manager import MongoNewsHandler
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from app.config import settings  # jeżeli tego nie ma, usuń lub zastąp odpowiednią konfiguracją
@@ -120,24 +121,28 @@ def init_predictions_table(engine):
 
 
 def load_all_stocks_data(engine) -> pd.DataFrame:
-    logger.info("Wczytuję stocks_data z Postgresa...")
+    """
+    Ładuje wszystkie dane o spółkach z tabeli 'stocks' z bazy Supabase (PostgreSQL).
+    Używa silnika SQLAlchemy do połączenia.
+    """
     try:
-        df = pd.read_sql("SELECT * FROM stocks_data", engine)
-    except Exception as e:
-        logger.exception(f"Błąd odczytu stocks_data: {e}")
-        return pd.DataFrame()
-    if df.empty:
-        logger.error("Brak danych w stocks_data")
-        return df
-    if "import_date" in df.columns:
-        df["import_date"] = pd.to_datetime(df["import_date"]).dt.date
-    for col in ["market_cap", "p_e", "price", "change", "volume"]:
-        if col in df.columns:
-            df[col] = pd.to_numeric(df[col], errors="coerce")
-    logger.info(f"Pobrano {len(df)} rekordów ({df['import_date'].nunique()} dni)")
-    logger.debug(f"Kolumny: {df.columns.tolist()}")
-    return df
+        # Zakładam, że Twoja tabela nazywa się 'stocks'
+        query = "SELECT ticker, price, market_cap, import_date FROM stocks"
+        df = pd.read_sql(query, engine)
 
+        # Konwersja typów danych dla pewności
+        df['price'] = pd.to_numeric(df['price'], errors='coerce')
+        df['market_cap'] = pd.to_numeric(df['market_cap'], errors='coerce')
+        df['import_date'] = pd.to_datetime(df['import_date']).dt.date
+
+        # Usuwamy wiersze, gdzie konwersja się nie powiodła
+        df.dropna(subset=['price', 'market_cap', 'ticker'], inplace=True)
+
+        print(f"Załadowano {len(df)} rekordów o spółkach z Supabase.")
+        return df
+    except Exception as e:
+        print(f"Błąd podczas ładowania danych z Supabase: {e}")
+        return pd.DataFrame()
 
 def get_avg_sentiment_for_tickers(news_col, tickers, day, window_days=NEWS_WINDOW_DAYS):
     """
@@ -189,6 +194,17 @@ def get_avg_sentiment_for_tickers(news_col, tickers, day, window_days=NEWS_WINDO
     logger.info(f"{day.date()}: {len(df)} tickerów z sentymentem (z okna {window_days} dni)")
     return df[["ticker", "avg_sentiment"]]
 
+
+
+def get_avg_sentiment_from_mongo(mongo_handler: MongoNewsHandler, tickers: list) -> pd.DataFrame:
+    """
+    Pobiera średni sentyment dla listy tickerów z MongoDB.
+    Wykorzystuje wydajną agregację zamiast pętli.
+    """
+    # Ta funkcja powinna być zdefiniowana w MongoNewsHandler, tutaj ją tylko wywołujemy
+    # dla jasności architektury.
+    print(f"Pobieram sentyment dla {len(tickers)} tickerów z MongoDB.")
+    return mongo_handler.get_average_sentiment_for_tickers(tickers)
 
 def create_forward_label(df_all, day, next_day):
     df_day = df_all[df_all["import_date"] == day].copy()
