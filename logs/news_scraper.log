@@ -1848,3 +1848,304 @@ postgrest.exceptions.APIError: {'message': 'invalid input syntax for type bigint
 2025-10-12 20:52:10,632 [INFO] RSS: znaleziono 100 pozycji dla AAPL
 2025-10-12 20:52:11,212 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
 2025-10-12 20:52:11,382 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 21:51:37,520 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-12 21:51:37,722 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-12 22:51:30,796 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-12 22:51:30,990 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-12 22:55:43,308 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-12 22:55:43,547 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 22:55:45,274 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 22:55:45,537 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 22:55:47,068 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 22:55:47,282 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 22:55:47,499 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 22:55:50,985 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 22:55:51,193 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 22:55:51,448 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 22:55:51,641 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 22:55:52,051 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 22:55:52,319 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 22:55:52,323 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAPL+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 22:55:53,113 [INFO] RSS: znaleziono 100 pozycji dla AAPL
+2025-10-12 22:55:53,396 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 22:55:53,636 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 22:56:00,431 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 22:56:00,675 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 22:56:00,900 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 22:56:01,095 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 22:56:03,224 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 22:56:03,415 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 22:56:03,601 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 22:56:03,788 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 22:57:14,221 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-12 22:57:14,480 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 22:57:16,471 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 22:57:16,751 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 22:57:17,751 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 22:57:17,908 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 22:57:18,069 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 22:59:02,747 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-12 22:59:02,990 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 22:59:04,402 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 22:59:04,665 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 22:59:05,508 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 22:59:05,696 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 22:59:27,032 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 22:59:27,756 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 22:59:27,921 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:00:45,961 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-12 23:00:46,215 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:00:47,632 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:00:47,901 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:00:48,678 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.%3Cfunction+DeltaGenerator.__getattr__.%3Clocals%3E.wrapper+at+0x000001A653E71260%3E&order=ticker.asc "HTTP/2 400 Bad Request"
+2025-10-12 23:02:19,927 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-12 23:02:20,172 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:02:22,025 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:02:22,298 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:02:23,025 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:02:23,193 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:04:02,645 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-12 23:04:02,898 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:04:07,654 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:04:07,907 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:04:08,971 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:04:09,145 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:05:17,959 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:05:18,992 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:05:19,161 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:05:37,726 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-12 23:05:37,973 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:05:39,421 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:05:39,687 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:05:40,434 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:05:40,600 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:09:42,868 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-12 23:09:43,104 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:09:44,319 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:09:44,578 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:09:45,340 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:09:45,508 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:10:33,736 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-12 23:10:33,988 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:10:49,256 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:10:49,514 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:10:50,224 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:10:50,410 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:14:20,762 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:14:21,801 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:14:22,039 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:14:33,143 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-12 23:14:33,437 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:14:36,097 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:14:36,399 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:14:37,208 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:14:37,372 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:14:57,968 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-12 23:14:58,252 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:14:59,444 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:14:59,717 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:15:00,452 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:15:00,660 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:17:01,456 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-12 23:17:01,701 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:17:03,809 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:17:04,063 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:17:04,792 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:17:04,999 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:20:02,565 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-12 23:20:02,830 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:20:57,710 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-12 23:20:57,988 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:21:00,715 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:21:00,998 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:21:02,214 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:21:02,425 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:21:02,608 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:21:15,459 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:21:15,694 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:21:15,860 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:21:16,045 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:21:18,037 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:21:18,223 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:21:18,432 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:21:18,596 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:21:18,792 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:21:18,797 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAPL+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:21:19,509 [INFO] RSS: znaleziono 100 pozycji dla AAPL
+2025-10-12 23:21:19,785 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:21:19,957 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:21:21,446 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:21:21,622 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:21:21,789 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:21:21,932 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:21:22,115 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:21:22,119 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=NVDA+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:21:22,899 [INFO] RSS: znaleziono 100 pozycji dla NVDA
+2025-10-12 23:21:23,213 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:21:23,391 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:21:54,161 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:21:54,649 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:21:55,026 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:21:55,199 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:22:47,395 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-12 23:22:47,681 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:22:49,057 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:22:49,367 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:22:50,152 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:22:50,334 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:22:50,510 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:22:55,124 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:22:55,308 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:22:55,480 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:22:55,651 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:22:55,754 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:22:55,942 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:22:55,946 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAPL+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:22:56,212 [INFO] RSS: znaleziono 100 pozycji dla AAPL
+2025-10-12 23:22:56,500 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:22:56,671 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:23:02,300 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:23:02,537 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:23:02,775 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&ticker=eq.NOVOB "HTTP/2 200 OK"
+2025-10-12 23:23:02,965 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist "HTTP/2 201 Created"
+2025-10-12 23:23:03,225 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:23:03,410 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:23:03,657 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:23:03,825 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:23:07,932 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:23:08,111 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:23:08,361 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:23:08,531 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:23:08,737 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:23:08,938 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:23:08,942 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=NOVOB+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:23:09,660 [INFO] RSS: znaleziono 100 pozycji dla NOVOB
+2025-10-12 23:23:09,944 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:23:10,180 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:23:19,146 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:23:19,378 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:23:19,661 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:23:19,867 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:23:20,050 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:23:20,233 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:23:36,691 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:23:36,938 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:23:37,511 [INFO] Pomyœlnie utworzono silnik SQLAlchemy dla Supabase na podstawie danych z sesji.
+2025-10-12 23:23:37,779 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:23:37,962 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:23:46,253 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:23:46,507 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:24:14,332 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-12 23:24:14,601 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:24:16,417 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:24:16,696 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:24:17,435 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:24:17,609 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:24:17,775 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:24:20,119 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-12 23:24:20,323 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:24:22,989 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-12 23:24:22,992 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAUS+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:23,406 [INFO] RSS: znaleziono 8 pozycji dla AAUS
+2025-10-12 23:24:23,420 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ABLD+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:23,852 [INFO] RSS: znaleziono 13 pozycji dla ABLD
+2025-10-12 23:24:23,867 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAAA+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:24,350 [INFO] RSS: znaleziono 39 pozycji dla AAAA
+2025-10-12 23:24:24,364 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAPX+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:24,789 [INFO] RSS: znaleziono 8 pozycji dla AAPX
+2025-10-12 23:24:24,805 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAPW+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:25,250 [INFO] RSS: znaleziono 9 pozycji dla AAPW
+2025-10-12 23:24:25,265 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AACI+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:25,686 [INFO] RSS: znaleziono 11 pozycji dla AACI
+2025-10-12 23:24:25,700 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAME+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:26,399 [INFO] RSS: znaleziono 55 pozycji dla AAME
+2025-10-12 23:24:26,417 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AB+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:27,292 [INFO] RSS: znaleziono 100 pozycji dla AB
+2025-10-12 23:24:27,311 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ABCS+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:28,123 [INFO] RSS: znaleziono 90 pozycji dla ABCS
+2025-10-12 23:24:28,141 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ABFL+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:28,619 [INFO] RSS: znaleziono 20 pozycji dla ABFL
+2025-10-12 23:24:28,635 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAOI+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:29,354 [INFO] RSS: znaleziono 100 pozycji dla AAOI
+2025-10-12 23:24:29,372 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ABG+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:30,111 [INFO] RSS: znaleziono 100 pozycji dla ABG
+2025-10-12 23:24:30,129 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ABCB+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:30,666 [INFO] RSS: znaleziono 50 pozycji dla ABCB
+2025-10-12 23:24:30,681 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ABCL+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:31,358 [INFO] RSS: znaleziono 100 pozycji dla ABCL
+2025-10-12 23:24:31,376 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=A+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:32,193 [INFO] RSS: znaleziono 100 pozycji dla A
+2025-10-12 23:24:32,214 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AACT+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:32,671 [INFO] RSS: znaleziono 29 pozycji dla AACT
+2025-10-12 23:24:32,686 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ABLG+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:33,055 [INFO] RSS: znaleziono 0 pozycji dla ABLG
+2025-10-12 23:24:33,055 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAM+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:33,781 [INFO] RSS: znaleziono 83 pozycji dla AAM
+2025-10-12 23:24:33,799 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AALG+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:34,185 [INFO] RSS: znaleziono 5 pozycji dla AALG
+2025-10-12 23:24:34,198 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAON+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:34,909 [INFO] RSS: znaleziono 100 pozycji dla AAON
+2025-10-12 23:24:34,927 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ABI+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:35,619 [INFO] RSS: znaleziono 78 pozycji dla ABI
+2025-10-12 23:24:35,639 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAPD+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:36,139 [INFO] RSS: znaleziono 28 pozycji dla AAPD
+2025-10-12 23:24:36,154 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ABIG+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:36,893 [INFO] RSS: znaleziono 68 pozycji dla ABIG
+2025-10-12 23:24:36,912 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAMI+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:37,557 [INFO] RSS: znaleziono 60 pozycji dla AAMI
+2025-10-12 23:24:37,573 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAPL+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:38,307 [INFO] RSS: znaleziono 100 pozycji dla AAPL
+2025-10-12 23:24:38,328 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ABBV+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:39,146 [INFO] RSS: znaleziono 100 pozycji dla ABBV
+2025-10-12 23:24:39,167 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AA+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:39,899 [INFO] RSS: znaleziono 100 pozycji dla AA
+2025-10-12 23:24:39,918 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAPG+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:40,397 [INFO] RSS: znaleziono 36 pozycji dla AAPG
+2025-10-12 23:24:40,414 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAAU+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:40,911 [INFO] RSS: znaleziono 43 pozycji dla AAAU
+2025-10-12 23:24:40,927 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAUC+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:41,435 [INFO] RSS: znaleziono 45 pozycji dla AAUC
+2025-10-12 23:24:41,453 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAPB+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:41,822 [INFO] RSS: znaleziono 7 pozycji dla AAPB
+2025-10-12 23:24:41,835 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAXJ+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:42,225 [INFO] RSS: znaleziono 10 pozycji dla AAXJ
+2025-10-12 23:24:42,240 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAPR+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:42,695 [INFO] RSS: znaleziono 25 pozycji dla AAPR
+2025-10-12 23:24:42,710 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAT+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:43,331 [INFO] RSS: znaleziono 67 pozycji dla AAT
+2025-10-12 23:24:43,349 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AACB+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:43,798 [INFO] RSS: znaleziono 8 pozycji dla AACB
+2025-10-12 23:24:43,811 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ABEV+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:44,539 [INFO] RSS: znaleziono 100 pozycji dla ABEV
+2025-10-12 23:24:44,558 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAPY+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:44,947 [INFO] RSS: znaleziono 19 pozycji dla AAPY
+2025-10-12 23:24:44,960 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAP+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:45,844 [INFO] RSS: znaleziono 100 pozycji dla AAP
+2025-10-12 23:24:45,863 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ABEQ+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:46,250 [INFO] RSS: znaleziono 4 pozycji dla ABEQ
+2025-10-12 23:24:46,264 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ABL+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:46,895 [INFO] RSS: znaleziono 87 pozycji dla ABL
+2025-10-12 23:24:46,913 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAL+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:47,728 [INFO] RSS: znaleziono 100 pozycji dla AAL
+2025-10-12 23:24:47,748 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ABAT+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:48,469 [INFO] RSS: znaleziono 100 pozycji dla ABAT
+2025-10-12 23:24:48,489 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AADR+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:48,931 [INFO] RSS: znaleziono 13 pozycji dla AADR
+2025-10-12 23:24:48,945 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AACG+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:49,343 [INFO] RSS: znaleziono 12 pozycji dla AACG
+2025-10-12 23:24:49,358 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ABEO+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:49,955 [INFO] RSS: znaleziono 75 pozycji dla ABEO
+2025-10-12 23:24:49,976 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ABLS+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:50,525 [INFO] RSS: znaleziono 23 pozycji dla ABLS
+2025-10-12 23:24:50,540 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAUM+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:51,037 [INFO] RSS: znaleziono 39 pozycji dla AAUM
+2025-10-12 23:24:51,053 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAVM+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:51,443 [INFO] RSS: znaleziono 4 pozycji dla AAVM
+2025-10-12 23:24:51,464 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AARD+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:51,974 [INFO] RSS: znaleziono 52 pozycji dla AARD
+2025-10-12 23:24:51,992 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAA+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:52,545 [INFO] RSS: znaleziono 65 pozycji dla AAA
+2025-10-12 23:24:52,562 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAPU+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-12 23:24:52,973 [INFO] RSS: znaleziono 14 pozycji dla AAPU
+2025-10-12 23:24:53,625 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-12 23:24:53,813 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"

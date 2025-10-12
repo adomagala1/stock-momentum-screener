@@ -2,6 +2,7 @@
 import pandas as pd
 from app.db.mongodb import news_col, insert_news, get_latest_published, update_news_for_ticker, update_all_tickers
 from app.news import add_sentiment
+import streamlit as st
 
 class MongoNewsHandler:
     def __init__(self, collection=news_col, mongo_uri=None, mongo_db=None):
@@ -19,9 +20,10 @@ class MongoNewsHandler:
             return pd.concat(dfs, ignore_index=True)
         return pd.DataFrame()
 
-    def insert_news(self, items: list):
+    def add_news(self, items: list):
         """Dodaje newsy (słownikowe listy) do Mongo i liczy sentyment"""
         if not items:
+            st.error("Brak newsów do zapisania!")
             return
         for item in items:
             if 'sentiment' not in item:

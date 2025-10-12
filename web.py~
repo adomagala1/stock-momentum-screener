@@ -113,7 +113,7 @@ def render_login_page():
     """Renderuje stronę logowania, rejestracji i wejścia jako gość."""
     _, col_main, _ = st.columns([1, 1.5, 1])
     with col_main:
-        st.markdown("<h1 style='text-align: center; color: #0d1b2a;'>📈 AI Stock Screener</h1>", unsafe_allow_html=True)
+        st.markdown("<h1 style='text-align: center; color: white;'>📈 AI Stock Screener</h1>", unsafe_allow_html=True)
         st.markdown("<p style='text-align: center;'>Zaloguj się, zarejestruj lub kontynuuj jako gość.</p>",
                     unsafe_allow_html=True)
         login_tab, register_tab, guest_tab = st.tabs(["**Logowanie**", "**Rejestracja**", "**Tryb Gościa**"])
@@ -299,7 +299,7 @@ def display_stocks_tab(): # <-- ZMIANA: Usunięto argument, bo nie jest potrzebn
 
 
 def display_news_section(user_id, is_guest=False):
-    st.subheader("📰 Analiza newsów giełdowych") # <-- ZMIANA: Usunięto "2222"
+    st.subheader("📰 Analiza newsów giełdowych")
 
     if not st.session_state.get("mongo_configured"):
         st.warning("Analiza newsów wymaga skonfigurowania połączenia z MongoDB.", icon="⚠️")
@@ -319,6 +319,8 @@ def display_news_section(user_id, is_guest=False):
     with col2:
         manual_ticker = st.text_input("...lub wpisz ticker ręcznie:", placeholder="np. AAPL").upper()
 
+    # Określ aktywny ticker na podstawie inputów użytkownika
+    # Ważne, aby robić to na początku, przed wyświetleniem wyników
     ticker = manual_ticker if manual_ticker else selected_ticker
 
     if st.button("📥 Pobierz i analizuj newsy", type="primary", use_container_width=True):
@@ -332,60 +334,74 @@ def display_news_section(user_id, is_guest=False):
                 st.warning(f"Nie znaleziono newsów dla {ticker}.")
                 return
             df_news_sentiment = add_sentiment(df_news)
+            # Przechowujemy dane w sesji pod kluczem specyficznym dla tickera
             st.session_state[f'news_{ticker}'] = df_news_sentiment
+            # Zapisujemy, który ticker jest aktualnie aktywny
+            st.session_state['active_news_ticker'] = ticker
 
-    if f'news_{ticker}' in st.session_state and ticker:
-        df_to_display = st.session_state[f'news_{ticker}']
-        st.markdown(f"#### Wyniki dla: **{ticker}**")
+    # Sprawdzamy, czy mamy aktywny ticker i dane dla niego w sesji
+    active_ticker = st.session_state.get('active_news_ticker')
+    if active_ticker and f'news_{active_ticker}' in st.session_state:
+        df_to_display = st.session_state[f'news_{active_ticker}']
 
-        col_metric1, col_metric2, col_save_btn = st.columns([1, 1, 1])
+        st.markdown(f"#### Wyniki dla: **{active_ticker}**")
+
+        col_metric1, col_metric2 = st.columns(2)
         col_metric1.metric("Średni sentyment", f"{df_to_display['sentiment'].mean():.3f}")
         col_metric2.metric("Liczba newsów", len(df_to_display))
 
-        with col_save_btn:
-            st.write("") # Spacer
-            if st.button("💾 Zapisz do MongoDB", use_container_width=True):
+        # <-- ZMIANA: Dodajemy przycisk resetowania
+        col_save, col_reset = st.columns(2)
+        with col_save:
+            if st.button("💾 Zapisz do MongoDB", use_container_width=True, key=f"save_{active_ticker}"):
                 with st.spinner("Zapisuję newsy do bazy MongoDB..."):
                     records_to_insert = df_to_display.to_dict(orient="records")
-                    inserted_count = mongo_handler.insert_news(records_to_insert)
-                    st.success(f"Zapisano {inserted_count} newsów dla {ticker} ✅")
+                    inserted_count = mongo_handler.add_news(records_to_insert)
+                    st.success(f"Zapisano {inserted_count} newsów dla {active_ticker} ✅")
+        with col_reset:
+            if st.button("🔄 Wyczyść wyniki", use_container_width=True, key=f"reset_{active_ticker}"):
+                # Usuwamy dane newsów i informację o aktywnym tickerze z sesji
+                if f'news_{active_ticker}' in st.session_state:
+                    del st.session_state[f'news_{active_ticker}']
+                if 'active_news_ticker' in st.session_state:
+                    del st.session_state['active_news_ticker']
+                st.rerun() # Odświeżamy stronę, aby zmiany były widoczne
 
-        fig = px.histogram(df_to_display, x="sentiment", nbins=20, title=f"Rozkład sentymentu dla {ticker}")
+        fig = px.histogram(df_to_display, x="sentiment", nbins=20, title=f"Rozkład sentymentu dla {active_ticker}")
         st.plotly_chart(fig, use_container_width=True)
 
         display_news_cards(df_to_display)
 
     st.divider()
 
+    # Reszta funkcji pozostaje bez zmian
     if st.button("🌍 Pobierz newsy dla wszystkich z Supabase", use_container_width=True):
         if not st.session_state.get("db_configured"):
             st.warning("Ta funkcja wymaga połączenia z Supabase.", icon="⚠️")
             return
 
         with st.spinner("Pobieram tickery z Supabase..."):
-            # <-- ZMIANA: Tworzymy instancję i na niej wywołujemy metodę
             sb_handler = SupabaseHandler(st.session_state["sb_url"], st.session_state["sb_api"])
-            # Załóżmy, że masz metodę get_all_tickers w SupabaseHandler
-            tickers = sb_handler.get_all_tickers()
+            tickers_list = sb_handler.get_all_tickers_from_supabase()
 
-        if not tickers:
+        if not tickers_list:
             st.warning("Brak tickerów w Supabase do przetworzenia.")
             return
 
-        st.info(f"Znaleziono {len(tickers)} tickerów. Rozpoczynam pobieranie i analizę. To może potrwać...")
-        progress_bar = st.progress(0)
+        st.info(f"Znaleziono {len(tickers_list)} tickerów. Rozpoczynam pobieranie newsow i analizę ich sentymentu")
+        progress_bar = st.progress(0, text="Rozpoczynam...")
         all_news = []
-        for i, t in enumerate(tickers):
+        for i, t in enumerate(tickers_list):
+            progress_bar.progress((i + 1) / len(tickers_list), text=f"Przetwarzanie: {t} ({i + 1}/{len(tickers_list)})")
             df_news = fetch_google_news_rss(t)
             if df_news is not None and not df_news.empty:
                 df_news_sentiment = add_sentiment(df_news)
                 all_news.extend(df_news_sentiment.to_dict(orient="records"))
-            progress_bar.progress((i + 1) / len(tickers), text=f"Przetwarzanie: {t}")
 
         if all_news:
-            with st.spinner("Zapisuję wszystkie newsy do MongoDB..."):
-                inserted_count = mongo_handler.insert_news(all_news)
-            st.success(f"Zakończono. Zapisano łącznie {inserted_count} nowych newsów. ✅")
+            st.success("Pobrano i zapisano wszystkie newsy.")
+            mongo_handler.add_news(all_news)
+            st.success("Zapisano wszystkie newsy do bazy MongoDB.")
         else:
             st.info("Nie znaleziono żadnych nowych newsów do zapisania.")
 

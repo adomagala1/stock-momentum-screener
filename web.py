@@ -113,7 +113,7 @@ def render_login_page():
     """Renderuje stronę logowania, rejestracji i wejścia jako gość."""
     _, col_main, _ = st.columns([1, 1.5, 1])
     with col_main:
-        st.markdown("<h1 style='text-align: center; color: #0d1b2a;'>📈 AI Stock Screener</h1>", unsafe_allow_html=True)
+        st.markdown("<h1 style='text-align: center; color: white;'>📈 AI Stock Screener</h1>", unsafe_allow_html=True)
         st.markdown("<p style='text-align: center;'>Zaloguj się, zarejestruj lub kontynuuj jako gość.</p>",
                     unsafe_allow_html=True)
         login_tab, register_tab, guest_tab = st.tabs(["**Logowanie**", "**Rejestracja**", "**Tryb Gościa**"])
@@ -356,7 +356,7 @@ def display_news_section(user_id, is_guest=False):
             if st.button("💾 Zapisz do MongoDB", use_container_width=True, key=f"save_{active_ticker}"):
                 with st.spinner("Zapisuję newsy do bazy MongoDB..."):
                     records_to_insert = df_to_display.to_dict(orient="records")
-                    inserted_count = mongo_handler.insert_news(records_to_insert)
+                    inserted_count = mongo_handler.add_news(records_to_insert)
                     st.success(f"Zapisano {inserted_count} newsów dla {active_ticker} ✅")
         with col_reset:
             if st.button("🔄 Wyczyść wyniki", use_container_width=True, key=f"reset_{active_ticker}"):
@@ -382,26 +382,26 @@ def display_news_section(user_id, is_guest=False):
 
         with st.spinner("Pobieram tickery z Supabase..."):
             sb_handler = SupabaseHandler(st.session_state["sb_url"], st.session_state["sb_api"])
-            tickers_list = sb_handler.get_all_tickers() # Upewnij się, że ta metoda istnieje i zwraca listę
+            tickers_list = sb_handler.get_all_tickers_from_supabase()
 
         if not tickers_list:
             st.warning("Brak tickerów w Supabase do przetworzenia.")
             return
 
-        st.info(f"Znaleziono {len(tickers_list)} tickerów. Rozpoczynam pobieranie i analizę. To może potrwać...")
-        progress_bar = st.progress(0, text="Rozpoczynam...")
+        st.info(f"Znaleziono {len(tickers_list)} tickerów. Rozpoczynanie pobierania newsow i analizę ich sentymentu")
+        progress_bar = st.progress(0, text="Rozpoczete")
         all_news = []
         for i, t in enumerate(tickers_list):
-            progress_bar.progress((i + 1) / len(tickers_list), text=f"Przetwarzanie: {t}")
+            progress_bar.progress((i + 1) / len(tickers_list), text=f"Przetwarzanie: {t} ({i + 1}/{len(tickers_list)})")
             df_news = fetch_google_news_rss(t)
             if df_news is not None and not df_news.empty:
                 df_news_sentiment = add_sentiment(df_news)
                 all_news.extend(df_news_sentiment.to_dict(orient="records"))
 
         if all_news:
-            with st.spinner("Zapisuję wszystkie newsy do MongoDB..."):
-                inserted_count = mongo_handler.insert_news(all_news)
-            st.success(f"Zakończono. Zapisano łącznie {inserted_count} nowych newsów. ✅")
+            st.success("Pobrano i zapisano wszystkie newsy.")
+            mongo_handler.add_news(all_news)
+            st.success("Zapisano wszystkie newsy do bazy MongoDB.")
         else:
             st.info("Nie znaleziono żadnych nowych newsów do zapisania.")
 
