@@ -1,13 +1,21 @@
 # app/db/user_mongodb_manager.py
 import pandas as pd
+from pymongo import MongoClient
+
 from app.db.mongodb import news_col, insert_news, get_latest_published, update_news_for_ticker, update_all_tickers
 from app.news import add_sentiment
 import streamlit as st
+from dateutil import parser as date_parser
 
 class MongoNewsHandler:
     def __init__(self, collection=news_col, mongo_uri=None, mongo_db=None):
         self.collection = collection
+        self.client = MongoClient(mongo_uri)
+        self.db = self.client[mongo_db]
+        self.news_col = self.get_collection()
 
+    def get_collection(self):
+        return self.db
     def fetch_news(self, tickers: list):
         """Pobiera newsy z Mongo dla listy tickerów"""
         dfs = []
@@ -20,17 +28,22 @@ class MongoNewsHandler:
             return pd.concat(dfs, ignore_index=True)
         return pd.DataFrame()
 
-    def insert_news(self, items: list):
-        """Dodaje newsy (słownikowe listy) do Mongo i liczy sentyment"""
+    def insert_news(items: list):
+        """Wstawia listę newsów do kolekcji news w MongoDB"""
         if not items:
-            st.error("Brak newsów do zapisania!")
             return
-        for item in items:
-            if 'sentiment' not in item:
-                df_temp = pd.DataFrame([item])
-                df_temp = add_sentiment(df_temp)
-                item['sentiment'] = df_temp.loc[0, 'sentiment']
-        insert_news(items)
+        try:
+            for item in items:
+                if isinstance(item.get("published"), str):
+                    try:
+                        item["published"] = date_parser.parse(item["published"])
+                    except Exception as e:
+                        item["published"] = None
+                        print(f"Nie udało się sparsować daty: {e}")
+            news_col.insert_many(items)
+            print(f"Wstawiono {len(items)} newsów do MongoDB")
+        except Exception as e:
+            print("Błąd wstawiania newsów:", e)
 
     def update_news_for_ticker(self, ticker: str):
         """Aktualizuje newsy dla danego tickera"""
