@@ -8,12 +8,22 @@ import streamlit as st
 from sqlalchemy.engine import URL
 from sqlalchemy import create_engine
 
+
 class SupabaseHandler:
     def __init__(self, url: str, key: str):
         if not url or not key:
             raise ValueError("Supabase URL and Key must be provided.")
         self.client: Client = create_client(url, key)
         self._checked_tables = set()
+
+    def get_all_tickers_from_supabase(self):
+        try:
+            response = self.client.table("stocks_data").select("ticker").execute()
+            tickers = [item["ticker"] for item in response.data]
+            return list(set(tickers))
+        except Exception as e:
+            st.error(f"Error fetching tickers: {e}")
+
 
     def create_sqlalchemy_engine(self):
         """
@@ -45,11 +55,13 @@ class SupabaseHandler:
             logging.info("Pomyślnie utworzono silnik SQLAlchemy dla Supabase na podstawie danych z sesji.")
             return engine
         except KeyError:
-            st.warning("Proszę najpierw uzupełnić i zapisać dane do połączenia z bazą danych w zakładce konfiguracyjnej.")
+            st.warning(
+                "Proszę najpierw uzupełnić i zapisać dane do połączenia z bazą danych w zakładce konfiguracyjnej.")
             return None
         except Exception as e:
             st.error(f"Nie udało się utworzyć połączenia z bazą danych użytkownika: {e}")
             return None
+
     def check_and_inform(self, table_name: str = "stocks_data") -> bool:
         """
         Sprawdza, czy tabela istnieje. Jeśli nie, wyświetla jasne instrukcje dla użytkownika.
@@ -143,7 +155,8 @@ class SupabaseHandler:
             self._checked_tables.add(table_name)
         except Exception:
             st.warning(f"Tabela '{table_name}' nie znaleziona. Próbuję ją automatycznie utworzyć...", icon="🛠️")
-            logging.warning(f"Tabela '{table_name}' nie znaleziona. Wywołuję RPC 'create_stocks_data_table_if_not_exists'.")
+            logging.warning(
+                f"Tabela '{table_name}' nie znaleziona. Wywołuję RPC 'create_stocks_data_table_if_not_exists'.")
 
             try:
                 self.client.rpc('create_stocks_data_table_if_not_exists', {}).execute()
@@ -270,7 +283,6 @@ def clean_and_transform_for_db(df: pd.DataFrame) -> pd.DataFrame:
                 df_copy[col] = df_copy[col].apply(lambda x: int(x) if x is not None else None)
     df_copy = df_copy.replace({np.nan: None, pd.NaT: None})
     return df_copy
-
 
 
 def create_user(email: str, password: str, sb_url: str, sb_key: str) -> bool:

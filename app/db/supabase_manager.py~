@@ -11,7 +11,6 @@ def get_user_all_watchlist_tickers(user_id: str) -> list:
     resp = supabase.table("watchlist").select("ticker").eq("user_id", user_id).execute()
     return list(set([r["ticker"] for r in resp.data]))
 
-
 def get_user_by_email(email: str):
     """Zwraca użytkownika z Supabase na podstawie emaila"""
     resp = supabase.table("users").select("*").eq("email", email).execute()
@@ -34,3 +33,4 @@ def remove_from_watchlist(user_id: str, ticker: str):
     """Usuwa ticker z watchlisty"""
     supabase.table("watchlist").delete().eq("user_id", user_id).eq("ticker", ticker).execute()
     logging.info(f"[WATCHLIST] Usunięto {ticker} z watchlisty użytkownika {user_id}")
+
