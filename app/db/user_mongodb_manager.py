@@ -64,9 +64,14 @@ class MongoNewsHandler:
         return get_latest_published(ticker)
 
     def get_average_sentiment_for_tickers(self, tickers: list):
-        """Zwraca średni sentiment dla listy tickerów w formie DataFrame"""
+        """Średni sentiment dla listy tickerów -> zawsze DataFrame"""
         data = []
         for ticker in tickers:
-            avg = get_average_sentiment(ticker)
+            avg = get_average_sentiment(ticker) or 0
             data.append({"ticker": ticker, "avg_sentiment": avg})
         return pd.DataFrame(data)
+
+    def get_average_sentiment_for_ticker(self, ticker: str):
+        """Średni sentiment dla pojedynczego tickera -> DataFrame"""
+        avg = get_average_sentiment(ticker) or 0
+        return pd.DataFrame([{"ticker": ticker, "avg_sentiment": avg}])

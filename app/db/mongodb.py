@@ -3,12 +3,11 @@ import os
 import logging
 from datetime import datetime
 import pandas as pd
-
+import streamlit as st
 from app.news import fetch_news_for_ticker, add_sentiment
 from pymongo import MongoClient, DESCENDING
 from app.config import settings
 from dateutil import parser as date_parser
-
 
 logging.basicConfig(
     level=logging.INFO,
@@ -116,6 +115,7 @@ def update_all_tickers(tickers: list):
         logging.info(f"({i}/{len(tickers)}) Aktualizacja newsów dla {t}")
         update_news_for_ticker(t)
 
+
 def get_average_sentiment(ticker: str):
     """Oblicza średni sentiment dla podanego tickera"""
     try:
@@ -128,5 +128,5 @@ def get_average_sentiment(ticker: str):
             avg_sent = doc.get("average_sentiment", 0.0)
         return avg_sent
     except Exception as e:
-        print(f"Błąd pobierania sentiment dla {ticker}: {e}")
+        st.error(f"Błąd obliczania średniego sentimentu: {e}")
         return 0.0

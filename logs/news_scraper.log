@@ -2854,3 +2854,1138 @@ tornado.websocket.WebSocketClosedError
 2025-10-13 21:05:19,757 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
 2025-10-13 21:06:38,814 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
 2025-10-13 21:06:38,997 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 21:08:51,247 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 21:08:51,418 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 21:12:26,470 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 21:12:26,666 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 21:12:35,508 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-13 21:12:35,800 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 21:12:37,878 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 21:12:38,848 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 21:12:40,486 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 21:15:38,636 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-13 21:15:38,902 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 21:15:40,638 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 21:15:41,462 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 21:15:43,281 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 21:15:44,465 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=%2A "HTTP/2 200 OK"
+2025-10-13 21:15:45,845 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 21:15:46,086 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 21:16:00,076 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 21:16:00,182 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 21:16:00,561 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 21:16:01,380 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 21:16:01,632 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 21:17:34,994 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 21:17:35,210 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 21:24:46,845 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 21:24:47,029 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 21:26:26,372 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 21:26:26,568 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 21:30:26,862 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 21:30:27,055 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 21:31:47,058 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 21:31:47,254 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 21:34:46,116 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 21:34:46,308 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 21:37:20,763 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 21:37:20,976 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 21:37:58,856 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 21:37:59,049 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 21:39:49,902 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 21:39:50,108 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 21:41:21,499 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 21:41:21,699 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 21:47:07,825 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 21:47:08,021 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 21:50:31,091 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 21:50:31,287 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 21:50:47,405 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-13 21:50:47,699 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 21:50:49,061 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 21:50:49,805 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 21:50:51,466 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 21:50:51,688 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 21:50:51,880 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 21:51:02,006 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 21:51:02,313 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 21:51:02,925 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 21:51:03,143 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 21:51:03,330 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 21:51:38,083 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-13 21:51:38,414 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 21:51:41,145 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 21:51:41,936 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 21:51:44,040 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 21:51:44,296 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 21:51:44,489 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 21:51:51,345 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 21:51:51,703 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 21:52:11,976 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 21:52:12,420 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 21:52:12,883 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 21:54:50,179 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-13 21:54:50,471 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 21:54:51,824 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 21:54:52,642 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 21:54:54,420 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 21:54:54,651 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 21:54:54,840 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 21:55:01,928 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 21:55:01,974 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 21:55:02,413 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 21:55:02,617 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 21:55:02,806 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 21:55:36,193 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 21:55:36,366 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 21:56:36,649 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-13 21:56:36,955 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 21:56:38,581 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 21:56:39,386 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 21:56:41,160 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 21:56:41,360 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 21:56:41,546 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 21:56:42,191 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 21:56:43,185 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 21:56:43,574 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 21:56:43,809 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 21:56:43,971 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 21:56:48,698 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 21:56:48,767 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 21:56:49,283 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 21:56:50,067 [WARNING] Nie znaleziono tabeli screener_table na stronie.
+2025-10-13 21:56:50,243 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 21:56:50,411 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 21:57:14,623 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 21:57:14,637 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 21:57:15,076 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 21:57:15,597 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 21:57:15,767 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 21:57:15,893 [WARNING] Nie znaleziono tabeli screener_table na stronie.
+2025-10-13 21:57:16,077 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 21:57:16,233 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 21:57:36,681 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 21:57:36,855 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 21:59:46,748 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 21:59:46,913 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 22:01:17,984 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 22:01:18,162 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 22:01:30,858 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 22:01:31,032 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 22:03:34,129 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-13 22:03:34,397 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:03:35,994 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:03:36,801 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:03:39,194 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:03:39,742 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:03:40,331 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:03:55,201 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:03:55,202 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:03:55,817 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:03:56,592 [WARNING] Nie znaleziono tabeli screener_table na stronie.
+2025-10-13 22:03:56,827 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:03:57,080 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:04:41,185 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 22:04:41,370 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 22:06:02,151 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:06:02,979 [INFO] Nie znaleziono wiêcej wierszy z danymi.
+2025-10-13 22:06:04,024 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:06:04,308 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:06:04,519 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:06:31,236 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 22:06:31,414 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 22:08:44,716 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 22:08:44,884 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 22:12:18,921 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 22:12:19,091 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 22:12:27,721 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 22:12:27,890 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 22:13:56,394 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-13 22:13:56,682 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:13:58,393 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:13:59,216 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:14:01,190 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:14:01,477 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:14:01,694 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:14:08,511 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:14:09,290 [INFO] Nie znaleziono wiêcej wierszy z danymi.
+2025-10-13 22:14:09,666 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:14:09,963 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:14:10,146 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:14:22,299 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:14:23,115 [INFO] Nie znaleziono wiêcej wierszy z danymi.
+2025-10-13 22:14:23,449 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:14:23,675 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:14:23,844 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:15:05,303 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:15:06,071 [INFO] Nie znaleziono wiêcej wierszy z danymi.
+2025-10-13 22:15:06,481 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:15:06,704 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:15:06,872 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:15:30,918 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 22:15:31,109 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 22:16:03,382 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-13 22:16:03,651 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:16:05,027 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:16:05,796 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:16:07,491 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:16:09,034 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=%2A "HTTP/2 200 OK"
+2025-10-13 22:16:10,273 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:16:12,824 [INFO] Pobrano 50 spó³ek. Czas: 0:00:02.407104
+2025-10-13 22:16:13,210 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:16:13,429 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:16:13,600 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:16:19,129 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:16:19,156 [INFO] Tryb pe³nych danych. Przetwarzanie i zapisywanie szczegó³owych informacji.
+2025-10-13 22:16:19,156 [INFO] Kolumny w DataFrame: ['No', 'Ticker', 'Company', 'Sector', 'Industry', 'Country', 'Market Cap', 'P/E', 'Price', 'Change', 'Volume']
+2025-10-13 22:16:19,156 [INFO] Pierwsze 5 wartoœci 'Market Cap' (przed konwersj¹): ['39.19B', '9.39B', '-', '-', '-']
+2025-10-13 22:16:19,157 [INFO] Pierwsze 5 wartoœci 'market_cap_numeric' (po konwersji): [39190000000.0, 9390000000.0, nan, nan, nan]
+2025-10-13 22:16:19,459 [INFO] Dane pomyœlnie zapisane do: data\stocks\20251013\finviz_stocks_20251013.csv
+2025-10-13 22:16:19,758 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:16:20,010 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:16:20,220 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:17:28,436 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 22:17:28,620 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 22:17:43,514 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-13 22:17:43,769 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:17:45,442 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:17:46,241 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:17:47,947 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:17:48,183 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:17:48,369 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:17:50,471 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:17:53,468 [INFO] Pobrano 50 spó³ek. Czas: 0:00:02.973515
+2025-10-13 22:17:53,819 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:17:54,063 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:17:54,240 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:17:58,127 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:17:58,646 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:17:58,885 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:17:59,056 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:18:05,743 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:18:44,862 [INFO] Pobrano 1000 spó³ek. Czas: 0:00:39.096045
+2025-10-13 22:18:45,230 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:18:45,434 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:18:45,601 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:18:53,278 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:18:54,106 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:18:54,306 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:18:54,485 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:19:00,975 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:19:02,676 [INFO] HTTP Request: HEAD https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=id&limit=1 "HTTP/2 200 OK"
+2025-10-13 22:19:02,679 [INFO] Tabela 'stocks_data' istnieje i jest dostêpna.
+2025-10-13 22:19:03,366 [INFO] HTTP Request: POST https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?columns=%22sector%22%2C%22ticker%22%2C%22country%22%2C%22change%22%2C%22volume%22%2C%22p_e%22%2C%22import_date%22%2C%22market_cap%22%2C%22industry%22%2C%22company%22%2C%22price%22 "HTTP/2 201 Created"
+2025-10-13 22:19:03,765 [INFO] HTTP Request: POST https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?columns=%22sector%22%2C%22ticker%22%2C%22country%22%2C%22change%22%2C%22volume%22%2C%22p_e%22%2C%22import_date%22%2C%22market_cap%22%2C%22industry%22%2C%22company%22%2C%22price%22 "HTTP/2 201 Created"
+2025-10-13 22:19:04,355 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:19:04,567 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:19:04,736 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:19:24,331 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:19:24,646 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:19:24,863 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:19:25,032 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:19:30,577 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:19:30,984 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:19:31,196 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:19:31,310 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:19:31,585 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:19:31,590 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AMD+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:19:32,635 [INFO] RSS: znaleziono 100 pozycji dla AMD
+2025-10-13 22:19:32,929 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:19:33,206 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:19:33,494 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:19:33,657 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:19:35,670 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:19:35,960 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:19:37,226 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:19:37,410 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:19:44,564 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:19:44,897 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:19:45,154 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:19:45,441 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:19:45,659 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:19:45,828 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:19:48,041 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:19:48,324 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:19:50,115 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-13 22:19:50,127 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AVIV+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:19:51,187 [INFO] RSS: znaleziono 100 pozycji dla AVIV
+2025-10-13 22:19:51,207 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AME+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:19:52,553 [INFO] RSS: znaleziono 100 pozycji dla AME
+2025-10-13 22:19:52,581 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ANTA+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:19:53,627 [INFO] RSS: znaleziono 100 pozycji dla ANTA
+2025-10-13 22:19:53,648 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AMWD+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:19:54,693 [INFO] RSS: znaleziono 80 pozycji dla AMWD
+2025-10-13 22:19:54,712 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=BALI+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:19:55,736 [INFO] RSS: znaleziono 78 pozycji dla BALI
+2025-10-13 22:19:55,756 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ATHE+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:19:56,895 [INFO] RSS: znaleziono 79 pozycji dla ATHE
+2025-10-13 22:19:56,913 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=APTV+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:19:58,447 [INFO] RSS: znaleziono 100 pozycji dla APTV
+2025-10-13 22:19:58,466 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AMRX+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:19:59,466 [INFO] RSS: znaleziono 100 pozycji dla AMRX
+2025-10-13 22:19:59,487 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ACDC+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:00,706 [INFO] RSS: znaleziono 85 pozycji dla ACDC
+2025-10-13 22:20:00,724 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AIRO+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:01,928 [INFO] RSS: znaleziono 100 pozycji dla AIRO
+2025-10-13 22:20:01,951 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=APEI+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:02,832 [INFO] RSS: znaleziono 64 pozycji dla APEI
+2025-10-13 22:20:02,851 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ALLR+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:03,976 [INFO] RSS: znaleziono 100 pozycji dla ALLR
+2025-10-13 22:20:03,996 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ATXG+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:04,824 [INFO] RSS: znaleziono 25 pozycji dla ATXG
+2025-10-13 22:20:04,838 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAA+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:05,957 [INFO] RSS: znaleziono 74 pozycji dla AAA
+2025-10-13 22:20:05,976 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAAU+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:07,042 [INFO] RSS: znaleziono 44 pozycji dla AAAU
+2025-10-13 22:20:07,061 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=APRP+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:07,807 [INFO] RSS: znaleziono 1 pozycji dla APRP
+2025-10-13 22:20:07,821 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AMAT+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:09,173 [INFO] RSS: znaleziono 100 pozycji dla AMAT
+2025-10-13 22:20:09,193 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ANEB+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:09,953 [INFO] RSS: znaleziono 28 pozycji dla ANEB
+2025-10-13 22:20:09,970 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=APO+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:11,296 [INFO] RSS: znaleziono 100 pozycji dla APO
+2025-10-13 22:20:11,315 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AXTA+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:12,198 [INFO] RSS: znaleziono 67 pozycji dla AXTA
+2025-10-13 22:20:12,217 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AMRK+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:13,278 [INFO] RSS: znaleziono 100 pozycji dla AMRK
+2025-10-13 22:20:13,300 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ABLV+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:14,002 [INFO] RSS: znaleziono 18 pozycji dla ABLV
+2025-10-13 22:20:14,017 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AEI+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:15,238 [INFO] RSS: znaleziono 82 pozycji dla AEI
+2025-10-13 22:20:15,256 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ATGE+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:16,236 [INFO] RSS: znaleziono 100 pozycji dla ATGE
+2025-10-13 22:20:16,258 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=APOC+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:17,224 [INFO] RSS: znaleziono 40 pozycji dla APOC
+2025-10-13 22:20:17,244 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AIFD+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:17,877 [INFO] RSS: znaleziono 4 pozycji dla AIFD
+2025-10-13 22:20:17,890 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ACR+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:19,229 [INFO] RSS: znaleziono 70 pozycji dla ACR
+2025-10-13 22:20:19,250 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AIRG+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:19,989 [INFO] RSS: znaleziono 35 pozycji dla AIRG
+2025-10-13 22:20:20,004 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AIBD+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:20,804 [INFO] RSS: znaleziono 8 pozycji dla AIBD
+2025-10-13 22:20:20,818 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AMOM+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:21,821 [INFO] RSS: znaleziono 76 pozycji dla AMOM
+2025-10-13 22:20:21,841 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AUGT+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:22,583 [INFO] RSS: znaleziono 4 pozycji dla AUGT
+2025-10-13 22:20:22,597 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=APWC+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:23,409 [INFO] RSS: znaleziono 15 pozycji dla APWC
+2025-10-13 22:20:23,424 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ATI+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:24,447 [INFO] RSS: znaleziono 100 pozycji dla ATI
+2025-10-13 22:20:24,468 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ATRO+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:25,571 [INFO] RSS: znaleziono 100 pozycji dla ATRO
+2025-10-13 22:20:25,591 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ARLP+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:26,582 [INFO] RSS: znaleziono 100 pozycji dla ARLP
+2025-10-13 22:20:26,603 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AJAN+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:27,325 [INFO] RSS: znaleziono 7 pozycji dla AJAN
+2025-10-13 22:20:27,340 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AROW+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:28,177 [INFO] RSS: znaleziono 37 pozycji dla AROW
+2025-10-13 22:20:28,192 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ASIC+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:29,333 [INFO] RSS: znaleziono 100 pozycji dla ASIC
+2025-10-13 22:20:29,354 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAPL+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:30,584 [INFO] RSS: znaleziono 100 pozycji dla AAPL
+2025-10-13 22:20:30,605 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ADPT+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:31,729 [INFO] RSS: znaleziono 85 pozycji dla ADPT
+2025-10-13 22:20:31,749 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AZI+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:32,814 [INFO] RSS: znaleziono 73 pozycji dla AZI
+2025-10-13 22:20:32,834 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AREB+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:33,845 [INFO] RSS: znaleziono 100 pozycji dla AREB
+2025-10-13 22:20:33,869 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=BAYA+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:34,810 [INFO] RSS: znaleziono 38 pozycji dla BAYA
+2025-10-13 22:20:34,826 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AGMI+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:35,505 [INFO] RSS: znaleziono 3 pozycji dla AGMI
+2025-10-13 22:20:35,519 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ABVX+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:36,622 [INFO] RSS: znaleziono 100 pozycji dla ABVX
+2025-10-13 22:20:36,642 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AHYB+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:37,306 [INFO] RSS: znaleziono 0 pozycji dla AHYB
+2025-10-13 22:20:37,306 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ADP+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:38,671 [INFO] RSS: znaleziono 100 pozycji dla ADP
+2025-10-13 22:20:38,692 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ABEQ+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:39,480 [INFO] RSS: znaleziono 4 pozycji dla ABEQ
+2025-10-13 22:20:39,494 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ARI+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:40,672 [INFO] RSS: znaleziono 100 pozycji dla ARI
+2025-10-13 22:20:40,694 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AMPY+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:41,708 [INFO] RSS: znaleziono 99 pozycji dla AMPY
+2025-10-13 22:20:41,730 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AVTR+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:42,744 [INFO] RSS: znaleziono 100 pozycji dla AVTR
+2025-10-13 22:20:42,763 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ALTY+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:43,567 [INFO] RSS: znaleziono 30 pozycji dla ALTY
+2025-10-13 22:20:43,583 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ARKT+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:44,643 [INFO] RSS: znaleziono 87 pozycji dla ARKT
+2025-10-13 22:20:44,662 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=BATL+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:45,395 [INFO] RSS: znaleziono 36 pozycji dla BATL
+2025-10-13 22:20:45,412 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ALUR+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:46,346 [INFO] RSS: znaleziono 54 pozycji dla ALUR
+2025-10-13 22:20:46,362 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ADAP+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:47,349 [INFO] RSS: znaleziono 82 pozycji dla ADAP
+2025-10-13 22:20:47,367 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ATMC+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:48,056 [INFO] RSS: znaleziono 13 pozycji dla ATMC
+2025-10-13 22:20:48,072 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ASAN+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:49,346 [INFO] RSS: znaleziono 100 pozycji dla ASAN
+2025-10-13 22:20:49,366 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ASRT+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:50,253 [INFO] RSS: znaleziono 62 pozycji dla ASRT
+2025-10-13 22:20:50,273 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AMZN+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:51,314 [INFO] RSS: znaleziono 102 pozycji dla AMZN
+2025-10-13 22:20:51,336 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ARM+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:52,399 [INFO] RSS: znaleziono 100 pozycji dla ARM
+2025-10-13 22:20:52,419 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ARDC+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:53,242 [INFO] RSS: znaleziono 31 pozycji dla ARDC
+2025-10-13 22:20:53,258 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AEXA+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:54,158 [INFO] RSS: znaleziono 35 pozycji dla AEXA
+2025-10-13 22:20:54,175 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ALAI+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:55,056 [INFO] RSS: znaleziono 40 pozycji dla ALAI
+2025-10-13 22:20:55,074 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ALTO+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:56,063 [INFO] RSS: znaleziono 75 pozycji dla ALTO
+2025-10-13 22:20:56,087 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AIOT+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:57,060 [INFO] RSS: znaleziono 71 pozycji dla AIOT
+2025-10-13 22:20:57,078 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AMTX+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:58,125 [INFO] RSS: znaleziono 64 pozycji dla AMTX
+2025-10-13 22:20:58,143 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ATMV+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:58,976 [INFO] RSS: znaleziono 52 pozycji dla ATMV
+2025-10-13 22:20:58,994 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ADIV+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:20:59,704 [INFO] RSS: znaleziono 14 pozycji dla ADIV
+2025-10-13 22:20:59,718 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ALMS+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:00,584 [INFO] RSS: znaleziono 59 pozycji dla ALMS
+2025-10-13 22:21:00,603 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ATXS+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:01,327 [INFO] RSS: znaleziono 40 pozycji dla ATXS
+2025-10-13 22:21:01,344 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AMG+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:02,643 [INFO] RSS: znaleziono 100 pozycji dla AMG
+2025-10-13 22:21:02,664 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AMPL+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:03,805 [INFO] RSS: znaleziono 100 pozycji dla AMPL
+2025-10-13 22:21:03,828 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ALRG+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:04,812 [INFO] RSS: znaleziono 60 pozycji dla ALRG
+2025-10-13 22:21:04,830 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ARW+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:05,820 [INFO] RSS: znaleziono 70 pozycji dla ARW
+2025-10-13 22:21:05,839 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AURU+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:06,842 [INFO] RSS: znaleziono 100 pozycji dla AURU
+2025-10-13 22:21:06,862 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ALTI+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:07,759 [INFO] RSS: znaleziono 64 pozycji dla ALTI
+2025-10-13 22:21:07,777 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AIFF+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:08,865 [INFO] RSS: znaleziono 80 pozycji dla AIFF
+2025-10-13 22:21:08,884 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ASMH+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:09,534 [INFO] RSS: znaleziono 2 pozycji dla ASMH
+2025-10-13 22:21:09,548 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ARES+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:10,635 [INFO] RSS: znaleziono 100 pozycji dla ARES
+2025-10-13 22:21:10,659 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AVUS+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:11,560 [INFO] RSS: znaleziono 48 pozycji dla AVUS
+2025-10-13 22:21:11,577 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ATLN+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:12,292 [INFO] RSS: znaleziono 29 pozycji dla ATLN
+2025-10-13 22:21:12,307 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AQLT+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:13,165 [INFO] RSS: znaleziono 16 pozycji dla AQLT
+2025-10-13 22:21:13,180 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AGO+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:14,254 [INFO] RSS: znaleziono 97 pozycji dla AGO
+2025-10-13 22:21:14,275 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=BAMD+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:15,147 [INFO] RSS: znaleziono 40 pozycji dla BAMD
+2025-10-13 22:21:15,165 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AGD+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:16,095 [INFO] RSS: znaleziono 35 pozycji dla AGD
+2025-10-13 22:21:16,111 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AWX+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:17,091 [INFO] RSS: znaleziono 48 pozycji dla AWX
+2025-10-13 22:21:17,111 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AVMC+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:17,786 [INFO] RSS: znaleziono 7 pozycji dla AVMC
+2025-10-13 22:21:17,800 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=BANF+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:18,671 [INFO] RSS: znaleziono 77 pozycji dla BANF
+2025-10-13 22:21:18,700 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=APXM+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:19,458 [INFO] RSS: znaleziono 10 pozycji dla APXM
+2025-10-13 22:21:19,474 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ACVT+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:20,423 [INFO] RSS: znaleziono 67 pozycji dla ACVT
+2025-10-13 22:21:20,441 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ATNM+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:21,292 [INFO] RSS: znaleziono 45 pozycji dla ATNM
+2025-10-13 22:21:21,308 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AMGN+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:22,551 [INFO] RSS: znaleziono 100 pozycji dla AMGN
+2025-10-13 22:21:22,580 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=APLS+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:23,675 [INFO] RSS: znaleziono 100 pozycji dla APLS
+2025-10-13 22:21:23,693 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AVLC+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:24,347 [INFO] RSS: znaleziono 3 pozycji dla AVLC
+2025-10-13 22:21:24,360 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=BAX+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:25,606 [INFO] RSS: znaleziono 100 pozycji dla BAX
+2025-10-13 22:21:25,625 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AOD+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:26,509 [INFO] RSS: znaleziono 56 pozycji dla AOD
+2025-10-13 22:21:26,528 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ARCT+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:27,522 [INFO] RSS: znaleziono 87 pozycji dla ARCT
+2025-10-13 22:21:27,540 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AZZ+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:28,544 [INFO] RSS: znaleziono 100 pozycji dla AZZ
+2025-10-13 22:21:28,565 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AIP+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:29,756 [INFO] RSS: znaleziono 100 pozycji dla AIP
+2025-10-13 22:21:29,775 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=BAP+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:30,928 [INFO] RSS: znaleziono 97 pozycji dla BAP
+2025-10-13 22:21:30,947 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=BAMY+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:32,065 [INFO] RSS: znaleziono 49 pozycji dla BAMY
+2025-10-13 22:21:32,083 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ATAT+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:33,354 [INFO] RSS: znaleziono 98 pozycji dla ATAT
+2025-10-13 22:21:33,374 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AEIS+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:34,485 [INFO] RSS: znaleziono 98 pozycji dla AEIS
+2025-10-13 22:21:34,506 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ANET+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:35,947 [INFO] RSS: znaleziono 100 pozycji dla ANET
+2025-10-13 22:21:35,966 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ACCO+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:36,891 [INFO] RSS: znaleziono 59 pozycji dla ACCO
+2025-10-13 22:21:36,907 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ASB+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:37,904 [INFO] RSS: znaleziono 100 pozycji dla ASB
+2025-10-13 22:21:37,923 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ASIA+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:39,038 [INFO] RSS: znaleziono 100 pozycji dla ASIA
+2025-10-13 22:21:39,058 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AUTL+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:39,892 [INFO] RSS: znaleziono 66 pozycji dla AUTL
+2025-10-13 22:21:39,908 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AIO+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:40,851 [INFO] RSS: znaleziono 58 pozycji dla AIO
+2025-10-13 22:21:40,868 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=BB+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:42,110 [INFO] RSS: znaleziono 100 pozycji dla BB
+2025-10-13 22:21:42,129 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ALGM+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:43,116 [INFO] RSS: znaleziono 100 pozycji dla ALGM
+2025-10-13 22:21:43,136 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AGEM+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:44,001 [INFO] RSS: znaleziono 35 pozycji dla AGEM
+2025-10-13 22:21:44,017 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AIXI+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:44,847 [INFO] RSS: znaleziono 19 pozycji dla AIXI
+2025-10-13 22:21:44,865 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=APRT+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:45,859 [INFO] RSS: znaleziono 64 pozycji dla APRT
+2025-10-13 22:21:45,876 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ARKG+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:47,146 [INFO] RSS: znaleziono 100 pozycji dla ARKG
+2025-10-13 22:21:47,171 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AJG+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:48,127 [INFO] RSS: znaleziono 100 pozycji dla AJG
+2025-10-13 22:21:48,146 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AA+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:49,379 [INFO] RSS: znaleziono 100 pozycji dla AA
+2025-10-13 22:21:49,397 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AOK+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:50,212 [INFO] RSS: znaleziono 39 pozycji dla AOK
+2025-10-13 22:21:50,229 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=APCB+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:50,840 [INFO] RSS: znaleziono 6 pozycji dla APCB
+2025-10-13 22:21:50,853 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AESR+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:51,723 [INFO] RSS: znaleziono 0 pozycji dla AESR
+2025-10-13 22:21:51,724 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AWAY+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:52,929 [INFO] RSS: znaleziono 100 pozycji dla AWAY
+2025-10-13 22:21:52,952 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ACEL+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:54,140 [INFO] RSS: znaleziono 100 pozycji dla ACEL
+2025-10-13 22:21:54,168 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ANPA+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:55,157 [INFO] RSS: znaleziono 35 pozycji dla ANPA
+2025-10-13 22:21:55,173 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AREN+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:56,381 [INFO] RSS: znaleziono 96 pozycji dla AREN
+2025-10-13 22:21:56,401 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AUGW+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:57,308 [INFO] RSS: znaleziono 24 pozycji dla AUGW
+2025-10-13 22:21:57,330 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ATMU+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:58,285 [INFO] RSS: znaleziono 68 pozycji dla ATMU
+2025-10-13 22:21:58,305 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAT+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:21:59,433 [INFO] RSS: znaleziono 59 pozycji dla AAT
+2025-10-13 22:21:59,455 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AUNA+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:00,381 [INFO] RSS: znaleziono 29 pozycji dla AUNA
+2025-10-13 22:22:00,397 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AIPI+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:01,134 [INFO] RSS: znaleziono 28 pozycji dla AIPI
+2025-10-13 22:22:01,155 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AETH+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:01,971 [INFO] RSS: znaleziono 26 pozycji dla AETH
+2025-10-13 22:22:01,986 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ACTU+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:02,860 [INFO] RSS: znaleziono 57 pozycji dla ACTU
+2025-10-13 22:22:02,878 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ADVE+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:03,887 [INFO] RSS: znaleziono 72 pozycji dla ADVE
+2025-10-13 22:22:03,905 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AVSE+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:04,868 [INFO] RSS: znaleziono 10 pozycji dla AVSE
+2025-10-13 22:22:04,882 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AGGY+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:05,767 [INFO] RSS: znaleziono 18 pozycji dla AGGY
+2025-10-13 22:22:05,784 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ASPS+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:06,754 [INFO] RSS: znaleziono 55 pozycji dla ASPS
+2025-10-13 22:22:06,773 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=A+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:08,146 [INFO] RSS: znaleziono 100 pozycji dla A
+2025-10-13 22:22:08,178 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AKBA+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:09,188 [INFO] RSS: znaleziono 100 pozycji dla AKBA
+2025-10-13 22:22:09,211 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=APPS+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:10,357 [INFO] RSS: znaleziono 100 pozycji dla APPS
+2025-10-13 22:22:10,378 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=BALY+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:11,506 [INFO] RSS: znaleziono 100 pozycji dla BALY
+2025-10-13 22:22:11,528 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ASTI+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:12,632 [INFO] RSS: znaleziono 60 pozycji dla ASTI
+2025-10-13 22:22:12,651 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AFRI+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:13,766 [INFO] RSS: znaleziono 100 pozycji dla AFRI
+2025-10-13 22:22:13,786 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AGGH+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:14,638 [INFO] RSS: znaleziono 7 pozycji dla AGGH
+2025-10-13 22:22:14,675 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAM+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:15,949 [INFO] RSS: znaleziono 83 pozycji dla AAM
+2025-10-13 22:22:15,978 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AGRH+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:16,808 [INFO] RSS: znaleziono 52 pozycji dla AGRH
+2025-10-13 22:22:16,824 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AS+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:18,097 [INFO] RSS: znaleziono 100 pozycji dla AS
+2025-10-13 22:22:18,117 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AKAM+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:19,320 [INFO] RSS: znaleziono 100 pozycji dla AKAM
+2025-10-13 22:22:19,340 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ANIX+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:20,152 [INFO] RSS: znaleziono 59 pozycji dla ANIX
+2025-10-13 22:22:20,169 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AEO+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:21,335 [INFO] RSS: znaleziono 100 pozycji dla AEO
+2025-10-13 22:22:21,353 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ANL+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:22,312 [INFO] RSS: znaleziono 42 pozycji dla ANL
+2025-10-13 22:22:22,327 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ABL+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:23,295 [INFO] RSS: znaleziono 87 pozycji dla ABL
+2025-10-13 22:22:23,314 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ALTL+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:24,279 [INFO] RSS: znaleziono 51 pozycji dla ALTL
+2025-10-13 22:22:24,295 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AIT+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:25,461 [INFO] RSS: znaleziono 89 pozycji dla AIT
+2025-10-13 22:22:25,483 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AVDX+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:26,763 [INFO] RSS: znaleziono 59 pozycji dla AVDX
+2025-10-13 22:22:26,792 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AWF+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:27,676 [INFO] RSS: znaleziono 29 pozycji dla AWF
+2025-10-13 22:22:27,695 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AER+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:29,235 [INFO] RSS: znaleziono 100 pozycji dla AER
+2025-10-13 22:22:29,257 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ARHS+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:30,279 [INFO] RSS: znaleziono 77 pozycji dla ARHS
+2025-10-13 22:22:30,300 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AVNS+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:31,190 [INFO] RSS: znaleziono 43 pozycji dla AVNS
+2025-10-13 22:22:31,207 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AMDW+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:31,915 [INFO] RSS: znaleziono 1 pozycji dla AMDW
+2025-10-13 22:22:31,928 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ASC+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:32,907 [INFO] RSS: znaleziono 85 pozycji dla ASC
+2025-10-13 22:22:32,925 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AEHL+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:33,737 [INFO] RSS: znaleziono 38 pozycji dla AEHL
+2025-10-13 22:22:33,759 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AVIG+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:34,591 [INFO] RSS: znaleziono 2 pozycji dla AVIG
+2025-10-13 22:22:34,606 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=BASG+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:35,470 [INFO] RSS: znaleziono 56 pozycji dla BASG
+2025-10-13 22:22:35,493 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=BAMU+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:36,270 [INFO] RSS: znaleziono 38 pozycji dla BAMU
+2025-10-13 22:22:36,289 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AVSU+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:37,004 [INFO] RSS: znaleziono 4 pozycji dla AVSU
+2025-10-13 22:22:37,017 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AGRI+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:38,527 [INFO] RSS: znaleziono 100 pozycji dla AGRI
+2025-10-13 22:22:38,550 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=BBAX+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:39,188 [INFO] RSS: znaleziono 1 pozycji dla BBAX
+2025-10-13 22:22:39,201 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ADSE+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:39,911 [INFO] RSS: znaleziono 27 pozycji dla ADSE
+2025-10-13 22:22:39,926 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AUSM+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:41,069 [INFO] RSS: znaleziono 49 pozycji dla AUSM
+2025-10-13 22:22:41,092 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ABXB+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:41,723 [INFO] RSS: znaleziono 0 pozycji dla ABXB
+2025-10-13 22:22:41,723 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AGMH+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:42,924 [INFO] RSS: znaleziono 91 pozycji dla AGMH
+2025-10-13 22:22:42,959 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ADV+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:43,860 [INFO] RSS: znaleziono 73 pozycji dla ADV
+2025-10-13 22:22:43,880 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ADME+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:44,710 [INFO] RSS: znaleziono 29 pozycji dla ADME
+2025-10-13 22:22:44,725 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ASCE+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:45,521 [INFO] RSS: znaleziono 31 pozycji dla ASCE
+2025-10-13 22:22:45,537 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ALKT+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:46,661 [INFO] RSS: znaleziono 100 pozycji dla ALKT
+2025-10-13 22:22:46,682 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AIYY+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:47,339 [INFO] RSS: znaleziono 15 pozycji dla AIYY
+2025-10-13 22:22:47,353 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=BAPR+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:48,159 [INFO] RSS: znaleziono 4 pozycji dla BAPR
+2025-10-13 22:22:48,172 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAPY+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:49,106 [INFO] RSS: znaleziono 19 pozycji dla AAPY
+2025-10-13 22:22:49,121 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AOM+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:50,063 [INFO] RSS: znaleziono 32 pozycji dla AOM
+2025-10-13 22:22:50,083 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ARKR+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:50,794 [INFO] RSS: znaleziono 11 pozycji dla ARKR
+2025-10-13 22:22:50,808 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AIS+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:52,205 [INFO] RSS: znaleziono 73 pozycji dla AIS
+2025-10-13 22:22:52,260 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ANNX+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:53,194 [INFO] RSS: znaleziono 50 pozycji dla ANNX
+2025-10-13 22:22:53,216 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ATHM+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:54,081 [INFO] RSS: znaleziono 33 pozycji dla ATHM
+2025-10-13 22:22:54,096 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ABI+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:55,179 [INFO] RSS: znaleziono 77 pozycji dla ABI
+2025-10-13 22:22:55,201 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ABEV+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:56,356 [INFO] RSS: znaleziono 100 pozycji dla ABEV
+2025-10-13 22:22:56,377 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AVK+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:57,256 [INFO] RSS: znaleziono 20 pozycji dla AVK
+2025-10-13 22:22:57,270 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AGRW+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:57,896 [INFO] RSS: znaleziono 4 pozycji dla AGRW
+2025-10-13 22:22:57,910 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AVB+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:22:59,039 [INFO] RSS: znaleziono 100 pozycji dla AVB
+2025-10-13 22:22:59,058 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ABOT+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:00,356 [INFO] RSS: znaleziono 100 pozycji dla ABOT
+2025-10-13 22:23:00,375 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AVGB+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:01,181 [INFO] RSS: znaleziono 17 pozycji dla AVGB
+2025-10-13 22:23:01,195 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=BANC+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:02,199 [INFO] RSS: znaleziono 100 pozycji dla BANC
+2025-10-13 22:23:02,218 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ALG+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:03,048 [INFO] RSS: znaleziono 63 pozycji dla ALG
+2025-10-13 22:23:03,064 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ANGX+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:03,960 [INFO] RSS: znaleziono 41 pozycji dla ANGX
+2025-10-13 22:23:03,975 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ACLS+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:05,071 [INFO] RSS: znaleziono 98 pozycji dla ACLS
+2025-10-13 22:23:05,090 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ACP+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:06,052 [INFO] RSS: znaleziono 40 pozycji dla ACP
+2025-10-13 22:23:06,067 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ANY+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:07,323 [INFO] RSS: znaleziono 100 pozycji dla ANY
+2025-10-13 22:23:07,350 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AVNV+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:08,091 [INFO] RSS: znaleziono 4 pozycji dla AVNV
+2025-10-13 22:23:08,104 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AARD+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:09,207 [INFO] RSS: znaleziono 52 pozycji dla AARD
+2025-10-13 22:23:09,247 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AHT+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:10,208 [INFO] RSS: znaleziono 66 pozycji dla AHT
+2025-10-13 22:23:10,226 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ATNI+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:11,035 [INFO] RSS: znaleziono 38 pozycji dla ATNI
+2025-10-13 22:23:11,053 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ACGR+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:12,138 [INFO] RSS: znaleziono 10 pozycji dla ACGR
+2025-10-13 22:23:12,156 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAL+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:13,203 [INFO] RSS: znaleziono 100 pozycji dla AAL
+2025-10-13 22:23:13,223 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AVRE+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:14,182 [INFO] RSS: znaleziono 5 pozycji dla AVRE
+2025-10-13 22:23:14,196 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AKA+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:15,436 [INFO] RSS: znaleziono 70 pozycji dla AKA
+2025-10-13 22:23:15,459 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AXS+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:16,577 [INFO] RSS: znaleziono 100 pozycji dla AXS
+2025-10-13 22:23:16,600 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ALVO+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:17,548 [INFO] RSS: znaleziono 100 pozycji dla ALVO
+2025-10-13 22:23:17,573 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AUPH+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:18,506 [INFO] RSS: znaleziono 100 pozycji dla AUPH
+2025-10-13 22:23:18,528 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AVGW+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:19,154 [INFO] RSS: znaleziono 0 pozycji dla AVGW
+2025-10-13 22:23:19,154 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AVDS+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:19,991 [INFO] RSS: znaleziono 2 pozycji dla AVDS
+2025-10-13 22:23:20,003 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=APLT+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:21,116 [INFO] RSS: znaleziono 78 pozycji dla APLT
+2025-10-13 22:23:21,138 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=BAR+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:22,381 [INFO] RSS: znaleziono 100 pozycji dla BAR
+2025-10-13 22:23:22,400 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=BANL+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:23,623 [INFO] RSS: znaleziono 100 pozycji dla BANL
+2025-10-13 22:23:23,648 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AVPT+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:24,786 [INFO] RSS: znaleziono 100 pozycji dla AVPT
+2025-10-13 22:23:24,809 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AGGA+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:25,869 [INFO] RSS: znaleziono 8 pozycji dla AGGA
+2025-10-13 22:23:25,886 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ANGI+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:26,995 [INFO] RSS: znaleziono 100 pozycji dla ANGI
+2025-10-13 22:23:27,021 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ABCS+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:28,202 [INFO] RSS: znaleziono 94 pozycji dla ABCS
+2025-10-13 22:23:28,227 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AGIQ+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:29,144 [INFO] RSS: znaleziono 52 pozycji dla AGIQ
+2025-10-13 22:23:29,160 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AMAX+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:29,994 [INFO] RSS: znaleziono 48 pozycji dla AMAX
+2025-10-13 22:23:30,011 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AFCG+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:30,910 [INFO] RSS: znaleziono 59 pozycji dla AFCG
+2025-10-13 22:23:30,928 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ARLU+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:31,568 [INFO] RSS: znaleziono 0 pozycji dla ARLU
+2025-10-13 22:23:31,568 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AXSM+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:32,528 [INFO] RSS: znaleziono 100 pozycji dla AXSM
+2025-10-13 22:23:32,547 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=BANR+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:33,269 [INFO] RSS: znaleziono 35 pozycji dla BANR
+2025-10-13 22:23:33,284 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AEP+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:34,362 [INFO] RSS: znaleziono 100 pozycji dla AEP
+2025-10-13 22:23:34,380 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=BATRK+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:35,095 [INFO] RSS: znaleziono 33 pozycji dla BATRK
+2025-10-13 22:23:35,113 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AESI+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:36,096 [INFO] RSS: znaleziono 99 pozycji dla AESI
+2025-10-13 22:23:36,115 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AR+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:37,185 [INFO] RSS: znaleziono 100 pozycji dla AR
+2025-10-13 22:23:37,205 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AIG+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:38,398 [INFO] RSS: znaleziono 100 pozycji dla AIG
+2025-10-13 22:23:38,417 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ASTS+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:39,661 [INFO] RSS: znaleziono 100 pozycji dla ASTS
+2025-10-13 22:23:39,680 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ARTW+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:40,835 [INFO] RSS: znaleziono 52 pozycji dla ARTW
+2025-10-13 22:23:40,858 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ABVE+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:41,755 [INFO] RSS: znaleziono 83 pozycji dla ABVE
+2025-10-13 22:23:41,774 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AXG+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:42,927 [INFO] RSS: znaleziono 17 pozycji dla AXG
+2025-10-13 22:23:42,978 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ABTC+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:44,365 [INFO] RSS: znaleziono 100 pozycji dla ABTC
+2025-10-13 22:23:44,384 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAP+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:45,643 [INFO] RSS: znaleziono 100 pozycji dla AAP
+2025-10-13 22:23:45,667 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ASGM+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:46,590 [INFO] RSS: znaleziono 5 pozycji dla ASGM
+2025-10-13 22:23:46,603 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAPG+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:47,529 [INFO] RSS: znaleziono 39 pozycji dla AAPG
+2025-10-13 22:23:47,546 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ATEC+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:49,121 [INFO] RSS: znaleziono 83 pozycji dla ATEC
+2025-10-13 22:23:49,145 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=BAOS+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:50,490 [INFO] RSS: znaleziono 50 pozycji dla BAOS
+2025-10-13 22:23:50,523 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ANIK+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:51,456 [INFO] RSS: znaleziono 62 pozycji dla ANIK
+2025-10-13 22:23:51,473 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ACAD+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:52,461 [INFO] RSS: znaleziono 94 pozycji dla ACAD
+2025-10-13 22:23:52,482 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ACGL+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:53,614 [INFO] RSS: znaleziono 100 pozycji dla ACGL
+2025-10-13 22:23:53,638 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ALLY+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:54,770 [INFO] RSS: znaleziono 100 pozycji dla ALLY
+2025-10-13 22:23:54,789 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ARGX+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:55,988 [INFO] RSS: znaleziono 100 pozycji dla ARGX
+2025-10-13 22:23:56,007 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AIBU+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:56,722 [INFO] RSS: znaleziono 22 pozycji dla AIBU
+2025-10-13 22:23:56,737 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ARTV+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:23:59,841 [INFO] RSS: znaleziono 46 pozycji dla ARTV
+2025-10-13 22:23:59,857 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AGNG+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:00,876 [INFO] RSS: znaleziono 44 pozycji dla AGNG
+2025-10-13 22:24:00,892 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AVES+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:01,883 [INFO] RSS: znaleziono 51 pozycji dla AVES
+2025-10-13 22:24:01,902 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AGAE+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:02,772 [INFO] RSS: znaleziono 53 pozycji dla AGAE
+2025-10-13 22:24:02,789 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AGG+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:03,664 [INFO] RSS: znaleziono 63 pozycji dla AGG
+2025-10-13 22:24:03,681 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ACET+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:04,589 [INFO] RSS: znaleziono 59 pozycji dla ACET
+2025-10-13 22:24:04,605 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AHL+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:05,743 [INFO] RSS: znaleziono 88 pozycji dla AHL
+2025-10-13 22:24:05,761 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AMTD+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:07,270 [INFO] RSS: znaleziono 100 pozycji dla AMTD
+2025-10-13 22:24:07,294 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AMZD+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:08,076 [INFO] RSS: znaleziono 10 pozycji dla AMZD
+2025-10-13 22:24:08,090 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=APIE+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:08,905 [INFO] RSS: znaleziono 39 pozycji dla APIE
+2025-10-13 22:24:08,922 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ASO+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:10,103 [INFO] RSS: znaleziono 88 pozycji dla ASO
+2025-10-13 22:24:10,136 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AVIR+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:10,910 [INFO] RSS: znaleziono 39 pozycji dla AVIR
+2025-10-13 22:24:10,925 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ACII+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:12,059 [INFO] RSS: znaleziono 7 pozycji dla ACII
+2025-10-13 22:24:12,076 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ADC+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:13,612 [INFO] RSS: znaleziono 100 pozycji dla ADC
+2025-10-13 22:24:13,662 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ACIO+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:14,570 [INFO] RSS: znaleziono 22 pozycji dla ACIO
+2025-10-13 22:24:14,584 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ATLC+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:15,456 [INFO] RSS: znaleziono 66 pozycji dla ATLC
+2025-10-13 22:24:15,473 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ARCX+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:16,223 [INFO] RSS: znaleziono 21 pozycji dla ARCX
+2025-10-13 22:24:16,238 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=BBAG+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:17,119 [INFO] RSS: znaleziono 44 pozycji dla BBAG
+2025-10-13 22:24:17,137 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AMZP+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:17,762 [INFO] RSS: znaleziono 0 pozycji dla AMZP
+2025-10-13 22:24:17,763 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AMR+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:19,005 [INFO] RSS: znaleziono 100 pozycji dla AMR
+2025-10-13 22:24:19,032 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ALEC+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:20,542 [INFO] RSS: znaleziono 91 pozycji dla ALEC
+2025-10-13 22:24:20,561 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ANGL+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:21,774 [INFO] RSS: znaleziono 45 pozycji dla ANGL
+2025-10-13 22:24:21,815 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AON+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:23,498 [INFO] RSS: znaleziono 100 pozycji dla AON
+2025-10-13 22:24:23,518 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=APACU+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:24,385 [INFO] RSS: znaleziono 15 pozycji dla APACU
+2025-10-13 22:24:24,398 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ALGN+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:25,711 [INFO] RSS: znaleziono 100 pozycji dla ALGN
+2025-10-13 22:24:25,746 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=APT+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:26,904 [INFO] RSS: znaleziono 100 pozycji dla APT
+2025-10-13 22:24:26,925 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=BAMA+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:28,017 [INFO] RSS: znaleziono 68 pozycji dla BAMA
+2025-10-13 22:24:28,036 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AKTX+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:28,806 [INFO] RSS: znaleziono 24 pozycji dla AKTX
+2025-10-13 22:24:28,824 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=APYX+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:29,648 [INFO] RSS: znaleziono 40 pozycji dla APYX
+2025-10-13 22:24:29,664 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AEVA+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:30,703 [INFO] RSS: znaleziono 100 pozycji dla AEVA
+2025-10-13 22:24:30,721 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ALL+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:32,028 [INFO] RSS: znaleziono 100 pozycji dla ALL
+2025-10-13 22:24:32,047 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ARCC+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:33,037 [INFO] RSS: znaleziono 100 pozycji dla ARCC
+2025-10-13 22:24:33,056 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AMSC+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:34,098 [INFO] RSS: znaleziono 100 pozycji dla AMSC
+2025-10-13 22:24:34,118 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AIN+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:35,254 [INFO] RSS: znaleziono 85 pozycji dla AIN
+2025-10-13 22:24:35,274 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AMRN+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:36,290 [INFO] RSS: znaleziono 96 pozycji dla AMRN
+2025-10-13 22:24:36,309 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AIRI+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:37,166 [INFO] RSS: znaleziono 41 pozycji dla AIRI
+2025-10-13 22:24:37,183 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AMS+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:38,152 [INFO] RSS: znaleziono 100 pozycji dla AMS
+2025-10-13 22:24:38,172 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAAA+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:38,890 [INFO] RSS: znaleziono 38 pozycji dla AAAA
+2025-10-13 22:24:38,905 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=APVO+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:39,331 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 22:24:39,516 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 22:24:40,013 [INFO] RSS: znaleziono 91 pozycji dla APVO
+2025-10-13 22:24:40,032 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ARKB+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:41,130 [INFO] RSS: znaleziono 100 pozycji dla ARKB
+2025-10-13 22:24:41,149 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AZ+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:42,174 [INFO] RSS: znaleziono 95 pozycji dla AZ
+2025-10-13 22:24:42,193 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ALV+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:43,401 [INFO] RSS: znaleziono 100 pozycji dla ALV
+2025-10-13 22:24:43,422 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ADVM+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:44,175 [INFO] RSS: znaleziono 40 pozycji dla ADVM
+2025-10-13 22:24:44,190 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AIZ+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:45,354 [INFO] RSS: znaleziono 100 pozycji dla AIZ
+2025-10-13 22:24:45,373 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ACWI+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:46,344 [INFO] RSS: znaleziono 76 pozycji dla ACWI
+2025-10-13 22:24:46,362 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AVT+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:47,546 [INFO] RSS: znaleziono 100 pozycji dla AVT
+2025-10-13 22:24:47,565 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ARAI+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:48,536 [INFO] RSS: znaleziono 64 pozycji dla ARAI
+2025-10-13 22:24:48,554 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ATHR+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:49,415 [INFO] RSS: znaleziono 27 pozycji dla ATHR
+2025-10-13 22:24:49,429 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AX+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:50,387 [INFO] RSS: znaleziono 100 pozycji dla AX
+2025-10-13 22:24:50,404 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AIV+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:51,471 [INFO] RSS: znaleziono 50 pozycji dla AIV
+2025-10-13 22:24:51,487 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ASET+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:52,400 [INFO] RSS: znaleziono 49 pozycji dla ASET
+2025-10-13 22:24:52,418 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AUGP+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:53,131 [INFO] RSS: znaleziono 25 pozycji dla AUGP
+2025-10-13 22:24:53,146 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AI+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:54,840 [INFO] RSS: znaleziono 102 pozycji dla AI
+2025-10-13 22:24:54,861 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AUID+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:55,557 [INFO] RSS: znaleziono 30 pozycji dla AUID
+2025-10-13 22:24:55,572 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AVBC+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:56,450 [INFO] RSS: znaleziono 29 pozycji dla AVBC
+2025-10-13 22:24:56,464 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ACON+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:57,718 [INFO] RSS: znaleziono 76 pozycji dla ACON
+2025-10-13 22:24:57,736 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ALC+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:58,764 [INFO] RSS: znaleziono 100 pozycji dla ALC
+2025-10-13 22:24:58,784 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AVGO+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:24:59,763 [INFO] RSS: znaleziono 100 pozycji dla AVGO
+2025-10-13 22:24:59,783 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ALHC+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:00,922 [INFO] RSS: znaleziono 100 pozycji dla ALHC
+2025-10-13 22:25:00,941 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ACLC+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:01,598 [INFO] RSS: znaleziono 6 pozycji dla ACLC
+2025-10-13 22:25:01,611 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AVSF+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:02,535 [INFO] RSS: znaleziono 3 pozycji dla AVSF
+2025-10-13 22:25:02,560 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ASG+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:03,564 [INFO] RSS: znaleziono 59 pozycji dla ASG
+2025-10-13 22:25:03,580 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ANSC+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:04,733 [INFO] RSS: znaleziono 23 pozycji dla ANSC
+2025-10-13 22:25:04,748 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ASPC+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:05,507 [INFO] RSS: znaleziono 11 pozycji dla ASPC
+2025-10-13 22:25:05,521 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ATKR+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:06,693 [INFO] RSS: znaleziono 100 pozycji dla ATKR
+2025-10-13 22:25:06,712 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ALRM+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:08,123 [INFO] RSS: znaleziono 90 pozycji dla ALRM
+2025-10-13 22:25:08,209 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ACKY+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:09,387 [INFO] RSS: znaleziono 14 pozycji dla ACKY
+2025-10-13 22:25:09,417 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ARB+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:10,501 [INFO] RSS: znaleziono 97 pozycji dla ARB
+2025-10-13 22:25:10,520 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AACB+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:11,303 [INFO] RSS: znaleziono 12 pozycji dla AACB
+2025-10-13 22:25:11,318 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AURA+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:12,345 [INFO] RSS: znaleziono 100 pozycji dla AURA
+2025-10-13 22:25:12,363 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=BAMB+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:13,279 [INFO] RSS: znaleziono 23 pozycji dla BAMB
+2025-10-13 22:25:13,293 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AMDY+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:14,322 [INFO] RSS: znaleziono 79 pozycji dla AMDY
+2025-10-13 22:25:14,342 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ABNY+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:15,122 [INFO] RSS: znaleziono 6 pozycji dla ABNY
+2025-10-13 22:25:15,135 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ALF+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:16,101 [INFO] RSS: znaleziono 56 pozycji dla ALF
+2025-10-13 22:25:16,117 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AUGM+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:16,826 [INFO] RSS: znaleziono 14 pozycji dla AUGM
+2025-10-13 22:25:16,840 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAUC+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:17,726 [INFO] RSS: znaleziono 44 pozycji dla AAUC
+2025-10-13 22:25:17,742 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ALAB+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:18,933 [INFO] RSS: znaleziono 100 pozycji dla ALAB
+2025-10-13 22:25:18,952 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=BAFE+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:19,714 [INFO] RSS: znaleziono 10 pozycji dla BAFE
+2025-10-13 22:25:19,728 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ACEI+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:20,505 [INFO] RSS: znaleziono 15 pozycji dla ACEI
+2025-10-13 22:25:20,518 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ALGT+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:21,640 [INFO] RSS: znaleziono 100 pozycji dla ALGT
+2025-10-13 22:25:21,658 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=APED+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:22,529 [INFO] RSS: znaleziono 16 pozycji dla APED
+2025-10-13 22:25:22,543 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=BBB+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:24,072 [INFO] RSS: znaleziono 85 pozycji dla BBB
+2025-10-13 22:25:24,093 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AMRC+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:25,206 [INFO] RSS: znaleziono 100 pozycji dla AMRC
+2025-10-13 22:25:25,226 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AFRU+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:26,220 [INFO] RSS: znaleziono 100 pozycji dla AFRU
+2025-10-13 22:25:26,238 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AMTM+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:27,175 [INFO] RSS: znaleziono 100 pozycji dla AMTM
+2025-10-13 22:25:27,197 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ARKK+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:28,563 [INFO] RSS: znaleziono 100 pozycji dla ARKK
+2025-10-13 22:25:28,582 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ASGN+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:29,489 [INFO] RSS: znaleziono 100 pozycji dla ASGN
+2025-10-13 22:25:29,507 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=B+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:30,942 [INFO] RSS: znaleziono 100 pozycji dla B
+2025-10-13 22:25:30,962 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ACWV+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:31,715 [INFO] RSS: znaleziono 11 pozycji dla ACWV
+2025-10-13 22:25:31,728 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ATUS+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:32,871 [INFO] RSS: znaleziono 100 pozycji dla ATUS
+2025-10-13 22:25:32,889 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AXP+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:33,991 [INFO] RSS: znaleziono 100 pozycji dla AXP
+2025-10-13 22:25:34,010 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AMZU+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:34,791 [INFO] RSS: znaleziono 23 pozycji dla AMZU
+2025-10-13 22:25:34,806 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAOI+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:36,005 [INFO] RSS: znaleziono 100 pozycji dla AAOI
+2025-10-13 22:25:36,023 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AUR+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:37,160 [INFO] RSS: znaleziono 100 pozycji dla AUR
+2025-10-13 22:25:37,178 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AVA+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:38,458 [INFO] RSS: znaleziono 81 pozycji dla AVA
+2025-10-13 22:25:38,508 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ABIG+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:39,663 [INFO] RSS: znaleziono 67 pozycji dla ABIG
+2025-10-13 22:25:39,685 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AXL+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:40,877 [INFO] RSS: znaleziono 100 pozycji dla AXL
+2025-10-13 22:25:40,898 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ALAR+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:41,978 [INFO] RSS: znaleziono 49 pozycji dla ALAR
+2025-10-13 22:25:41,994 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ASMG+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:42,713 [INFO] RSS: znaleziono 6 pozycji dla ASMG
+2025-10-13 22:25:42,726 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ABUS+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:43,640 [INFO] RSS: znaleziono 68 pozycji dla ABUS
+2025-10-13 22:25:43,663 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AVGU+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:44,301 [INFO] RSS: znaleziono 0 pozycji dla AVGU
+2025-10-13 22:25:44,302 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AJUL+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:44,903 [INFO] RSS: znaleziono 4 pozycji dla AJUL
+2025-10-13 22:25:44,917 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ACRE+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:46,105 [INFO] RSS: znaleziono 100 pozycji dla ACRE
+2025-10-13 22:25:46,124 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ARL+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:47,058 [INFO] RSS: znaleziono 46 pozycji dla ARL
+2025-10-13 22:25:47,076 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AINP+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:47,815 [INFO] RSS: znaleziono 0 pozycji dla AINP
+2025-10-13 22:25:47,816 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AIRJ+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:49,044 [INFO] RSS: znaleziono 100 pozycji dla AIRJ
+2025-10-13 22:25:49,063 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ADEA+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:50,141 [INFO] RSS: znaleziono 56 pozycji dla ADEA
+2025-10-13 22:25:50,158 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AUGO+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:51,361 [INFO] RSS: znaleziono 100 pozycji dla AUGO
+2025-10-13 22:25:51,381 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AFOS+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:52,035 [INFO] RSS: znaleziono 4 pozycji dla AFOS
+2025-10-13 22:25:52,049 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ARVR+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:52,957 [INFO] RSS: znaleziono 14 pozycji dla ARVR
+2025-10-13 22:25:52,973 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AMLP+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:54,065 [INFO] RSS: znaleziono 72 pozycji dla AMLP
+2025-10-13 22:25:54,082 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AZNH+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:54,887 [INFO] RSS: znaleziono 0 pozycji dla AZNH
+2025-10-13 22:25:54,888 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=BABX+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:55,545 [INFO] RSS: znaleziono 8 pozycji dla BABX
+2025-10-13 22:25:55,558 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ABP+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:56,785 [INFO] RSS: znaleziono 100 pozycji dla ABP
+2025-10-13 22:25:56,808 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ABLS+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:25:57,696 [INFO] RSS: znaleziono 23 pozycji dla ABLS
+2025-10-13 22:26:05,365 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-13 22:26:05,679 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:26:08,570 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:26:09,393 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:26:11,250 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:26:11,484 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:26:11,667 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:26:15,388 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:26:17,976 [INFO] Pobrano 50 spó³ek. Czas: 0:00:02.564486
+2025-10-13 22:26:18,358 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:26:18,599 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:26:18,791 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:26:18,804 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 22:26:18,979 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 22:26:21,452 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:26:21,802 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:26:23,791 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-13 22:26:31,890 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:26:32,234 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:26:32,443 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:26:32,610 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:26:38,298 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:26:38,663 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:26:40,190 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-13 22:26:42,880 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:26:43,255 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:26:43,520 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:26:43,719 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:28:12,021 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-13 22:28:12,284 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:28:14,228 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:28:15,013 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:28:16,771 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:28:17,016 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:28:17,200 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:28:24,623 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:28:24,950 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:28:26,278 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-13 22:28:27,530 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-13 22:28:27,543 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AVIV+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:28:28,568 [INFO] RSS: znaleziono 10 pozycji dla AVIV
+2025-10-13 22:28:28,585 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AME+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:28:29,792 [INFO] RSS: znaleziono 10 pozycji dla AME
+2025-10-13 22:28:29,807 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ANTA+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:28:30,903 [INFO] RSS: znaleziono 10 pozycji dla ANTA
+2025-10-13 22:28:30,921 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AMWD+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:28:31,881 [INFO] RSS: znaleziono 10 pozycji dla AMWD
+2025-10-13 22:28:31,898 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=BALI+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:28:32,960 [INFO] RSS: znaleziono 10 pozycji dla BALI
+2025-10-13 22:28:32,975 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ATHE+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:28:34,228 [INFO] RSS: znaleziono 10 pozycji dla ATHE
+2025-10-13 22:28:34,252 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=APTV+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:28:35,607 [INFO] RSS: znaleziono 10 pozycji dla APTV
+2025-10-13 22:28:35,623 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AMRX+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:28:36,877 [INFO] RSS: znaleziono 10 pozycji dla AMRX
+2025-10-13 22:28:36,892 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ACDC+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:28:38,327 [INFO] RSS: znaleziono 10 pozycji dla ACDC
+2025-10-13 22:28:38,341 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AIRO+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:28:39,416 [INFO] RSS: znaleziono 10 pozycji dla AIRO
+2025-10-13 22:28:39,431 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=APEI+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:28:40,375 [INFO] RSS: znaleziono 10 pozycji dla APEI
+2025-10-13 22:28:40,389 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ALLR+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:28:41,459 [INFO] RSS: znaleziono 10 pozycji dla ALLR
+2025-10-13 22:28:41,475 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ATXG+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:28:42,452 [INFO] RSS: znaleziono 10 pozycji dla ATXG
+2025-10-13 22:28:42,470 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAA+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:28:43,771 [INFO] RSS: znaleziono 10 pozycji dla AAA
+2025-10-13 22:28:43,790 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAAU+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:28:44,843 [INFO] RSS: znaleziono 10 pozycji dla AAAU
+2025-10-13 22:28:44,861 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=APRP+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:28:45,580 [INFO] RSS: znaleziono 1 pozycji dla APRP
+2025-10-13 22:28:45,594 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AMAT+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:28:46,670 [INFO] RSS: znaleziono 10 pozycji dla AMAT
+2025-10-13 22:28:46,684 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ANEB+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:28:47,514 [INFO] RSS: znaleziono 10 pozycji dla ANEB
+2025-10-13 22:28:47,527 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=APO+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:28:48,652 [INFO] RSS: znaleziono 10 pozycji dla APO
+2025-10-13 22:28:48,666 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AXTA+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:28:49,602 [INFO] RSS: znaleziono 10 pozycji dla AXTA
+2025-10-13 22:28:49,615 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AMRK+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:28:50,788 [INFO] RSS: znaleziono 10 pozycji dla AMRK
+2025-10-13 22:28:50,801 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ABLV+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:28:51,631 [INFO] RSS: znaleziono 10 pozycji dla ABLV
+2025-10-13 22:28:51,645 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AEI+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:28:52,615 [INFO] RSS: znaleziono 10 pozycji dla AEI
+2025-10-13 22:28:52,630 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ATGE+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:28:53,625 [INFO] RSS: znaleziono 10 pozycji dla ATGE
+2025-10-13 22:28:53,639 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=APOC+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:28:54,585 [INFO] RSS: znaleziono 10 pozycji dla APOC
+2025-10-13 22:28:54,600 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AIFD+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:28:55,426 [INFO] RSS: znaleziono 4 pozycji dla AIFD
+2025-10-13 22:28:55,441 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ACR+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:28:56,498 [INFO] RSS: znaleziono 10 pozycji dla ACR
+2025-10-13 22:28:56,513 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AIRG+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:28:57,539 [INFO] RSS: znaleziono 10 pozycji dla AIRG
+2025-10-13 22:28:57,555 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AIBD+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:28:58,306 [INFO] RSS: znaleziono 7 pozycji dla AIBD
+2025-10-13 22:28:58,320 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AMOM+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:28:59,320 [INFO] RSS: znaleziono 10 pozycji dla AMOM
+2025-10-13 22:28:59,334 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AUGT+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:29:00,032 [INFO] RSS: znaleziono 3 pozycji dla AUGT
+2025-10-13 22:29:00,046 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=APWC+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:29:00,789 [INFO] RSS: znaleziono 10 pozycji dla APWC
+2025-10-13 22:29:00,802 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ATI+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:29:01,940 [INFO] RSS: znaleziono 10 pozycji dla ATI
+2025-10-13 22:29:01,953 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ATRO+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:29:03,005 [INFO] RSS: znaleziono 10 pozycji dla ATRO
+2025-10-13 22:29:03,022 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ARLP+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:29:04,107 [INFO] RSS: znaleziono 10 pozycji dla ARLP
+2025-10-13 22:29:04,122 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AJAN+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:29:04,971 [INFO] RSS: znaleziono 7 pozycji dla AJAN
+2025-10-13 22:29:04,985 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AROW+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:29:05,731 [INFO] RSS: znaleziono 10 pozycji dla AROW
+2025-10-13 22:29:05,744 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ASIC+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:29:06,965 [INFO] RSS: znaleziono 10 pozycji dla ASIC
+2025-10-13 22:29:06,980 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAPL+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:29:08,049 [INFO] RSS: znaleziono 10 pozycji dla AAPL
+2025-10-13 22:29:08,065 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ADPT+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:29:09,064 [INFO] RSS: znaleziono 10 pozycji dla ADPT
+2025-10-13 22:29:09,078 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AZI+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:29:10,053 [INFO] RSS: znaleziono 10 pozycji dla AZI
+2025-10-13 22:29:10,067 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AREB+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:29:11,092 [INFO] RSS: znaleziono 10 pozycji dla AREB
+2025-10-13 22:29:11,107 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=BAYA+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:29:12,082 [INFO] RSS: znaleziono 10 pozycji dla BAYA
+2025-10-13 22:29:12,102 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AGMI+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:29:12,780 [INFO] RSS: znaleziono 3 pozycji dla AGMI
+2025-10-13 22:29:12,793 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ABVX+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:29:14,437 [INFO] RSS: znaleziono 10 pozycji dla ABVX
+2025-10-13 22:29:14,455 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AHYB+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:29:15,188 [INFO] RSS: znaleziono 0 pozycji dla AHYB
+2025-10-13 22:29:15,188 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ADP+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:29:16,373 [INFO] RSS: znaleziono 10 pozycji dla ADP
+2025-10-13 22:29:16,387 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ABEQ+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:29:17,087 [INFO] RSS: znaleziono 4 pozycji dla ABEQ
+2025-10-13 22:29:17,101 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ARI+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:29:18,228 [INFO] RSS: znaleziono 10 pozycji dla ARI
+2025-10-13 22:29:25,473 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-13 22:29:25,732 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:29:27,626 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:29:28,405 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:29:30,240 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:29:30,451 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:29:30,643 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:29:54,388 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:29:54,716 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:29:55,900 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-13 22:30:19,288 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 22:30:19,458 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 22:30:58,815 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-13 22:30:59,113 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:31:00,467 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:31:01,263 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:31:02,808 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:31:03,036 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:31:03,202 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:31:28,046 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-13 22:31:28,303 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:31:32,609 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:31:33,369 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:31:34,941 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:31:36,368 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-13 22:31:40,498 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 22:31:40,661 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"

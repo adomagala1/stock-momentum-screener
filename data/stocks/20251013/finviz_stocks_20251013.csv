@@ -1,0 +1,51 @@
+No,Ticker,Company,Sector,Industry,Country,Market Cap,P/E,Price,Change,Volume,market_cap_numeric
+1,A,Agilent Technologies Inc,Healthcare,Diagnostics & Research,USA,39.19B,32.42,138.23,0.0118,1297709,39190000000.0
+2,AA,Alcoa Corp,Basic Materials,Aluminum,USA,9.39B,9.3,36.25,0.0351,6291700,9390000000.0
+3,AAA,Alternative Access First Priority CLO Bond ETF,Financial,Exchange Traded Fund,USA,-,,24.95,-0.003,2463,
+4,AAAA,Amplius Aggressive Asset Allocation ETF,Financial,Exchange Traded Fund,USA,-,,26.59,0.0141,948,
+5,AAAU,Goldman Sachs Physical Gold ETF,Financial,Exchange Traded Fund,USA,-,,40.57,0.0242,3074972,
+6,AACB,Artius II Acquisition Inc,Financial,Shell Companies,USA,297.33M,,10.2,0.002,6445,297330000.0
+7,AACG,ATA Creativity Global ADR,Consumer Defensive,Education & Training Services,China,37.33M,,1.17,-0.0001,57020,37330000.0
+8,AACI,Armada Acquisition Corp. II,Financial,Shell Companies,USA,330.11M,,10.45,-0.001,283,330110000.0
+9,AADR,AdvisorShares Dorsey Wright ADR ETF,Financial,Exchange Traded Fund,USA,-,,84.64,0.0374,2916,
+10,AAL,American Airlines Group Inc,Industrials,Airlines,USA,7.75B,15.09,11.74,0.0191,43682928,7750000000.0
+11,AALG,Leverage Shares 2X Long AAL Daily ETF,Financial,Exchange Traded Fund,USA,-,,11.33,0.0387,39796,
+12,AAM,AA Mission Acquisition Corp,Financial,Shell Companies,USA,463.05M,35.82,10.53,0.0,3044,463050000.0
+13,AAME,Atlantic American Corp,Financial,Insurance - Life,USA,57.72M,28.53,2.83,-0.0174,9526,57720000.0
+14,AAMI,Acadian Asset Management Inc,Financial,Asset Management,USA,1.65B,19.23,46.09,0.042300000000000004,245550,1650000000.0
+15,AAOI,Applied Optoelectronics Inc,Technology,Communication Equipment,USA,1.81B,,29.1,0.0718,4510208,1810000000.0
+16,AAON,AAON Inc,Industrials,Building Products & Equipment,USA,8.31B,69.51,101.96,0.024700000000000003,456061,8310000000.000001
+17,AAP,Advance Auto Parts Inc,Consumer Cyclical,Auto Parts,USA,3.24B,,54.05,0.0924,2569857,3240000000.0
+18,AAPB,GraniteShares 2x Long AAPL Daily ETF,Financial,Exchange Traded Fund,USA,-,,28.24,0.0191,136914,
+19,AAPD,Direxion Daily AAPL Bear 1X Shares,Financial,Exchange Traded Fund,USA,-,,14.4,-0.0086,1991856,
+20,AAPG,Ascentage Pharma Group International ADR,Healthcare,Biotechnology,China,3.38B,,36.45,0.0432,7136,3380000000.0
+21,AAPL,Apple Inc,Technology,Consumer Electronics,USA,3674.18B,37.64,247.58,0.009399999999999999,35483806,3674180000000.0
+22,AAPR,Innovator Equity Defined Protection ETF - 2 Yr to April 2026,Financial,Exchange Traded Fund,USA,-,,27.9,0.0026,5237,
+23,AAPU,Direxion Daily AAPL Bull 2X Shares,Financial,Exchange Traded Fund,USA,-,,30.47,0.0187,1883164,
+24,AAPW,Roundhill AAPL WeeklyPay ETF,Financial,Exchange Traded Fund,USA,-,,39.23,0.0116,21054,
+25,AAPX,T-Rex 2X Long Apple Daily Target ETF,Financial,Exchange Traded Fund,USA,-,,26.34,0.018000000000000002,125385,
+26,AAPY,Kurv Yield Premium Strategy Apple (AAPL) ETF,Financial,Exchange Traded Fund,USA,-,,23.32,0.0063,1805,
+27,AARD,Aardvark Therapeutics Inc,Healthcare,Biotechnology,USA,317.42M,,14.63,-0.1002,144457,317420000.0
+28,AAT,American Assets Trust Inc,Real Estate,REIT - Diversified,USA,1.17B,15.69,19.1,0.0021,271200,1170000000.0
+29,AAUC,Allied Gold Corp,Basic Materials,Gold,Canada,2.18B,,18.86,0.06309999999999999,124936,2180000000.0
+30,AAUM,Tema Alternative Asset Managers ETF,Financial,Exchange Traded Fund,USA,-,,23.89,0.0208,12,
+31,AAUS,Alpha Architect US Equity ETF,Financial,Exchange Traded Fund,USA,-,,53.78,0.0154,34,
+32,AAVM,Alpha Architect Global Factor Equity ETF,Financial,Exchange Traded Fund,USA,-,,28.29,0.011200000000000002,52,
+33,AAXJ,iShares MSCI All Country Asia ex Japan ETF,Financial,Exchange Traded Fund,USA,-,,91.69,0.0302,472127,
+34,AB,AllianceBernstein Holding Lp,Financial,Asset Management,USA,4.28B,11.53,38.68,0.0131,131280,4280000000.0000005
+35,ABAT,American Battery Technology Company,Industrials,Waste Management,USA,1.09B,,9.22,0.36590000000000006,44553591,1090000000.0
+36,ABBV,Abbvie Inc,Healthcare,Drug Manufacturers - General,USA,406.84B,109.6,230.3,-0.0009,4570143,406840000000.0
+37,ABCB,Ameris Bancorp,Financial,Banks - Regional,USA,4.97B,12.79,72.52,0.0191,313581,4970000000.0
+38,ABCL,AbCellera Biologics Inc,Healthcare,Biotechnology,Canada,1.69B,,5.67,0.0253,4269586,1690000000.0
+39,ABCS,Alpha Blue Capital US Small-Mid Cap Dynamic ETF,Financial,Exchange Traded Fund,USA,-,,29.64,0.0129,2162,
+40,ABEO,Abeona Therapeutics Inc,Healthcare,Biotechnology,USA,277.41M,8.58,5.41,0.009300000000000001,1018788,277410000.0
+41,ABEQ,Absolute Select Value ETF,Financial,Exchange Traded Fund,USA,-,,35.34,0.0077,2621,
+42,ABEV,Ambev S.A. ADR,Consumer Defensive,Beverages - Brewers,Brazil,33.37B,13.12,2.14,0.014199999999999999,28771042,33369999999.999996
+43,ABFL,Abacus FCF Leaders ETF,Financial,Exchange Traded Fund,USA,-,,71.26,0.0199,39909,
+44,ABG,Asbury Automotive Group Inc,Consumer Cyclical,Auto & Truck Dealerships,USA,4.71B,8.74,239.35,0.0183,180509,4710000000.0
+45,ABI,VictoryShares Pioneer Asset-Based Income ETF,Financial,Exchange Traded Fund,USA,-,,24.91,-0.0002,28,
+46,ABIG,Argent Large Cap ETF,Financial,Exchange Traded Fund,USA,-,,31.42,0.0181,224,
+47,ABL,Abacus Global Management Inc,Financial,Insurance - Life,USA,568.01M,,5.87,0.0226,334307,568010000.0
+48,ABLD,Abacus FCF Real Assets Leaders ETF,Financial,Exchange Traded Fund,USA,-,,28.14,0.01,3463,
+49,ABLG,Abacus FCF International Leaders ETF,Financial,Exchange Traded Fund,USA,-,,30.91,0.010700000000000001,600,
+50,ABLS,Abacus FCF Small Cap Leaders ETF,Financial,Exchange Traded Fund,USA,-,,22.27,0.0,4,

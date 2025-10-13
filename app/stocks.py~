@@ -5,7 +5,6 @@ import pandas as pd
 from bs4 import BeautifulSoup
 from datetime import datetime
 from app.save_data import save_stocks_to_csv
-from typing import List, Optional
 
 
 os.makedirs("logs", exist_ok=True)
@@ -38,26 +37,8 @@ COLUMNS_FILTERED = [
 ]
 
 
-def fetch_finviz(
-        max_companies: int = 10,
-        get_only_tickers: bool = False,
-        with_filters: bool = False,
-        tickers: Optional[List[str]] = None
-) -> pd.DataFrame:
-    """
-    Pobiera dane z Finviz.
-    - Jeśli podano listę `tickers`, pobiera dane tylko dla tych tickerów.
-    - W przeciwnym razie działa jako screener z limitem `max_companies`.
-    """
+def fetch_finviz(max_companies: int = 10, get_only_tickers: bool = False, with_filters: bool = False) -> pd.DataFrame:
     url = URL_FILTERED if with_filters else URL_DEFAULT
-
-    # <-- ZMIANA: Modyfikacja URL, jeśli podano listę tickerów
-    if tickers and isinstance(tickers, list):
-        ticker_string = ",".join(tickers)
-        url += f"&t={ticker_string}"
-        # Jeśli szukamy konkretnych tickerów, limit `max_companies` nie ma sensu
-        max_companies = len(tickers)
-
     start_time = datetime.now()
     all_data = []
     start = 1
@@ -66,56 +47,28 @@ def fetch_finviz(
     columns = ["No", "Ticker"] if get_only_tickers else (COLUMNS_FILTERED if with_filters else COLUMNS_NORMAL)
 
     while True:
-        # Paginacja ma sens tylko wtedy, gdy nie szukamy konkretnych tickerów lub gdy jest ich > 20
         if not unlimited and companies_fetched >= max_companies:
             break
 
         paged_url = url + f"&r={start}"
-        try:
-            response = requests.get(paged_url, headers=HEADERS, timeout=10)
-            response.raise_for_status()
-        except requests.RequestException as e:
-            logging.error(f"Błąd połączenia z Finviz: {e}")
-            return pd.DataFrame()  # Zwróć pusty DataFrame w przypadku błędu sieciowego
-
+        response = requests.get(paged_url, headers=HEADERS)
+        response.raise_for_status()
         soup = BeautifulSoup(response.text, "html.parser")
-        # Szukamy tabeli z danymi. Finviz ma różne struktury HTML.
-        # To jest bardziej odporne podejście.
-        screener_table = soup.find("table", {"class": "screener_table"})
-        if not screener_table:
-            logging.warning("Nie znaleziono tabeli screener_table na stronie.")
-            break
-
-        rows = screener_table.find_all("tr", class_=["styled-row-dark", "styled-row-light"])
+        rows = soup.find_all("tr", class_="styled-row")
         if not rows:
-            logging.info("Nie znaleziono więcej wierszy z danymi.")
             break
 
         for row in rows:
             cols = row.find_all("td")
-            # Czasem Finviz wstawia puste wiersze lub wiersze reklamowe
-            if len(cols) < len(columns):
-                continue
-
             row_data = [col.get_text(strip=True) for col in cols]
-
             if get_only_tickers:
-                all_data.append([row_data[0], row_data[1]])
+                all_data.append([row_data[0], row_data[1]])  # numer + ticker
             else:
                 all_data.append(row_data[:len(columns)])
-
             companies_fetched += 1
             if not unlimited and companies_fetched >= max_companies:
                 break
-
-        # Jeśli szukamy konkretnych tickerów, zwykle jest tylko jedna strona wyników
-        if tickers:
-            break
-
         start += 20
-
-    if not all_data:
-        return pd.DataFrame()
 
     df = pd.DataFrame(all_data, columns=columns)
     df.fillna(pd.NA, inplace=True)
@@ -123,6 +76,38 @@ def fetch_finviz(
     logging.info(f"Pobrano {len(df)} spółek. Czas: {finish - start_time}")
     return df
 
+def fetch_finviz_for_ticker(ticker: str, get_only_tickers: bool = False) -> pd.DataFrame:
+    """
+    Pobiera dane dla pojedynczego tickera z Finviz.
+    Zwraca DataFrame z jedną linią danych.
+    """
+    start_time = datetime.now()
+    url = f"https://finviz.com/quote.ashx?t={ticker}"
+    response = requests.get(url, headers=HEADERS)
+    response.raise_for_status()
+    soup = BeautifulSoup(response.text, "html.parser")
+
+    # Dla samego tickera możemy zwrócić tylko ticker + numer
+    if get_only_tickers:
+        return pd.DataFrame([[1, ticker]], columns=["No", "Ticker"])
+
+    # Szukamy tabeli ze wszystkimi danymi
+    table = soup.find("table", class_="snapshot-table2")
+    if not table:
+        logging.warning(f"Nie znaleziono danych dla tickera {ticker}")
+        return pd.DataFrame(columns=COLUMNS_NORMAL)
+
+    cells = table.find_all("td")
+    row_data = [cells[i+1].get_text(strip=True) for i in range(0, len(cells), 2)]
+
+    # Wstawiamy numer i ticker jako pierwsze kolumny
+    data = [[1, ticker] + row_data[:len(COLUMNS_NORMAL)-2]]
+
+    df = pd.DataFrame(data, columns=COLUMNS_NORMAL)
+    df.fillna(pd.NA, inplace=True)
+    finish = datetime.now()
+    logging.info(f"Pobrano dane dla {ticker}. Czas: {finish - start_time}")
+    return df
 
 def get_current_price(ticker: str) -> float | None:
     """

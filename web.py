@@ -1,4 +1,5 @@
 # web.py
+from datetime import datetime
 
 import sys
 import os
@@ -6,6 +7,8 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 from pymongo.uri_parser import parse_uri
+
+from app.save_data import save_stocks_to_csv
 
 # --- Importy z projektu ---
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -18,6 +21,7 @@ from app.web.watchlist import get_watchlist, add_to_watchlist, remove_from_watch
 from app.web.alerts import get_alerts, add_alert, ALERTS_CSS, render_styled_alert_card
 from app.db.user_supabase_manager import clean_and_transform_for_db, SupabaseHandler
 from app.db.user_mongodb_manager import MongoNewsHandler
+from app.load_demo_data import load_demo_secrets
 
 # --- Konfiguracja strony ---
 st.set_page_config(page_title="Stock AI Dashboard", layout="wide", page_icon="📈")
@@ -60,6 +64,11 @@ def render_db_status_indicator(db_name: str, is_configured: bool):
     status_text = "Połączono" if is_configured else "Brak Połączenia"
     st.markdown(f"**{db_name}:** <span style='color:{status_color};'>{status_icon} {status_text}</span>",
                 unsafe_allow_html=True)
+
+
+@st.cache_data
+def convert_df_to_csv(df: pd.DataFrame):
+    return df.to_csv(index=False).encode('utf-8')
 
 
 def render_guest_lock_ui(title: str, icon: str, description: str):
@@ -127,8 +136,9 @@ def render_dashboard():
 
     render_config_expander()
 
-    tabs = st.tabs(["📈 **Dane giełdowe**", "📰 **Newsy i Sentyment**", "🤖 **Model Predykcyjny ᴮᴱᵀᴬ**", "❤️ **Watchlista**",
-                    "🔔 **Alerty Cenowe**"])
+    tabs = st.tabs(
+        ["📈 **Dane giełdowe**", "📰 **Newsy i Sentyment**", "🤖 **Model Predykcyjny ᴮᴱᵀᴬ**", "❤️ **Watchlista**",
+         "🔔 **Alerty Cenowe**"])
 
     with tabs[0]:
         display_stocks_tab()
@@ -136,7 +146,8 @@ def render_dashboard():
         display_news_tab(user_id, is_guest)
     with tabs[2]:
         st.header("Model Predykcyjny ᴮᴱᵀᴬ")
-        st.info("Ta funkcja jest w fazie testów (beta). Wyniki mogą być niedokładne. Funkcje takie jak wybor spolki itp sa dopiero robione")
+        st.info(
+            "Ta funkcja jest w fazie testów (beta). Wyniki mogą być niedokładne. Funkcje takie jak wybor spolki itp sa dopiero robione")
 
         display_model_tab()
     with tabs[3]:
@@ -151,7 +162,7 @@ def render_config_expander():
         st.info("Wprowadź dane dostępowe do swoich baz danych lub załaduj konfigurację demo.", icon="🔑")
         if st.button("🚀 Załaduj konfigurację DEMO", use_container_width=True):
             try:
-                from load_demo_data import load_demo_secrets
+
                 load_demo_secrets()
                 st.success("Konfiguracja DEMO załadowana.")
                 st.rerun()
@@ -237,19 +248,36 @@ def display_stocks_tab():
         df = st.session_state.latest_df
         st.success(f"Pobrano dane dla {len(df)} spółek.")
         st.dataframe(df)
-        if not st.session_state.get("db_configured"):
-            st.warning("Skonfiguruj połączenie z Supabase, aby zapisać dane.")
-            st.button("💾 Zapisz do Supabase", use_container_width=True, disabled=True)
-        else:
-            if st.button("💾 Zapisz do Supabase", use_container_width=True):
-                with st.spinner("Przygotowuję i zapisuję dane..."):
-                    sb_handler = SupabaseHandler(st.session_state["sb_url"], st.session_state["sb_api"])
-                    df_cleaned = clean_and_transform_for_db(df)
-                    saved_count = sb_handler.save_dataframe(df_cleaned)
-                    if saved_count > 0:
-                        st.success(f"✅ Zapisano {saved_count} rekordów!")
-                    else:
-                        st.error("❌ Zapis nie powiódł się. Sprawdź logi lub konfigurację bazy.")
+
+        col1, col2 = st.columns(2)
+
+        with col1:
+            if not st.session_state.get("db_configured"):
+                st.warning("Skonfiguruj połączenie z Supabase, aby zapisać dane.")
+                st.button("💾 Zapisz do Supabase", use_container_width=True, disabled=True)
+            else:
+                if st.button("💾 Zapisz do Supabase", use_container_width=True):
+                    with st.spinner("Przygotowuję i zapisuję dane do Supabase..."):
+                        sb_handler = SupabaseHandler(st.session_state["sb_url"], st.session_state["sb_api"])
+                        df_cleaned = clean_and_transform_for_db(df)
+                        saved_count = sb_handler.save_dataframe(df_cleaned)
+                        if saved_count > 0:
+                            st.success(f"✅ Zapisano {saved_count} rekordów do Supabase!")
+                        else:
+                            st.error("❌ Zapis do Supabase nie powiódł się. Sprawdź logi lub konfigurację bazy.")
+
+        with col2:
+            st.info("Zapisze plik lokalnie w folderze `data/stocks/`.")
+            csv_data = df.to_csv(index=False).encode('utf-8')
+            today_str = datetime.now().strftime("%Y%m%d")
+            filename = f"stock_data_{today_str}.csv"
+            st.download_button(
+                label="💾 Pobierz newsy jako CSV",
+                data=csv_data,
+                file_name=filename,
+                mime='text/csv',
+                use_container_width=True,
+            )
 
 
 def display_news_tab(user_id, is_guest=False):
@@ -272,13 +300,13 @@ def display_news_tab(user_id, is_guest=False):
         manual_ticker = st.text_input("...lub wpisz ticker ręcznie:", placeholder="np. AAPL").upper()
 
     ticker_to_analyze = manual_ticker if manual_ticker else selected_ticker
-
+    how_many_news = st.number_input("Ile newsow dla tej spolki pobrac?", min_value=1, value=10, max_value=500)
     if st.button("📥 Pobierz i analizuj newsy", type="primary", use_container_width=True):
         if not ticker_to_analyze:
             st.warning("Wybierz lub wpisz ticker do analizy.")
         else:
             with st.spinner(f"Pobieram i analizuję newsy dla {ticker_to_analyze}..."):
-                df_news = fetch_google_news_rss(ticker_to_analyze)
+                df_news = fetch_google_news_rss(ticker_to_analyze, limit=how_many_news)
                 if df_news is None or df_news.empty:
                     st.warning(f"Nie znaleziono newsów dla {ticker_to_analyze}.")
                     st.session_state.news_data = {"ticker": None, "df": pd.DataFrame()}
@@ -308,25 +336,35 @@ def display_news_tab(user_id, is_guest=False):
         display_news_cards(df_to_display)
 
     st.divider()
+    sb_handler = SupabaseHandler(st.session_state["sb_url"], st.session_state["sb_api"])
+    all_tickers_count = len(sb_handler.get_all_tickers_from_supabase())
+    news_limit = st.text_input(f"🔢 Limit newsów na spółkę: (Masz ich w Supabase {all_tickers_count})", key="news_limit", value="10")
+
+
     if st.button("🌍 Pobierz newsy dla wszystkich z Supabase", use_container_width=True):
+        try:
+            limit = int(news_limit)
+        except ValueError:
+            st.warning("Podaj poprawny limit (liczbę całkowitą).", icon="⚠️")
+            st.stop()
+
         if not st.session_state.get("db_configured"):
             st.warning("Ta funkcja wymaga połączenia z Supabase.", icon="⚠️")
-            return
+            st.stop()
 
         with st.spinner("Pobieram tickery z Supabase..."):
-            sb_handler = SupabaseHandler(st.session_state["sb_url"], st.session_state["sb_api"])
             tickers_list = sb_handler.get_all_tickers_from_supabase()
 
         if not tickers_list:
             st.warning("Brak tickerów w Supabase do przetworzenia.")
-            return
+            st.stop()
 
-        st.info(f"Znaleziono {len(tickers_list)} tickerów. Rozpoczynanie pobierania newsów i analizy sentymentu.")
+        st.info(f"Rozpoczynanie pobierania newsów i analizy sentymentu")
         progress_bar = st.progress(0, text="Rozpoczęto")
         all_news = []
         for i, t in enumerate(tickers_list):
             progress_bar.progress((i + 1) / len(tickers_list), text=f"Przetwarzanie: {t} ({i + 1}/{len(tickers_list)})")
-            df_news = fetch_google_news_rss(t)
+            df_news = fetch_google_news_rss(t, limit=limit)
             if df_news is not None and not df_news.empty:
                 df_news_sentiment = add_sentiment(df_news)
                 all_news.extend(df_news_sentiment.to_dict(orient="records"))
@@ -353,7 +391,9 @@ def display_model_tab():
 
     if not result_df.empty:
         st.markdown("#### Top spółek z najwyższym potencjałem")
-        st.info("Ranking oparty na historycznych danych cenowych, sentymencie z newsów i predykcjach modelu AI JESLI MALO DANYCH = GORSZE WYNNIKI.", icon="💡")
+        st.info(
+            "Ranking oparty na historycznych danych cenowych, sentymencie z newsów i predykcjach modelu AI JESLI MALO DANYCH = GORSZE WYNNIKI.",
+            icon="💡")
 
         tickers_list = result_df["ticker"].unique().tolist()
         default_tickers = tickers_list[:10] if len(tickers_list) >= 10 else tickers_list
@@ -450,6 +490,20 @@ def display_alerts_tab(user_id, is_guest):
 
 
 def display_news_cards(df):
+    if "news_df" in st.session_state and not st.session_state.news_df.empty:
+        news_df = st.session_state.news_df
+        st.dataframe(news_df)
+        csv_data = convert_df_to_csv(news_df)
+        today_str = datetime.now().strftime("%Y%m%d")
+        filename = f"news_data_{today_str}.csv"
+
+        st.download_button(
+            label="💾 Pobierz newsy jako CSV",
+            data=csv_data,
+            file_name=filename,
+            mime='text/csv',
+            use_container_width=True,
+        )
     for _, row in df.iterrows():
         sentiment_score = row['sentiment']
         if sentiment_score > 0.05:

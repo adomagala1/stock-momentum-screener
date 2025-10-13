@@ -77,6 +77,49 @@ def fetch_finviz(max_companies: int = 10, get_only_tickers: bool = False, with_f
     return df
 
 
+def fetch_finviz_for_ticker(ticker: str) -> pd.DataFrame:
+    """
+    Pobiera dane dla pojedynczego tickera z Finviz.
+    Zwraca DataFrame z jedną linią danych.
+    """
+    start_time = datetime.now()
+    url = f"https://finviz.com/quote.ashx?t={ticker}"
+
+    response = requests.get(url, headers=HEADERS)
+    response.raise_for_status()
+    soup = BeautifulSoup(response.text, "html.parser")
+
+    table = soup.find("table", class_="snapshot-table2")
+    if not table:
+        logging.warning(f"Nie znaleziono danych dla tickera {ticker}")
+        return pd.DataFrame(columns=COLUMNS_NORMAL)
+
+    cells = table.find_all("td")
+    data_dict = {}
+    for i in range(0, len(cells), 2):
+        key = cells[i].get_text(strip=True)
+        value = cells[i + 1].get_text(strip=True)
+        data_dict[key] = value
+
+    # Mapujemy dane Finviz do naszych kolumn
+    mapped_data = {
+        "Ticker": ticker,
+        "Company": data_dict.get("Company", pd.NA),
+        "Sector": data_dict.get("Sector", pd.NA),
+        "Industry": data_dict.get("Industry", pd.NA),
+        "Country": data_dict.get("Country", pd.NA),
+        "Market Cap": data_dict.get("Market Cap", pd.NA),
+        "P/E": data_dict.get("P/E", pd.NA),
+        "Price": data_dict.get("Price", pd.NA),
+        "Change": data_dict.get("Change", pd.NA),
+        "Volume": data_dict.get("Volume", pd.NA)
+    }
+
+    df = pd.DataFrame([mapped_data], columns=COLUMNS_NORMAL)
+    finish = datetime.now()
+    logging.info(f"Pobrano dane dla {ticker}. Czas: {finish - start_time}")
+    return df
+
 def get_current_price(ticker: str) -> float | None:
     """
     Pobiera aktualną cenę danej spółki z Finviz (dostosowane do nowej struktury HTML)

@@ -24,27 +24,30 @@ HEADERS = {
     "DNT": "1"
 }
 
-
-def fetch_google_news_rss(ticker, country='US', lang='en'):
+def fetch_google_news_rss(ticker, country='US', lang='en', limit=10):
     q = quote_plus(f"{ticker} stock")
     rss = f"https://news.google.com/rss/search?q={q}&hl={lang}-{country}&gl={country}&ceid={country}:{lang}"
     logging.info(f"Pobieram RSS: {rss}")
     feed = feedparser.parse(rss)
+
     items = []
-    for e in feed.entries:
+    entries = feed.entries[:limit]
+
+    for e in entries:
         source = None
         if 'source' in e:
             source = e.source.get('title') if isinstance(e.source, dict) else e.get('source')
         published = e.get('published') or e.get('pubDate') or None
+
         items.append({
             "ticker": ticker,
-            "title": e.get("title"),  # <-- ZMIANA 1: Z "headline" na "title"
+            "title": e.get("title"),
             "link": e.get("link"),
             "source": source,
             "published": published
         })
-    df = pd.DataFrame(items)
 
+    df = pd.DataFrame(items)
     logging.info(f"RSS: znaleziono {len(df)} pozycji dla {ticker}")
     return df
 

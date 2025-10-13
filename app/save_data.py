@@ -6,11 +6,6 @@ from datetime import datetime
 import streamlit as st
 from app.db.supabase_manager import *
 
-# Prosta konfiguracja loggingu
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s [%(levelname)s] %(message)s"
-)
 
 
 def convert_market_cap(value):
@@ -38,32 +33,22 @@ def save_stocks_to_csv(df: pd.DataFrame, get_only_tickers=False, with_filters=Fa
     if df is None or df.empty:
         logging.warning("Otrzymano pusty DataFrame. Pomijam zapis do pliku.")
         return
-
-    # --- NOWA, BEZPIECZNA LOGIKA ---
-
-    # Krok 1: Określ ścieżkę i nazwę pliku na podstawie trybu pracy
     today_str = datetime.now().strftime("%Y%m%d")
 
     if get_only_tickers:
-        # --- SCENARIUSZ 1: ZAPISUJEMY TYLKO TICKERY ---
         logging.info("Tryb 'Tylko tickery'. Zapisywanie uproszczonych danych.")
 
         path_dir = os.path.join("data", "tickers", today_str)
         filename_suffix = f"finviz_{'filtered_' if with_filters else ''}tickers_{today_str}.csv"
 
-        # Upewniamy się, że mamy tylko te dwie kolumny
         df_to_save = df[["No", "Ticker"]].copy()
 
     else:
-        # --- SCENARIUSZ 2: ZAPISUJEMY PEŁNE DANE ---
         logging.info("Tryb pełnych danych. Przetwarzanie i zapisywanie szczegółowych informacji.")
 
         path_dir = os.path.join("data", "stocks", today_str)
         filename_suffix = f"finviz_{'filtered_' if with_filters else ''}stocks_{today_str}.csv"
-
-        df_to_save = df.copy()  # Pracujemy na kopii, aby uniknąć problemów z modyfikacją
-
-        # Bezpieczne przetwarzanie kolumn (tylko jeśli istnieją)
+        df_to_save = df.copy()
         if "Market Cap" in df_to_save.columns:
             logging.info(f"Kolumny w DataFrame: {df_to_save.columns.tolist()}")
             logging.info(

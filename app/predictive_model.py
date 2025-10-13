@@ -2,15 +2,17 @@
 
 import pandas as pd
 import numpy as np
-from datetime import timedelta, date
+from datetime import timedelta, date, datetime
 import streamlit as st
+from pytz import utc
 from sklearn.ensemble import RandomForestClassifier
 from pymongo import MongoClient
 from supabase import create_client, Client
 from postgrest.exceptions import APIError
 
-from db.user_supabase_manager import clean_and_transform_for_db
-from stocks import fetch_finviz
+from app.db.user_supabase_manager import clean_and_transform_for_db
+from app.db.user_mongodb_manager import MongoNewsHandler
+from app.stocks import fetch_finviz_for_ticker
 
 # -------- PARAMETRY MODELU --------
 NEWS_WINDOW_DAYS = 7
@@ -20,7 +22,6 @@ MODEL_N_ESTIMATORS = 300
 MODEL_MAX_DEPTH = 10
 
 
-# -------- INICJALIZACJA POŁĄCZEŃ --------
 def initialize_clients():
     """Tworzy i zwraca klientów do baz danych na podstawie st.session_state."""
     if not st.session_state.get("db_configured") or not st.session_state.get("mongo_configured"):
@@ -32,7 +33,6 @@ def initialize_clients():
     return supabase_client, news_collection
 
 
-# -------- FUNKCJE LOGIKI BIZNESOWEJ --------
 
 @st.cache_data(ttl=3600)
 def load_all_stocks_data(_supabase_client: Client):
@@ -56,36 +56,6 @@ def load_all_stocks_data(_supabase_client: Client):
     except Exception as e:
         st.error(f"Nieoczekiwany błąd podczas ładowania danych giełdowych: {e}")
         return pd.DataFrame()
-
-
-def get_avg_sentiment(news_collection, tickers, day, window=NEWS_WINDOW_DAYS):
-    """Pobiera średni sentyment dla listy tickerów z MongoDB."""
-    if not tickers:
-        return pd.DataFrame(columns=["ticker", "avg_sentiment"])
-    day = pd.to_datetime(day)
-    start_date = day - timedelta(days=window)
-    end_date = day + timedelta(days=1)
-
-    pipeline = [
-        {"$addFields": {
-            "published_dt": {
-                "$cond": {
-                    "if": {"$eq": [{"$type": "$published"}, "string"]},
-                    "then": {"$toDate": "$published"},
-                    "else": "$published"
-                }
-            }
-        }},
-        {"$match": {"ticker": {"$in": tickers}, "published_dt": {"$gte": start_date, "$lt": end_date}}},
-        {"$group": {"_id": "$ticker", "avg_sentiment": {"$avg": "$sentiment"}}}
-    ]
-    cursor = news_collection.aggregate(pipeline)
-    df = pd.DataFrame(list(cursor))
-
-    if df.empty:
-        return pd.DataFrame(columns=["ticker", "avg_sentiment"])
-    df.rename(columns={"_id": "ticker"}, inplace=True)
-    return df
 
 
 def create_forward_label(df_all, day, next_day):
@@ -122,7 +92,7 @@ def process_historical_analysis(_supabase_client: Client, _news_collection):
         next_day = dates[idx + 1] if idx + 1 < len(dates) else None
         df_day = create_forward_label(df_all, day, next_day)
         tickers = df_day["ticker"].tolist()
-        sentiment_df = get_avg_sentiment(_news_collection, tickers, day)
+        sentiment_df = MongoNewsHandler.get_average_sentiment_for_ticker(tickers, day)
         df_day = df_day.merge(sentiment_df, on="ticker", how="left").fillna(0)
 
         df_day["market_cap_log"] = np.log1p(df_day["market_cap"])
@@ -155,43 +125,30 @@ def process_historical_analysis(_supabase_client: Client, _news_collection):
 
 
 def analyze_single_ticker(ticker: str, supabase_client: Client, news_collection):
-    """
-    Analizuje dowolny ticker "na żądanie".
-    1. Pobiera świeże dane dla tego tickera z Finviz.
-    2. Pobiera dane historyczne z Supabase do treningu modelu.
-    3. Trenuje model na najnowszych danych historycznych.
-    4. Przeprowadza predykcję na świeżych danych.
-    """
-    # Krok 1: Pobierz świeże dane dla podanego tickera
     try:
         st.write(f"Pobieram najnowsze dane dla **{ticker.upper()}** z Finviz...")
-        df_live_raw = fetch_finviz(tickers=[ticker.upper()], with_filters=True)
+        df_live_raw = fetch_finviz_for_ticker(ticker=ticker.upper())
         if df_live_raw.empty:
             st.error(f"Nie znaleziono danych dla tickera '{ticker.upper()}' w Finviz.")
             return pd.DataFrame()
-        # Używamy tej samej funkcji czyszczącej, co przy zapisie do bazy
         df_live = clean_and_transform_for_db(df_live_raw)
     except Exception as e:
         st.error(f"Błąd podczas pobierania danych live dla {ticker.upper()}: {e}")
         return pd.DataFrame()
 
-    # Krok 2: Pobierz dane historyczne do treningu
     df_all_history = load_all_stocks_data(supabase_client)
     if df_all_history.empty:
         st.warning("Brak danych historycznych w bazie do wytrenowania modelu. Wynik może być niedokładny.")
-        # W takim wypadku możemy zwrócić tylko pobrane dane live bez predykcji
         df_live["potential_score"] = "Brak danych do oceny"
         return df_live
 
-    # Znajdź najnowszy dzień w danych historycznych
     latest_history_date = df_all_history["import_date"].max()
     st.write(f"Używam danych historycznych z dnia **{latest_history_date}** do treningu modelu.")
 
-    # Krok 3: Przygotuj zbiór treningowy z najnowszego dnia historycznego
     df_train = df_all_history[df_all_history["import_date"] == latest_history_date].copy()
 
     train_tickers = df_train["ticker"].tolist()
-    train_sentiment = get_avg_sentiment(news_collection, train_tickers, latest_history_date)
+    train_sentiment = MongoNewsHandler.get_average_sentiment_for_ticker(ticker)
     df_train = df_train.merge(train_sentiment, on="ticker", how="left").fillna(0)
 
     df_train["market_cap_log"] = np.log1p(df_train["market_cap"])
@@ -200,22 +157,24 @@ def analyze_single_ticker(ticker: str, supabase_client: Client, news_collection)
     features = ["price", "p_e", "market_cap_log", "volume_log", "change", "avg_sentiment"]
     X_train = df_train[features].fillna(0)
 
-    # Używamy prostej zmiany dziennej jako etykiety dla danych treningowych
     y_train = (df_train["change"].fillna(0) > CHANGE_THRESHOLD_PCT).astype(int)
 
-    # Krok 4: Przygotuj dane do predykcji (nasz ticker "live")
-    # Analiza sentymentu dla bieżącego dnia
-    live_sentiment = get_avg_sentiment(news_collection, [ticker.upper()], date.today())
-    df_live = df_live.merge(live_sentiment, on="ticker", how="left").fillna(0)
+    live_sentiment = MongoNewsHandler.get_average_sentiment_for_ticker(ticker)
+    df_live = df_live.merge(live_sentiment, on="ticker", how="left")
 
+    if df_live['avg_sentiment'].isnull().any():
+        st.warning(
+            f"Nie znaleziono aktualnych wiadomości (z ostatnich {NEWS_WINDOW_DAYS} dni) dla tickera {ticker.upper()}. Sentyment zostanie potraktowany jako neutralny (0).")
+        df_live['avg_sentiment'].fillna(0, inplace=True)
+
+    # Reszta kodu bez zmian
     df_live["market_cap_log"] = np.log1p(df_live["market_cap"])
     df_live["volume_log"] = np.log1p(df_live["volume"])
     X_predict = df_live[features].fillna(0)
 
-    # Krok 5: Trenuj model i dokonaj predykcji
     if y_train.nunique() < 2 or len(df_train) < 10:
         st.warning("Zbyt mało zróżnicowanych danych historycznych do wytrenowania modelu AI. Wynik jest uproszczony.")
-        df_live["potential_score"] = 0.5  # Wartość neutralna
+        df_live["potential_score"] = 0.5
     else:
         model = RandomForestClassifier(n_estimators=MODEL_N_ESTIMATORS, max_depth=MODEL_MAX_DEPTH, random_state=42,
                                        class_weight='balanced')
@@ -224,5 +183,4 @@ def analyze_single_ticker(ticker: str, supabase_client: Client, news_collection)
         df_live["potential_score"] = probabilities
         st.success(f"Analiza AI dla **{ticker.upper()}** zakończona.")
 
-    # Zwróć estetyczny wynik
     return df_live[["ticker", "company", "price", "change", "p_e", "volume", "avg_sentiment", "potential_score"]]
