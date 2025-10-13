@@ -5,6 +5,7 @@ import pandas as pd
 import plotly.express as px
 import numpy as np
 from pymongo.uri_parser import parse_uri
+from sklearn.ensemble import RandomForestClassifier
 from sqlalchemy.engine import Engine
 from load_demo_data import load_demo_secrets
 
@@ -12,13 +13,12 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from app.stocks import fetch_finviz
 from app.news import fetch_google_news_rss, add_sentiment
-from app.predictive_model import load_all_stocks_data
+from app.predictive_model import load_all_stocks_data, get_avg_sentiment, create_forward_label, MODEL_N_ESTIMATORS, MODEL_MAX_DEPTH, analyze_single_ticker
 from app.web.auth import login, logout, register, check_login
 from app.web.watchlist import get_watchlist, add_to_watchlist, remove_from_watchlist
 from app.web.alerts import get_alerts, add_alert, ALERTS_CSS, render_styled_alert_card
 from app.db.user_supabase_manager import clean_and_transform_for_db, SupabaseHandler
 from app.db.user_mongodb_manager import MongoNewsHandler
-from app.helpers import human_readable_market_cap
 
 # --- Konfiguracja strony ---
 st.set_page_config(page_title="Stock AI Dashboard", layout="wide", page_icon="📈")
@@ -63,6 +63,7 @@ def render_db_status_indicator(db_name: str, is_configured: bool):
         st.markdown(f"**{db_name}:** <span style='color:green;'>✅ Połączono</span>", unsafe_allow_html=True)
     else:
         st.markdown(f"**{db_name}:** <span style='color:red;'>❌ Brak Połączenia</span>", unsafe_allow_html=True)
+
 
 
 def render_guest_lock_ui(title: str, icon: str, description: str):
@@ -377,69 +378,57 @@ def display_news_section(user_id, is_guest=False):
 
 def display_model_tab():
     st.subheader("🤖 Model Predykcyjny AI")
-    st.info("Model ocenia spółki na podstawie ceny, kapitalizacji i sentymentu. Wymaga połączenia z Twoimi bazami danych.", icon="💡")
-    top_n = st.slider("📊 Ile najlepszych spółek wyświetlić?", 5, 50, 20, 5)
-
-    if not st.session_state.get("db_configured") or not st.session_state.get("mongo_configured"):
-        st.warning("Model predykcyjny wymaga skonfigurowania połączenia z Supabase i MongoDB.", icon="⚠️")
-        st.button("🚀 Uruchom model", type="primary", use_container_width=True, disabled=True)
+    df_all = load_all_stocks_data()
+    if df_all.empty:
+        st.warning("Brak danych giełdowych do przetworzenia.")
         return
+    df_all = df_all.dropna(subset=["price", "volume", "market_cap"])
+    df_all = df_all[df_all["market_cap"] > 0]
+    dates = sorted(df_all["import_date"].unique())
 
-    if st.button("🚀 Uruchom model", type="primary", use_container_width=True):
-        with st.spinner("Łączenie z bazami i uruchamianie modelu..."):
-            sb_handler = SupabaseHandler(st.session_state["sb_url"], st.session_state["sb_api"])
-            engine = sb_handler.create_sqlalchemy_engine()
-            if not isinstance(engine, Engine):
-                st.error("Nie udało się utworzyć połączenia z bazą Supabase. Sprawdź dane w konfiguracji.")
-                return
+    all_top = []
+    ticker_set = set()
+    for idx, day in enumerate(dates):
+        next_day = dates[idx + 1] if idx + 1 < len(dates) else None
+        df_day = create_forward_label(df_all, day, next_day)
+        tickers = df_day["ticker"].tolist()
+        ticker_set.update(tickers)
+        sentiment_df = get_avg_sentiment(tickers, day)
+        df_day = df_day.merge(sentiment_df, on="ticker", how="left").fillna(0)
+        df_day["market_cap_log"] = np.log1p(df_day["market_cap"])
+        df_day["volume_log"] = np.log1p(df_day["volume"])
+        X = df_day[["price", "p_e", "market_cap_log", "volume_log", "change", "avg_sentiment"]].fillna(0)
+        y = df_day["high_potential"].fillna(0).astype(int)
+        if y.nunique() < 2 or len(df_day) < 5:
+            p_norm = (X["price"] - X["price"].min()) / (X["price"].max() - X["price"].min() + 1e-9)
+            mc_norm = (X["market_cap_log"] - X["market_cap_log"].min()) / (
+                        X["market_cap_log"].max() - X["market_cap_log"].min() + 1e-9)
+            sentiment_norm = (X["avg_sentiment"] - X["avg_sentiment"].min()) / (abs(X["avg_sentiment"]).max() + 1e-9)
+            df_day["potential_score"] = (0.4 * p_norm + 0.4 * mc_norm + 0.2 * sentiment_norm).fillna(0)
+        else:
+            model = RandomForestClassifier(n_estimators=MODEL_N_ESTIMATORS, max_depth=MODEL_MAX_DEPTH, random_state=42)
+            model.fit(X, y)
+            df_day["potential_score"] = model.predict_proba(X)[:, 1]
+        top = df_day.sort_values("potential_score", ascending=False).head(20)
+        all_top.append(top[["ticker", "company", "potential_score"]])
 
-            df_all = load_all_stocks_data()
-            if df_all.empty:
-                st.warning("Brak danych o spółkach w Twojej bazie. Najpierw pobierz i zapisz dane w zakładce 'Dane giełdowe'.")
-                return
+    if all_top:
+        result_df = pd.concat(all_top, ignore_index=True)
+        result_df = result_df.groupby("ticker", as_index=False).agg({"company": "first", "potential_score": "max"})
+        result_df = result_df.sort_values("potential_score", ascending=False)
 
-            mongo_handler = MongoNewsHandler(st.session_state["mongo_uri"], st.session_state["mongo_db"])
-            tickers = df_all['ticker'].dropna().unique().tolist()
-            st.info(f"Pobieram sentyment dla {len(tickers)} unikalnych spółek...")
 
-            sentiment_df = mongo_handler.get_average_sentiment_for_tickers(tickers)
+        # Wybór tickerów do wykresów
+        tickers_list = result_df["ticker"].unique().tolist()
+        selected_tickers = st.multiselect("Wybierz tickery do wizualizacji", tickers_list, default=tickers_list[:5])
+        if selected_tickers:
+            fig = px.bar(result_df[result_df["ticker"].isin(selected_tickers)], x="ticker", y="potential_score",
+                         color="potential_score", title="Top tickery wg potencjału")
+            st.plotly_chart(fig, use_container_width=True)
 
-            if sentiment_df is None or sentiment_df.empty:
-                sentiment_df = pd.DataFrame(columns=['ticker', 'avg_sentiment'])
-                st.info("Brak sentymentów w bazie MongoDB. Zapisujesz sentymenty w bazie MongoDB.")
-
-            df_all = df_all.merge(sentiment_df, on='ticker', how='left')
-            df_all['avg_sentiment'] = df_all['avg_sentiment'].fillna(0.0)
-
-            df_all['market_cap_log'] = np.log1p(df_all['market_cap'].astype(float))
-            p_norm = (df_all['price'] - df_all['price'].min()) / (df_all['price'].max() - df_all['price'].min() + 1e-9)
-            mc_norm = (df_all['market_cap_log'] - df_all['market_cap_log'].min()) / (df_all['market_cap_log'].max() - df_all['market_cap_log'].min() + 1e-9)
-
-            if (df_all['avg_sentiment'].max() - df_all['avg_sentiment'].min()) > 0:
-                sentiment_norm = (df_all['avg_sentiment'] - df_all['avg_sentiment'].min()) / (df_all['avg_sentiment'].max() - df_all['avg_sentiment'].min())
-            else:
-                sentiment_norm = 0.0
-
-            # Normalizacja i potencjal_score jak wcześniej
-            df_all['potential_score'] = (0.5 * p_norm + 0.3 * mc_norm + 0.2 * sentiment_norm) * 100
-
-            # --> Dodaj agregację po tickerze, aby każdy ticker pojawiał się tylko raz
-            df_all['ticker'] = df_all['ticker'].astype(str).str.upper()  # ujednolicenie
-            df_unique = df_all.groupby('ticker', as_index=False).agg({
-                'company': 'first',  # albo najczęściej występująca nazwa
-                'price': 'last',  # cena z ostatniego rekordu
-                'market_cap': 'last',  # kapitalizacja z ostatniego rekordu
-                'avg_sentiment': 'mean',  # średni sentyment
-                'potential_score': 'max'  # najwyższy score
-            })
-
-            df_all_sorted = df_unique.sort_values(by='potential_score', ascending=False).head(top_n)
-            df_all_sorted['market_cap'] = df_all_sorted['market_cap'].apply(human_readable_market_cap)
-            st.dataframe(
-                df_all_sorted[['ticker', 'company', 'price', 'market_cap', 'avg_sentiment', 'potential_score']])
-
-            st.success("✅ Model zakończył pracę.")
-
+        ticker_input = st.text_input("Wpisz ticker:", "AAPL")
+        if st.button("Analizuj"):
+            analyze_single_ticker(ticker_input)
 
 def display_watchlist_tab(user_id, is_guest): # <-- ZMIANA
     if is_guest:

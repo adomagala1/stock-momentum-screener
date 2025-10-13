@@ -23,6 +23,7 @@ supabase: Client = create_client(st.session_state["sb_url"], st.session_state["s
 mongo_client = MongoClient(st.session_state["mongo_uri"])
 news_col = mongo_client[st.session_state["mongo_db"]].news
 
+
 # -------- FUNKCJE --------
 def load_all_stocks_data(supabase=st.session_state.get("supabase_client")):
     """Pobiera dane ze Supabase (tabela 'stocks_data') i konwertuje je do DataFrame"""
@@ -95,6 +96,22 @@ def create_forward_label(df_all, day, next_day):
     return merged
 
 
+def create_forward_label(df_all, day, next_day):
+    df_day = df_all[df_all["import_date"] == day].copy()
+    if next_day is None:
+        df_day["high_potential"] = (df_day["change"].fillna(0) > CHANGE_THRESHOLD_PCT).astype(int)
+        return df_day
+    df_next = df_all[df_all["import_date"] == next_day][["ticker", "price"]].rename(columns={"price": "price_next"})
+    merged = df_day.merge(df_next, on="ticker", how="left")
+    merged["future_pct"] = (merged["price_next"] - merged["price"]) / (merged["price"] + 1e-9) * 100
+    merged["high_potential"] = np.where(
+        merged["price_next"].notna(),
+        (merged["future_pct"] > FUTURE_THRESHOLD_PCT).astype(int),
+        (merged["change"].fillna(0) > CHANGE_THRESHOLD_PCT).astype(int)
+    )
+    return merged
+
+
 def process_historical():
     df_all = load_all_stocks_data(supabase)
     if df_all.empty:
@@ -118,7 +135,7 @@ def process_historical():
         if y.nunique() < 2 or len(df_day) < 5:
             p_norm = (X["price"] - X["price"].min()) / (X["price"].max() - X["price"].min() + 1e-9)
             mc_norm = (X["market_cap_log"] - X["market_cap_log"].min()) / (
-                        X["market_cap_log"].max() - X["market_cap_log"].min() + 1e-9)
+                    X["market_cap_log"].max() - X["market_cap_log"].min() + 1e-9)
             sentiment_norm = (X["avg_sentiment"] - X["avg_sentiment"].min()) / (abs(X["avg_sentiment"]).max() + 1e-9)
             df_day["potential_score"] = (0.4 * p_norm + 0.4 * mc_norm + 0.2 * sentiment_norm).fillna(0)
         else:
@@ -139,3 +156,53 @@ def process_historical():
     else:
         st.warning("Brak wyników do wyświetlenia")
 
+
+def analyze_single_ticker(ticker: str, date=None):
+    """Analizuje jeden ticker, pobiera dane, newsy i liczy potencjał"""
+    df_all = load_all_stocks_data(supabase)
+    if df_all.empty:
+        st.warning("Brak danych w tabeli stocks")
+        return
+
+    df_all = df_all.dropna(subset=["price", "volume", "market_cap"])
+    df_all = df_all[df_all["market_cap"] > 0]
+
+    if date is None:
+        date = df_all["import_date"].max()
+
+    next_day = None
+    dates = sorted(df_all["import_date"].unique())
+    if date in dates:
+        idx = dates.index(date)
+        if idx + 1 < len(dates):
+            next_day = dates[idx + 1]
+
+    df_day = create_forward_label(df_all, date, next_day)
+    df_day = df_day[df_day["ticker"].str.upper() == ticker.upper()]
+
+    if df_day.empty:
+        st.warning(f"Brak danych dla tickera {ticker} w dniu {date}")
+        return
+
+    # Pobieramy sentyment
+    sentiment_df = get_avg_sentiment([ticker], date)
+    df_day = df_day.merge(sentiment_df, on="ticker", how="left").fillna(0)
+
+    df_day["market_cap_log"] = np.log1p(df_day["market_cap"])
+    df_day["volume_log"] = np.log1p(df_day["volume"])
+
+    X = df_day[["price", "p_e", "market_cap_log", "volume_log", "change", "avg_sentiment"]].fillna(0)
+    y = df_day["high_potential"].fillna(0).astype(int)
+
+    if y.nunique() < 2 or len(df_day) < 5:
+        p_norm = (X["price"] - X["price"].min()) / (X["price"].max() - X["price"].min() + 1e-9)
+        mc_norm = (X["market_cap_log"] - X["market_cap_log"].min()) / (
+                X["market_cap_log"].max() - X["market_cap_log"].min() + 1e-9)
+        sentiment_norm = (X["avg_sentiment"] - X["avg_sentiment"].min()) / (abs(X["avg_sentiment"]).max() + 1e-9)
+        df_day["potential_score"] = (0.4 * p_norm + 0.4 * mc_norm + 0.2 * sentiment_norm).fillna(0)
+    else:
+        model = RandomForestClassifier(n_estimators=MODEL_N_ESTIMATORS, max_depth=MODEL_MAX_DEPTH, random_state=42)
+        model.fit(X, y)
+        df_day["potential_score"] = model.predict_proba(X)[:, 1]
+
+    st.dataframe(df_day[["ticker", "company", "price", "change", "potential_score"]])
