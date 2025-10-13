@@ -8,6 +8,7 @@ logging.basicConfig(
     format="%(asctime)s [%(levelname)s] %(message)s"
 )
 
+
 def get_exact_file(end_width: str,
                    get_only_tickers: bool,
                    with_filters: bool,
@@ -20,7 +21,7 @@ def get_exact_file(end_width: str,
     if file_type not in ("stocks", "news"):
         raise ValueError("file_type musi być 'stocks' lub 'news'")
 
-    base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__),  "data"))
+    base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "data"))
 
     if file_type == "stocks":
         folder = os.path.join(base_dir, "stocks", end_width)
@@ -39,10 +40,10 @@ def get_exact_file(end_width: str,
 
     files = glob.glob(file_pattern)
     if not files:
-        raise FileNotFoundError(f"Brak pliku '{filename_suffix.get((get_only_tickers, with_filters))}' w folderze {folder}")
+        raise FileNotFoundError(
+            f"Brak pliku '{filename_suffix.get((get_only_tickers, with_filters))}' w folderze {folder}")
 
     return files[0]
-
 
 
 def human_readable_market_cap(value):
@@ -53,12 +54,12 @@ def human_readable_market_cap(value):
         return value
 
     if value >= 1_000_000_000_000:
-        return f"{value/1_000_000_000_000:.2f}T"
+        return f"{value / 1_000_000_000_000:.2f}T"
     elif value >= 1_000_000_000:
-        return f"{value/1_000_000_000:.2f}B"
+        return f"{value / 1_000_000_000:.2f}B"
     elif value >= 1_000_000:
-        return f"{value/1_000_000:.2f}M"
+        return f"{value / 1_000_000:.2f}M"
     elif value >= 1_000:
-        return f"{value/1_000:.2f}K"
+        return f"{value / 1_000:.2f}K"
     else:
         return str(value)

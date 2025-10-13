@@ -165,7 +165,7 @@ def analyze_single_ticker(ticker: str, supabase_client: Client, news_collection)
     # Krok 1: Pobierz świeże dane dla podanego tickera
     try:
         st.write(f"Pobieram najnowsze dane dla **{ticker.upper()}** z Finviz...")
-        df_live_raw = fetch_finviz(tickers=[ticker.upper()], with_filters=True)
+        df_live_raw = fetch_finviz(tickers=ticker, with_filters=True)
         if df_live_raw.empty:
             st.error(f"Nie znaleziono danych dla tickera '{ticker.upper()}' w Finviz.")
             return pd.DataFrame()
