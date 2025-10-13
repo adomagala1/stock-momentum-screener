@@ -6,8 +6,8 @@ import plotly.express as px
 import numpy as np
 from pymongo.uri_parser import parse_uri
 from sqlalchemy.engine import Engine
+from load_demo_data import load_demo_secrets
 
-# Dodawanie ścieżki do folderu nadrzędnego, aby importy działały poprawnie
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from app.stocks import fetch_finviz
@@ -15,9 +15,10 @@ from app.news import fetch_google_news_rss, add_sentiment
 from app.predictive_model import load_all_stocks_data
 from app.web.auth import login, logout, register, check_login
 from app.web.watchlist import get_watchlist, add_to_watchlist, remove_from_watchlist
-from app.web.alerts import get_alerts, add_alert, remove_alert, ALERTS_CSS, render_styled_alert_card
+from app.web.alerts import get_alerts, add_alert, ALERTS_CSS, render_styled_alert_card
 from app.db.user_supabase_manager import clean_and_transform_for_db, SupabaseHandler
 from app.db.user_mongodb_manager import MongoNewsHandler
+from app.helpers import human_readable_market_cap
 
 # --- Konfiguracja strony ---
 st.set_page_config(page_title="Stock AI Dashboard", layout="wide", page_icon="📈")
@@ -54,38 +55,6 @@ def apply_custom_css():
     """, unsafe_allow_html=True)
     st.markdown(ALERTS_CSS, unsafe_allow_html=True)
 
-
-def load_demo_secrets():
-    """
-    Ładuje przykładowe dane do session_state, pobierając hasło do bazy demo
-    z bezpiecznego pliku secrets.toml.
-    """
-    try:
-        st.session_state["sb_url"] = "https://hhgljugljgxswlgedrzu.supabase.co"
-        st.session_state[
-            "sb_api"
-        ] = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhoZ2xqdWdsamd4c3dsZ2Vkcnp1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk3NjI4MjcsImV4cCI6MjA3NTMzODgyN30.fW22awElY4yEuaN67C8poCyFuKmAqVn_i94p6CqF3Fc"
-        st.session_state["mongo_uri"] = "mongodb+srv://adrian:Michaltonieja@cluster0.ehoobfy.mongodb.net/demo_db"
-        st.session_state["mongo_db"] = "demo_db"
-
-        st.session_state["sb_db_host"] = "db.hhgljugljgxswlgedrzu.supabase.co"
-        st.session_state["sb_db_user"] = "postgres"
-        st.session_state["sb_db_password"] = st.secrets.get("SUPABASE_DB_PASSWORD")
-
-        if not st.session_state["sb_db_password"]:
-            st.error("Brak hasła SUPABASE_DB_PASSWORD w pliku secrets.toml!")
-            return
-
-        st.session_state["sb_db_port"] = 5432
-        st.session_state["sb_db_name"] = "postgres"
-
-        st.session_state["db_configured"] = True
-        st.session_state["mongo_configured"] = True
-        st.toast("✅ Załadowano konfigurację demo!", icon="🔑")
-        st.rerun()
-
-    except (KeyError, AttributeError) as e:
-        st.error(f"🚨 Błąd konfiguracji bazy demo: {e}\nPlik: {__file__} | Moduł: {__name__}")
 
 
 def render_db_status_indicator(db_name: str, is_configured: bool):
@@ -262,7 +231,7 @@ def display_news_cards(df):
         """, unsafe_allow_html=True)
 
 
-def display_stocks_tab(): # <-- ZMIANA: Usunięto argument, bo nie jest potrzebny
+def display_stocks_tab():
     st.subheader("Pobierz dane giełdowe z Finviz")
     with st.form("finviz_form"):
         col1, col2, col3 = st.columns(3)
@@ -356,8 +325,8 @@ def display_news_section(user_id, is_guest=False):
             if st.button("💾 Zapisz do MongoDB", use_container_width=True, key=f"save_{active_ticker}"):
                 with st.spinner("Zapisuję newsy do bazy MongoDB..."):
                     records_to_insert = df_to_display.to_dict(orient="records")
-                    inserted_count = mongo_handler.add_news(records_to_insert)
-                    st.success(f"Zapisano {inserted_count} newsów dla {active_ticker} ✅")
+                    inserted_count = mongo_handler.insert_news(records_to_insert)
+                    st.toast(f"Zapisano {inserted_count} newsów dla {active_ticker} ", icon="😁")
         with col_reset:
             if st.button("🔄 Wyczyść wyniki", use_container_width=True, key=f"reset_{active_ticker}"):
                 # Usuwamy dane newsów i informację o aktywnym tickerze z sesji
@@ -400,13 +369,13 @@ def display_news_section(user_id, is_guest=False):
 
         if all_news:
             st.success("Pobrano i zapisano wszystkie newsy.")
-            mongo_handler.add_news(all_news)
+            mongo_handler.insert_news(all_news)
             st.success("Zapisano wszystkie newsy do bazy MongoDB.")
         else:
             st.info("Nie znaleziono żadnych nowych newsów do zapisania.")
 
 
-def display_model_tab(): # <-- ZMIANA
+def display_model_tab():
     st.subheader("🤖 Model Predykcyjny AI")
     st.info("Model ocenia spółki na podstawie ceny, kapitalizacji i sentymentu. Wymaga połączenia z Twoimi bazami danych.", icon="💡")
     top_n = st.slider("📊 Ile najlepszych spółek wyświetlić?", 5, 50, 20, 5)
@@ -424,7 +393,7 @@ def display_model_tab(): # <-- ZMIANA
                 st.error("Nie udało się utworzyć połączenia z bazą Supabase. Sprawdź dane w konfiguracji.")
                 return
 
-            df_all = load_all_stocks_data(engine)
+            df_all = load_all_stocks_data()
             if df_all.empty:
                 st.warning("Brak danych o spółkach w Twojej bazie. Najpierw pobierz i zapisz dane w zakładce 'Dane giełdowe'.")
                 return
@@ -433,12 +402,14 @@ def display_model_tab(): # <-- ZMIANA
             tickers = df_all['ticker'].dropna().unique().tolist()
             st.info(f"Pobieram sentyment dla {len(tickers)} unikalnych spółek...")
 
-            # <-- ZMIANA: Wywołanie metody, którą dodasz do swojej klasy
             sentiment_df = mongo_handler.get_average_sentiment_for_tickers(tickers)
 
-            if not sentiment_df.empty:
-                df_all = df_all.merge(sentiment_df, on='ticker', how='left')
-            df_all['avg_sentiment'] = df_all.get('avg_sentiment', pd.Series(0.0, index=df_all.index)).fillna(0.0)
+            if sentiment_df is None or sentiment_df.empty:
+                sentiment_df = pd.DataFrame(columns=['ticker', 'avg_sentiment'])
+                st.info("Brak sentymentów w bazie MongoDB. Zapisujesz sentymenty w bazie MongoDB.")
+
+            df_all = df_all.merge(sentiment_df, on='ticker', how='left')
+            df_all['avg_sentiment'] = df_all['avg_sentiment'].fillna(0.0)
 
             df_all['market_cap_log'] = np.log1p(df_all['market_cap'].astype(float))
             p_norm = (df_all['price'] - df_all['price'].min()) / (df_all['price'].max() - df_all['price'].min() + 1e-9)
@@ -449,11 +420,25 @@ def display_model_tab(): # <-- ZMIANA
             else:
                 sentiment_norm = 0.0
 
+            # Normalizacja i potencjal_score jak wcześniej
             df_all['potential_score'] = (0.5 * p_norm + 0.3 * mc_norm + 0.2 * sentiment_norm) * 100
-            df_all_sorted = df_all.sort_values(by='potential_score', ascending=False).head(top_n)
+
+            # --> Dodaj agregację po tickerze, aby każdy ticker pojawiał się tylko raz
+            df_all['ticker'] = df_all['ticker'].astype(str).str.upper()  # ujednolicenie
+            df_unique = df_all.groupby('ticker', as_index=False).agg({
+                'company': 'first',  # albo najczęściej występująca nazwa
+                'price': 'last',  # cena z ostatniego rekordu
+                'market_cap': 'last',  # kapitalizacja z ostatniego rekordu
+                'avg_sentiment': 'mean',  # średni sentyment
+                'potential_score': 'max'  # najwyższy score
+            })
+
+            df_all_sorted = df_unique.sort_values(by='potential_score', ascending=False).head(top_n)
+            df_all_sorted['market_cap'] = df_all_sorted['market_cap'].apply(human_readable_market_cap)
+            st.dataframe(
+                df_all_sorted[['ticker', 'company', 'price', 'market_cap', 'avg_sentiment', 'potential_score']])
 
             st.success("✅ Model zakończył pracę.")
-            st.dataframe(df_all_sorted[['ticker', 'company', 'price', 'market_cap', 'avg_sentiment', 'potential_score']])
 
 
 def display_watchlist_tab(user_id, is_guest): # <-- ZMIANA

@@ -116,3 +116,17 @@ def update_all_tickers(tickers: list):
         logging.info(f"({i}/{len(tickers)}) Aktualizacja newsów dla {t}")
         update_news_for_ticker(t)
 
+def get_average_sentiment(ticker: str):
+    """Oblicza średni sentiment dla podanego tickera"""
+    try:
+        result = news_col.aggregate([
+            {"$match": {"ticker": ticker}},
+            {"$group": {"_id": "$ticker", "average_sentiment": {"$avg": "$sentiment"}}}
+        ])
+        avg_sent = 0.0
+        for doc in result:
+            avg_sent = doc.get("average_sentiment", 0.0)
+        return avg_sent
+    except Exception as e:
+        print(f"Błąd pobierania sentiment dla {ticker}: {e}")
+        return 0.0

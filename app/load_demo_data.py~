@@ -1,0 +1,36 @@
+import streamlit as st
+
+
+def load_demo_secrets():
+    """
+    Ładuje przykładowe dane do session_state, pobierając hasło do bazy demo
+    z bezpiecznego pliku secrets.toml.
+    """
+    try:
+        st.session_state["sb_url"] = "https://hhgljugljgxswlgedrzu.supabase.co"
+        st.session_state[
+            "sb_api"
+        ] = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhoZ2xqdWdsamd4c3dsZ2Vkcnp1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk3NjI4MjcsImV4cCI6MjA3NTMzODgyN30.fW22awElY4yEuaN67C8poCyFuKmAqVn_i94p6CqF3Fc"
+        st.session_state[
+            "mongo_uri"] = "mongodb+srv://adrian:Michaltonieja@op.nj7khxf.mongodb.net/?retryWrites=true&w=majority&appName=op"
+        st.session_state["mongo_db"] = "news_db"
+
+        st.session_state["sb_db_host"] = "db.hhgljugljgxswlgedrzu.supabase.co"
+        st.session_state["sb_db_user"] = "postgres"
+        st.session_state["sb_db_password"] = st.secrets.get("SUPABASE_DB_PASSWORD")
+
+        if not st.session_state["sb_db_password"]:
+            st.error("Brak hasła SUPABASE_DB_PASSWORD w pliku secrets.toml!")
+            return
+
+        st.session_state["sb_db_port"] = 5432
+        st.session_state["sb_db_name"] = "postgres"
+
+        st.session_state["db_configured"] = True
+        st.session_state["mongo_configured"] = True
+
+        st.session_state["supabase_client"] = create_client(st.session_state["sb_url"], st.session_state["sb_api"])
+        st.toast("✅ Załadowano konfigurację demo!", icon="🔑")
+
+    except (KeyError, AttributeError) as e:
+        st.error(f"🚨 Błąd konfiguracji bazy demo: {e}\nPlik: {__file__} | Moduł: {__name__}")

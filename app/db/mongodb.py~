@@ -1,3 +1,4 @@
+# app/db/mongodb.py
 import os
 import logging
 from datetime import datetime
@@ -115,3 +116,15 @@ def update_all_tickers(tickers: list):
         logging.info(f"({i}/{len(tickers)}) Aktualizacja newsów dla {t}")
         update_news_for_ticker(t)
 
+def get_average_sentiment(ticker: str):
+    """Oblicza sredni sentiment dla podanego tickera"""
+    try:
+        result = news_col.aggregate([
+            {"$match": {"ticker": ticker}},
+            {"$group": {"_id": "$ticker", "average_sentiment": {"$avg": "$sentiment"}}}
+        ])
+        for doc in result:
+            return doc["average_sentiment"]
+
+    except Exception as e:
+        pass

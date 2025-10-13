@@ -2,21 +2,20 @@
 import pandas as pd
 from pymongo import MongoClient
 
-from app.db.mongodb import news_col, insert_news, get_latest_published, update_news_for_ticker, update_all_tickers
+from app.db.mongodb import news_col, get_average_sentiment, get_latest_published, update_news_for_ticker, update_all_tickers
 from app.news import add_sentiment
 import streamlit as st
 from dateutil import parser as date_parser
 
 
 class MongoNewsHandler:
-    def __init__(self, collection=news_col, mongo_uri=None, mongo_db=None):
-        self.collection = collection
+    def __init__(self, mongo_uri=None, mongo_db=None, collection_name="news_db"):
         self.client = MongoClient(mongo_uri)
         self.db = self.client[mongo_db]
-        self.news_col = self.get_collection()
+        self.collection = self.db[collection_name]
 
     def get_collection(self):
-        return self.db
+        return self.db["news"]
 
     def fetch_news(self, tickers: list):
         """Pobiera newsy z Mongo dla listy tickerów"""
@@ -30,10 +29,10 @@ class MongoNewsHandler:
             return pd.concat(dfs, ignore_index=True)
         return pd.DataFrame()
 
-    def insert_news(items: list):
+    def insert_news(self, items: list):
         """Wstawia listę newsów do kolekcji news w MongoDB"""
         if not items:
-            return
+            return 0
         try:
             for item in items:
                 if isinstance(item.get("published"), str):
@@ -42,10 +41,15 @@ class MongoNewsHandler:
                     except Exception as e:
                         item["published"] = None
                         print(f"Nie udało się sparsować daty: {e}")
-            news_col.insert_many(items)
-            print(f"Wstawiono {len(items)} newsów do MongoDB")
+
+            result = self.collection.insert_many(items)
+            inserted_count = len(result.inserted_ids)
+            print(f"Wstawiono {inserted_count} newsów do MongoDB")
+            return inserted_count
+
         except Exception as e:
             print("Błąd wstawiania newsów:", e)
+            return 0
 
     def update_news_for_ticker(self, ticker: str):
         """Aktualizuje newsy dla danego tickera"""
@@ -58,3 +62,11 @@ class MongoNewsHandler:
     def get_latest_date(self, ticker: str):
         """Zwraca najnowszą datę publikacji dla danego tickera"""
         return get_latest_published(ticker)
+
+    def get_average_sentiment_for_tickers(self, tickers: list):
+        """Zwraca średni sentiment dla listy tickerów w formie DataFrame"""
+        data = []
+        for ticker in tickers:
+            avg = get_average_sentiment(ticker)
+            data.append({"ticker": ticker, "avg_sentiment": avg})
+        return pd.DataFrame(data)
