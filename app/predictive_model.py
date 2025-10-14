@@ -87,12 +87,17 @@ def process_historical_analysis(_supabase_client: Client, _news_collection):
     df_all = df_all[df_all["market_cap"] > 0]
     dates = sorted(df_all["import_date"].unique())
 
+    if len(dates) < 1:
+        return pd.DataFrame()
+
     all_top = []
-    for idx, day in enumerate(dates):
-        next_day = dates[idx + 1] if idx + 1 < len(dates) else None
+
+    for idx, day in enumerate(dates[:-1]):
+        next_day = dates[idx + 1]
         df_day = create_forward_label(df_all, day, next_day)
         tickers = df_day["ticker"].tolist()
-        sentiment_df = MongoNewsHandler.get_average_sentiment_for_ticker(tickers, day)
+
+        sentiment_df = MongoNewsHandler.get_average_sentiment_for_tickers(tickers, as_of_date=day)
         df_day = df_day.merge(sentiment_df, on="ticker", how="left").fillna(0)
 
         df_day["market_cap_log"] = np.log1p(df_day["market_cap"])
@@ -125,17 +130,36 @@ def process_historical_analysis(_supabase_client: Client, _news_collection):
 
 
 def analyze_single_ticker(ticker: str, supabase_client: Client, news_collection):
+    """
+    Analizuje pojedynczy ticker 'na żywo', trenując model na najnowszych danych historycznych.
+    """
+    # KROK 1: Pobranie i oczyszczenie danych "na żywo" z Finviz
     try:
         st.write(f"Pobieram najnowsze dane dla **{ticker.upper()}** z Finviz...")
         df_live_raw = fetch_finviz_for_ticker(ticker=ticker.upper())
+
         if df_live_raw.empty:
             st.error(f"Nie znaleziono danych dla tickera '{ticker.upper()}' w Finviz.")
             return pd.DataFrame()
+
+        # POPRAWKA: Ujednolicenie nazw kolumn, które mogą być inne przy pobieraniu pojedynczej spółki
+        df_live_raw.rename(columns={
+            'Company': 'company', 'P/E': 'p_e', 'Price': 'price',
+            'Change': 'change', 'Volume': 'volume', 'Market Cap': 'market_cap',
+            'Ticker': 'ticker'
+        }, inplace=True)
+
+        # Zabezpieczenie na wypadek, gdyby scraper nie zwrócił kolumny 'ticker'
+        if 'ticker' not in df_live_raw.columns:
+            df_live_raw['ticker'] = ticker.upper()
+
         df_live = clean_and_transform_for_db(df_live_raw)
+
     except Exception as e:
-        st.error(f"Błąd podczas pobierania danych live dla {ticker.upper()}: {e}")
+        st.error(f"Błąd podczas pobierania lub przetwarzania danych live dla {ticker.upper()}: {e}")
         return pd.DataFrame()
 
+    # KROK 2: Załadowanie danych historycznych do treningu
     df_all_history = load_all_stocks_data(supabase_client)
     if df_all_history.empty:
         st.warning("Brak danych historycznych w bazie do wytrenowania modelu. Wynik może być niedokładny.")
@@ -147,8 +171,13 @@ def analyze_single_ticker(ticker: str, supabase_client: Client, news_collection)
 
     df_train = df_all_history[df_all_history["import_date"] == latest_history_date].copy()
 
+    # KROK 3: Przygotowanie danych treningowych (X_train, y_train)
+    # Obliczamy sentyment dla WSZYSTKICH spółek z dnia treningowego
     train_tickers = df_train["ticker"].tolist()
-    train_sentiment = MongoNewsHandler.get_average_sentiment_for_ticker(ticker)
+    train_sentiment = MongoNewsHandler.get_average_sentiment_for_tickers(
+        train_tickers,
+        as_of_date=latest_history_date
+    )
     df_train = df_train.merge(train_sentiment, on="ticker", how="left").fillna(0)
 
     df_train["market_cap_log"] = np.log1p(df_train["market_cap"])
@@ -156,10 +185,14 @@ def analyze_single_ticker(ticker: str, supabase_client: Client, news_collection)
 
     features = ["price", "p_e", "market_cap_log", "volume_log", "change", "avg_sentiment"]
     X_train = df_train[features].fillna(0)
-
     y_train = (df_train["change"].fillna(0) > CHANGE_THRESHOLD_PCT).astype(int)
 
-    live_sentiment = MongoNewsHandler.get_average_sentiment_for_ticker(ticker)
+    # KROK 4: Przygotowanie danych do predykcji (X_predict)
+    # Obliczamy sentyment dla analizowanej spółki z ostatnich 7 dni
+    live_sentiment = MongoNewsHandler.get_average_sentiment_for_ticker(
+        ticker,
+        as_of_date=datetime.now()
+    )
     df_live = df_live.merge(live_sentiment, on="ticker", how="left")
 
     if df_live['avg_sentiment'].isnull().any():
@@ -167,11 +200,11 @@ def analyze_single_ticker(ticker: str, supabase_client: Client, news_collection)
             f"Nie znaleziono aktualnych wiadomości (z ostatnich {NEWS_WINDOW_DAYS} dni) dla tickera {ticker.upper()}. Sentyment zostanie potraktowany jako neutralny (0).")
         df_live['avg_sentiment'].fillna(0, inplace=True)
 
-    # Reszta kodu bez zmian
     df_live["market_cap_log"] = np.log1p(df_live["market_cap"])
     df_live["volume_log"] = np.log1p(df_live["volume"])
     X_predict = df_live[features].fillna(0)
 
+    # KROK 5: Trening modelu i predykcja
     if y_train.nunique() < 2 or len(df_train) < 10:
         st.warning("Zbyt mało zróżnicowanych danych historycznych do wytrenowania modelu AI. Wynik jest uproszczony.")
         df_live["potential_score"] = 0.5
@@ -183,4 +216,6 @@ def analyze_single_ticker(ticker: str, supabase_client: Client, news_collection)
         df_live["potential_score"] = probabilities
         st.success(f"Analiza AI dla **{ticker.upper()}** zakończona.")
 
-    return df_live[["ticker", "company", "price", "change", "p_e", "volume", "avg_sentiment", "potential_score"]]
+    # KROK 6: Zwrócenie sformatowanych wyników
+    final_columns = ["ticker", "company", "price", "change", "p_e", "volume", "avg_sentiment", "potential_score"]
+    return df_live[final_columns]

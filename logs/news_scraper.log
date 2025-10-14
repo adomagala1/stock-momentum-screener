@@ -3989,3 +3989,532 @@ tornado.websocket.WebSocketClosedError
 2025-10-13 22:31:36,368 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
 2025-10-13 22:31:40,498 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
 2025-10-13 22:31:40,661 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-13 22:34:13,133 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-13 22:34:13,380 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:34:14,675 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:34:44,756 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-13 22:34:45,021 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:34:46,069 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:34:46,853 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:34:48,828 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:34:50,520 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-13 22:34:51,437 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=%2A "HTTP/2 200 OK"
+2025-10-13 22:34:52,494 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:34:52,891 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:34:54,233 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-13 22:34:54,428 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-13 22:34:54,439 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAAU+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:34:55,050 [INFO] RSS: znaleziono 10 pozycji dla AAAU
+2025-10-13 22:34:55,067 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AUTL+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:34:55,650 [INFO] RSS: znaleziono 10 pozycji dla AUTL
+2025-10-13 22:34:55,663 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AMN+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:34:56,347 [INFO] RSS: znaleziono 10 pozycji dla AMN
+2025-10-13 22:34:56,361 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ANY+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:34:57,283 [INFO] RSS: znaleziono 10 pozycji dla ANY
+2025-10-13 22:34:57,297 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AIOO+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:34:57,736 [INFO] RSS: znaleziono 8 pozycji dla AIOO
+2025-10-13 22:34:57,749 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ATXS+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:34:58,324 [INFO] RSS: znaleziono 10 pozycji dla ATXS
+2025-10-13 22:34:58,337 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AVNV+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:34:58,699 [INFO] RSS: znaleziono 4 pozycji dla AVNV
+2025-10-13 22:34:58,712 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AWR+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:34:59,368 [INFO] RSS: znaleziono 10 pozycji dla AWR
+2025-10-13 22:34:59,382 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AMCX+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:00,078 [INFO] RSS: znaleziono 10 pozycji dla AMCX
+2025-10-13 22:35:00,092 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ARQT+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:00,862 [INFO] RSS: znaleziono 10 pozycji dla ARQT
+2025-10-13 22:35:00,877 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ASA+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:01,794 [INFO] RSS: znaleziono 10 pozycji dla ASA
+2025-10-13 22:35:01,808 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ASEA+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:02,448 [INFO] RSS: znaleziono 10 pozycji dla ASEA
+2025-10-13 22:35:02,464 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ABAT+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:03,521 [INFO] RSS: znaleziono 10 pozycji dla ABAT
+2025-10-13 22:35:03,538 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ACDC+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:04,336 [INFO] RSS: znaleziono 10 pozycji dla ACDC
+2025-10-13 22:35:04,351 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AIMD+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:05,006 [INFO] RSS: znaleziono 10 pozycji dla AIMD
+2025-10-13 22:35:05,022 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AERT+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:05,842 [INFO] RSS: znaleziono 10 pozycji dla AERT
+2025-10-13 22:35:05,856 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAVM+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:06,424 [INFO] RSS: znaleziono 4 pozycji dla AAVM
+2025-10-13 22:35:06,437 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ABXB+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:06,793 [INFO] RSS: znaleziono 0 pozycji dla ABXB
+2025-10-13 22:35:06,794 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AIFU+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:07,204 [INFO] RSS: znaleziono 10 pozycji dla AIFU
+2025-10-13 22:35:07,217 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ARGX+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:07,914 [INFO] RSS: znaleziono 10 pozycji dla ARGX
+2025-10-13 22:35:07,930 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AXG+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:08,399 [INFO] RSS: znaleziono 10 pozycji dla AXG
+2025-10-13 22:35:08,412 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=BAND+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:09,190 [INFO] RSS: znaleziono 10 pozycji dla BAND
+2025-10-13 22:35:09,204 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ACFN+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:09,656 [INFO] RSS: znaleziono 10 pozycji dla ACFN
+2025-10-13 22:35:09,669 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AVSU+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:10,043 [INFO] RSS: znaleziono 4 pozycji dla AVSU
+2025-10-13 22:35:10,055 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AVBP+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:10,560 [INFO] RSS: znaleziono 10 pozycji dla AVBP
+2025-10-13 22:35:10,573 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AVSD+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:10,948 [INFO] RSS: znaleziono 3 pozycji dla AVSD
+2025-10-13 22:35:10,961 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AREC+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:12,006 [INFO] RSS: znaleziono 10 pozycji dla AREC
+2025-10-13 22:35:12,020 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AGI+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:12,760 [INFO] RSS: znaleziono 10 pozycji dla AGI
+2025-10-13 22:35:12,775 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AJUL+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:13,108 [INFO] RSS: znaleziono 4 pozycji dla AJUL
+2025-10-13 22:35:13,121 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ARTL+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:13,795 [INFO] RSS: znaleziono 10 pozycji dla ARTL
+2025-10-13 22:35:13,807 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=BABO+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:14,294 [INFO] RSS: znaleziono 10 pozycji dla BABO
+2025-10-13 22:35:14,307 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ARGT+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:14,945 [INFO] RSS: znaleziono 10 pozycji dla ARGT
+2025-10-13 22:35:14,959 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AUSF+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:15,354 [INFO] RSS: znaleziono 9 pozycji dla AUSF
+2025-10-13 22:35:15,367 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AVL+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:16,217 [INFO] RSS: znaleziono 10 pozycji dla AVL
+2025-10-13 22:35:16,230 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AFCG+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:16,827 [INFO] RSS: znaleziono 10 pozycji dla AFCG
+2025-10-13 22:35:16,891 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AMTD+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:17,712 [INFO] RSS: znaleziono 10 pozycji dla AMTD
+2025-10-13 22:35:17,725 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ARES+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:18,687 [INFO] RSS: znaleziono 10 pozycji dla ARES
+2025-10-13 22:35:18,700 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ALBT+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:19,267 [INFO] RSS: znaleziono 10 pozycji dla ALBT
+2025-10-13 22:35:19,279 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ADM+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:20,263 [INFO] RSS: znaleziono 10 pozycji dla ADM
+2025-10-13 22:35:20,291 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AOK+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:20,926 [INFO] RSS: znaleziono 10 pozycji dla AOK
+2025-10-13 22:35:20,948 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=APMU+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:21,500 [INFO] RSS: znaleziono 6 pozycji dla APMU
+2025-10-13 22:35:21,514 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AAM+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:22,231 [INFO] RSS: znaleziono 10 pozycji dla AAM
+2025-10-13 22:35:22,245 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AIN+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:23,024 [INFO] RSS: znaleziono 10 pozycji dla AIN
+2025-10-13 22:35:23,037 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AMRZ+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:23,717 [INFO] RSS: znaleziono 10 pozycji dla AMRZ
+2025-10-13 22:35:23,730 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=APLX+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:24,226 [INFO] RSS: znaleziono 5 pozycji dla APLX
+2025-10-13 22:35:24,238 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AMDG+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:24,772 [INFO] RSS: znaleziono 10 pozycji dla AMDG
+2025-10-13 22:35:24,786 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=APUS+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:25,413 [INFO] RSS: znaleziono 10 pozycji dla APUS
+2025-10-13 22:35:25,426 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ATFV+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:25,981 [INFO] RSS: znaleziono 10 pozycji dla ATFV
+2025-10-13 22:35:25,993 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=BAIG+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:26,928 [INFO] RSS: znaleziono 10 pozycji dla BAIG
+2025-10-13 22:35:26,941 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ANTX+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:27,510 [INFO] RSS: znaleziono 10 pozycji dla ANTX
+2025-10-13 22:35:27,524 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AIRG+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:27,993 [INFO] RSS: znaleziono 10 pozycji dla AIRG
+2025-10-13 22:35:28,007 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ADNT+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:28,760 [INFO] RSS: znaleziono 10 pozycji dla ADNT
+2025-10-13 22:35:28,773 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ARMK+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:29,582 [INFO] RSS: znaleziono 10 pozycji dla ARMK
+2025-10-13 22:35:29,595 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ASTL+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:30,332 [INFO] RSS: znaleziono 10 pozycji dla ASTL
+2025-10-13 22:35:30,346 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ATYR+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:31,244 [INFO] RSS: znaleziono 10 pozycji dla ATYR
+2025-10-13 22:35:31,256 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=BBAX+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:31,586 [INFO] RSS: znaleziono 1 pozycji dla BBAX
+2025-10-13 22:35:31,598 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AMZN+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:32,413 [INFO] RSS: znaleziono 10 pozycji dla AMZN
+2025-10-13 22:35:32,427 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ALV+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:33,135 [INFO] RSS: znaleziono 10 pozycji dla ALV
+2025-10-13 22:35:33,148 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ATOS+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:34,050 [INFO] RSS: znaleziono 10 pozycji dla ATOS
+2025-10-13 22:35:34,064 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ADSK+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:34,772 [INFO] RSS: znaleziono 10 pozycji dla ADSK
+2025-10-13 22:35:34,785 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ASO+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:35,504 [INFO] RSS: znaleziono 10 pozycji dla ASO
+2025-10-13 22:35:35,518 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ANF+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:36,608 [INFO] RSS: znaleziono 10 pozycji dla ANF
+2025-10-13 22:35:36,622 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ACIW+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:37,232 [INFO] RSS: znaleziono 10 pozycji dla ACIW
+2025-10-13 22:35:37,248 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ASPN+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:38,446 [INFO] RSS: znaleziono 10 pozycji dla ASPN
+2025-10-13 22:35:38,461 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ACOG+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:39,304 [INFO] RSS: znaleziono 10 pozycji dla ACOG
+2025-10-13 22:35:39,317 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AZNH+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:39,763 [INFO] RSS: znaleziono 0 pozycji dla AZNH
+2025-10-13 22:35:39,763 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AIRE+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:40,701 [INFO] RSS: znaleziono 10 pozycji dla AIRE
+2025-10-13 22:35:40,715 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ABL+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:41,306 [INFO] RSS: znaleziono 10 pozycji dla ABL
+2025-10-13 22:35:41,321 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AROW+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:41,976 [INFO] RSS: znaleziono 10 pozycji dla AROW
+2025-10-13 22:35:41,989 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ACLO+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:42,543 [INFO] RSS: znaleziono 1 pozycji dla ACLO
+2025-10-13 22:35:42,557 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AII+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:43,262 [INFO] RSS: znaleziono 10 pozycji dla AII
+2025-10-13 22:35:43,277 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=ASHS+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:43,964 [INFO] RSS: znaleziono 10 pozycji dla ASHS
+2025-10-13 22:35:43,978 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AOMR+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:44,433 [INFO] RSS: znaleziono 10 pozycji dla AOMR
+2025-10-13 22:35:44,449 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AGD+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:45,031 [INFO] RSS: znaleziono 10 pozycji dla AGD
+2025-10-13 22:35:45,045 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AVSC+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:45,564 [INFO] RSS: znaleziono 10 pozycji dla AVSC
+2025-10-13 22:35:45,577 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AVMA+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:46,167 [INFO] RSS: znaleziono 10 pozycji dla AVMA
+2025-10-13 22:35:46,182 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AEIS+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:35:46,823 [INFO] RSS: znaleziono 10 pozycji dla AEIS
+2025-10-13 22:36:00,351 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-13 22:36:00,602 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:36:02,009 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:36:02,774 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:36:04,363 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:36:05,833 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-13 22:36:06,268 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:36:06,462 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:36:15,115 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:36:15,170 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:36:15,616 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:36:16,817 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-13 22:36:17,043 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:36:17,212 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:38:30,826 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-13 22:38:31,110 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:38:32,620 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:38:33,394 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:38:35,053 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:38:36,357 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-13 22:38:36,598 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:38:36,751 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:38:42,609 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:38:42,626 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:38:43,047 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:38:44,273 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-13 22:38:45,121 [INFO] Pobrano dane dla AMD. Czas: 0:00:00.792080
+2025-10-13 22:38:46,043 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:38:46,212 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:40:56,621 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-13 22:40:56,874 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:40:58,142 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:40:58,938 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:41:00,662 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:41:02,185 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-13 22:41:02,424 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:41:02,609 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:41:07,599 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:41:07,893 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:41:08,319 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:41:09,575 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-13 22:41:10,413 [INFO] Pobrano dane dla AMD. Czas: 0:00:00.787144
+2025-10-13 22:41:11,312 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:41:11,502 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:42:16,940 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-13 22:42:17,199 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:42:18,422 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:42:19,172 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:42:21,102 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:42:22,388 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-13 22:42:22,689 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:42:22,954 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:42:27,415 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:42:27,444 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:42:27,910 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:42:29,164 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-13 22:42:30,177 [INFO] Pobrano dane dla AMD. Czas: 0:00:00.965459
+2025-10-13 22:42:31,311 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:42:31,535 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:43:31,928 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-13 22:43:32,206 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:43:34,007 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:43:34,799 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:43:36,415 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:43:37,744 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-13 22:43:38,012 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:43:38,241 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:43:45,511 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:43:46,027 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:43:47,302 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-13 22:43:47,556 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:43:47,775 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:43:49,431 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:43:49,801 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:43:51,284 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-13 22:43:52,299 [INFO] Pobrano dane dla AMD. Czas: 0:00:00.956443
+2025-10-13 22:43:53,250 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:43:53,450 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:48:31,322 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-13 22:48:31,576 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:48:32,818 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:48:33,582 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:48:35,172 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:48:36,481 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-13 22:48:36,699 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:48:36,891 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:48:41,243 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:48:41,292 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:48:41,722 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:48:43,022 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-13 22:48:44,079 [INFO] Pobrano dane dla AMD. Czas: 0:00:01.007582
+2025-10-13 22:48:45,044 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:48:45,216 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:50:37,219 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-13 22:50:37,474 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:50:38,771 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:50:39,547 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:50:41,202 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:50:42,565 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-13 22:50:42,813 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:50:43,002 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:52:39,881 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-13 22:52:40,182 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:52:41,285 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:52:42,185 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:52:44,245 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:52:45,755 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-13 22:52:46,004 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:52:46,164 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:52:52,235 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:52:52,526 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:52:53,029 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:52:54,288 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-13 22:52:55,133 [INFO] Pobrano dane dla AMD. Czas: 0:00:00.796045
+2025-10-13 22:52:56,107 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:52:56,305 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:53:13,828 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:53:14,254 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:53:14,392 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:53:14,687 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:53:14,693 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AMD+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:53:15,448 [INFO] RSS: znaleziono 10 pozycji dla AMD
+2025-10-13 22:53:15,727 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:53:15,999 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:53:17,291 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-13 22:53:17,531 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:53:17,701 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:53:18,643 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:53:18,945 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:53:20,641 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-13 22:53:20,866 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:53:21,053 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:55:03,074 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-13 22:55:03,323 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:55:04,532 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:55:05,289 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:55:06,916 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:55:08,299 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:55:08,317 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-13 22:55:10,930 [INFO] Pobrano 50 spó³ek. Czas: 0:00:02.491416
+2025-10-13 22:55:11,252 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:55:12,534 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-13 22:55:12,785 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:55:12,951 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:55:14,810 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:55:15,091 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:55:16,565 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-13 22:55:16,803 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:55:16,971 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:55:20,022 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:55:20,084 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:55:20,659 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:55:20,664 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AMD+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-13 22:55:21,679 [INFO] RSS: znaleziono 100 pozycji dla AMD
+2025-10-13 22:55:21,960 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:55:22,293 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:55:23,718 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-13 22:55:23,956 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:55:24,127 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:55:30,152 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:55:30,464 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:55:32,672 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-13 22:55:32,884 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:55:33,053 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:55:41,177 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:55:41,298 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 22:55:41,617 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:55:42,929 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-13 22:55:43,770 [INFO] Pobrano dane dla AMD. Czas: 0:00:00.789264
+2025-10-13 22:55:44,730 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 22:55:44,895 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 23:03:21,710 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-13 23:03:21,960 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 23:03:23,581 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 23:03:24,362 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 23:03:26,064 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 23:03:27,498 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-13 23:04:13,704 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-13 23:04:13,966 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 23:04:15,525 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 23:04:16,296 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 23:04:17,839 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 23:04:19,074 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-13 23:06:18,126 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-13 23:06:18,381 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 23:06:19,515 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 23:06:20,272 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 23:06:21,843 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 23:06:23,113 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-13 23:06:24,925 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 23:06:25,090 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 23:06:29,403 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-13 23:06:29,705 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-13 23:06:30,937 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-13 23:06:31,804 [INFO] Pobrano dane dla AMD. Czas: 0:00:00.818637
+2025-10-14 14:43:00,772 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-14 14:43:01,069 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-14 14:43:02,669 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-14 14:43:03,417 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-14 14:43:06,030 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 14:43:08,293 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-14 14:43:09,557 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=%2A "HTTP/2 200 OK"
+2025-10-14 14:43:12,550 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 14:43:12,800 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 14:43:23,387 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-14 14:43:23,402 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-14 14:43:23,844 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 14:43:25,024 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-14 14:43:25,870 [INFO] Pobrano dane dla AMD. Czas: 0:00:00.796838
+2025-10-14 15:01:00,677 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-14 15:01:00,940 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-14 15:01:02,151 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-14 15:01:02,969 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-14 15:01:05,254 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:01:07,222 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-14 15:01:18,701 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:01:18,884 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:01:25,866 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-14 15:01:26,167 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-14 15:01:27,006 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:01:28,569 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-14 15:01:29,646 [INFO] Pobrano dane dla AMD. Czas: 0:00:01.016556
+2025-10-14 15:01:30,480 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:01:30,657 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:15:05,259 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-14 15:15:05,516 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-14 15:15:08,546 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-14 15:15:09,262 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-14 15:15:11,417 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:15:12,867 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-14 15:15:13,165 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:15:13,417 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:15:19,079 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-14 15:15:19,532 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:15:20,427 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-14 15:15:20,838 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-14 15:15:20,850 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:15:22,150 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-14 15:15:23,005 [INFO] Pobrano dane dla AMD. Czas: 0:00:00.808216
+2025-10-14 15:15:30,279 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:15:30,503 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:42:53,845 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-14 15:42:54,032 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 200 OK"
+2025-10-14 15:44:33,852 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-14 15:44:34,135 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-14 15:44:35,915 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-14 15:44:36,862 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-14 15:44:39,347 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:44:41,414 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-14 15:44:42,614 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=%2A "HTTP/2 200 OK"
+2025-10-14 15:44:45,554 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:44:45,728 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:44:59,802 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-14 15:45:00,268 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:45:01,871 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-14 15:45:02,110 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:45:02,276 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:45:05,941 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-14 15:45:06,244 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:45:06,249 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AMD+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-14 15:45:07,288 [INFO] RSS: znaleziono 10 pozycji dla AMD
+2025-10-14 15:45:07,625 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-14 15:45:07,891 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:45:09,413 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-14 15:45:09,630 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:45:09,798 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:45:17,526 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-14 15:45:17,546 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-14 15:45:18,028 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:45:18,033 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AMD+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-14 15:45:18,461 [INFO] RSS: znaleziono 99 pozycji dla AMD
+2025-10-14 15:45:18,763 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-14 15:45:19,105 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:45:20,518 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-14 15:45:20,761 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:45:20,927 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:45:30,099 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-14 15:45:30,416 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:46:02,544 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-14 15:46:02,820 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:46:02,989 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:46:17,002 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-14 15:46:17,964 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:46:17,971 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AMD+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-14 15:46:18,372 [INFO] RSS: znaleziono 10 pozycji dla AMD
+2025-10-14 15:46:18,716 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-14 15:46:19,012 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:46:20,458 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-14 15:46:20,665 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:46:20,848 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:46:28,821 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-14 15:46:28,838 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-14 15:46:29,274 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:46:29,279 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AMD+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-14 15:46:29,713 [INFO] RSS: znaleziono 99 pozycji dla AMD
+2025-10-14 15:46:30,003 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-14 15:46:30,369 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:46:31,603 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-14 15:46:31,789 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-14 15:46:31,904 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:47:03,487 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-14 15:47:03,767 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:47:03,936 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:49:27,746 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-14 15:49:28,016 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-14 15:50:02,148 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-14 15:50:02,996 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-14 15:50:05,720 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:50:07,315 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-14 15:50:07,556 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:50:07,744 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:50:11,576 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-14 15:50:12,870 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-14 15:50:14,325 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:50:15,642 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-14 15:50:15,661 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-14 15:50:17,098 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:50:17,103 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AMD+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-14 15:50:18,034 [INFO] RSS: znaleziono 99 pozycji dla AMD
+2025-10-14 15:50:18,421 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-14 15:50:19,857 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:50:21,443 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-14 15:50:21,706 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:50:21,894 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:50:58,818 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-14 15:51:01,061 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:51:33,415 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=password "HTTP/2 200 OK"
+2025-10-14 15:51:33,693 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-14 15:51:37,998 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-14 15:51:38,827 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-14 15:51:41,604 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:51:42,898 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-14 15:51:43,232 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:51:43,433 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:51:45,426 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-14 15:51:46,644 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-14 15:51:48,301 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:51:49,541 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-14 15:51:49,786 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:51:49,984 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:51:52,035 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-14 15:51:53,570 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:51:55,101 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-14 15:51:55,363 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:51:55,573 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:52:00,695 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-14 15:52:01,958 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:52:01,963 [INFO] Pobieram RSS: https://news.google.com/rss/search?q=AMD+stock&hl=en-US&gl=US&ceid=US:en
+2025-10-14 15:52:02,325 [INFO] RSS: znaleziono 99 pozycji dla AMD
+2025-10-14 15:52:02,618 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-14 15:52:03,879 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:52:05,117 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-14 15:52:05,385 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:52:05,568 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:52:07,181 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-14 15:52:08,628 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:52:40,051 [INFO] HTTP Request: GET https://hhgljugljgxswlgedrzu.supabase.co/rest/v1/stocks_data?select=ticker "HTTP/2 200 OK"
+2025-10-14 15:52:40,314 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:52:40,480 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
+2025-10-14 15:52:54,994 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
+2025-10-14 15:52:56,487 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/watchlist?select=id%2Cticker&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"

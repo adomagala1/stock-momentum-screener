@@ -15,7 +15,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from app.stocks import fetch_finviz
 from app.news import fetch_google_news_rss, add_sentiment
-from app.predictive_model import initialize_clients, process_historical_analysis, analyze_single_ticker
+from app.predictive_model import *
 from app.web.auth import login, logout, register, check_login
 from app.web.watchlist import get_watchlist, add_to_watchlist, remove_from_watchlist
 from app.web.alerts import get_alerts, add_alert, ALERTS_CSS, render_styled_alert_card
@@ -300,7 +300,7 @@ def display_news_tab(user_id, is_guest=False):
         manual_ticker = st.text_input("...lub wpisz ticker ręcznie:", placeholder="np. AAPL").upper()
 
     ticker_to_analyze = manual_ticker if manual_ticker else selected_ticker
-    how_many_news = st.number_input("Ile newsow dla tej spolki pobrac?", min_value=1, value=10, max_value=500)
+    how_many_news = st.number_input("Ile newsow dla tej spolki pobrac?", min_value=1, value=10, max_value=100)
     if st.button("📥 Pobierz i analizuj newsy", type="primary", use_container_width=True):
         if not ticker_to_analyze:
             st.warning("Wybierz lub wpisz ticker do analizy.")

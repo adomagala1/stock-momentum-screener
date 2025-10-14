@@ -1,186 +1,253 @@
-# predictive_model.py
+import streamlit as st
+from sqlalchemy import create_engine
 
+import logging
+import os
+import sys
+from datetime import datetime, timedelta
 import pandas as pd
 import numpy as np
-from datetime import timedelta, date, datetime
-import streamlit as st
-from pytz import utc
+from sqlalchemy import create_engine, text
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import classification_report
 from pymongo import MongoClient
-from supabase import create_client, Client
-from postgrest.exceptions import APIError
 
-from app.db.user_supabase_manager import clean_and_transform_for_db
-from app.db.user_mongodb_manager import MongoNewsHandler
-from app.stocks import fetch_finviz_for_ticker
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+from app.config import settings
 
-# -------- PARAMETRY MODELU --------
+# -------- KONFIG --------
 NEWS_WINDOW_DAYS = 7
 FUTURE_THRESHOLD_PCT = 2.0
 CHANGE_THRESHOLD_PCT = 2.0
 MODEL_N_ESTIMATORS = 300
 MODEL_MAX_DEPTH = 10
 
+OUTPUT_DIR = "outputs"
+LOG_DIR = "logs/predictive"
+os.makedirs(OUTPUT_DIR, exist_ok=True)
+os.makedirs(LOG_DIR, exist_ok=True)
+LOG_FILE = os.path.join(LOG_DIR, "predictive_model.log")
 
-def initialize_clients():
-    """Tworzy i zwraca klientów do baz danych na podstawie st.session_state."""
-    if not st.session_state.get("db_configured") or not st.session_state.get("mongo_configured"):
-        raise ConnectionError("Bazy danych nie zostały skonfigurowane w st.session_state.")
+# -------- LOGOWANIE --------
+logger = logging.getLogger("predictive_model")
+logger.setLevel(logging.DEBUG)
 
-    supabase_client: Client = create_client(st.session_state["sb_url"], st.session_state["sb_api"])
-    mongo_client = MongoClient(st.session_state["mongo_uri"])
-    news_collection = mongo_client[st.session_state["mongo_db"]].news
-    return supabase_client, news_collection
+fh = logging.FileHandler(LOG_FILE)
+fh.setLevel(logging.DEBUG)
+ch = logging.StreamHandler()
+ch.setLevel(logging.INFO)
+
+fmt = logging.Formatter("%(asctime)s [%(levelname)s] %(message)s")
+fh.setFormatter(fmt)
+ch.setFormatter(fmt)
+
+logger.addHandler(fh)
+logger.addHandler(ch)
 
 
+def get_pg_engine():
+    if 'pg_url' not in st.session_state or 'pg_key' not in st.session_state:
+        st.error("❌ Brak konfiguracji PostgreSQL")
+        return None
+    engine = create_engine(st.session_state['pg_url'], echo=False, future=True)
+    return engine
 
-@st.cache_data(ttl=3600)
-def load_all_stocks_data(_supabase_client: Client):
-    """Pobiera dane z Supabase i konwertuje je do DataFrame."""
-    try:
-        resp = _supabase_client.table("stocks_data").select("*").execute()
-        df = pd.DataFrame(resp.data)
-        if df.empty:
-            return pd.DataFrame()
 
-        for col in ["price", "market_cap", "volume", "change", "p_e"]:
-            if col in df.columns:
-                df[col] = pd.to_numeric(df[col], errors='coerce')
-        if "import_date" in df.columns:
-            df["import_date"] = pd.to_datetime(df["import_date"], errors='coerce').dt.date
-        df.dropna(subset=["ticker", "price", "market_cap"], inplace=True)
+DATABASE_URL = f"postgresql://{settings.PG_USER}:{settings.PG_PASSWORD}@{settings.PG_HOST}:5432/{settings.PG_DB}?sslmode=require"
+
+engine = create_engine(DATABASE_URL, echo=False, future=True)
+
+mongo_client = MongoClient(settings.mongo_uri)
+mongo_db = mongo_client[settings.mongo_db]
+news_col = mongo_db["news"]
+
+
+# -------- HELPERY --------
+def init_predictions_table():
+    ddl = """
+    CREATE TABLE IF NOT EXISTS stocks_predictions (
+        id SERIAL PRIMARY KEY,
+        ticker VARCHAR(20),
+        company VARCHAR(255),
+        potential_score NUMERIC,
+        import_date DATE,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    );
+    """
+    with engine.begin() as conn:
+        conn.execute(text(ddl))
+    logger.info("Tabela stocks_predictions OK")
+
+
+def load_all_stocks_data() -> pd.DataFrame:
+    logger.info("Wczytuję stocks_data z Postgresa...")
+    df = pd.read_sql("SELECT * FROM stocks_data", engine)
+    if df.empty:
+        logger.error("Brak danych w stocks_data")
         return df
-    except APIError as e:
-        st.error(f"Błąd Supabase API: {e}")
-        return pd.DataFrame()
-    except Exception as e:
-        st.error(f"Nieoczekiwany błąd podczas ładowania danych giełdowych: {e}")
-        return pd.DataFrame()
+    if "import_date" in df.columns:
+        df["import_date"] = pd.to_datetime(df["import_date"]).dt.date
+    for col in ["market_cap", "p_e", "price", "change", "volume"]:
+        if col in df.columns:
+            df[col] = pd.to_numeric(df[col], errors="coerce")
+    logger.info(f"Pobrano {len(df)} rekordów ({df['import_date'].nunique()} dni)")
+    logger.debug(f"Kolumny: {df.columns.tolist()}")
+    return df
+
+
+def get_avg_sentiment_for_tickers(tickers, day, window_days=7):
+    """
+    Średni sentyment z newsów w oknie (domyślnie 7 dni) do danego dnia.
+    """
+    if not isinstance(day, (datetime, pd.Timestamp)):
+        day = pd.to_datetime(day)
+
+    start = day - timedelta(days=window_days)
+    end = day + timedelta(days=1)
+
+    cursor = news_col.aggregate([
+        {"$addFields": {
+            "published_dt": {
+                "$cond": {
+                    "if": {"$eq": [{"$type": "$published"}, "string"]},
+                    "then": {"$toDate": "$published"},
+                    "else": "$published"
+                }
+            }
+        }},
+        {"$match": {
+            "ticker": {"$in": list(tickers)},
+            "published_dt": {"$gte": start, "$lt": end}
+        }},
+        {"$group": {
+            "_id": "$ticker",
+            "avg_sentiment": {"$avg": "$sentiment"},
+            "count": {"$sum": 1}
+        }}
+    ])
+
+    results = list(cursor)
+    if not results:
+        logger.info(f"{day.date()}: brak newsów (okno {window_days} dni)")
+        return pd.DataFrame(columns=["ticker", "avg_sentiment"])
+
+    df = pd.DataFrame(results)
+    df.rename(columns={"_id": "ticker"}, inplace=True)
+
+    logger.info(f"{day.date()}: {len(df)} tickerów z sentymentem (z okna {window_days} dni)")
+    return df
 
 
 def create_forward_label(df_all, day, next_day):
-    """Tworzy etykietę 'high_potential' na podstawie przyszłej ceny."""
     df_day = df_all[df_all["import_date"] == day].copy()
     if next_day is None:
+        logger.info(f"Brak next_day dla {day} — label na podstawie same-day change")
         df_day["high_potential"] = (df_day["change"].fillna(0) > CHANGE_THRESHOLD_PCT).astype(int)
         return df_day
-
     df_next = df_all[df_all["import_date"] == next_day][["ticker", "price"]].rename(columns={"price": "price_next"})
     merged = df_day.merge(df_next, on="ticker", how="left")
-    merged["future_pct"] = (merged["price_next"] - merged["price"]) / (merged["price"] + 1e-9) * 100
+    merged["future_pct"] = (merged["price_next"] - merged["price"]) / merged["price"] * 100
     merged["high_potential"] = np.where(
         merged["price_next"].notna(),
         (merged["future_pct"] > FUTURE_THRESHOLD_PCT).astype(int),
-        (merged["change"].fillna(0) > CHANGE_THRESHOLD_PCT).astype(int)
+        (merged["change"].fillna(0) > CHANGE_THRESHOLD_PCT).astype(int),
     )
     return merged
 
 
-@st.cache_data(ttl=3600)
-def process_historical_analysis(_supabase_client: Client, _news_collection):
-    """Przetwarza wszystkie dane historyczne i zwraca ranking tickerów."""
-    df_all = load_all_stocks_data(_supabase_client)
+# -------- PIPELINE GŁÓWNY --------
+def process_historical():
+    init_predictions_table()
+    df_all = load_all_stocks_data()
     if df_all.empty:
-        return pd.DataFrame()
+        return
 
+    # filtr podstawowy
     df_all = df_all.dropna(subset=["price", "volume", "market_cap"])
     df_all = df_all[df_all["market_cap"] > 0]
+
     dates = sorted(df_all["import_date"].unique())
+    logger.info(f"Przetwarzam {len(dates)} dni: {dates}")
+    all_top_rows = []
 
-    all_top = []
     for idx, day in enumerate(dates):
-        next_day = dates[idx + 1] if idx + 1 < len(dates) else None
-        df_day = create_forward_label(df_all, day, next_day)
-        tickers = df_day["ticker"].tolist()
-        sentiment_df = MongoNewsHandler.get_average_sentiment_for_ticker(tickers)
-        df_day = df_day.merge(sentiment_df, on="ticker", how="left").fillna(0)
+        try:
+            next_day = dates[idx + 1] if idx + 1 < len(dates) else None
+            logger.info(f"Przetwarzanie dnia {day} (next={next_day})")
 
-        df_day["market_cap_log"] = np.log1p(df_day["market_cap"])
-        df_day["volume_log"] = np.log1p(df_day["volume"])
+            df_day = create_forward_label(df_all, day, next_day)
+            tickers = df_day["ticker"].dropna().unique().tolist()
+            if not tickers:
+                logger.warning(f"Brak tickerów dla {day}, pomijam")
+                continue
 
-        features = ["price", "p_e", "market_cap_log", "volume_log", "change", "avg_sentiment"]
-        X = df_day[features].fillna(0)
-        y = df_day["high_potential"].fillna(0).astype(int)
+            sentiment_df = get_avg_sentiment_for_tickers(tickers, day)
+            df_day = df_day.merge(sentiment_df, on="ticker", how="left")
+            df_day["avg_sentiment"] = df_day["avg_sentiment"].fillna(0.0)
 
-        if y.nunique() < 2 or len(df_day) < 5:
-            p_norm = (X["price"] - X["price"].min()) / (X["price"].max() - X["price"].min() + 1e-9)
-            mc_norm = (X["market_cap_log"] - X["market_cap_log"].min()) / (
+            # cechy
+            df_day["market_cap_log"] = np.log1p(df_day["market_cap"].astype(float))
+            df_day["volume_log"] = np.log1p(df_day["volume"].astype(float))
+            df_day[["price", "p_e", "change"]] = df_day[["price", "p_e", "change"]].fillna(0)
+
+            logger.debug(f"Przykładowe wiersze {day}: {df_day.head(3).to_dict('records')}")
+            feature_cols = ["price", "p_e", "market_cap_log", "volume_log", "change", "avg_sentiment"]
+            X = df_day[feature_cols].fillna(0)
+            y = df_day["high_potential"].fillna(0).astype(int)
+
+            if y.nunique() < 2 or len(df_day) < 5:
+                logger.warning(f"Niewystarczająca wariancja labeli dla {day} — fallback scoring")
+                p_norm = (X["price"] - X["price"].min()) / (X["price"].max() - X["price"].min() + 1e-9)
+                mc_norm = (X["market_cap_log"] - X["market_cap_log"].min()) / (
                         X["market_cap_log"].max() - X["market_cap_log"].min() + 1e-9)
-            sentiment_norm = (X["avg_sentiment"] - X["avg_sentiment"].min()) / (abs(X["avg_sentiment"]).max() + 1e-9)
-            df_day["potential_score"] = (0.4 * p_norm + 0.4 * mc_norm + 0.2 * sentiment_norm).fillna(0)
-        else:
-            model = RandomForestClassifier(n_estimators=MODEL_N_ESTIMATORS, max_depth=MODEL_MAX_DEPTH, random_state=42)
-            model.fit(X, y)
-            df_day["potential_score"] = model.predict_proba(X)[:, 1]
+                sentiment_norm = (X["avg_sentiment"] - X["avg_sentiment"].min()) / (
+                        abs(X["avg_sentiment"]).max() + 1e-9)
+                df_day["potential_score"] = (0.4 * p_norm + 0.4 * mc_norm + 0.2 * sentiment_norm).fillna(0)
+            else:
+                X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, shuffle=False)
+                model = RandomForestClassifier(n_estimators=MODEL_N_ESTIMATORS, max_depth=MODEL_MAX_DEPTH,
+                                               random_state=42)
+                model.fit(X_train, y_train)
+                y_pred = model.predict(X_test)
+                report = classification_report(y_test, y_pred, zero_division=0)
+                logger.info(f"{day} classification report:\n{report}")
+                df_day["potential_score"] = model.predict_proba(X)[:, 1]
 
-        top = df_day.sort_values("potential_score", ascending=False).head(20)
-        all_top.append(top[["ticker", "company", "potential_score"]])
+            # top 20
+            top_day = df_day.sort_values("potential_score", ascending=False).head(20)
+            logger.info(f"Top tickery {day}: {top_day['ticker'].tolist()[:10]}")
 
-    if not all_top:
-        return pd.DataFrame()
+            save_cols = ["ticker", "company", "potential_score"]
+            top_day_to_save = top_day[save_cols].copy()
+            top_day_to_save["import_date"] = pd.to_datetime(day)
 
-    result_df = pd.concat(all_top, ignore_index=True)
-    result_df = result_df.groupby("ticker", as_index=False).agg({"company": "first", "potential_score": "max"})
-    return result_df.sort_values("potential_score", ascending=False).reset_index(drop=True)
+            per_day_csv = os.path.join(OUTPUT_DIR, f"top_stocks_predictions_{day}.csv")
+            top_day_to_save.to_csv(per_day_csv, index=False)
+            logger.debug(f"Zapisano CSV: {per_day_csv}")
 
+            all_top_rows.append(top_day_to_save)
 
-def analyze_single_ticker(ticker: str, supabase_client: Client, news_collection):
-    try:
-        st.write(f"Pobieram najnowsze dane dla **{ticker.upper()}** z Finviz...")
-        df_live_raw = fetch_finviz_for_ticker(ticker=ticker.upper())
-        if df_live_raw.empty:
-            st.error(f"Nie znaleziono danych dla tickera '{ticker.upper()}' w Finviz.")
-            return pd.DataFrame()
-        df_live = clean_and_transform_for_db(df_live_raw)
-    except Exception as e:
-        st.error(f"Błąd podczas pobierania danych live dla {ticker.upper()}: {e}")
-        return pd.DataFrame()
+            try:
+                top_day_to_save.to_sql("stocks_predictions", engine, if_exists="append", index=False)
+                logger.debug(f"Zapisano do DB dla {day}")
+            except Exception as e:
+                logger.error(f"DB insert error dla {day}: {e}")
 
-    df_all_history = load_all_stocks_data(supabase_client)
-    if df_all_history.empty:
-        st.warning("Brak danych historycznych w bazie do wytrenowania modelu. Wynik może być niedokładny.")
-        df_live["potential_score"] = "Brak danych do oceny"
-        return df_live
+        except Exception as e:
+            logger.exception(f"Błąd podczas przetwarzania {day}: {e}")
 
-    latest_history_date = df_all_history["import_date"].max()
-    st.write(f"Używam danych historycznych z dnia **{latest_history_date}** do treningu modelu.")
-
-    df_train = df_all_history[df_all_history["import_date"] == latest_history_date].copy()
-
-    train_tickers = df_train["ticker"].tolist()
-    train_sentiment = MongoNewsHandler.get_average_sentiment_for_ticker(ticker)
-    df_train = df_train.merge(train_sentiment, on="ticker", how="left").fillna(0)
-
-    df_train["market_cap_log"] = np.log1p(df_train["market_cap"])
-    df_train["volume_log"] = np.log1p(df_train["volume"])
-
-    features = ["price", "p_e", "market_cap_log", "volume_log", "change", "avg_sentiment"]
-    X_train = df_train[features].fillna(0)
-
-    y_train = (df_train["change"].fillna(0) > CHANGE_THRESHOLD_PCT).astype(int)
-
-    live_sentiment = MongoNewsHandler.get_average_sentiment_for_ticker(ticker)
-    df_live = df_live.merge(live_sentiment, on="ticker", how="left")
-
-    if df_live['avg_sentiment'].isnull().any():
-        st.warning(
-            f"Nie znaleziono aktualnych wiadomości (z ostatnich {NEWS_WINDOW_DAYS} dni) dla tickera {ticker.upper()}. Sentyment zostanie potraktowany jako neutralny (0).")
-        df_live['avg_sentiment'].fillna(0, inplace=True)
-
-    # Reszta kodu bez zmian
-    df_live["market_cap_log"] = np.log1p(df_live["market_cap"])
-    df_live["volume_log"] = np.log1p(df_live["volume"])
-    X_predict = df_live[features].fillna(0)
-
-    if y_train.nunique() < 2 or len(df_train) < 10:
-        st.warning("Zbyt mało zróżnicowanych danych historycznych do wytrenowania modelu AI. Wynik jest uproszczony.")
-        df_live["potential_score"] = 0.5
+    if all_top_rows:
+        combined = pd.concat(all_top_rows, ignore_index=True)
+        combined_csv = os.path.join(OUTPUT_DIR, "top_stocks_predictions_all_days.csv")
+        combined.to_csv(combined_csv, index=False)
+        logger.info(f"Zapisano zbiorcze CSV: {combined_csv}")
     else:
-        model = RandomForestClassifier(n_estimators=MODEL_N_ESTIMATORS, max_depth=MODEL_MAX_DEPTH, random_state=42,
-                                       class_weight='balanced')
-        model.fit(X_train, y_train)
-        probabilities = model.predict_proba(X_predict)[:, 1]
-        df_live["potential_score"] = probabilities
-        st.success(f"Analiza AI dla **{ticker.upper()}** zakończona.")
+        logger.warning("Brak wyników do zapisania.")
 
-    return df_live[["ticker", "company", "price", "change", "p_e", "volume", "avg_sentiment", "potential_score"]]
+
+# -------- ENTRYPOINT --------
+if __name__ == "__main__":
+    logger.info("Start")
+    process_historical()
+    logger.info("Koniec")

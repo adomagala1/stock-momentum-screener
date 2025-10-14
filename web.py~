@@ -300,13 +300,13 @@ def display_news_tab(user_id, is_guest=False):
         manual_ticker = st.text_input("...lub wpisz ticker ręcznie:", placeholder="np. AAPL").upper()
 
     ticker_to_analyze = manual_ticker if manual_ticker else selected_ticker
-
+    how_many_news = st.number_input("Ile newsow dla tej spolki pobrac?", min_value=1, value=10, max_value=100)
     if st.button("📥 Pobierz i analizuj newsy", type="primary", use_container_width=True):
         if not ticker_to_analyze:
             st.warning("Wybierz lub wpisz ticker do analizy.")
         else:
             with st.spinner(f"Pobieram i analizuję newsy dla {ticker_to_analyze}..."):
-                df_news = fetch_google_news_rss(ticker_to_analyze)
+                df_news = fetch_google_news_rss(ticker_to_analyze, limit=how_many_news)
                 if df_news is None or df_news.empty:
                     st.warning(f"Nie znaleziono newsów dla {ticker_to_analyze}.")
                     st.session_state.news_data = {"ticker": None, "df": pd.DataFrame()}

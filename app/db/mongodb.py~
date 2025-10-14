@@ -1,7 +1,7 @@
 # app/db/mongodb.py
 import os
 import logging
-from datetime import datetime, timedelta
+from datetime import datetime
 import pandas as pd
 import streamlit as st
 from app.news import fetch_news_for_ticker, add_sentiment
@@ -111,41 +111,17 @@ def update_all_tickers(tickers: list):
         update_news_for_ticker(t)
 
 
-def get_average_sentiment(ticker: str, as_of_date=None, window_days=7):
-    """Oblicza średni sentiment dla podanego tickera w danym oknie czasowym."""
+def get_average_sentiment(ticker: str):
+    """Oblicza średni sentiment dla podanego tickera"""
     try:
-        # Budujemy bazowy warunek $match
-        match_condition = {"ticker": ticker}
-
-        # Jeśli podano datę, dodajemy filtrowanie po dacie
-        if as_of_date:
-            # Upewniamy się, że as_of_date jest obiektem datetime
-            if isinstance(as_of_date, pd.Timestamp):
-                end_date = as_of_date.to_pydatetime()
-            elif hasattr(as_of_date, 'to_pydatetime'):  # np. z pandas
-                end_date = as_of_date.to_pydatetime()
-            else:
-                end_date = datetime.combine(as_of_date, datetime.min.time())
-
-            start_date = end_date - timedelta(days=window_days)
-
-            # Dodajemy warunek daty do zapytania
-            match_condition["published"] = {
-                "$gte": start_date,
-                "$lt": end_date
-            }
-
         result = news_col.aggregate([
-            {"$match": match_condition},
+            {"$match": {"ticker": ticker}},
             {"$group": {"_id": "$ticker", "average_sentiment": {"$avg": "$sentiment"}}}
         ])
-
         avg_sent = 0.0
         for doc in result:
-            # Jeśli grupa jest pusta, avg zwraca null. Obsługujemy ten przypadek.
-            if doc.get("average_sentiment") is not None:
-                avg_sent = doc["average_sentiment"]
+            avg_sent = doc.get("average_sentiment", 0.0)
         return avg_sent
     except Exception as e:
-        st.error(f"Błąd obliczania średniego sentimentu: {e}")
+        st.error(f"Błąd obliczania średniego sentimentu: {e}")
         return 0.0

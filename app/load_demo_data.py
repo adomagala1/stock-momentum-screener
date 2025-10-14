@@ -13,7 +13,7 @@ def load_demo_secrets():
             "sb_api"
         ] = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhoZ2xqdWdsamd4c3dsZ2Vkcnp1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk3NjI4MjcsImV4cCI6MjA3NTMzODgyN30.fW22awElY4yEuaN67C8poCyFuKmAqVn_i94p6CqF3Fc"
         st.session_state[
-            "mongo_uri"] = "mongodb+srv://adrian:Michaltonieja@op.nj7khxf.mongodb.net/?retryWrites=true&w=majority&appName=op"
+            "mongo_uri"] = "mongodb+srv://adrian:Michaltonieja@cluster0.ehoobfy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
         st.session_state["mongo_db"] = "news_db"
 
         st.session_state["sb_db_host"] = "db.hhgljugljgxswlgedrzu.supabase.co"
