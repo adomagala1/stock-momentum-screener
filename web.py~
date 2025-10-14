@@ -89,7 +89,7 @@ def render_guest_lock_ui(title: str, icon: str, description: str):
 def render_login_page():
     _, col_main, _ = st.columns([1, 1.5, 1])
     with col_main:
-        st.markdown("<h1 style='text-align: center; color: white;'>📈 AI Stock Screener</h1>", unsafe_allow_html=True)
+        st.markdown("<h1 style='text-align: center; color: white;'> AI Stock Playground </h1>", unsafe_allow_html=True)
         st.markdown("<p style='text-align: center;'>Zaloguj się, zarejestruj lub kontynuuj jako gość.</p>",
                     unsafe_allow_html=True)
         login_tab, register_tab, guest_tab = st.tabs(["**Logowanie**", "**Rejestracja**", "**Tryb Gościa**"])
@@ -408,9 +408,17 @@ def display_watchlist_tab(user_id, is_guest):
     with st.form("add_watchlist_form", clear_on_submit=True):
         col1, col2 = st.columns([3, 1])
         ticker_input = col1.text_input("Dodaj spółkę do watchlisty", placeholder="np. AAPL")
-        if col2.form_submit_button("➕ Dodaj", type="primary", use_container_width=True):
-            if ticker_input:
+
+        submit_btn = col2.form_submit_button("➕ Dodaj", type="primary", use_container_width=True)
+
+        if submit_btn:
+            if not ticker_input:
+                st.warning("Wpisz ticker spółki!")
+            elif len(ticker_input) > 20:
+                st.warning("Maksymalnie 20 znaków!")
+            else:
                 add_to_watchlist(user_id, ticker_input.upper())
+                st.success(f"Dodano {ticker_input.upper()} do watchlisty ✅")
                 st.rerun()
 
     watchlist = get_watchlist(user_id)

@@ -82,10 +82,11 @@ def logout():
     except Exception:
         pass
 
+    # 🧹 Wyczyść sesję i URL
     for key in ['user', 'access_token', 'refresh_token', 'is_guest']:
         st.session_state.pop(key, None)
 
-    st.query_params.clear()
+    st.query_params.clear()  # usuń tokeny z adresu
     st.success("👋 Wylogowano pomyślnie")
 
 

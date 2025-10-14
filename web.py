@@ -408,13 +408,18 @@ def display_watchlist_tab(user_id, is_guest):
     with st.form("add_watchlist_form", clear_on_submit=True):
         col1, col2 = st.columns([3, 1])
         ticker_input = col1.text_input("Dodaj spółkę do watchlisty", placeholder="np. AAPL")
-        if len(ticker_input) > 20:
-            st.warning("Maksymalnie 20 znaków.")
-        else:
-            if col2.form_submit_button("➕ Dodaj", type="primary", use_container_width=True):
-                if ticker_input:
-                    add_to_watchlist(user_id, ticker_input.upper())
-                    st.rerun()
+
+        submit_btn = col2.form_submit_button("➕ Dodaj", type="primary", use_container_width=True)
+
+        if submit_btn:
+            if not ticker_input:
+                st.warning("Wpisz ticker spółki!")
+            elif len(ticker_input) > 20:
+                st.warning("Maksymalnie 20 znaków!")
+            else:
+                add_to_watchlist(user_id, ticker_input.upper())
+                st.success(f"Dodano {ticker_input.upper()} do watchlisty ✅")
+                st.rerun()
 
     watchlist = get_watchlist(user_id)
     if watchlist:
@@ -441,12 +446,26 @@ def display_alerts_tab(user_id, is_guest):
         with st.form("add_alert_form", clear_on_submit=True):
             col1, col2, col3 = st.columns(3)
             ticker_input = col1.text_input("Ticker", placeholder="np. TSLA")
-            target_price = col2.number_input("Cena docelowa", min_value=0.01, value=100.0, step=0.01, format="%.2f")
+            target_price = col2.number_input(
+                "Cena docelowa", min_value=0.01, value=100.0, step=0.01, format="%.2f"
+            )
             condition = col3.radio("Warunek", ["Powyżej", "Poniżej"], horizontal=True)
-            if st.form_submit_button("💾 Dodaj alert", type="primary", use_container_width=True):
-                if ticker_input and target_price > 0:
-                    add_alert(user_id, ticker_input.upper(), target_price,
-                              "above" if condition == "Powyżej" else "below")
+
+            submit_btn = st.form_submit_button("💾 Dodaj alert", type="primary", use_container_width=True)
+
+            if submit_btn:
+                if not ticker_input:
+                    st.warning("Wpisz ticker spółki!")
+                elif target_price <= 0:
+                    st.warning("Cena docelowa musi być większa od 0!")
+                else:
+                    add_alert(
+                        user_id,
+                        ticker_input.upper(),
+                        target_price,
+                        "above" if condition == "Powyżej" else "below"
+                    )
+                    st.success(f"Dodano alert dla {ticker_input.upper()} ✅")
                     st.rerun()
 
     alerts = get_alerts(user_id)
@@ -456,8 +475,7 @@ def display_alerts_tab(user_id, is_guest):
         for alert in alerts:
             col_card, col_btn = st.columns([1, 0.2])
             with col_card:
-                st.markdown(render_styled_alert_card(alert),
-                            unsafe_allow_html=True)
+                st.markdown(render_styled_alert_card(alert), unsafe_allow_html=True)
             with col_btn:
                 if st.button("❌ Usuń", key=f"del_alert_{alert['id']}", use_container_width=True):
                     remove_alert(alert['id'], user_id)
