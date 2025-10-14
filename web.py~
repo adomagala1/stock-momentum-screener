@@ -124,7 +124,7 @@ def render_dashboard():
 
     col_title, col_user = st.columns([0.7, 0.3])
     with col_title:
-        st.title("📈 AI Stock Screener")
+        st.title("🛝 Stock Playground")
     with col_user:
         st.markdown("<div style='text-align: right; padding-top: 10px;'>", unsafe_allow_html=True)
         if is_guest:
@@ -284,8 +284,11 @@ def display_news_tab(user_id, is_guest=False):
 
     ticker_to_analyze = manual_ticker if manual_ticker else selected_ticker
     how_many_news = st.number_input("Ile newsów dla tej spółki pobrać?", min_value=1, value=10, max_value=100)
-    if st.button("📥 Pobierz i analizuj newsy", type="primary", use_container_width=True, disabled=True if not st.session_state.get("mongo_configured") else False):
-        mongo_handler = MongoNewsHandler(st.session_state.get("mongo_uri"), st.session_state.get("mongo_db"))
+
+    if st.button("📥 Pobierz i analizuj newsy", type="primary", use_container_width=True):
+        mongo_handler = None
+        if st.session_state.get("mongo_configured"):
+            mongo_handler = MongoNewsHandler(st.session_state.get("mongo_uri"), st.session_state.get("mongo_db"))
 
         if not ticker_to_analyze:
             st.warning("Wybierz lub wpisz ticker do analizy.")
@@ -300,15 +303,18 @@ def display_news_tab(user_id, is_guest=False):
                     st.session_state.news_data = {"ticker": ticker_to_analyze, "df": df_news_sentiment}
             st.rerun()
 
-    active_ticker = st.session_state.news_data["ticker"]
-    df_to_display = st.session_state.news_data["df"]
+    # Wyświetlanie wyników dla pojedynczego tickera
+    active_ticker = st.session_state.news_data.get("ticker") if "news_data" in st.session_state else None
+    df_to_display = st.session_state.news_data.get("df") if "news_data" in st.session_state else pd.DataFrame()
 
     if active_ticker and not df_to_display.empty:
         st.markdown(f"#### Wyniki dla: **{active_ticker}**")
         display_news_cards(df_to_display)
 
     st.divider()
-    if st.session_state.get("mongo_configured"):
+
+    # Pobieranie newsów dla wszystkich tickers z Supabase
+    if st.session_state.get("mongo_configured") and st.session_state.get("db_configured"):
         sb_handler = SupabaseHandler(st.session_state["sb_url"], st.session_state["sb_api"])
         all_tickers_count = len(sb_handler.get_all_tickers_from_supabase())
         news_limit = st.text_input(f"🔢 Limit newsów na spółkę: (Masz ich w Supabase {all_tickers_count})",
@@ -321,10 +327,6 @@ def display_news_tab(user_id, is_guest=False):
                 st.warning("Podaj poprawny limit (liczbę całkowitą).", icon="⚠️")
                 st.stop()
 
-            if not st.session_state.get("db_configured"):
-                st.warning("Ta funkcja wymaga połączenia z Supabase.", icon="⚠️")
-                st.stop()
-
             with st.spinner("Pobieram tickery z Supabase..."):
                 tickers_list = sb_handler.get_all_tickers_from_supabase()
 
@@ -332,7 +334,7 @@ def display_news_tab(user_id, is_guest=False):
                 st.warning("Brak tickerów w Supabase do przetworzenia.")
                 st.stop()
 
-            st.info(f"Rozpoczynanie pobierania newsów i analizy sentymentu")
+            st.info("Rozpoczynanie pobierania newsów i analizy sentymentu")
             progress_bar = st.progress(0, text="Rozpoczęto")
             all_news = []
             for i, t in enumerate(tickers_list):
@@ -344,23 +346,21 @@ def display_news_tab(user_id, is_guest=False):
                     all_news.extend(df_news_sentiment.to_dict(orient="records"))
 
             if all_news:
-                if st.button("💾 Zapisz do MongoDB", type="primary", use_container_width=True):
+                st.button("💾 Zapisz do MongoDB", key="save_mongo", use_container_width=True)
+                if st.session_state.get("save_mongo_trigger"):
                     mongo_handler = MongoNewsHandler(st.session_state.get("mongo_uri"),
                                                      st.session_state.get("mongo_db"))
                     mongo_handler.insert_news(all_news)
-                    st.success(f" Zapisano {len(all_news)} newsów do MongoDB.")
+                    st.success(f"Zapisano {len(all_news)} newsów do MongoDB.")
             else:
-                st.info("Nie znaleziono żadnych nowych newsów do zapisania.")
+                st.warning("Brak newsów do zapisania.")
+    else:
+        st.info("Funkcja zapisania do bazy danych wymaga połączenia z nią, niesamowite ", icon="😑️")
 
 
 def display_model_tab():
     st.header("Model Predykcyjny ᴮᴱᵀᴬ", divider="gray")
     st.info("Ta funkcja jest w fazie testów (beta). Wyniki mogą być niedokładne.")
-
-    if not (st.session_state.get("db_configured") and st.session_state.get("mongo_configured")):
-        st.warning("Model predykcyjny wymaga skonfigurowania połączeń z Supabase i MongoDB w panelu powyżej.",
-                   icon="⚠️")
-        return
 
     try:
         supabase_client, news_collection = initialize_clients(
@@ -370,8 +370,7 @@ def display_model_tab():
             mongo_db_name=st.session_state["mongo_db"]
         )
     except Exception as e:
-        st.error(f"Nie udało się połączyć z bazami danych do analizy. Sprawdź konfigurację. Błąd: {e}")
-        return
+        pass
 
     display_top_stocks_card_view()
     st.divider()
@@ -446,12 +445,26 @@ def display_alerts_tab(user_id, is_guest):
         with st.form("add_alert_form", clear_on_submit=True):
             col1, col2, col3 = st.columns(3)
             ticker_input = col1.text_input("Ticker", placeholder="np. TSLA")
-            target_price = col2.number_input("Cena docelowa", min_value=0.01, value=100.0, step=0.01, format="%.2f")
+            target_price = col2.number_input(
+                "Cena docelowa", min_value=0.01, value=100.0, step=0.01, format="%.2f"
+            )
             condition = col3.radio("Warunek", ["Powyżej", "Poniżej"], horizontal=True)
-            if st.form_submit_button("💾 Dodaj alert", type="primary", use_container_width=True):
-                if ticker_input and target_price > 0:
-                    add_alert(user_id, ticker_input.upper(), target_price,
-                              "above" if condition == "Powyżej" else "below")
+
+            submit_btn = st.form_submit_button("💾 Dodaj alert", type="primary", use_container_width=True)
+
+            if submit_btn:
+                if not ticker_input:
+                    st.warning("Wpisz ticker spółki!")
+                elif target_price <= 0:
+                    st.warning("Cena docelowa musi być większa od 0!")
+                else:
+                    add_alert(
+                        user_id,
+                        ticker_input.upper(),
+                        target_price,
+                        "above" if condition == "Powyżej" else "below"
+                    )
+                    st.success(f"Dodano alert dla {ticker_input.upper()} ✅")
                     st.rerun()
 
     alerts = get_alerts(user_id)
@@ -461,8 +474,7 @@ def display_alerts_tab(user_id, is_guest):
         for alert in alerts:
             col_card, col_btn = st.columns([1, 0.2])
             with col_card:
-                st.markdown(render_styled_alert_card(alert),
-                            unsafe_allow_html=True)
+                st.markdown(render_styled_alert_card(alert), unsafe_allow_html=True)
             with col_btn:
                 if st.button("❌ Usuń", key=f"del_alert_{alert['id']}", use_container_width=True):
                     remove_alert(alert['id'], user_id)

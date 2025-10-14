@@ -124,7 +124,7 @@ def render_dashboard():
 
     col_title, col_user = st.columns([0.7, 0.3])
     with col_title:
-        st.title("📈 AI Stock Screener")
+        st.title("🛝 Stock Playground")
     with col_user:
         st.markdown("<div style='text-align: right; padding-top: 10px;'>", unsafe_allow_html=True)
         if is_guest:
@@ -284,8 +284,11 @@ def display_news_tab(user_id, is_guest=False):
 
     ticker_to_analyze = manual_ticker if manual_ticker else selected_ticker
     how_many_news = st.number_input("Ile newsów dla tej spółki pobrać?", min_value=1, value=10, max_value=100)
-    if st.button("📥 Pobierz i analizuj newsy", type="primary", use_container_width=True, disabled=True if not st.session_state.get("mongo_configured") else False):
-        mongo_handler = MongoNewsHandler(st.session_state.get("mongo_uri"), st.session_state.get("mongo_db"))
+
+    if st.button("📥 Pobierz i analizuj newsy", type="primary", use_container_width=True):
+        mongo_handler = None
+        if st.session_state.get("mongo_configured"):
+            mongo_handler = MongoNewsHandler(st.session_state.get("mongo_uri"), st.session_state.get("mongo_db"))
 
         if not ticker_to_analyze:
             st.warning("Wybierz lub wpisz ticker do analizy.")
@@ -300,15 +303,18 @@ def display_news_tab(user_id, is_guest=False):
                     st.session_state.news_data = {"ticker": ticker_to_analyze, "df": df_news_sentiment}
             st.rerun()
 
-    active_ticker = st.session_state.news_data["ticker"]
-    df_to_display = st.session_state.news_data["df"]
+    # Wyświetlanie wyników dla pojedynczego tickera
+    active_ticker = st.session_state.news_data.get("ticker") if "news_data" in st.session_state else None
+    df_to_display = st.session_state.news_data.get("df") if "news_data" in st.session_state else pd.DataFrame()
 
     if active_ticker and not df_to_display.empty:
         st.markdown(f"#### Wyniki dla: **{active_ticker}**")
         display_news_cards(df_to_display)
 
     st.divider()
-    if st.session_state.get("mongo_configured"):
+
+    # Pobieranie newsów dla wszystkich tickers z Supabase
+    if st.session_state.get("mongo_configured") and st.session_state.get("db_configured"):
         sb_handler = SupabaseHandler(st.session_state["sb_url"], st.session_state["sb_api"])
         all_tickers_count = len(sb_handler.get_all_tickers_from_supabase())
         news_limit = st.text_input(f"🔢 Limit newsów na spółkę: (Masz ich w Supabase {all_tickers_count})",
@@ -321,10 +327,6 @@ def display_news_tab(user_id, is_guest=False):
                 st.warning("Podaj poprawny limit (liczbę całkowitą).", icon="⚠️")
                 st.stop()
 
-            if not st.session_state.get("db_configured"):
-                st.warning("Ta funkcja wymaga połączenia z Supabase.", icon="⚠️")
-                st.stop()
-
             with st.spinner("Pobieram tickery z Supabase..."):
                 tickers_list = sb_handler.get_all_tickers_from_supabase()
 
@@ -332,7 +334,7 @@ def display_news_tab(user_id, is_guest=False):
                 st.warning("Brak tickerów w Supabase do przetworzenia.")
                 st.stop()
 
-            st.info(f"Rozpoczynanie pobierania newsów i analizy sentymentu")
+            st.info("Rozpoczynanie pobierania newsów i analizy sentymentu")
             progress_bar = st.progress(0, text="Rozpoczęto")
             all_news = []
             for i, t in enumerate(tickers_list):
@@ -344,13 +346,16 @@ def display_news_tab(user_id, is_guest=False):
                     all_news.extend(df_news_sentiment.to_dict(orient="records"))
 
             if all_news:
-                if st.button("💾 Zapisz do MongoDB", type="primary", use_container_width=True):
+                st.button("💾 Zapisz do MongoDB", key="save_mongo", use_container_width=True)
+                if st.session_state.get("save_mongo_trigger"):
                     mongo_handler = MongoNewsHandler(st.session_state.get("mongo_uri"),
                                                      st.session_state.get("mongo_db"))
                     mongo_handler.insert_news(all_news)
-                    st.success(f" Zapisano {len(all_news)} newsów do MongoDB.")
+                    st.success(f"Zapisano {len(all_news)} newsów do MongoDB.")
             else:
-                st.info("Nie znaleziono żadnych nowych newsów do zapisania.")
+                st.warning("Brak newsów do zapisania.")
+    else:
+        st.info("Funkcja zapisania do bazy danych wymaga połączenia z nią, niesamowite ", icon="😑️")
 
 
 def display_model_tab():
@@ -358,8 +363,7 @@ def display_model_tab():
     st.info("Ta funkcja jest w fazie testów (beta). Wyniki mogą być niedokładne.")
 
     if not (st.session_state.get("db_configured") and st.session_state.get("mongo_configured")):
-        st.warning("Model predykcyjny wymaga skonfigurowania połączeń z Supabase i MongoDB w panelu powyżej.",
-                   icon="⚠️")
+        st.info("Model predykcyjny wymaga dwóch baz danych bo analizuje historyczne wyniki!")
         return
 
     try:
