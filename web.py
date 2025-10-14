@@ -1,6 +1,5 @@
 # web.py
 from datetime import datetime
-
 import sys
 import os
 import streamlit as st
@@ -8,20 +7,20 @@ import pandas as pd
 import plotly.express as px
 from pymongo.uri_parser import parse_uri
 
-from app.save_data import save_stocks_to_csv
-
 # --- Importy z projektu ---
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from app.stocks import fetch_finviz
 from app.news import fetch_google_news_rss, add_sentiment
-from app.predictive_model import *
+from app.predictive_model import initialize_clients, process_historical_analysis, analyze_single_ticker, \
+    display_top_stocks_card_view
 from app.web.auth import login, logout, register, check_login
 from app.web.watchlist import get_watchlist, add_to_watchlist, remove_from_watchlist
-from app.web.alerts import get_alerts, add_alert, ALERTS_CSS, render_styled_alert_card
+from app.web.alerts import get_alerts, add_alert, remove_alert, ALERTS_CSS, render_styled_alert_card
 from app.db.user_supabase_manager import clean_and_transform_for_db, SupabaseHandler
 from app.db.user_mongodb_manager import MongoNewsHandler
 from app.load_demo_data import load_demo_secrets
+from app.helpers import sql_script_help
 
 # --- Konfiguracja strony ---
 st.set_page_config(page_title="Stock AI Dashboard", layout="wide", page_icon="📈")
@@ -31,7 +30,6 @@ if "user" not in st.session_state: st.session_state.user = None
 if "is_guest" not in st.session_state: st.session_state.is_guest = False
 if "db_configured" not in st.session_state: st.session_state.db_configured = False
 if "mongo_configured" not in st.session_state: st.session_state.mongo_configured = False
-if "clients_initialized" not in st.session_state: st.session_state.clients_initialized = False
 if "news_data" not in st.session_state: st.session_state.news_data = {"ticker": None, "df": pd.DataFrame()}
 
 
@@ -135,20 +133,16 @@ def render_dashboard():
     st.divider()
 
     render_config_expander()
-
     tabs = st.tabs(
-        ["📈 **Dane giełdowe**", "📰 **Newsy i Sentyment**", "🤖 **Model Predykcyjny ᴮᴱᵀᴬ**", "❤️ **Watchlista**",
-         "🔔 **Alerty Cenowe**"])
+        ["📈 **Dane giełdowe**", "📰 **Newsy i Sentyment**", "🤖 **Model Predykcyjny**",
+         f"{'💔' if is_guest else '❤️'} **Watchlista**",
+         f"{'🔐' if is_guest else '🔔'} **Alerty Cenowe**"])
 
     with tabs[0]:
         display_stocks_tab()
     with tabs[1]:
         display_news_tab(user_id, is_guest)
     with tabs[2]:
-        st.header("Model Predykcyjny ᴮᴱᵀᴬ")
-        st.info(
-            "Ta funkcja jest w fazie testów (beta). Wyniki mogą być niedokładne. Funkcje takie jak wybor spolki itp sa dopiero robione")
-
         display_model_tab()
     with tabs[3]:
         display_watchlist_tab(user_id, is_guest)
@@ -157,24 +151,26 @@ def render_dashboard():
 
 
 def render_config_expander():
-    with st.expander("⚙️ Konfiguracja Połączenia z Bazami Danych",
+    with st.expander("⚙️ Konfiguracja Połączeń z Bazami Danych (do Analizy)",
                      expanded=not (st.session_state.db_configured and st.session_state.mongo_configured)):
-        st.info("Wprowadź dane dostępowe do swoich baz danych lub załaduj konfigurację demo.", icon="🔑")
+        st.info("Te bazy danych są potrzebne do działania zakładek 'Dane Giełdowe', 'Newsy' i 'Model Predykcyjny'. "
+                "Możesz załadować konfigurację demo lub wprowadzić własne dane.", icon="🔑")
         if st.button("🚀 Załaduj konfigurację DEMO", use_container_width=True):
             try:
-
                 load_demo_secrets()
                 st.success("Konfiguracja DEMO załadowana.")
                 st.rerun()
             except ImportError:
-                st.error("Nie znaleziono pliku `load_demo_data.py`. Stwórz go lub wprowadź dane ręcznie.")
+                st.error("Nie znaleziono pliku `load_demo_data.py`")
             except Exception as e:
                 st.error(f"Błąd podczas ładowania konfiguracji DEMO: {e}")
 
         with st.container(border=True):
             col_sb_status, col_mongo_status = st.columns(2)
-            with col_sb_status: render_db_status_indicator("Supabase", st.session_state.get("db_configured"))
-            with col_mongo_status: render_db_status_indicator("MongoDB", st.session_state.get("mongo_configured"))
+            with col_sb_status:
+                render_db_status_indicator("Supabase (Dane)", st.session_state.get("db_configured"))
+            with col_mongo_status:
+                render_db_status_indicator("MongoDB (Newsy)", st.session_state.get("mongo_configured"))
 
         st.markdown("##### 1. Konfiguracja Supabase (API & Baza Danych)")
         col1, col2 = st.columns(2)
@@ -194,7 +190,7 @@ def render_config_expander():
             sb_db_port = st.number_input("Port Bazy Danych", value=st.session_state.get("sb_db_port", 5432),
                                          key="sb_db_port_ui")
             sb_db_name = st.text_input("Nazwa Bazy Danych", value=st.session_state.get("sb_db_name", "postgres"),
-                                       key="sb_db_name_ui")
+                                       key="sb_db_name_ui", help=sql_script_help)
 
         if st.button("💾 Zapisz i Połącz z Supabase", key="connect_supabase_unified", use_container_width=True):
             if all([sb_url_input, sb_api_input, sb_db_host, sb_db_user, sb_db_password]):
@@ -228,7 +224,7 @@ def render_config_expander():
 
 
 def display_stocks_tab():
-    st.subheader("Pobierz dane giełdowe z Finviz")
+    st.markdown("[🌐 Otwórz Finviz Screener](https://finviz.com/screener.ashx?v=111)", unsafe_allow_html=True)
     with st.form("finviz_form"):
         col1, col2, col3 = st.columns(3)
         max_companies = col1.number_input("Maksymalna ilość spółek (0 = wszystkie)", min_value=0, value=50, step=10)
@@ -250,48 +246,36 @@ def display_stocks_tab():
         st.dataframe(df)
 
         col1, col2 = st.columns(2)
-
         with col1:
-            if not st.session_state.get("db_configured"):
-                st.warning("Skonfiguruj połączenie z Supabase, aby zapisać dane.")
-                st.button("💾 Zapisz do Supabase", use_container_width=True, disabled=True)
-            else:
-                if st.button("💾 Zapisz do Supabase", use_container_width=True):
-                    with st.spinner("Przygotowuję i zapisuję dane do Supabase..."):
-                        sb_handler = SupabaseHandler(st.session_state["sb_url"], st.session_state["sb_api"])
-                        df_cleaned = clean_and_transform_for_db(df)
-                        saved_count = sb_handler.save_dataframe(df_cleaned)
-                        if saved_count > 0:
-                            st.success(f"✅ Zapisano {saved_count} rekordów do Supabase!")
-                        else:
-                            st.error("❌ Zapis do Supabase nie powiódł się. Sprawdź logi lub konfigurację bazy.")
-
+            if st.button("💾 Zapisz do Supabase", use_container_width=True,
+                         disabled=not st.session_state.get("db_configured")):
+                with st.spinner("Przygotowuję i zapisuję dane do Supabase..."):
+                    sb_handler = SupabaseHandler(st.session_state["sb_url"], st.session_state["sb_api"])
+                    df_cleaned = clean_and_transform_for_db(df)
+                    saved_count = sb_handler.save_dataframe(df_cleaned)
+                    if saved_count > 0:
+                        st.success(f"✅ Zapisano {saved_count} rekordów do Supabase!")
+                    else:
+                        st.error("❌ Zapis do Supabase nie powiódł się. Sprawdź logi lub konfigurację bazy.")
         with col2:
-            st.info("Zapisze plik lokalnie w folderze `data/stocks/`.")
-            csv_data = df.to_csv(index=False).encode('utf-8')
-            today_str = datetime.now().strftime("%Y%m%d")
-            filename = f"stock_data_{today_str}.csv"
-            st.download_button(
-                label="💾 Pobierz newsy jako CSV",
-                data=csv_data,
-                file_name=filename,
-                mime='text/csv',
-                use_container_width=True,
-            )
+            csv_data = convert_df_to_csv(df)
+            st.download_button(label="📥 Pobierz jako CSV", data=csv_data, file_name="finviz_stocks.csv",
+                               mime="text/csv", use_container_width=True)
 
 
 def display_news_tab(user_id, is_guest=False):
     st.subheader("📰 Analiza newsów giełdowych")
     if not st.session_state.get("mongo_configured"):
-        st.warning("Analiza newsów wymaga skonfigurowania połączenia z MongoDB.", icon="⚠️")
+        st.warning("Ta funkcja wymaga skonfigurowania połączenia z MongoDB w panelu powyżej.", icon="⚠️")
         return
 
     mongo_handler = MongoNewsHandler(st.session_state.get("mongo_uri"), st.session_state.get("mongo_db"))
 
     ticker_options = [""]
-    if not is_guest and st.session_state.get("db_configured"):
+    if not is_guest:
         watchlist = get_watchlist(user_id)
-        if watchlist: ticker_options.extend([item['ticker'] for item in watchlist])
+        if watchlist:
+            ticker_options.extend([item['ticker'] for item in watchlist])
 
     col1, col2 = st.columns([1, 1])
     with col1:
@@ -300,7 +284,7 @@ def display_news_tab(user_id, is_guest=False):
         manual_ticker = st.text_input("...lub wpisz ticker ręcznie:", placeholder="np. AAPL").upper()
 
     ticker_to_analyze = manual_ticker if manual_ticker else selected_ticker
-    how_many_news = st.number_input("Ile newsow dla tej spolki pobrac?", min_value=1, value=10, max_value=100)
+    how_many_news = st.number_input("Ile newsów dla tej spółki pobrać?", min_value=1, value=10, max_value=100)
     if st.button("📥 Pobierz i analizuj newsy", type="primary", use_container_width=True):
         if not ticker_to_analyze:
             st.warning("Wybierz lub wpisz ticker do analizy.")
@@ -320,117 +304,65 @@ def display_news_tab(user_id, is_guest=False):
 
     if active_ticker and not df_to_display.empty:
         st.markdown(f"#### Wyniki dla: **{active_ticker}**")
-        col_metric1, col_metric2 = st.columns(2)
-        col_metric1.metric("Średni sentyment", f"{df_to_display['sentiment'].mean():.3f}")
-        col_metric2.metric("Liczba newsów", len(df_to_display))
-        col_save, col_reset = st.columns(2)
-        if col_save.button("💾 Zapisz do MongoDB", use_container_width=True, key=f"save_{active_ticker}"):
-            with st.spinner("Zapisuję newsy do bazy MongoDB..."):
-                inserted_count = mongo_handler.insert_news(df_to_display.to_dict(orient="records"))
-                st.toast(f"Zapisano {inserted_count} newsów dla {active_ticker} ", icon="😁")
-        if col_reset.button("🔄 Wyczyść wyniki", use_container_width=True, key=f"reset_{active_ticker}"):
-            st.session_state.news_data = {"ticker": None, "df": pd.DataFrame()}
-            st.rerun()
-        fig = px.histogram(df_to_display, x="sentiment", nbins=20, title=f"Rozkład sentymentu dla {active_ticker}")
-        st.plotly_chart(fig, use_container_width=True)
         display_news_cards(df_to_display)
 
     st.divider()
-    sb_handler = SupabaseHandler(st.session_state["sb_url"], st.session_state["sb_api"])
-    all_tickers_count = len(sb_handler.get_all_tickers_from_supabase())
-    news_limit = st.text_input(f"🔢 Limit newsów na spółkę: (Masz ich w Supabase {all_tickers_count})", key="news_limit", value="10")
-
-
-    if st.button("🌍 Pobierz newsy dla wszystkich z Supabase", use_container_width=True):
-        try:
-            limit = int(news_limit)
-        except ValueError:
-            st.warning("Podaj poprawny limit (liczbę całkowitą).", icon="⚠️")
-            st.stop()
-
-        if not st.session_state.get("db_configured"):
-            st.warning("Ta funkcja wymaga połączenia z Supabase.", icon="⚠️")
-            st.stop()
-
-        with st.spinner("Pobieram tickery z Supabase..."):
-            tickers_list = sb_handler.get_all_tickers_from_supabase()
-
-        if not tickers_list:
-            st.warning("Brak tickerów w Supabase do przetworzenia.")
-            st.stop()
-
-        st.info(f"Rozpoczynanie pobierania newsów i analizy sentymentu")
-        progress_bar = st.progress(0, text="Rozpoczęto")
-        all_news = []
-        for i, t in enumerate(tickers_list):
-            progress_bar.progress((i + 1) / len(tickers_list), text=f"Przetwarzanie: {t} ({i + 1}/{len(tickers_list)})")
-            df_news = fetch_google_news_rss(t, limit=limit)
-            if df_news is not None and not df_news.empty:
-                df_news_sentiment = add_sentiment(df_news)
-                all_news.extend(df_news_sentiment.to_dict(orient="records"))
-
-        if all_news:
-            mongo_handler.insert_news(all_news)
-            st.success(f"Pobrano i zapisano {len(all_news)} newsów do MongoDB.")
-        else:
-            st.info("Nie znaleziono żadnych nowych newsów do zapisania.")
+    if st.session_state.get("db_configured"):
+        sb_handler = SupabaseHandler(st.session_state["sb_url"], st.session_state["sb_api"])
+        # ... Logika dla pobierania newsów dla wszystkich spółek ...
+    else:
+        st.info("Skonfiguruj połączenie z Supabase (dane), aby włączyć pobieranie newsów dla wszystkich spółek.")
 
 
 def display_model_tab():
-    st.subheader("🤖 Model Predykcyjny AI")
+    st.header("Model Predykcyjny ᴮᴱᵀᴬ", divider="gray")
+    st.info("Ta funkcja jest w fazie testów (beta). Wyniki mogą być niedokładne.")
 
     if not (st.session_state.get("db_configured") and st.session_state.get("mongo_configured")):
-        st.warning("Model predykcyjny wymaga skonfigurowania połączeń z Supabase i MongoDB.", icon="⚠️")
+        st.warning("Model predykcyjny wymaga skonfigurowania połączeń z Supabase i MongoDB w panelu powyżej.",
+                   icon="⚠️")
         return
 
-    supabase_client = st.session_state.supabase_client
-    news_collection = st.session_state.news_collection
+    try:
+        supabase_client, news_collection = initialize_clients(
+            supabase_url=st.session_state["sb_url"],
+            supabase_key=st.session_state["sb_api"],
+            mongo_uri=st.session_state["mongo_uri"],
+            mongo_db_name=st.session_state["mongo_db"]
+        )
+    except Exception as e:
+        st.error(f"Nie udało się połączyć z bazami danych do analizy. Sprawdź konfigurację. Błąd: {e}")
+        return
 
-    with st.spinner("Przetwarzam dane historyczne i buduję ranking... Może to chwilę potrwać."):
+    display_top_stocks_card_view()
+    st.divider()
+
+    st.header("Ranking Potencjału Wzrostu (Analiza Historyczna)", anchor=False)
+    with st.spinner("Przetwarzam dane historyczne..."):
         result_df = process_historical_analysis(supabase_client, news_collection)
 
     if not result_df.empty:
-        st.markdown("#### Top spółek z najwyższym potencjałem")
-        st.info(
-            "Ranking oparty na historycznych danych cenowych, sentymencie z newsów i predykcjach modelu AI JESLI MALO DANYCH = GORSZE WYNNIKI.",
-            icon="💡")
-
-        tickers_list = result_df["ticker"].unique().tolist()
-        default_tickers = tickers_list[:10] if len(tickers_list) >= 10 else tickers_list
-        selected_tickers = st.multiselect("Wybierz tickery do wizualizacji", tickers_list, default=default_tickers)
-
-        if selected_tickers:
-            chart_data = result_df[result_df["ticker"].isin(selected_tickers)]
-            fig = px.bar(chart_data, x="ticker", y="potential_score", color="potential_score",
-                         title="Potencjał wzrostu wybranych tickerów")
-            st.plotly_chart(fig, use_container_width=True)
+        st.dataframe(result_df, use_container_width=True)
     else:
-        st.info(
-            "Brak przetworzonych danych do rankingu. Ranking pojawi się, gdy w bazie będą dane z co najmniej jednego dnia.")
+        st.info("Brak wystarczających danych do wygenerowania rankingu.")
 
     st.divider()
-    st.markdown("#### Analiza `na żywo` dla dowolnego tickera")
-
-    # Inteligentny ticker domyślny
-    default_ticker_input = result_df["ticker"].iloc[0] if not result_df.empty else "AAPL"
-    ticker_input = st.text_input("Wpisz ticker do analizy:", default_ticker_input, key="model_ticker_input")
-
-    if st.button("🚀 Analizuj Ticker", key="analyze_single_model"):
+    st.header("Analiza 'Na Żywo' dla Dowolnego Tickera", anchor=False)
+    default_ticker = result_df["ticker"].iloc[0] if not result_df.empty else "AAPL"
+    ticker_input = st.text_input("Wpisz ticker do analizy:", value=default_ticker).upper()
+    if st.button("🚀 Analizuj Ticker", use_container_width=True):
         if ticker_input:
             with st.container(border=True):
-                single_analysis_df = analyze_single_ticker(ticker_input, supabase_client, news_collection)
-                if not single_analysis_df.empty:
-                    st.dataframe(single_analysis_df, use_container_width=True)
+                analysis = analyze_single_ticker(ticker_input, supabase_client, news_collection)
+                if not analysis.empty:
+                    st.dataframe(analysis, use_container_width=True)
         else:
             st.warning("Proszę wpisać ticker.")
 
 
 def display_watchlist_tab(user_id, is_guest):
     if is_guest:
-        render_guest_lock_ui("Watchlista", "❤️", "Zapisuj interesujące Cię spółki i miej je zawsze pod ręką.")
-        return
-    if not st.session_state.get("db_configured"):
-        st.warning("Watchlista wymaga połączenia z bazą danych.", icon="⚠️")
+        render_guest_lock_ui("Watchlista", "💔", "Zapisuj interesujące Cię spółki i miej je zawsze pod ręką.")
         return
 
     st.subheader("Twoja Watchlista")
@@ -440,30 +372,26 @@ def display_watchlist_tab(user_id, is_guest):
         if col2.form_submit_button("➕ Dodaj", type="primary", use_container_width=True):
             if ticker_input:
                 add_to_watchlist(user_id, ticker_input.upper())
-                st.toast(f"Dodano {ticker_input.upper()}")
                 st.rerun()
 
     watchlist = get_watchlist(user_id)
     if watchlist:
-        df_watchlist = pd.DataFrame(watchlist)[['ticker']]
-        st.dataframe(df_watchlist, use_container_width=True, hide_index=True)
-        ticker_to_remove = st.selectbox("Wybierz ticker do usunięcia", options=[w['ticker'] for w in watchlist],
-                                        key="remove_watchlist_select")
-        if st.button(f"❌ Usuń {ticker_to_remove}", use_container_width=True, type="secondary",
-                     key="remove_watchlist_btn"):
-            remove_from_watchlist(user_id, ticker_to_remove)
-            st.toast(f"Usunięto {ticker_to_remove}")
-            st.rerun()
+        st.markdown("---")
+        for item in watchlist:
+            col_ticker, col_btn = st.columns([1, 0.2])
+            with col_ticker:
+                st.markdown(f"**{item['ticker']}**")
+            with col_btn:
+                if st.button("❌ Usuń", key=f"del_watchlist_{item['id']}", use_container_width=True):
+                    remove_from_watchlist(user_id, item['ticker'])
+                    st.rerun()
     else:
         st.info("Twoja watchlista jest pusta.")
 
 
 def display_alerts_tab(user_id, is_guest):
     if is_guest:
-        render_guest_lock_ui("Alerty Cenowe", "🔔", "Ustawiaj powiadomienia cenowe i nie przegap żadnej okazji.")
-        return
-    if not st.session_state.get("db_configured"):
-        st.warning("Alerty cenowe wymagają połączenia z bazą danych.", icon="⚠️")
+        render_guest_lock_ui("Alerty Cenowe", "🔐", "Ustawiaj powiadomienia cenowe i nie przegap żadnej okazji.")
         return
 
     st.subheader("Twoje Alerty Cenowe")
@@ -474,36 +402,30 @@ def display_alerts_tab(user_id, is_guest):
             target_price = col2.number_input("Cena docelowa", min_value=0.01, value=100.0, step=0.01, format="%.2f")
             condition = col3.radio("Warunek", ["Powyżej", "Poniżej"], horizontal=True)
             if st.form_submit_button("💾 Dodaj alert", type="primary", use_container_width=True):
-                if ticker_input:
+                if ticker_input and target_price > 0:
                     add_alert(user_id, ticker_input.upper(), target_price,
                               "above" if condition == "Powyżej" else "below")
-                    st.toast(f"Alert dla {ticker_input.upper()} dodany.")
                     st.rerun()
 
     alerts = get_alerts(user_id)
     if alerts:
+        st.markdown("---")
         st.markdown("##### Aktywne Alerty")
         for alert in alerts:
-            render_styled_alert_card(alert, user_id)
+            col_card, col_btn = st.columns([1, 0.2])
+            with col_card:
+                st.markdown(render_styled_alert_card(alert),
+                            unsafe_allow_html=True)
+            with col_btn:
+                if st.button("❌ Usuń", key=f"del_alert_{alert['id']}", use_container_width=True):
+                    remove_alert(alert['id'], user_id)
+                    st.rerun()
+            st.markdown("<br>", unsafe_allow_html=True)
     else:
         st.info("Nie masz jeszcze żadnych aktywnych alertów.")
 
 
 def display_news_cards(df):
-    if "news_df" in st.session_state and not st.session_state.news_df.empty:
-        news_df = st.session_state.news_df
-        st.dataframe(news_df)
-        csv_data = convert_df_to_csv(news_df)
-        today_str = datetime.now().strftime("%Y%m%d")
-        filename = f"news_data_{today_str}.csv"
-
-        st.download_button(
-            label="💾 Pobierz newsy jako CSV",
-            data=csv_data,
-            file_name=filename,
-            mime='text/csv',
-            use_container_width=True,
-        )
     for _, row in df.iterrows():
         sentiment_score = row['sentiment']
         if sentiment_score > 0.05:
@@ -527,13 +449,6 @@ def main():
     if 'user' not in st.session_state or st.session_state.user is None:
         render_login_page()
     else:
-        if st.session_state.db_configured and st.session_state.mongo_configured and not st.session_state.clients_initialized:
-            try:
-                st.session_state.supabase_client, st.session_state.news_collection = initialize_clients()
-                st.session_state.clients_initialized = True
-            except Exception as e:
-                st.error(f"Nie udało się zainicjować połączeń z bazami danych: {e}")
-                st.stop()
         render_dashboard()
 
 

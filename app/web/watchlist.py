@@ -1,12 +1,12 @@
+# app/web/watchlist.py
 import streamlit as st
 from .supabase_client import supabase
 
 def get_watchlist(user_id: str):
     if not user_id:
         return []
-    if not st.session_state.get("db_configured"):  # fallback demo
-        return st.session_state.get("demo_watchlist", [])
     try:
+        # Ten 'supabase' to klient z st.secrets, który zawsze działa dla zalogowanego usera.
         res = supabase.table("watchlist").select("id, ticker").eq("user_id", user_id).order("ticker").execute()
         return res.data or []
     except Exception as e:
@@ -14,15 +14,7 @@ def get_watchlist(user_id: str):
         return []
 
 def add_to_watchlist(user_id: str, ticker: str):
-    if not st.session_state.get("db_configured"):
-        # demo fallback
-        demo_list = st.session_state.get("demo_watchlist", [])
-        if ticker.upper() not in [w['ticker'] for w in demo_list]:
-            demo_list.append({"id": len(demo_list)+1, "ticker": ticker.upper()})
-            st.session_state["demo_watchlist"] = demo_list
-            st.toast(f"✅ Dodano {ticker} (demo).")
-        else:
-            st.toast(f"ℹ️ {ticker} jest już na liście (demo).")
+    if not user_id or not ticker:
         return
     try:
         exists = supabase.table("watchlist").select("id").eq("user_id", user_id).eq("ticker", ticker.upper()).execute()
@@ -34,15 +26,11 @@ def add_to_watchlist(user_id: str, ticker: str):
     except Exception as e:
         st.error(f"Błąd podczas dodawania do watchlisty: {e}")
 
-def remove_from_watchlist(item_id: str):
-    if not st.session_state.get("db_configured"):
-        demo_list = st.session_state.get("demo_watchlist", [])
-        st.session_state["demo_watchlist"] = [w for w in demo_list if w["id"] != item_id]
-        st.toast("🗑️ Usunięto z obserwowanych (demo).")
+def remove_from_watchlist(user_id: str, ticker: str): # Zmieniamy na user_id i ticker, żeby było bezpieczniej
+    if not user_id or not ticker:
         return
     try:
-        supabase.table("watchlist").delete().eq("id", item_id).execute()
+        supabase.table("watchlist").delete().eq("user_id", user_id).eq("ticker", ticker).execute()
         st.toast("🗑️ Usunięto z obserwowanych.")
     except Exception as e:
         st.error(f"Błąd podczas usuwania z watchlisty: {e}")
-

@@ -93,8 +93,6 @@ ALERTS_CSS = """
 def get_alerts(user_id: str):
     if not user_id:
         return []
-    if not st.session_state.get("db_configured"):
-        return st.session_state.get("demo_alerts", [])
     try:
         res = supabase.table("alerts").select("*").eq("user_id", user_id).order("ticker").execute()
         return res.data or []
@@ -103,35 +101,26 @@ def get_alerts(user_id: str):
         return []
 
 
-
-def add_alert(user_id, ticker, high, low):
-    if not st.session_state.get("db_configured"):
-        demo_alerts = st.session_state.get("demo_alerts", [])
-        demo_alerts.append({"id": len(demo_alerts)+1, "ticker": ticker.upper(), "threshold_high": high, "threshold_low": low})
-        st.session_state["demo_alerts"] = demo_alerts
-        st.toast(f"🔔 Alert dla {ticker} dodany (demo).")
+def add_alert(user_id, ticker, target_price, condition):
+    if not user_id or not ticker or not target_price or not condition:
         return
     try:
         supabase.table("alerts").insert({
             "user_id": user_id,
             "ticker": ticker.upper(),
-            "threshold_high": high if high > 0 else None,
-            "threshold_low": low if low > 0 else None
+            "target_price": target_price,
+            "condition": condition
         }).execute()
         st.success(f"🔔 Ustawiono alert dla {ticker}!")
     except Exception as e:
         st.error(f"Błąd podczas dodawania alertu: {e}")
 
 
-
-def remove_alert(alert_id: int):
-    if not st.session_state.get("db_configured"):
-        demo_alerts = st.session_state.get("demo_alerts", [])
-        st.session_state["demo_alerts"] = [a for a in demo_alerts if a["id"] != alert_id]
-        st.toast("🗑️ Usunięto alert (demo).")
+def remove_alert(alert_id: int, user_id: str):
+    if not alert_id or not user_id:
         return
     try:
-        supabase.table("alerts").delete().eq("id", alert_id).execute()
+        supabase.table("alerts").delete().eq("id", alert_id).eq("user_id", user_id).execute()
         st.toast("🗑️ Usunięto alert.")
     except Exception as e:
         st.error(f"Błąd podczas usuwania alertu: {e}")
@@ -147,7 +136,7 @@ def check_price(ticker: str):
         return None
 
 
-def render_styled_alert_card(alert, user_id):
+def render_styled_alert_card(alert) -> str:
     """
     Zwraca HTML dla karty alertu (używane w pętli).
     """
@@ -201,7 +190,8 @@ def render_styled_alert_card(alert, user_id):
 
     fill_pct = 0
     fill_color = "linear-gradient(180deg, rgba(34,197,94,0.95), rgba(6,95,70,0.9))"  # domyślnie zielony
-    if low is not None and high is not None and isinstance(low, (int,float)) and isinstance(high, (int,float)) and high > low:
+    if low is not None and high is not None and isinstance(low, (int, float)) and isinstance(high, (
+    int, float)) and high > low:
         if current is not None:
             try:
                 raw = (current - low) / (high - low)
@@ -227,9 +217,9 @@ def render_styled_alert_card(alert, user_id):
         else:
             fill_color = "linear-gradient(180deg, rgba(99,102,241,0.9), rgba(79,70,229,0.8))"
 
-    low_label = f"${low:.2f}" if isinstance(low, (int,float)) else "Brak"
-    high_label = f"${high:.2f}" if isinstance(high, (int,float)) else "Brak"
-    current_label = f"${current:.2f}" if isinstance(current, (int,float)) else "---"
+    low_label = f"${low:.2f}" if isinstance(low, (int, float)) else "Brak"
+    high_label = f"${high:.2f}" if isinstance(high, (int, float)) else "Brak"
+    current_label = f"${current:.2f}" if isinstance(current, (int, float)) else "---"
 
     # HTML karty
     html = f"""

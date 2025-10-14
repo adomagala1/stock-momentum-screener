@@ -9,6 +9,7 @@ from sklearn.ensemble import RandomForestClassifier
 from pymongo import MongoClient
 from supabase import create_client, Client
 from postgrest.exceptions import APIError
+import re  # Dodajemy import re do czyszczenia danych
 
 from app.db.user_supabase_manager import clean_and_transform_for_db
 from app.db.user_mongodb_manager import MongoNewsHandler
@@ -22,17 +23,13 @@ MODEL_N_ESTIMATORS = 300
 MODEL_MAX_DEPTH = 10
 
 
-def initialize_clients():
-    """Tworzy i zwraca klientów do baz danych na podstawie st.session_state."""
-    if not st.session_state.get("db_configured") or not st.session_state.get("mongo_configured"):
-        raise ConnectionError("Bazy danych nie zostały skonfigurowane w st.session_state.")
+def initialize_clients(supabase_url: str, supabase_key: str, mongo_uri: str, mongo_db_name: str):
+    supabase_client: Client = create_client(supabase_url, supabase_key)
+    mongo_client = MongoClient(mongo_uri)
+    db = mongo_client[mongo_db_name]
+    news_collection = db["news"]
 
-    supabase_client: Client = create_client(st.session_state["sb_url"], st.session_state["sb_api"])
-    mongo_client = MongoClient(st.session_state["mongo_uri"])
-    news_collection = mongo_client[st.session_state["mongo_db"]].news
     return supabase_client, news_collection
-
-
 
 @st.cache_data(ttl=3600)
 def load_all_stocks_data(_supabase_client: Client):
@@ -103,14 +100,14 @@ def process_historical_analysis(_supabase_client: Client, _news_collection):
         df_day["market_cap_log"] = np.log1p(df_day["market_cap"])
         df_day["volume_log"] = np.log1p(df_day["volume"])
 
-        features = ["price", "p_e", "market_cap_log", "volume_log", "change", "avg_sentiment"]
+        features = ["price", "p_e", "market_cap_log", "volume_log", "avg_sentiment"]
         X = df_day[features].fillna(0)
         y = df_day["high_potential"].fillna(0).astype(int)
 
         if y.nunique() < 2 or len(df_day) < 5:
             p_norm = (X["price"] - X["price"].min()) / (X["price"].max() - X["price"].min() + 1e-9)
             mc_norm = (X["market_cap_log"] - X["market_cap_log"].min()) / (
-                        X["market_cap_log"].max() - X["market_cap_log"].min() + 1e-9)
+                    X["market_cap_log"].max() - X["market_cap_log"].min() + 1e-9)
             sentiment_norm = (X["avg_sentiment"] - X["avg_sentiment"].min()) / (abs(X["avg_sentiment"]).max() + 1e-9)
             df_day["potential_score"] = (0.4 * p_norm + 0.4 * mc_norm + 0.2 * sentiment_norm).fillna(0)
         else:
@@ -217,5 +214,81 @@ def analyze_single_ticker(ticker: str, supabase_client: Client, news_collection)
         st.success(f"Analiza AI dla **{ticker.upper()}** zakończona.")
 
     # KROK 6: Zwrócenie sformatowanych wyników
-    final_columns = ["ticker", "company", "price", "change", "p_e", "volume", "avg_sentiment", "potential_score"]
+    final_columns = ["ticker", "company", "price", "change", "p_e", "volume", "potential_score"]
     return df_live[final_columns]
+
+
+# ==============================================================================
+# NOWA FUNKCJA DO WYŚWIETLANIA TOPOWYCH SPÓŁEK
+# ==============================================================================
+
+@st.cache_data(ttl=1800)  # Cache na 30 minut, żeby nie obciążać Finviz
+def _fetch_and_cache_ticker_data(ticker):
+    """Pobiera i cachuje dane dla pojedynczego tickera."""
+    return fetch_finviz_for_ticker(ticker)
+
+
+def display_top_stocks_card_view():
+    """
+    Pobiera dane dla listy predefiniowanych, popularnych spółek
+    i wyświetla je w estetycznym, kafelkowym widoku.
+    """
+    st.subheader("Przegląd Gigantów Rynku", divider='rainbow')
+
+    # Lista popularnych tickerów, które chcemy wyświetlić
+    # Możesz ją dowolnie modyfikować
+    top_tickers = ["AAPL", "MSFT", "GOOGL", "AMZN", "NVDA", "TSLA", "META", "JPM"]
+
+    # Ustawienie 4 kolumn
+    cols = st.columns(4)
+
+    # Pętla przez listę tickerów
+    for i, ticker in enumerate(top_tickers):
+        # Wybór kolumny (cyklicznie od 0 do 3)
+        col = cols[i % 4]
+
+        with col:
+            with st.spinner(f'Ładuję {ticker}...'):
+                try:
+                    # Pobieramy dane z Finviz
+                    df_raw = _fetch_and_cache_ticker_data(ticker)
+
+                    if df_raw.empty:
+                        st.warning(f"Brak danych dla {ticker}")
+                        continue
+
+                    # Wyciągamy pierwszy (i jedyny) wiersz z danymi
+                    stock_data = df_raw.iloc[0]
+
+                    # Pobieranie kluczowych informacji
+                    company_name = stock_data.get('Company', 'Brak nazwy')
+                    price_str = stock_data.get('Price', '0')
+                    change_str = stock_data.get('Change', '0.00%')
+                    volume_str = stock_data.get('Volume', '0')
+                    market_cap_str = stock_data.get('Market Cap', '0')
+
+                    # Czyszczenie i konwersja danych
+                    price = float(price_str)
+                    # Usuwamy '%' i konwertujemy na float
+                    change_pct = float(change_str.replace('%', ''))
+
+                    # Dodajemy ikonkę w zależności od zmiany
+                    emoji = "📈" if change_pct >= 0 else "📉"
+
+                    # Tworzymy "kartę" za pomocą kontenera z obramowaniem
+                    with st.container(border=True):
+                        st.markdown(f"##### {emoji} {company_name} ({ticker})")
+
+                        # st.metric to idealny komponent do tego celu
+                        st.metric(
+                            label="Aktualna Cena",
+                            value=f"${price:.2f}",
+                            delta=f"{change_str}"
+                        )
+
+                        # Dodatkowe informacje
+                        st.markdown(f"**Kapitalizacja:** {market_cap_str}")
+                        st.markdown(f"**Wolumen:** {volume_str}")
+
+                except Exception as e:
+                    st.error(f"Błąd dla {ticker}: {e}")

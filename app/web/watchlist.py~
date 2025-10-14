@@ -34,7 +34,7 @@ def add_to_watchlist(user_id: str, ticker: str):
     except Exception as e:
         st.error(f"Błąd podczas dodawania do watchlisty: {e}")
 
-def remove_from_watchlist(item_id: str): 
+def remove_from_watchlist(item_id: str):
     if not st.session_state.get("db_configured"):
         demo_list = st.session_state.get("demo_watchlist", [])
         st.session_state["demo_watchlist"] = [w for w in demo_list if w["id"] != item_id]
