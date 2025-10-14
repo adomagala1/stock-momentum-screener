@@ -22,16 +22,20 @@ from app.db.user_mongodb_manager import MongoNewsHandler
 from app.load_demo_data import load_demo_secrets
 from app.helpers import sql_script_help
 
-# --- Konfiguracja strony ---
-st.set_page_config(page_title="Stock AI Dashboard", layout="wide", page_icon="📈")
+st.set_page_config(page_title="Stock Playground", layout="wide", page_icon="🛝")
 
-# --- Inicjalizacja stanu sesji ---
-if "user" not in st.session_state: st.session_state.user = None
-if "is_guest" not in st.session_state: st.session_state.is_guest = False
-if "db_configured" not in st.session_state: st.session_state.db_configured = False
-if "mongo_configured" not in st.session_state: st.session_state.mongo_configured = False
-if "news_data" not in st.session_state: st.session_state.news_data = {"ticker": None, "df": pd.DataFrame()}
-
+if "user" not in st.session_state:
+    st.session_state.user = None
+if "is_guest" not in st.session_state:
+    st.session_state.is_guest = False
+if "db_configured" not in st.session_state:
+    st.session_state.db_configured = False
+if "mongo_configured" not in st.session_state:
+    st.session_state.mongo_configured = False
+if "news_data" not in st.session_state:
+    st.session_state.news_data = {"ticker": None, "df": pd.DataFrame()}
+if "clients_initialized" not in st.session_state:
+    st.session_state.clients_initialized = False
 
 # --- FUNKCJE POMOCNICZE ---
 def apply_custom_css():
@@ -85,7 +89,7 @@ def render_guest_lock_ui(title: str, icon: str, description: str):
 def render_login_page():
     _, col_main, _ = st.columns([1, 1.5, 1])
     with col_main:
-        st.markdown("<h1 style='text-align: center; color: white;'>📈 AI Stock Screener</h1>", unsafe_allow_html=True)
+        st.markdown("<h1 style='text-align: center; color: white;'> AI Stock Playground </h1>", unsafe_allow_html=True)
         st.markdown("<p style='text-align: center;'>Zaloguj się, zarejestruj lub kontynuuj jako gość.</p>",
                     unsafe_allow_html=True)
         login_tab, register_tab, guest_tab = st.tabs(["**Logowanie**", "**Rejestracja**", "**Tryb Gościa**"])
@@ -152,7 +156,7 @@ def render_dashboard():
 
 def render_config_expander():
     with st.expander("⚙️ Konfiguracja Połączeń z Bazami Danych (do Analizy)",
-                     expanded=not (st.session_state.db_configured and st.session_state.mongo_configured)):
+                     expanded=False):
         st.info("Te bazy danych są potrzebne do działania zakładek 'Dane Giełdowe', 'Newsy' i 'Model Predykcyjny'. "
                 "Możesz załadować konfigurację demo lub wprowadzić własne dane.", icon="🔑")
         if st.button("🚀 Załaduj konfigurację DEMO", use_container_width=True):
@@ -243,7 +247,7 @@ def display_stocks_tab():
     if "latest_df" in st.session_state and not st.session_state.latest_df.empty:
         df = st.session_state.latest_df
         st.success(f"Pobrano dane dla {len(df)} spółek.")
-        st.dataframe(df)
+        st.dataframe(df.head(100))
 
         col1, col2 = st.columns(2)
         with col1:
@@ -265,11 +269,6 @@ def display_stocks_tab():
 
 def display_news_tab(user_id, is_guest=False):
     st.subheader("📰 Analiza newsów giełdowych")
-    if not st.session_state.get("mongo_configured"):
-        st.warning("Ta funkcja wymaga skonfigurowania połączenia z MongoDB w panelu powyżej.", icon="⚠️")
-        return
-
-    mongo_handler = MongoNewsHandler(st.session_state.get("mongo_uri"), st.session_state.get("mongo_db"))
 
     ticker_options = [""]
     if not is_guest:
@@ -281,11 +280,13 @@ def display_news_tab(user_id, is_guest=False):
     with col1:
         selected_ticker = st.selectbox("Wybierz spółkę z watchlisty:", options=ticker_options)
     with col2:
-        manual_ticker = st.text_input("...lub wpisz ticker ręcznie:", placeholder="np. AAPL").upper()
+        manual_ticker = st.text_input("wpisz ticker ręcznie:", placeholder="np. AAPL").upper()
 
     ticker_to_analyze = manual_ticker if manual_ticker else selected_ticker
     how_many_news = st.number_input("Ile newsów dla tej spółki pobrać?", min_value=1, value=10, max_value=100)
-    if st.button("📥 Pobierz i analizuj newsy", type="primary", use_container_width=True):
+    if st.button("📥 Pobierz i analizuj newsy", type="primary", use_container_width=True, disabled=True if not st.session_state.get("mongo_configured") else False):
+        mongo_handler = MongoNewsHandler(st.session_state.get("mongo_uri"), st.session_state.get("mongo_db"))
+
         if not ticker_to_analyze:
             st.warning("Wybierz lub wpisz ticker do analizy.")
         else:
@@ -307,11 +308,49 @@ def display_news_tab(user_id, is_guest=False):
         display_news_cards(df_to_display)
 
     st.divider()
-    if st.session_state.get("db_configured"):
+    if st.session_state.get("mongo_configured"):
         sb_handler = SupabaseHandler(st.session_state["sb_url"], st.session_state["sb_api"])
-        # ... Logika dla pobierania newsów dla wszystkich spółek ...
-    else:
-        st.info("Skonfiguruj połączenie z Supabase (dane), aby włączyć pobieranie newsów dla wszystkich spółek.")
+        all_tickers_count = len(sb_handler.get_all_tickers_from_supabase())
+        news_limit = st.text_input(f"🔢 Limit newsów na spółkę: (Masz ich w Supabase {all_tickers_count})",
+                                   key="news_limit", value="10")
+
+        if st.button("🌍 Pobierz newsy dla wszystkich z Supabase", use_container_width=True):
+            try:
+                limit = int(news_limit)
+            except ValueError:
+                st.warning("Podaj poprawny limit (liczbę całkowitą).", icon="⚠️")
+                st.stop()
+
+            if not st.session_state.get("db_configured"):
+                st.warning("Ta funkcja wymaga połączenia z Supabase.", icon="⚠️")
+                st.stop()
+
+            with st.spinner("Pobieram tickery z Supabase..."):
+                tickers_list = sb_handler.get_all_tickers_from_supabase()
+
+            if not tickers_list:
+                st.warning("Brak tickerów w Supabase do przetworzenia.")
+                st.stop()
+
+            st.info(f"Rozpoczynanie pobierania newsów i analizy sentymentu")
+            progress_bar = st.progress(0, text="Rozpoczęto")
+            all_news = []
+            for i, t in enumerate(tickers_list):
+                progress_bar.progress((i + 1) / len(tickers_list),
+                                      text=f"Przetwarzanie: {t} ({i + 1}/{len(tickers_list)})")
+                df_news = fetch_google_news_rss(t, limit=limit)
+                if df_news is not None and not df_news.empty:
+                    df_news_sentiment = add_sentiment(df_news)
+                    all_news.extend(df_news_sentiment.to_dict(orient="records"))
+
+            if all_news:
+                if st.button("💾 Zapisz do MongoDB", type="primary", use_container_width=True):
+                    mongo_handler = MongoNewsHandler(st.session_state.get("mongo_uri"),
+                                                     st.session_state.get("mongo_db"))
+                    mongo_handler.insert_news(all_news)
+                    st.success(f" Zapisano {len(all_news)} newsów do MongoDB.")
+            else:
+                st.info("Nie znaleziono żadnych nowych newsów do zapisania.")
 
 
 def display_model_tab():
@@ -369,10 +408,13 @@ def display_watchlist_tab(user_id, is_guest):
     with st.form("add_watchlist_form", clear_on_submit=True):
         col1, col2 = st.columns([3, 1])
         ticker_input = col1.text_input("Dodaj spółkę do watchlisty", placeholder="np. AAPL")
-        if col2.form_submit_button("➕ Dodaj", type="primary", use_container_width=True):
-            if ticker_input:
-                add_to_watchlist(user_id, ticker_input.upper())
-                st.rerun()
+        if len(ticker_input) > 20:
+            st.warning("Maksymalnie 20 znaków.")
+        else:
+            if col2.form_submit_button("➕ Dodaj", type="primary", use_container_width=True):
+                if ticker_input:
+                    add_to_watchlist(user_id, ticker_input.upper())
+                    st.rerun()
 
     watchlist = get_watchlist(user_id)
     if watchlist:
@@ -449,6 +491,23 @@ def main():
     if 'user' not in st.session_state or st.session_state.user is None:
         render_login_page()
     else:
+        if st.session_state.db_configured and st.session_state.mongo_configured and not st.session_state.clients_initialized:
+            try:
+                supabase_client, news_collection = initialize_clients(
+                    supabase_url=st.session_state["sb_url"],
+                    supabase_key=st.session_state["sb_api"],
+                    mongo_uri=st.session_state["mongo_uri"],
+                    mongo_db_name=st.session_state["mongo_db"]
+                )
+                st.session_state.supabase_client = supabase_client
+                st.session_state.news_collection = news_collection
+                st.session_state.clients_initialized = True
+            except KeyError as e:
+                st.error(f"Brakuje konfiguracji w st.session_state: {e}")
+                st.stop()
+            except Exception as e:
+                st.error(f"Nie udało się zainicjować połączeń z bazami danych: {e}")
+                st.stop()
         render_dashboard()
 
 
