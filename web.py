@@ -20,7 +20,7 @@ from app.web.alerts import get_alerts, add_alert, remove_alert, ALERTS_CSS, rend
 from app.db.user_supabase_manager import clean_and_transform_for_db, SupabaseHandler
 from app.db.user_mongodb_manager import MongoNewsHandler
 from app.load_demo_data import load_demo_secrets
-from app.helpers import sql_script_help
+from app.helpers import sql_script_help, filters_help
 
 st.set_page_config(page_title="Stock Playground", layout="wide", page_icon="🛝")
 
@@ -36,8 +36,15 @@ if "news_data" not in st.session_state:
     st.session_state.news_data = {"ticker": None, "df": pd.DataFrame()}
 if "clients_initialized" not in st.session_state:
     st.session_state.clients_initialized = False
+if "lock_password" not in st.session_state:
+    st.session_state["lock_password"] = True
+if "sb_db_password" not in st.session_state:
+    st.session_state["sb_db_password"] = ""
+if "lock_mongo_uri" not in st.session_state:
+    st.session_state["lock_mongo_uri"] = True
+if "mongo_uri" not in st.session_state:
+    st.session_state["mongo_uri"] = ""
 
-# --- FUNKCJE POMOCNICZE ---
 def apply_custom_css():
     """Aplikuje niestandardowe style CSS dla całej aplikacji."""
     st.markdown("""
@@ -109,7 +116,7 @@ def render_login_page():
                     register(email, password)
         with guest_tab:
             st.info(
-                "Tryb gościa pozwala na przeglądanie danych i testowanie modelu. Personalizacja wymaga zalogowania.",
+                "Tryb gościa pozwala na pobieranie newsow, danych ALE Personalizacja wymaga zalogowania.",
                 icon="ℹ️")
             if st.button("Kontynuuj jako Gość", use_container_width=True):
                 st.session_state.user = {"email": "Gość", "id": None}
@@ -189,8 +196,20 @@ def render_config_expander():
                                        key="sb_db_host_ui")
             sb_db_user = st.text_input("Użytkownik Bazy Danych", value=st.session_state.get("sb_db_user", "postgres"),
                                        key="sb_db_user_ui")
-            sb_db_password = st.text_input("Hasło Bazy Danych", type="password",
-                                           value=st.session_state.get("sb_db_password", ""), key="sb_db_password_ui")
+
+            display_pass = "" if st.session_state["lock_password"] else st.session_state["sb_db_password"]
+
+            sb_db_password = st.text_input(
+                "Hasło do bazy danych",
+                value=display_pass,
+                type="password",
+                key="sb_db_password_ui",
+                help="Wpisz hasło do bazy danych (nigdy nie będzie widoczne w czystej formie)."
+            )
+            if sb_db_password and sb_db_password != "********":
+                st.session_state["sb_db_password"] = sb_db_password
+                st.session_state["lock_password"] = False
+
             sb_db_port = st.number_input("Port Bazy Danych", value=st.session_state.get("sb_db_port", 5432),
                                          key="sb_db_port_ui")
             sb_db_name = st.text_input("Nazwa Bazy Danych", value=st.session_state.get("sb_db_name", "postgres"),
@@ -208,17 +227,31 @@ def render_config_expander():
                 st.error("Wypełnij wszystkie wymagane pola dla Supabase (API i Baza Danych).")
         st.markdown("---")
         st.markdown("##### 2. Konfiguracja MongoDB (Archiwum newsów)")
-        mongo_uri = st.text_input("MongoDB Connection String (URI)", value=st.session_state.get("mongo_uri", ""),
-                                  placeholder="mongodb+srv://user:pass@cluster.mongodb.net/nazwabazy",
-                                  key="mongo_uri_ui")
+        display_mongo_uri = "" if not st.session_state["lock_mongo_uri"] else "********"
+        mongo_uri_input = st.text_input(
+            "MongoDB Connection String (URI)",
+            value=display_mongo_uri,
+            type="password",
+            key="mongo_uri_ui",
+            help="Wklej pełny Connection String dla MongoDB (nigdy nie będzie widoczny w czystej formie)."
+        )
+        if mongo_uri_input and mongo_uri_input != "********":
+            st.session_state["mongo_uri"] = mongo_uri_input
+            st.session_state["lock_mongo_uri"] = False
+
         if st.button("💾 Połącz z MongoDB", key="connect_mongo_uri", use_container_width=True):
-            if mongo_uri:
+            mongo_uri_to_use = st.session_state.get("mongo_uri", "")
+            if mongo_uri_to_use:
                 try:
-                    db_name = parse_uri(mongo_uri).get('database')
+                    db_name = parse_uri(mongo_uri_to_use).get('database')
                     if not db_name:
-                        st.error("URI musi zawierać nazwę bazy danych (np. .../mojaBaza?...)")
+                        st.error("URI musi zawierać nazwę bazy danych")
                     else:
-                        st.session_state.update({"mongo_uri": mongo_uri, "mongo_db": db_name, "mongo_configured": True})
+                        st.session_state.update({
+                            "mongo_uri": mongo_uri_to_use,
+                            "mongo_db": db_name,
+                            "mongo_configured": True
+                        })
                         st.success(f"Konfiguracja MongoDB zapisana. Połączono z bazą: '{db_name}'. Odświeżam...")
                         st.rerun()
                 except Exception as e:
@@ -233,7 +266,7 @@ def display_stocks_tab():
         col1, col2, col3 = st.columns(3)
         max_companies = col1.number_input("Maksymalna ilość spółek (0 = wszystkie)", min_value=0, value=50, step=10)
         get_only_tickers = col2.checkbox("Tylko tickery", value=False)
-        with_filters = col3.checkbox("Filtry", value=False)
+        with_filters = col3.checkbox("Filtry", value=False, help=filters_help)
         if st.form_submit_button("🔄 Pobierz dane giełdowe", type="primary", use_container_width=True):
             with st.spinner("Pobieram dane z Finviz..."):
                 try:
@@ -360,7 +393,7 @@ def display_news_tab(user_id, is_guest=False):
 
 def display_model_tab():
     st.header("Model Predykcyjny ᴮᴱᵀᴬ", divider="gray")
-    st.info("Ta funkcja jest w fazie testów (beta). Wyniki mogą być niedokładne.")
+    st.info("Ta funkcja jest w fazie testów (beta). Wyniki mogą być niedokładne, i pewnie takie są")
 
     if not (st.session_state.get("db_configured") and st.session_state.get("mongo_configured")):
         st.info("Model predykcyjny wymaga dwóch baz danych bo analizuje historyczne wyniki!")

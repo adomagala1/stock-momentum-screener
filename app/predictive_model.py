@@ -139,7 +139,6 @@ def analyze_single_ticker(ticker: str, supabase_client: Client, news_collection)
             st.error(f"Nie znaleziono danych dla tickera '{ticker.upper()}' w Finviz.")
             return pd.DataFrame()
 
-        # POPRAWKA: Ujednolicenie nazw kolumn, które mogą być inne przy pobieraniu pojedynczej spółki
         df_live_raw.rename(columns={
             'Company': 'company', 'P/E': 'p_e', 'Price': 'price',
             'Change': 'change', 'Volume': 'volume', 'Market Cap': 'market_cap',

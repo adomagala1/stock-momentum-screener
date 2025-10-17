@@ -4,3 +4,4 @@ README.MD
 .venv-linux
 .env
 .streamlit/secrets.toml
+!/app/load_demo_data.py

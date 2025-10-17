@@ -7,4 +7,4 @@ for t in tickers:
     if price is not None:
         print(f"{t}: ${price}")
     else:
-        print(f"{t}: Nie udało się pobrać ceny")
+        print(f"{t}: nie ma")

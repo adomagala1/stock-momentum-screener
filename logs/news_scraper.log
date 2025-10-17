@@ -393,3 +393,5 @@ USING (true);2025-10-14 17:44:35,408 [INFO] HTTP Request: GET https://pyzvscajlj
 2025-10-14 22:15:15,199 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/rest/v1/alerts?select=%2A&user_id=eq.04160b49-048f-47d5-b5ef-c462ebc7fd67&order=ticker.asc "HTTP/2 200 OK"
 2025-10-14 22:15:23,903 [INFO] HTTP Request: GET https://pyzvscajljdejorlyzef.supabase.co/auth/v1/user "HTTP/2 200 OK"
 2025-10-14 22:15:24,090 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/logout?scope=global "HTTP/2 204 No Content"
+2025-10-14 22:23:33,117 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 400 Bad Request"
+2025-10-14 22:39:09,493 [INFO] HTTP Request: POST https://pyzvscajljdejorlyzef.supabase.co/auth/v1/token?grant_type=refresh_token "HTTP/2 400 Bad Request"

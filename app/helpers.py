@@ -53,3 +53,33 @@ sql_script_help = """
             ON public.stocks_data FOR DELETE USING (true);
             ```
             """
+
+
+filters_help = """
+    Filtry: 
+    Market Cap: $ ($2bln-$10bln)
+    Relative Volume (Over 1.5):
+    
+    Getting data: 
+    Ticker
+    Compay
+    Sector
+    Industry
+    Country
+    Market
+    Cap
+    PIE
+    EPS Next
+    5Y
+    Week
+    Month
+    52W Low
+    High
+    Volume
+    Price
+    Volume
+    Market
+    Cap
+
+
+"""
